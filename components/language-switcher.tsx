@@ -17,14 +17,14 @@ export function LanguageSwitcher() {
   return (
     <div className="relative group">
       <button
-        className="flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-primary/10 transition-colors"
+        className="flex items-center gap-1.5 px-2.5 py-1.5 text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
         aria-label="Change language"
       >
         <Globe className="h-4 w-4" />
         <span className="hidden sm:inline">{localeNames[locale]}</span>
         <span className="sm:hidden">{locale.toUpperCase()}</span>
       </button>
-      <div className="absolute right-0 top-full mt-1 w-44 rounded-lg border border-border bg-card shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
+      <div className="absolute right-0 top-full mt-1 w-44 rounded-lg border border-border bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
         <div className="py-1">
           {locales.map((l) => (
             <button
@@ -32,8 +32,8 @@ export function LanguageSwitcher() {
               onClick={() => handleChange(l)}
               className={`w-full text-left px-3 py-2 text-sm transition-colors ${
                 l === locale
-                  ? "bg-primary/10 text-primary font-medium"
-                  : "text-foreground/80 hover:bg-muted hover:text-foreground"
+                  ? "text-primary font-medium"
+                  : "text-foreground/80 hover:text-foreground"
               }`}
             >
               {localeNames[l]}

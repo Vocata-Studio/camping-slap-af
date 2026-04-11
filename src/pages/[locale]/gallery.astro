@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero.astro";
 import { locales, isValidLocale, t } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
 
@@ -10,7 +11,102 @@ export function getStaticPaths() {
 const { locale } = Astro.params;
 if (!isValidLocale(locale)) return Astro.redirect("/da");
 const l = locale as Locale;
+
+const unsplash = (id: string, w = 1200) =>
+  `https://images.unsplash.com/${id}?w=${w}&q=80&auto=format&fit=crop`;
+
+const heroImage = "/images/old-gerlis-placeholder.webp";
+
+const photos = [
+  { id: "photo-1504280390367-361c6d9f38f4", altKey: "image1Alt", span: "tall" },
+  { id: "photo-1445308394109-4ec2920981b1", altKey: "image2Alt", span: null },
+  { id: "photo-1464822759023-fed622ff2c3b", altKey: "image3Alt", span: "wide" },
+  { id: "photo-1517824806704-9040b037703b", altKey: "image4Alt", span: null },
+  { id: "photo-1496545672447-f699b503d270", altKey: "image5Alt", span: null },
+  { id: "photo-1510312305653-8ed496efae75", altKey: "image6Alt", span: "tall" },
+  { id: "photo-1518655048521-f130df041f66", altKey: "image7Alt", span: "wide" },
+  { id: "photo-1472214103451-9374bd1c798e", altKey: "image8Alt", span: null },
+] as const;
 ---
 
 <Layout title={t(l, "Gallery", "title")} locale={l}>
+  <Hero
+    image={heroImage}
+    imageAlt={t(l, "Gallery", "title")}
+    title={t(l, "Gallery", "title")}
+    subtitle={t(l, "Gallery", "subtitle")}
+    compact
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="gallery">
+        {
+          photos.map((photo) => (
+            <figure class:list={["gallery__item", photo.span && `gallery__item--${photo.span}`]}>
+              <img
+                src={unsplash(photo.id, 1000)}
+                alt={t(l, "Gallery", photo.altKey)}
+                loading="lazy"
+              />
+            </figure>
+          ))
+        }
+      </div>
+      <p class="gallery__note">{t(l, "Gallery", "comingSoon")}</p>
+    </div>
+  </section>
 </Layout>
+
+<style>
+  .gallery {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+  @media (min-width: 640px) {
+    .gallery {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-5);
+    }
+  }
+  @media (min-width: 960px) {
+    .gallery {
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 220px;
+      gap: var(--space-5);
+    }
+  }
+
+  .gallery__item {
+    margin: 0;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--color-cream);
+  }
+  .gallery__item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 4 / 3;
+  }
+
+  @media (min-width: 960px) {
+    .gallery__item img {
+      aspect-ratio: auto;
+    }
+    .gallery__item--wide {
+      grid-column: span 2;
+    }
+    .gallery__item--tall {
+      grid-row: span 2;
+    }
+  }
+
+  .gallery__note {
+    margin-top: var(--space-10);
+    text-align: center;
+    color: var(--color-muted);
+    font-size: var(--fs-sm);
+  }
+</style>

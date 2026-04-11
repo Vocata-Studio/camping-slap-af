@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { locales, isValidLocale, t } from "../../i18n/utils";
+import Hero from "../../components/Hero.astro";
+import { locales, isValidLocale, t, localePath } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
 
 export function getStaticPaths() {
@@ -10,7 +11,215 @@ export function getStaticPaths() {
 const { locale } = Astro.params;
 if (!isValidLocale(locale)) return Astro.redirect("/da");
 const l = locale as Locale;
+
+const unsplash = (id: string, w = 1600) =>
+  `https://images.unsplash.com/${id}?w=${w}&q=80&auto=format&fit=crop`;
+
+const heroImage = "/images/old-gerlis-placeholder.webp";
+
+const accommodations = [
+  { key: "tent", image: unsplash("photo-1504280390367-361c6d9f38f4", 1000) },
+  { key: "caravan", image: unsplash("photo-1523987355523-c7b5b0dd90a7", 1000) },
+  { key: "cabin", image: unsplash("photo-1517824806704-9040b037703b", 1000) },
+  { key: "glamping", image: unsplash("photo-1510312305653-8ed496efae75", 1000) },
+] as const;
+
+const facilityKeys = [
+  "facility1",
+  "facility2",
+  "facility3",
+  "facility4",
+  "facility5",
+  "facility6",
+] as const;
 ---
 
 <Layout title={t(l, "Accommodation", "title")} locale={l}>
+  <Hero
+    image={heroImage}
+    imageAlt={t(l, "Accommodation", "title")}
+    title={t(l, "Accommodation", "title")}
+    subtitle={t(l, "Accommodation", "subtitle")}
+    compact
+  />
+
+  <!-- Accommodation types -->
+  <section class="section">
+    <div class="container">
+      <div class="acc-list">
+        {
+          accommodations.map((acc, index) => (
+            <article class:list={["acc", index % 2 === 1 && "acc--reverse"]}>
+              <div class="acc__media">
+                <img src={acc.image} alt={t(l, "Accommodation", acc.key)} loading="lazy" />
+              </div>
+              <div class="acc__body">
+                <h2>{t(l, "Accommodation", acc.key)}</h2>
+                <p class="acc__description">
+                  {t(l, "Accommodation", `${acc.key}Description`)}
+                </p>
+                <ul class="acc__features">
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                    <span>{t(l, "Accommodation", `${acc.key}Feature1`)}</span>
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                    <span>{t(l, "Accommodation", `${acc.key}Feature2`)}</span>
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                    <span>{t(l, "Accommodation", `${acc.key}Feature3`)}</span>
+                  </li>
+                </ul>
+                <div class="acc__meta">
+                  <span class="acc__price">{t(l, "Accommodation", "priceTba")}</span>
+                  <a href={localePath(l, "/booking")} class="btn">
+                    {t(l, "Accommodation", "bookCta")}
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <hr class="hairline" />
+
+  <!-- Shared facilities -->
+  <section class="section">
+    <div class="container">
+      <div class="section__head">
+        <h2>{t(l, "Accommodation", "facilitiesTitle")}</h2>
+        <p>{t(l, "Accommodation", "facilitiesDescription")}</p>
+      </div>
+      <ul class="facilities">
+        {
+          facilityKeys.map((key) => (
+            <li class="facility">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span>{t(l, "Accommodation", key)}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
 </Layout>
+
+<style>
+  .acc-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  .acc {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .acc {
+      grid-template-columns: 1.1fr 1fr;
+      gap: var(--space-10);
+    }
+    .acc--reverse .acc__media {
+      order: 2;
+    }
+  }
+
+  .acc__media img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+  }
+
+  .acc__body h2 {
+    font-size: var(--fs-2xl);
+    margin-bottom: var(--space-4);
+  }
+  .acc__description {
+    color: var(--color-muted);
+    font-size: var(--fs-md);
+    line-height: var(--lh-body);
+    max-width: 52ch;
+    margin-bottom: var(--space-6);
+  }
+
+  .acc__features {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-bottom: var(--space-7);
+  }
+  .acc__features li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    color: var(--color-ink);
+    font-size: var(--fs-sm);
+  }
+  .acc__features svg {
+    width: 18px;
+    height: 18px;
+    color: var(--color-green);
+    flex-shrink: 0;
+  }
+
+  .acc__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+    flex-wrap: wrap;
+  }
+  .acc__price {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--color-ink);
+    font-size: var(--fs-md);
+  }
+
+  /* Facilities grid */
+  .facilities {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    max-width: 760px;
+    margin-inline: auto;
+  }
+  @media (min-width: 640px) {
+    .facilities {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-4) var(--space-8);
+    }
+  }
+  .facility {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-5);
+    background: var(--color-cream);
+    border-radius: var(--radius-md);
+    color: var(--color-ink);
+    font-size: var(--fs-sm);
+  }
+  .facility svg {
+    width: 18px;
+    height: 18px;
+    color: var(--color-green);
+    flex-shrink: 0;
+  }
+</style>

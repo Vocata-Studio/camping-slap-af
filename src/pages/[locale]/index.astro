@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { locales, isValidLocale, t } from "../../i18n/utils";
+import Hero from "../../components/Hero.astro";
+import { locales, isValidLocale, t, localePath } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
 
 export function getStaticPaths() {
@@ -10,7 +11,354 @@ export function getStaticPaths() {
 const { locale } = Astro.params;
 if (!isValidLocale(locale)) return Astro.redirect("/da");
 const l = locale as Locale;
+
+const unsplash = (id: string, w = 1600) =>
+  `https://images.unsplash.com/${id}?w=${w}&q=80&auto=format&fit=crop`;
+
+const heroImage = "/images/old-gerlis-placeholder.webp";
+const alt1Image = unsplash("photo-1464822759023-fed622ff2c3b", 1200);
+const alt2Image = unsplash("photo-1510312305653-8ed496efae75", 1200);
 ---
 
 <Layout title={t(l, "Header", "home")} locale={l}>
+  <Hero
+    image={heroImage}
+    imageAlt={t(l, "Home", "heroTitle")}
+    eyebrow={t(l, "Home", "heroLocation")}
+    title={t(l, "Home", "heroTitle")}
+    subtitle={t(l, "Home", "heroSubtitle")}
+    overlay="flat"
+    primaryCta={{
+      label: t(l, "Home", "heroCta"),
+      href: localePath(l, "/accommodation"),
+    }}
+    secondaryCta={{
+      label: t(l, "Home", "heroSecondary"),
+      href: localePath(l, "/about"),
+    }}
+  />
+
+  <!-- Intro -->
+  <section class="section">
+    <div class="container intro">
+      <h2 class="intro__title">{t(l, "Home", "introTitle")}</h2>
+      <div class="intro__prose">
+        <p>{t(l, "Home", "introText")}</p>
+        <p>{t(l, "Home", "introText2")}</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hairline" />
+
+  <!-- Feature cards -->
+  <section class="section">
+    <div class="container">
+      <div class="section__head">
+        <h2>{t(l, "Home", "featureTitle")}</h2>
+      </div>
+      <div class="feature-grid">
+        <article class="feature">
+          <div class="feature__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3.5 21 14 3" />
+              <path d="M20.5 21 10 3" />
+              <path d="M15.5 21 12 15l-3.5 6" />
+              <path d="M2 21h20" />
+            </svg>
+          </div>
+          <h3>{t(l, "Home", "feature1Title")}</h3>
+          <p>{t(l, "Home", "feature1Description")}</p>
+        </article>
+
+        <article class="feature">
+          <div class="feature__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+            </svg>
+          </div>
+          <h3>{t(l, "Home", "feature2Title")}</h3>
+          <p>{t(l, "Home", "feature2Description")}</p>
+        </article>
+
+        <article class="feature">
+          <div class="feature__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m8 3 4 8 5-5 5 15H2L8 3z" />
+            </svg>
+          </div>
+          <h3>{t(l, "Home", "feature3Title")}</h3>
+          <p>{t(l, "Home", "feature3Description")}</p>
+        </article>
+
+        <article class="feature">
+          <div class="feature__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+          </div>
+          <h3>{t(l, "Home", "feature4Title")}</h3>
+          <p>{t(l, "Home", "feature4Description")}</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hairline" />
+
+  <!-- Alternating content block 1 -->
+  <section class="section">
+    <div class="container alt">
+      <div class="alt__media">
+        <img src={alt1Image} alt={t(l, "Home", "altSection1Title")} loading="lazy" />
+      </div>
+      <div class="alt__text">
+        <h2>{t(l, "Home", "altSection1Title")}</h2>
+        <p>{t(l, "Home", "altSection1Text")}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Alternating content block 2 -->
+  <section class="section">
+    <div class="container alt alt--reverse">
+      <div class="alt__media">
+        <img src={alt2Image} alt={t(l, "Home", "altSection2Title")} loading="lazy" />
+      </div>
+      <div class="alt__text">
+        <h2>{t(l, "Home", "altSection2Title")}</h2>
+        <p>{t(l, "Home", "altSection2Text")}</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hairline" />
+
+  <!-- Testimonials -->
+  <section class="section">
+    <div class="container">
+      <div class="section__head">
+        <h2>{t(l, "Home", "testimonialTitle")}</h2>
+      </div>
+      <div class="testimonial-grid">
+        <blockquote class="testimonial">
+          <svg class="testimonial__mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M7.17 6C4.32 6 2 8.32 2 11.17V18h6.83v-6.83H5.34c0-1.92 1.57-3.49 3.49-3.49V6h-1.66zm10 0c-2.85 0-5.17 2.32-5.17 5.17V18h6.83v-6.83h-3.49c0-1.92 1.57-3.49 3.49-3.49V6h-1.66z" />
+          </svg>
+          <p class="testimonial__text">{t(l, "Home", "testimonial1Text")}</p>
+          <footer class="testimonial__footer">
+            <div class="testimonial__author">{t(l, "Home", "testimonial1Author")}</div>
+            <div class="testimonial__origin">{t(l, "Home", "testimonial1Origin")}</div>
+          </footer>
+        </blockquote>
+
+        <blockquote class="testimonial">
+          <svg class="testimonial__mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M7.17 6C4.32 6 2 8.32 2 11.17V18h6.83v-6.83H5.34c0-1.92 1.57-3.49 3.49-3.49V6h-1.66zm10 0c-2.85 0-5.17 2.32-5.17 5.17V18h6.83v-6.83h-3.49c0-1.92 1.57-3.49 3.49-3.49V6h-1.66z" />
+          </svg>
+          <p class="testimonial__text">{t(l, "Home", "testimonial2Text")}</p>
+          <footer class="testimonial__footer">
+            <div class="testimonial__author">{t(l, "Home", "testimonial2Author")}</div>
+            <div class="testimonial__origin">{t(l, "Home", "testimonial2Origin")}</div>
+          </footer>
+        </blockquote>
+
+        <blockquote class="testimonial">
+          <svg class="testimonial__mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M7.17 6C4.32 6 2 8.32 2 11.17V18h6.83v-6.83H5.34c0-1.92 1.57-3.49 3.49-3.49V6h-1.66zm10 0c-2.85 0-5.17 2.32-5.17 5.17V18h6.83v-6.83h-3.49c0-1.92 1.57-3.49 3.49-3.49V6h-1.66z" />
+          </svg>
+          <p class="testimonial__text">{t(l, "Home", "testimonial3Text")}</p>
+          <footer class="testimonial__footer">
+            <div class="testimonial__author">{t(l, "Home", "testimonial3Author")}</div>
+            <div class="testimonial__origin">{t(l, "Home", "testimonial3Origin")}</div>
+          </footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA banner -->
+  <section class="cta-band">
+    <div class="container cta-band__inner">
+      <h2>{t(l, "Home", "ctaTitle")}</h2>
+      <p>{t(l, "Home", "ctaDescription")}</p>
+      <a href={localePath(l, "/contact")} class="btn">{t(l, "Home", "ctaButton")}</a>
+    </div>
+  </section>
 </Layout>
+
+<style>
+  /* Intro */
+  .intro {
+    text-align: center;
+  }
+  .intro__title {
+    font-size: var(--fs-2xl);
+    max-width: 22ch;
+    margin: 0 auto var(--space-6);
+    text-wrap: balance;
+  }
+  .intro__prose {
+    max-width: 62ch;
+    margin-inline: auto;
+  }
+  .intro__prose p {
+    color: var(--color-muted);
+    font-size: var(--fs-md);
+    line-height: var(--lh-body);
+  }
+  .intro__prose p + p {
+    margin-top: var(--space-4);
+  }
+
+  /* Feature grid */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+  @media (min-width: 640px) {
+    .feature-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 960px) {
+    .feature-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  .feature {
+    background: var(--color-cream);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+  }
+  .feature__icon {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-green);
+    margin-bottom: var(--space-5);
+    background: var(--color-white);
+  }
+  .feature__icon svg {
+    width: 26px;
+    height: 26px;
+  }
+  .feature h3 {
+    font-size: var(--fs-lg);
+    margin-bottom: var(--space-3);
+  }
+  .feature p {
+    color: var(--color-muted);
+    font-size: var(--fs-sm);
+    line-height: var(--lh-body);
+  }
+
+  /* Alternating content blocks */
+  .alt {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .alt {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-10);
+    }
+    .alt--reverse .alt__media {
+      order: 2;
+    }
+  }
+  .alt__media img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+  }
+  .alt__text h2 {
+    font-size: var(--fs-2xl);
+    margin-bottom: var(--space-5);
+    text-wrap: balance;
+  }
+  .alt__text p {
+    color: var(--color-muted);
+    font-size: var(--fs-md);
+    line-height: var(--lh-body);
+    max-width: 52ch;
+  }
+
+  /* Testimonials */
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+  @media (min-width: 768px) {
+    .testimonial-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .testimonial {
+    background: var(--color-white);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+  .testimonial__mark {
+    width: 28px;
+    height: 28px;
+    color: var(--color-mint);
+  }
+  .testimonial__text {
+    color: var(--color-ink);
+    font-size: var(--fs-md);
+    line-height: 1.55;
+  }
+  .testimonial__footer {
+    margin-top: auto;
+  }
+  .testimonial__author {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+  .testimonial__origin {
+    font-size: var(--fs-xs);
+    color: var(--color-muted);
+    margin-top: 2px;
+  }
+
+  /* CTA band */
+  .cta-band {
+    background: var(--color-cream);
+    padding-block: var(--space-12);
+    margin-top: var(--space-12);
+  }
+  .cta-band__inner {
+    text-align: center;
+    max-width: 56ch;
+    margin-inline: auto;
+  }
+  .cta-band h2 {
+    font-size: var(--fs-2xl);
+    margin-bottom: var(--space-4);
+    text-wrap: balance;
+  }
+  .cta-band p {
+    color: var(--color-muted);
+    font-size: var(--fs-md);
+    margin-bottom: var(--space-7);
+  }
+</style>

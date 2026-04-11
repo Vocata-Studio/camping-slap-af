@@ -1,0 +1,188 @@
+---
+/**
+ * Full-width hero image with overlaid text.
+ * Every page opens with one of these. Keep the markup flat — optional
+ * props are rendered conditionally so pages can pass only what they need.
+ */
+interface CtaProps {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  image: string;
+  imageAlt: string;
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  primaryCta?: CtaProps;
+  secondaryCta?: CtaProps;
+  /** Compact hero used on inner pages (smaller height, title-only feel). */
+  compact?: boolean;
+  /**
+   * Scrim style.
+   * - "gradient" (default): soft bottom-weighted gradient for inner pages
+   * - "flat": uniform slight darkening — used on the homepage hero
+   */
+  overlay?: "gradient" | "flat";
+}
+
+const {
+  image,
+  imageAlt,
+  eyebrow,
+  title,
+  subtitle,
+  primaryCta,
+  secondaryCta,
+  compact = false,
+  overlay = "gradient",
+} = Astro.props;
+---
+
+<section class:list={["hero", compact && "hero--compact"]}>
+  <img
+    class="hero__image"
+    src={image}
+    alt={imageAlt}
+    loading="eager"
+    decoding="async"
+  />
+  <div class:list={["hero__scrim", `hero__scrim--${overlay}`]}></div>
+  <div class="container hero__inner">
+    <div class="hero__content">
+      {eyebrow && <span class="hero__eyebrow">{eyebrow}</span>}
+      <h1 class="hero__title">{title}</h1>
+      {subtitle && <p class="hero__subtitle">{subtitle}</p>}
+      {
+        (primaryCta || secondaryCta) && (
+          <div class="hero__actions">
+            {primaryCta && (
+              <a href={primaryCta.href} class="btn">
+                {primaryCta.label}
+              </a>
+            )}
+            {secondaryCta && (
+              <a href={secondaryCta.href} class="btn btn--ghost hero__ghost">
+                {secondaryCta.label}
+              </a>
+            )}
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    width: 100%;
+    min-height: 72vh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: var(--color-ink);
+  }
+  .hero--compact {
+    min-height: 52vh;
+  }
+
+  .hero__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero__scrim {
+    position: absolute;
+    inset: 0;
+  }
+  .hero__scrim--gradient {
+    background: linear-gradient(
+      180deg,
+      rgba(26, 26, 26, 0.15) 0%,
+      rgba(26, 26, 26, 0.05) 35%,
+      rgba(26, 26, 26, 0.55) 85%,
+      rgba(26, 26, 26, 0.7) 100%
+    );
+  }
+  .hero__scrim--flat {
+    background: rgba(26, 26, 26, 0.42);
+  }
+
+  .hero__inner {
+    position: relative;
+    z-index: 1;
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-10);
+  }
+
+  .hero__content {
+    max-width: 52ch;
+    color: var(--color-white);
+  }
+
+  .hero__eyebrow {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-white);
+    opacity: 0.9;
+    margin-bottom: var(--space-4);
+  }
+
+  .hero__title {
+    font-size: clamp(2rem, 5.2vw, var(--fs-4xl));
+    line-height: 1.08;
+    color: var(--color-white);
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .hero__subtitle {
+    margin-top: var(--space-5);
+    font-size: var(--fs-md);
+    line-height: var(--lh-body);
+    color: rgba(255, 255, 255, 0.88);
+    max-width: 48ch;
+  }
+
+  .hero__actions {
+    margin-top: var(--space-7);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  /* Ghost button over imagery — invert so it reads on dark */
+  .hero__ghost {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--color-white);
+    border-color: rgba(255, 255, 255, 0.38);
+    backdrop-filter: blur(2px);
+  }
+  .hero__ghost:hover {
+    background: rgba(255, 255, 255, 0.22);
+    color: var(--color-white);
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      min-height: 62vh;
+    }
+    .hero--compact {
+      min-height: 46vh;
+    }
+    .hero__inner {
+      padding-top: var(--space-10);
+      padding-bottom: var(--space-8);
+    }
+  }
+</style>

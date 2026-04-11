@@ -216,11 +216,90 @@ details > summary::-webkit-details-marker {
   color: var(--color-ink);
 }
 
+/* ------------------------------------------------------------------ */
+/* Section + content primitives                                         */
+/* ------------------------------------------------------------------ */
+
+.section {
+  padding-block: var(--space-12);
+}
+.section--tight {
+  padding-block: var(--space-10);
+}
+.section--flush-top {
+  padding-top: var(--space-10);
+}
+
+.section__head {
+  max-width: 56ch;
+  margin-inline: auto;
+  text-align: center;
+  margin-bottom: var(--space-10);
+}
+.section__head--left {
+  margin-inline: 0;
+  text-align: left;
+}
+.section__head h2 {
+  font-size: var(--fs-2xl);
+  margin-bottom: var(--space-4);
+}
+.section__head p {
+  color: var(--color-muted);
+  font-size: var(--fs-md);
+  line-height: var(--lh-body);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-green);
+  margin-bottom: var(--space-4);
+}
+
+.prose {
+  max-width: var(--max-w-prose);
+}
+.prose p + p {
+  margin-top: var(--space-4);
+}
+.prose p {
+  color: var(--color-muted);
+  font-size: var(--fs-md);
+  line-height: var(--lh-body);
+}
+
+/* Generic card shell — used by feature grids, accommodation cards, etc. */
+.card {
+  background: var(--color-white);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+}
+.card--cream {
+  background: var(--color-cream);
+  border-color: transparent;
+}
+
+.hairline {
+  border: 0;
+  border-top: 1px solid var(--color-hairline);
+  margin: 0;
+}
+
 /* Responsive font sizing for the big headings */
 @media (max-width: 640px) {
   :root {
     --fs-3xl: 2.25rem;
     --fs-4xl: 2.75rem;
     --fs-2xl: 1.75rem;
+  }
+
+  .section {
+    padding-block: var(--space-10);
   }
 }

@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { locales, isValidLocale, t } from "../../i18n/utils";
+import Hero from "../../components/Hero.astro";
+import { locales, isValidLocale, t, localePath } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
 
 export function getStaticPaths() {
@@ -10,7 +11,209 @@ export function getStaticPaths() {
 const { locale } = Astro.params;
 if (!isValidLocale(locale)) return Astro.redirect("/da");
 const l = locale as Locale;
+
+const unsplash = (id: string, w = 1600) =>
+  `https://images.unsplash.com/${id}?w=${w}&q=80&auto=format&fit=crop`;
+
+const heroImage = "/images/old-gerlis-placeholder.webp";
+
+const phone = t(l, "Contact", "phone");
+const email = t(l, "Contact", "email");
+const phoneHref = `tel:${phone.replace(/\s+/g, "")}`;
 ---
 
 <Layout title={t(l, "Booking", "title")} locale={l}>
+  <Hero
+    image={heroImage}
+    imageAlt={t(l, "Booking", "title")}
+    title={t(l, "Booking", "title")}
+    compact
+  />
+
+  <section class="section">
+    <div class="container booking">
+      <!--
+        The booking system lives in a separate Next.js project and will be
+        embedded here (iframe) once ready. Until then, we render a friendly
+        placeholder + contact fallbacks so visitors can still reserve by phone.
+      -->
+      <div class="booking__embed" aria-label="Booking system placeholder">
+        <div class="booking__embed-inner">
+          <div class="booking__badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="18" height="18" x="3" y="4" rx="2" />
+              <path d="M16 2v4" />
+              <path d="M8 2v4" />
+              <path d="M3 10h18" />
+              <path d="m9 16 2 2 4-4" />
+            </svg>
+          </div>
+          <h2>{t(l, "Booking", "comingSoonTitle")}</h2>
+          <p>{t(l, "Booking", "comingSoonText")}</p>
+        </div>
+      </div>
+
+      <div class="booking__fallback">
+        <p class="booking__fallback-lead">{t(l, "Booking", "contactCta")}</p>
+
+        <div class="booking__methods">
+          <a href={phoneHref} class="booking__method">
+            <div class="booking__method-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z" />
+              </svg>
+            </div>
+            <div class="booking__method-text">
+              <span class="booking__method-label">{t(l, "Booking", "phoneLabel")}</span>
+              <span class="booking__method-value">{phone}</span>
+            </div>
+          </a>
+
+          <a href={`mailto:${email}`} class="booking__method">
+            <div class="booking__method-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2" />
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+              </svg>
+            </div>
+            <div class="booking__method-text">
+              <span class="booking__method-label">{t(l, "Booking", "emailLabel")}</span>
+              <span class="booking__method-value">{email}</span>
+            </div>
+          </a>
+        </div>
+
+        <a href={localePath(l, "/contact")} class="btn btn--ghost booking__contact-btn">
+          {t(l, "Booking", "contactButton")}
+        </a>
+      </div>
+    </div>
+  </section>
 </Layout>
+
+<style>
+  .booking {
+    max-width: 880px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-10);
+  }
+
+  /* Embed placeholder — sized like the future iframe container */
+  .booking__embed {
+    border-radius: var(--radius-lg);
+    border: 1px dashed var(--color-hairline-strong);
+    background: var(--color-cream);
+    min-height: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-8);
+  }
+  .booking__embed-inner {
+    max-width: 44ch;
+    text-align: center;
+  }
+  .booking__badge {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+    color: var(--color-green);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-5);
+  }
+  .booking__badge svg {
+    width: 28px;
+    height: 28px;
+  }
+  .booking__embed h2 {
+    font-size: var(--fs-xl);
+    margin-bottom: var(--space-3);
+    text-wrap: balance;
+  }
+  .booking__embed p {
+    color: var(--color-muted);
+    font-size: var(--fs-md);
+    line-height: var(--lh-body);
+  }
+
+  /* Fallback contact block */
+  .booking__fallback {
+    text-align: center;
+  }
+  .booking__fallback-lead {
+    color: var(--color-muted);
+    font-size: var(--fs-md);
+    margin-bottom: var(--space-6);
+  }
+
+  .booking__methods {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    margin-bottom: var(--space-7);
+  }
+  @media (min-width: 640px) {
+    .booking__methods {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-5);
+    }
+  }
+  .booking__method {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-5) var(--space-6);
+    background: var(--color-white);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-lg);
+    text-align: left;
+    color: var(--color-ink);
+  }
+  .booking__method:hover {
+    border-color: var(--color-green);
+    color: var(--color-ink);
+  }
+  .booking__method-icon {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: var(--radius-md);
+    background: var(--color-cream);
+    color: var(--color-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .booking__method-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+  .booking__method-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+  .booking__method-label {
+    font-family: var(--font-body);
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-muted);
+  }
+  .booking__method-value {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: var(--fs-md);
+    color: var(--color-ink);
+    margin-top: 2px;
+  }
+
+  .booking__contact-btn {
+    display: inline-flex;
+  }
+</style>

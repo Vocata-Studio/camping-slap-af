@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero.astro";
 import { locales, isValidLocale, t } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
 
@@ -10,7 +11,268 @@ export function getStaticPaths() {
 const { locale } = Astro.params;
 if (!isValidLocale(locale)) return Astro.redirect("/da");
 const l = locale as Locale;
+
+const unsplash = (id: string, w = 1600) =>
+  `https://images.unsplash.com/${id}?w=${w}&q=80&auto=format&fit=crop`;
+
+const heroImage = "/images/old-gerlis-placeholder.webp";
+
+const phone = t(l, "Contact", "phone");
+const email = t(l, "Contact", "email");
+const phoneHref = `tel:${phone.replace(/\s+/g, "")}`;
 ---
 
 <Layout title={t(l, "Contact", "title")} locale={l}>
+  <Hero
+    image={heroImage}
+    imageAlt={t(l, "Contact", "title")}
+    title={t(l, "Contact", "title")}
+    subtitle={t(l, "Contact", "subtitle")}
+    compact
+  />
+
+  <!-- Contact info + form -->
+  <section class="section">
+    <div class="container contact-grid">
+      <!-- Info column -->
+      <div class="contact-info">
+        <h2 class="contact-info__heading">{t(l, "Contact", "infoTitle")}</h2>
+
+        <ul class="contact-info__list">
+          <li>
+            <div class="contact-info__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 10c0 7-8 12-8 12s-8-5-8-12a8 8 0 0 1 16 0Z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+            </div>
+            <div>
+              <div class="contact-info__label">{t(l, "Footer", "address").split(",")[0]}</div>
+              <div class="contact-info__value">{t(l, "Contact", "address")}</div>
+            </div>
+          </li>
+          <li>
+            <div class="contact-info__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z" />
+              </svg>
+            </div>
+            <div>
+              <div class="contact-info__label">{t(l, "Booking", "phoneLabel")}</div>
+              <a href={phoneHref} class="contact-info__value contact-info__value--link">
+                {phone}
+              </a>
+            </div>
+          </li>
+          <li>
+            <div class="contact-info__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2" />
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+              </svg>
+            </div>
+            <div>
+              <div class="contact-info__label">{t(l, "Booking", "emailLabel")}</div>
+              <a href={`mailto:${email}`} class="contact-info__value contact-info__value--link">
+                {email}
+              </a>
+            </div>
+          </li>
+          <li>
+            <div class="contact-info__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+            </div>
+            <div>
+              <div class="contact-info__label">{t(l, "Contact", "hoursTitle")}</div>
+              <div class="contact-info__value">{t(l, "Contact", "hoursText")}</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Form column -->
+      <form class="contact-form" action={`mailto:${email}`} method="post" enctype="text/plain">
+        <h2 class="contact-form__heading">{t(l, "Contact", "formTitle")}</h2>
+
+        <div class="field">
+          <label for="contact-name">{t(l, "Contact", "nameLabel")}</label>
+          <input type="text" id="contact-name" name="name" required autocomplete="name" />
+        </div>
+
+        <div class="field">
+          <label for="contact-email">{t(l, "Contact", "emailLabel")}</label>
+          <input type="email" id="contact-email" name="email" required autocomplete="email" />
+        </div>
+
+        <div class="field">
+          <label for="contact-message">{t(l, "Contact", "messageLabel")}</label>
+          <textarea id="contact-message" name="message" rows="5" required></textarea>
+        </div>
+
+        <button type="submit" class="btn contact-form__submit">
+          {t(l, "Contact", "sendButton")}
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <hr class="hairline" />
+
+  <!-- Map placeholder -->
+  <section class="section">
+    <div class="container">
+      <div class="section__head section__head--left">
+        <h2>{t(l, "Contact", "mapTitle")}</h2>
+        <p>{t(l, "Contact", "mapDescription")}</p>
+      </div>
+      <div class="map-placeholder" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 10c0 7-8 12-8 12s-8-5-8-12a8 8 0 0 1 16 0Z" />
+          <circle cx="12" cy="10" r="3" />
+        </svg>
+        <span>{t(l, "Contact", "address")}</span>
+      </div>
+    </div>
+  </section>
 </Layout>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+  @media (min-width: 900px) {
+    .contact-grid {
+      grid-template-columns: 1fr 1.2fr;
+      gap: var(--space-12);
+    }
+  }
+
+  /* Info column */
+  .contact-info__heading {
+    font-size: var(--fs-xl);
+    margin-bottom: var(--space-7);
+  }
+  .contact-info__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+  .contact-info__list > li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+  .contact-info__icon {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: var(--radius-md);
+    background: var(--color-cream);
+    color: var(--color-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .contact-info__icon svg {
+    width: 22px;
+    height: 22px;
+  }
+  .contact-info__label {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: var(--fs-sm);
+    color: var(--color-ink);
+    margin-bottom: 2px;
+  }
+  .contact-info__value {
+    color: var(--color-muted);
+    font-size: var(--fs-sm);
+    line-height: var(--lh-body);
+  }
+  .contact-info__value--link {
+    color: var(--color-muted);
+  }
+  .contact-info__value--link:hover {
+    color: var(--color-green);
+  }
+
+  /* Form column */
+  .contact-form {
+    background: var(--color-cream);
+    border-radius: var(--radius-lg);
+    padding: var(--space-7);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+  .contact-form__heading {
+    font-size: var(--fs-xl);
+    margin: 0 0 var(--space-2);
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .field label {
+    font-family: var(--font-body);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+  .field input,
+  .field textarea {
+    font: inherit;
+    font-size: var(--fs-base);
+    color: var(--color-ink);
+    background: var(--color-white);
+    border: 1px solid var(--color-hairline-strong);
+    border-radius: var(--radius-md);
+    padding: 0.7rem 0.9rem;
+    line-height: 1.4;
+    resize: vertical;
+  }
+  .field input:focus,
+  .field textarea:focus {
+    outline: none;
+    border-color: var(--color-green);
+    box-shadow: 0 0 0 3px rgba(43, 152, 84, 0.18);
+  }
+
+  .contact-form__submit {
+    align-self: flex-start;
+    margin-top: var(--space-2);
+  }
+
+  /* Map placeholder */
+  .map-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    height: 320px;
+    border-radius: var(--radius-lg);
+    background:
+      repeating-linear-gradient(
+        45deg,
+        var(--color-cream),
+        var(--color-cream) 14px,
+        rgba(119, 186, 138, 0.08) 14px,
+        rgba(119, 186, 138, 0.08) 28px
+      );
+    color: var(--color-muted);
+    font-size: var(--fs-sm);
+    border: 1px solid var(--color-hairline);
+  }
+  .map-placeholder svg {
+    width: 22px;
+    height: 22px;
+    color: var(--color-green);
+  }
+</style>

@@ -87,8 +87,11 @@ The site must support dynamic language detection and switching. Auto-detect brow
 
 ## Stack
 
-- Astro (static site, no UI frameworks)
-- TypeScript
+- Astro 5 (static output)
+- Plain HTML + CSS — scoped `<style>` blocks inside `.astro` components, plus a global stylesheet (`src/styles/global.css`) holding tokens and base typography as CSS custom properties
+- TypeScript in component frontmatter and `src/i18n/utils.ts`
+- No Tailwind, no shadcn, no component libraries
+- React is permitted as an escape hatch, but only for UI that genuinely needs client-side interactivity which plain HTML + a small inline `<script>` cannot cover. Default to HTML/CSS
 - No database, no auth — will be added later for booking system
 
 ## Tools
@@ -97,9 +100,11 @@ The site must support dynamic language detection and switching. Auto-detect brow
 
 ## Conventions
 
-- Plain Astro components (`.astro` files), no React or other UI frameworks
+- Plain Astro components (`.astro` files) using HTML + CSS. Avoid reaching for React unless a piece of UI truly requires it
+- Component styles live in scoped `<style>` blocks; shared tokens and base styles live in `src/styles/global.css`
+- Icons: inline SVG (no icon libraries). Copy paths from Lucide's open-source set when needed
 - Write full implementations, no stubs or TODOs
 - All user-facing text must go through the i18n system via `t()` — no hardcoded strings
 - Placeholder content should be realistic (Danish camping context)
-- Images: use placeholder divs with descriptive alt text until real assets arrive
+- Images: use placeholder containers with descriptive alt text until real assets arrive
 - Pages use dynamic `[locale]` routing with `getStaticPaths` for all locales

@@ -1,20 +1,46 @@
 ---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { stripLocaleFromPath } from "../i18n/utils";
+import type { Locale } from "../i18n/utils";
+
 interface Props {
   title: string;
-  locale: string;
+  locale: Locale;
+  description?: string;
 }
 
-const { title, locale } = Astro.props;
+const { title, locale, description } = Astro.props;
+const currentRoute = stripLocaleFromPath(Astro.url.pathname);
+const pageDescription =
+  description ??
+  "Camping Slap Af — rolig camping i Sejerslev på Mors, midt i den danske natur.";
 ---
 
 <!doctype html>
 <html lang={locale}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={pageDescription} />
+    <link rel="icon" type="image/png" href="/csa-iconv1.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <title>{title} | Camping Slap Af</title>
   </head>
   <body>
-    <slot />
+    <a href="#main" class="visually-hidden">Skip to content</a>
+    <Header locale={locale} currentRoute={currentRoute} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer locale={locale} />
   </body>
 </html>

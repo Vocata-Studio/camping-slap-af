@@ -6,6 +6,9 @@ export default defineConfig({
     defaultLocale: "da",
     routing: {
       prefixDefaultLocale: true,
+      // We serve a custom /index.astro that does client-side browser-language
+      // detection. Disable Astro's automatic / -> /da/ redirect so our page wins.
+      redirectToDefaultLocale: false,
     },
   },
 });

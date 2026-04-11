@@ -99,7 +99,7 @@ Weather widget, interactive map, CMS, Google Maps integration, social media feed
 | Headings | Outfit | 500, 600, 700 | Geometric, modern, slightly soft |
 | Body | Inter | 400, 500, 600 | Clean, highly legible, neutral geometric |
 
-**Icons:** Lucide React (primary), Heroicons (fallback)
+**Icons:** Inline SVG, paths copied from Lucide's open-source set when needed. No icon library dependency.
 
 ### Layout
 
@@ -131,16 +131,17 @@ Weather widget, interactive map, CMS, Google Maps integration, social media feed
 
 | Layer | Technology |
 |-------|------------|
-| Framework | Next.js 16 (App Router, TypeScript) |
-| Styling | Tailwind CSS v4 |
-| Components | shadcn/ui (Radix UI primitives, base-nova style) |
-| Icons | Lucide React + Heroicons |
-| i18n | next-intl |
+| Framework | Astro 5 (static output, TypeScript) |
+| Styling | Plain CSS — global tokens in `src/styles/global.css` + scoped `<style>` blocks in `.astro` components |
+| Components | Plain `.astro` components (no UI library). React allowed only when client-side interactivity requires it |
+| Icons | Inline SVG (Lucide paths copied as static SVG when needed) |
+| i18n | Custom utility in `src/i18n/utils.ts` + JSON message files in `/messages` |
 | Package manager | pnpm |
 
 ### Technical Constraints
 
-- Server components by default, client components only when necessary
+- Astro defaults to zero JavaScript — only add inline `<script>` or React islands when interactivity truly requires it
+- No Tailwind, shadcn, or component libraries
 - No database or auth in Phase 1
 - No CMS in Phase 1
 - No external integrations in Phase 1

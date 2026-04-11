@@ -2,8 +2,8 @@
 
 ## Overview
 
-**Product:** Marketing website for Camping Slap Af
-**Type:** Danish campingplads (campsite)
+**Product:** Website for Camping Slap Af
+**Type:** Danish campingplads (danish campsite)
 **Location:** Sejerslev, island of Mors (Morsoe), Denmark
 **Domain:** campingslapaf.dk
 **Tagline:** TBD
@@ -13,7 +13,7 @@
 1. Establish an online presence for Camping Slap Af
 2. Provide visitors with essential information about the campsite, accommodation, and local activities
 3. Serve an international audience with full multi-language support (10 EU languages)
-4. Lay the foundation for a future internal booking system
+4. Lay the foundation for a future internal booking system (embed will come soon for this)
 
 ## Target Audience
 
@@ -77,26 +77,48 @@ Weather widget, interactive map, CMS, Google Maps integration, social media feed
 
 ### Design
 
-**Style:** Minimal but warm. Nature-forward, clean, outdoor aesthetic. Not sterile — inviting and grounded.
+**Style:** Minimal, earthy, and grounded. Nature-forward with a clean modern feel — inviting but not cluttered. Pure white base background throughout — no warm tinted section fills. No animations or transitions — static and fast. Balanced spacing (not cramped, not overly sparse). Every page opens with a large full-width hero image as its lead element.
+
+**Reference:** dragstrupcamping.dk — specifically the large full-width hero image anchoring the top of every page. Everything else about our design should feel more modern and refined than dragstrup.
 
 **Color palette:**
 
 | Name | Hex | Usage |
 |------|-----|-------|
-| Shamrock Green | `#2B9854` | Primary — CTAs, active states, key accents |
-| Mint Leaf | `#77BA8A` | Secondary — accents, hover states, subtle highlights |
-| Floral White | `#FCF6EB` | Background, light surfaces |
+| Shamrock Green | `#2B9854` | CTAs, links, active states. Used sparingly — no large green fills |
+| Mint Leaf | `#77BA8A` | Hover states and subtle accents only |
+| White | `#FFFFFF` | Pure base background for all pages and sections |
+| Floral White | `#FCF6EB` | Warm accent only — cards, callouts, CTA bands. Not used as section background |
 | Near Black | `#1A1A1A` | Body text |
-| White | `#FFFFFF` | Contrast surfaces |
+| Muted Grey | `#6B7280` | Secondary text, captions |
 
 **Typography (Google Fonts):**
 
 | Role | Font | Weights | Character |
 |------|------|---------|-----------|
 | Headings | Outfit | 500, 600, 700 | Geometric, modern, slightly soft |
-| Body | DM Sans | 400, 500, 700 | Clean, readable, friendly |
+| Body | Inter | 400, 500, 600 | Clean, highly legible, neutral geometric |
 
 **Icons:** Lucide React (primary), Heroicons (fallback)
+
+### Layout
+
+**Header:** Sticky — logo (left), navigation links (center/right), language switcher, prominent "Book now" CTA. Mobile: hamburger menu.
+
+**Homepage structure:**
+1. Full-viewport hero image (later video) with text overlay (tagline + subtitle) and CTA
+2. Short intro/welcome section about the campsite and location
+3. Feature cards grid — key offerings (accommodation, activities, nature/location)
+4. Alternating text + image content blocks for deeper detail
+5. Guest testimonials/reviews
+6. Full-width CTA banner to book (accent background)
+
+**General page patterns:**
+- Consistent header + content + footer on all pages
+- Every page opens with a large full-width hero image (following dragstrupcamping.dk's approach), with the page title or short tagline overlaid
+- Pure white section backgrounds throughout — visual rhythm comes from spacing, hairline dividers, and card groupings rather than alternating fills
+- Cards and grids for listing items (accommodations, activities); cards may use floral white for warmth
+- Generous but not excessive section padding
 
 ### Content
 

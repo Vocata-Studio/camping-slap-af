@@ -1,0 +1,16 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { locales, isValidLocale, t } from "../../i18n/utils";
+import type { Locale } from "../../i18n/utils";
+
+export function getStaticPaths() {
+  return locales.map((locale) => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params;
+if (!isValidLocale(locale)) return Astro.redirect("/da");
+const l = locale as Locale;
+---
+
+<Layout title={t(l, "Header", "home")} locale={l}>
+</Layout>

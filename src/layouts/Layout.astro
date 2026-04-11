@@ -1,0 +1,20 @@
+---
+interface Props {
+  title: string;
+  locale: string;
+}
+
+const { title, locale } = Astro.props;
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | Camping Slap Af</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

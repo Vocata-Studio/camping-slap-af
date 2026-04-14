@@ -19,16 +19,19 @@ const heroImage = "/images/old-gerlis-placeholder.webp";
 
 const onSite = [
   { key: "activity1", icon: "playground" },
-  { key: "activity2", icon: "fish" },
+  { key: "activity2", icon: "vegetable" },
   { key: "activity3", icon: "flame" },
-  { key: "activity4", icon: "circle" },
+  { key: "activity4", icon: "dog" },
 ] as const;
 
 const nearby = [
-  { key: "nearby1", image: unsplash("photo-1518655048521-f130df041f66", 900) },
-  { key: "nearby2", image: unsplash("photo-1464982326199-86f358bac9e6", 900) },
+  { key: "nearby1", image: unsplash("photo-1464822759023-fed622ff2c3b", 900) },
+  { key: "nearby2", image: unsplash("photo-1507525428034-b723cf961d3e", 900) },
   { key: "nearby3", image: unsplash("photo-1472214103451-9374bd1c798e", 900) },
-  { key: "nearby4", image: unsplash("photo-1507035895480-2b3b7b7b8fc7", 900) },
+  { key: "nearby4", image: unsplash("photo-1518655048521-f130df041f66", 900) },
+  { key: "nearby5", image: unsplash("photo-1464982326199-86f358bac9e6", 900) },
+  { key: "nearby6", image: unsplash("photo-1445308394109-4ec2920981b1", 900) },
+  { key: "nearby7", image: unsplash("photo-1507035895480-2b3b7b7b8fc7", 900) },
 ] as const;
 ---
 
@@ -62,12 +65,12 @@ const nearby = [
                     <circle cx="12" cy="5" r="2" />
                   </svg>
                 )}
-                {item.icon === "fish" && (
+                {item.icon === "vegetable" && (
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M6.5 12c.94-3.46 4.94-6 8.5-6 3.56 0 6.06 2.54 7 6-.94 3.47-3.44 6-7 6s-7.56-2.54-8.5-6Z" />
-                    <path d="M18 12v.5" />
-                    <path d="M16 17.93a9.77 9.77 0 0 1 0-11.86" />
-                    <path d="M7 10.67C7 8 5.58 5.97 2.73 5.5c-1 1.5-1 5 .23 6.5-1.24 1.5-1.24 5-.23 6.5C5.58 18.03 7 16 7 13.33" />
+                    <path d="M7 20h10" />
+                    <path d="M10 20c5.5-2.5.8-6.4 3-10" />
+                    <path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z" />
+                    <path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z" />
                   </svg>
                 )}
                 {item.icon === "flame" && (
@@ -75,10 +78,14 @@ const nearby = [
                     <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
                   </svg>
                 )}
-                {item.icon === "circle" && (
+                {item.icon === "dog" && (
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="9" />
-                    <circle cx="12" cy="12" r="3" />
+                    <path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5" />
+                    <path d="M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.855-1.45-2.239-2.5" />
+                    <path d="M8 14v.5" />
+                    <path d="M16 14v.5" />
+                    <path d="M11.25 16.25h1.5L12 17l-.75-.75Z" />
+                    <path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.061-.162-2.2-.493-3.309m-9.243-6.082A8.801 8.801 0 0 1 12 5c.78 0 1.5.108 2.161.306" />
                   </svg>
                 )}
               </div>
@@ -182,7 +189,7 @@ const nearby = [
   }
   @media (min-width: 960px) {
     .nearby-grid {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
     }
   }
   .nearby-card {

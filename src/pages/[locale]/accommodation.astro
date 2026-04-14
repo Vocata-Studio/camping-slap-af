@@ -17,21 +17,25 @@ const unsplash = (id: string, w = 1600) =>
 
 const heroImage = "/images/old-gerlis-placeholder.webp";
 
+/** Locales that display EUR instead of DKK */
+const eurLocales: Locale[] = ["de", "nl", "fr", "es", "it"];
+const showEur = eurLocales.includes(l);
+
 const accommodations = [
-  { key: "tent", image: unsplash("photo-1504280390367-361c6d9f38f4", 1000) },
-  { key: "caravan", image: unsplash("photo-1523987355523-c7b5b0dd90a7", 1000) },
-  { key: "cabin", image: unsplash("photo-1517824806704-9040b037703b", 1000) },
-  { key: "glamping", image: unsplash("photo-1510312305653-8ed496efae75", 1000) },
+  { key: "campsite", image: unsplash("photo-1504280390367-361c6d9f38f4", 1000) },
+  { key: "camper", image: unsplash("photo-1523987355523-c7b5b0dd90a7", 1000) },
+  { key: "cottage", image: unsplash("photo-1517824806704-9040b037703b", 1000) },
+  { key: "field", image: unsplash("photo-1510312305653-8ed496efae75", 1000) },
+  { key: "seasonal", image: unsplash("photo-1496545672447-f699b503d270", 1000) },
 ] as const;
 
 const facilityKeys = [
-  "facility1",
-  "facility2",
-  "facility3",
-  "facility4",
-  "facility5",
-  "facility6",
+  "facility1", "facility2", "facility3",
+  "facility4", "facility5", "facility6",
+  "facility7", "facility8", "facility9",
 ] as const;
+
+const optionKeys = ["optionTowels", "optionBedding", "optionCleaning"] as const;
 ---
 
 <Layout title={t(l, "Accommodation", "title")} locale={l}>
@@ -42,6 +46,20 @@ const facilityKeys = [
     subtitle={t(l, "Accommodation", "subtitle")}
     compact
   />
+
+  <!-- Price basis notice -->
+  <section class="section section--tight">
+    <div class="container">
+      <div class="price-notice">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M12 16v-4" />
+          <path d="M12 8h.01" />
+        </svg>
+        <p>{t(l, "Accommodation", "priceBasis")}</p>
+      </div>
+    </div>
+  </section>
 
   <!-- Accommodation types -->
   <section class="section">
@@ -79,7 +97,9 @@ const facilityKeys = [
                   </li>
                 </ul>
                 <div class="acc__meta">
-                  <span class="acc__price">{t(l, "Accommodation", "priceTba")}</span>
+                  <span class="acc__price">
+                    {showEur ? t(l, "Accommodation", "priceTbaEur") : t(l, "Accommodation", "priceTba")}
+                  </span>
                   <a href={localePath(l, "/booking")} class="btn">
                     {t(l, "Accommodation", "bookCta")}
                   </a>
@@ -88,6 +108,53 @@ const facilityKeys = [
             </article>
           ))
         }
+      </div>
+    </div>
+  </section>
+
+  <hr class="hairline" />
+
+  <!-- Optional extras -->
+  <section class="section">
+    <div class="container">
+      <div class="section__head">
+        <h2>{t(l, "Accommodation", "optionsTitle")}</h2>
+      </div>
+      <ul class="options-list">
+        {
+          optionKeys.map((key) => (
+            <li class="option-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span>{t(l, "Accommodation", key)}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <hr class="hairline" />
+
+  <!-- Dog friendly -->
+  <section class="section">
+    <div class="container">
+      <div class="dog-friendly">
+        <div class="dog-friendly__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5" />
+            <path d="M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.855-1.45-2.239-2.5" />
+            <path d="M8 14v.5" />
+            <path d="M16 14v.5" />
+            <path d="M11.25 16.25h1.5L12 17l-.75-.75Z" />
+            <path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.061-.162-2.2-.493-3.309m-9.243-6.082A8.801 8.801 0 0 1 12 5c.78 0 1.5.108 2.161.306" />
+          </svg>
+        </div>
+        <div class="dog-friendly__text">
+          <h3>{t(l, "Accommodation", "dogFriendlyTitle")}</h3>
+          <p>{t(l, "Accommodation", "dogFriendlyText")}</p>
+        </div>
       </div>
     </div>
   </section>
@@ -118,6 +185,33 @@ const facilityKeys = [
 </Layout>
 
 <style>
+  /* Price notice */
+  .section--tight {
+    padding-bottom: 0;
+  }
+  .price-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-5);
+    background: var(--color-cream);
+    border-radius: var(--radius-md);
+    max-width: 680px;
+    margin-inline: auto;
+  }
+  .price-notice svg {
+    width: 20px;
+    height: 20px;
+    color: var(--color-green);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .price-notice p {
+    color: var(--color-muted);
+    font-size: var(--fs-sm);
+    line-height: var(--lh-body);
+  }
+
   .acc-list {
     display: flex;
     flex-direction: column;
@@ -192,6 +286,73 @@ const facilityKeys = [
     font-size: var(--fs-md);
   }
 
+  /* Options */
+  .options-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    max-width: 480px;
+    margin-inline: auto;
+  }
+  @media (min-width: 640px) {
+    .options-list {
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 760px;
+    }
+  }
+  .option-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-5);
+    background: var(--color-cream);
+    border-radius: var(--radius-md);
+    color: var(--color-ink);
+    font-size: var(--fs-sm);
+  }
+  .option-item svg {
+    width: 18px;
+    height: 18px;
+    color: var(--color-green);
+    flex-shrink: 0;
+  }
+
+  /* Dog friendly */
+  .dog-friendly {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-5);
+    max-width: 680px;
+    margin-inline: auto;
+    padding: var(--space-7);
+    background: var(--color-cream);
+    border-radius: var(--radius-lg);
+  }
+  .dog-friendly__icon {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+    color: var(--color-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .dog-friendly__icon svg {
+    width: 28px;
+    height: 28px;
+  }
+  .dog-friendly h3 {
+    font-size: var(--fs-lg);
+    margin-bottom: var(--space-2);
+  }
+  .dog-friendly p {
+    color: var(--color-muted);
+    font-size: var(--fs-sm);
+    line-height: var(--lh-body);
+  }
+
   /* Facilities grid */
   .facilities {
     display: grid;
@@ -204,6 +365,11 @@ const facilityKeys = [
     .facilities {
       grid-template-columns: repeat(2, 1fr);
       gap: var(--space-4) var(--space-8);
+    }
+  }
+  @media (min-width: 960px) {
+    .facilities {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
   .facility {

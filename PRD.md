@@ -88,7 +88,7 @@ Weather widget, interactive map, CMS, Google Maps integration, social media feed
 | Shamrock Green | `#2B9854` | CTAs, links, active states. Used sparingly — no large green fills |
 | Mint Leaf | `#77BA8A` | Hover states and subtle accents only |
 | White | `#FFFFFF` | Pure base background for all pages and sections |
-| Floral White | `#FCF6EB` | Warm accent only — cards, callouts, CTA bands. Not used as section background |
+| Sage Mist | `#EEF4F0` | Soft nature accent — cards, callouts, CTA bands. Not used as section background |
 | Near Black | `#1A1A1A` | Body text |
 | Muted Grey | `#6B7280` | Secondary text, captions |
 

@@ -26,7 +26,7 @@ Minimal, earthy, and grounded. Nature-forward with a clean modern feel — invit
 - **Shamrock Green**: `#2B9854` — CTAs, links, active states. Used sparingly — no large green fills
 - **Mint Leaf**: `#77BA8A` — hover states and subtle accents only
 - **White**: `#FFFFFF` — pure base background for all pages and sections
-- **Floral White**: `#FCF6EB` — warm accent only — cards, callouts, CTA bands. Not used as section background
+- **Sage Mist**: `#EEF4F0` — soft nature accent — cards, callouts, CTA bands. Not used as section background
 - **Near-black**: `#1A1A1A` — body text
 - **Muted grey**: `#6B7280` — secondary text, captions
 

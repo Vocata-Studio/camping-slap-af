@@ -12,9 +12,9 @@
     "tagline": "Camping in het hart van Mors",
     "quickLinks": "Snelkoppelingen",
     "contactInfo": "Contactgegevens",
-    "address": "Sejerslev, Mors, Denemarken",
-    "phone": "+45 00 00 00 00",
-    "email": "info@campingslapaf.dk",
+    "address": "Kærvang 7, Sejerslev, 7900 Nykøbing M, Denemarken",
+    "phone": "+45 91 19 96 74",
+    "email": "campingslapaf@outlook.com",
     "copyright": "© {year} Camping Slap Af. Alle rechten voorbehouden.",
     "dkCampAlt": "DK-CAMP — Camping in Denemarken"
   },
@@ -174,9 +174,9 @@
     "title": "Contact",
     "subtitle": "We horen graag van u",
     "infoTitle": "Contactgegevens",
-    "address": "Sejerslev, Mors, Denemarken",
-    "phone": "+45 00 00 00 00",
-    "email": "info@campingslapaf.dk",
+    "address": "Kærvang 7, Sejerslev, 7900 Nykøbing M, Denemarken",
+    "phone": "+45 91 19 96 74",
+    "email": "campingslapaf@outlook.com",
     "hoursTitle": "Openingstijden",
     "hoursText": "De receptie is dagelijks geopend tijdens het campingseizoen (tot 18 oktober 2026). Neem contact op voor exacte tijden.",
     "formTitle": "Stuur ons een bericht",
@@ -186,7 +186,8 @@
     "sendButton": "Bericht verzenden",
     "mapTitle": "Vind ons",
     "mapDescription": "We zijn gevestigd in Sejerslev op de noordwestelijke punt van Mors, dicht bij Hanklit.",
-    "formComingSoon": "Contactformulier komt binnenkort. Gebruik in de tussentijd e-mail of telefoon."
+    "formComingSoon": "Contactformulier komt binnenkort. Gebruik in de tussentijd e-mail of telefoon.",
+    "addressLabel": "Adres"
   },
   "Gallery": {
     "title": "Galerij",

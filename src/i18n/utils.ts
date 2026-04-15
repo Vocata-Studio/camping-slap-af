@@ -31,17 +31,17 @@ export function isValidLocale(locale: string): locale is Locale {
 }
 
 /** Human-readable native labels for the language switcher */
-export const localeLabels: Record<Locale, { native: string; short: string }> = {
-  da: { native: "Dansk", short: "DA" },
-  en: { native: "English", short: "EN" },
-  de: { native: "Deutsch", short: "DE" },
-  nl: { native: "Nederlands", short: "NL" },
-  fr: { native: "Français", short: "FR" },
-  es: { native: "Español", short: "ES" },
-  it: { native: "Italiano", short: "IT" },
-  sv: { native: "Svenska", short: "SV" },
-  nb: { native: "Norsk", short: "NB" },
-  pl: { native: "Polski", short: "PL" },
+export const localeLabels: Record<Locale, { native: string; short: string; flagCode: string }> = {
+  da: { native: "Dansk", short: "DA", flagCode: "dk" },
+  en: { native: "English", short: "EN", flagCode: "gb" },
+  de: { native: "Deutsch", short: "DE", flagCode: "de" },
+  nl: { native: "Nederlands", short: "NL", flagCode: "nl" },
+  fr: { native: "Français", short: "FR", flagCode: "fr" },
+  es: { native: "Español", short: "ES", flagCode: "es" },
+  it: { native: "Italiano", short: "IT", flagCode: "it" },
+  sv: { native: "Svenska", short: "SV", flagCode: "se" },
+  nb: { native: "Norsk", short: "NB", flagCode: "no" },
+  pl: { native: "Polski", short: "PL", flagCode: "pl" },
 };
 
 export const navLinks = [

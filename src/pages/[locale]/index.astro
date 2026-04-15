@@ -12,12 +12,7 @@ const { locale } = Astro.params;
 if (!isValidLocale(locale)) return Astro.redirect("/da");
 const l = locale as Locale;
 
-const unsplash = (id: string, w = 1600) =>
-  `https://images.unsplash.com/${id}?w=${w}&q=80&auto=format&fit=crop`;
-
 const heroImage = "/images/old-gerlis-placeholder.webp";
-const alt1Image = unsplash("photo-1464822759023-fed622ff2c3b", 1200);
-const alt2Image = unsplash("photo-1510312305653-8ed496efae75", 1200);
 ---
 
 <Layout title={t(l, "Header", "home")} locale={l}>
@@ -74,10 +69,11 @@ const alt2Image = unsplash("photo-1510312305653-8ed496efae75", 1200);
         <article class="feature">
           <div class="feature__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z" />
-              <path d="M17 18h1" />
-              <path d="M12 18h1" />
-              <path d="M7 18h1" />
+              <circle cx="5" cy="3" r="1" />
+              <circle cx="19" cy="3" r="1" />
+              <path d="M5 4 2.5 10h5Z" />
+              <path d="M19 4 16.5 10h5Z" />
+              <path d="M2.5 10Q12 21 21.5 10" />
             </svg>
           </div>
           <h3>{t(l, "Home", "feature2Title")}</h3>
@@ -118,7 +114,7 @@ const alt2Image = unsplash("photo-1510312305653-8ed496efae75", 1200);
   <section class="section">
     <div class="container alt">
       <div class="alt__media">
-        <img src={alt1Image} alt={t(l, "Home", "altSection1Title")} loading="lazy" />
+        <img src="/images/ejerslev-havn-klit.jpg" alt={t(l, "Home", "altSection1Title")} loading="lazy" />
       </div>
       <div class="alt__text">
         <h2>{t(l, "Home", "altSection1Title")}</h2>
@@ -130,8 +126,8 @@ const alt2Image = unsplash("photo-1510312305653-8ed496efae75", 1200);
   <!-- Alternating content block 2 -->
   <section class="section">
     <div class="container alt alt--reverse">
-      <div class="alt__media">
-        <img src={alt2Image} alt={t(l, "Home", "altSection2Title")} loading="lazy" />
+      <div class="alt__media alt__media--gradient-2" role="img" aria-label={t(l, "Home", "altSection2Title")}>
+        <span class="alt__media-label">Billede kommer snart</span>
       </div>
       <div class="alt__text">
         <h2>{t(l, "Home", "altSection2Title")}</h2>
@@ -281,11 +277,48 @@ const alt2Image = unsplash("photo-1510312305653-8ed496efae75", 1200);
       order: 2;
     }
   }
-  .alt__media img {
+  .alt__media {
+    position: relative;
     width: 100%;
     aspect-ratio: 4 / 3;
-    object-fit: cover;
     border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .alt__media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .alt__media-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-heading);
+    font-weight: 500;
+    font-size: var(--fs-sm);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.92);
+    background: rgba(26, 26, 26, 0.22);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+  }
+  .alt__media--gradient-1 {
+    background:
+      radial-gradient(at 20% 25%, #a8c9a5 0%, transparent 55%),
+      radial-gradient(at 80% 80%, #d9e4cf 0%, transparent 60%),
+      linear-gradient(135deg, #77BA8A 0%, #2B9854 100%);
+  }
+  .alt__media--gradient-2 {
+    background:
+      radial-gradient(at 75% 20%, #e8d9c0 0%, transparent 55%),
+      radial-gradient(at 25% 85%, #9fb8a4 0%, transparent 60%),
+      linear-gradient(160deg, #c8b99c 0%, #6b8b6e 100%);
   }
   .alt__text h2 {
     font-size: var(--fs-2xl);

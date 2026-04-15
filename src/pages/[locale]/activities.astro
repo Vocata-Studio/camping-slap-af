@@ -25,13 +25,13 @@ const onSite = [
 ] as const;
 
 const nearby = [
-  { key: "nearby1", image: unsplash("photo-1464822759023-fed622ff2c3b", 900) },
-  { key: "nearby2", image: unsplash("photo-1507525428034-b723cf961d3e", 900) },
-  { key: "nearby3", image: unsplash("photo-1472214103451-9374bd1c798e", 900) },
-  { key: "nearby4", image: unsplash("photo-1518655048521-f130df041f66", 900) },
-  { key: "nearby5", image: unsplash("photo-1464982326199-86f358bac9e6", 900) },
-  { key: "nearby6", image: unsplash("photo-1445308394109-4ec2920981b1", 900) },
-  { key: "nearby7", image: unsplash("photo-1507035895480-2b3b7b7b8fc7", 900) },
+  { key: "nearby1", image: "/images/temp-images/hanklik-temp.webp", url: "#" },
+  { key: "nearby2", image: "/images/temp-images/skærbæk-klint-temp.jpg", url: "#" },
+  { key: "nearby3", image: "/images/temp-images/skarregaard-temp.jpg", url: "https://www.skarregaard-center.dk/DK.aspx" },
+  { key: "nearby4", image: "/images/temp-images/fossil-møllemuseum-temp.jpg", url: "#" },
+  { key: "nearby5", image: "/images/temp-images/ejerslev-havn-temp.webp", url: "#" },
+  { key: "nearby6", image: "/images/temp-images/nykøbing-kirke-temp.jpg", url: "#" },
+  { key: "nearby7", image: "/images/temp-images/morsø-museum-temp.jpg", url: "#" },
 ] as const;
 ---
 
@@ -43,6 +43,49 @@ const nearby = [
     subtitle={t(l, "Activities", "subtitle")}
     compact
   />
+
+  <!-- Nearby -->
+  <section id="nearby" class="section">
+    <div class="container">
+      <div class="section__head section__head--left">
+        <h2>{t(l, "Activities", "nearbyTitle")}</h2>
+      </div>
+      <div class="nearby-grid">
+        {
+          nearby.map((item) => (
+            <article class="nearby-card">
+              <div class="nearby-card__media">
+                <img
+                  src={item.image}
+                  alt={t(l, "Activities", `${item.key}Title`)}
+                  loading="lazy"
+                />
+              </div>
+              <div class="nearby-card__body">
+                <h3>{t(l, "Activities", `${item.key}Title`)}</h3>
+                <p>{t(l, "Activities", `${item.key}Description`)}</p>
+                <a
+                  class="nearby-card__link"
+                  href={item.url}
+                  {...(item.url.startsWith("http")
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                >
+                  Læs mere
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <hr class="hairline" />
 
   <!-- On site -->
   <section class="section">
@@ -91,36 +134,6 @@ const nearby = [
               </div>
               <h3>{t(l, "Activities", `${item.key}Title`)}</h3>
               <p>{t(l, "Activities", `${item.key}Description`)}</p>
-            </article>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <hr class="hairline" />
-
-  <!-- Nearby -->
-  <section class="section">
-    <div class="container">
-      <div class="section__head section__head--left">
-        <h2>{t(l, "Activities", "nearbyTitle")}</h2>
-      </div>
-      <div class="nearby-grid">
-        {
-          nearby.map((item) => (
-            <article class="nearby-card">
-              <div class="nearby-card__media">
-                <img
-                  src={item.image}
-                  alt={t(l, "Activities", `${item.key}Title`)}
-                  loading="lazy"
-                />
-              </div>
-              <div class="nearby-card__body">
-                <h3>{t(l, "Activities", `${item.key}Title`)}</h3>
-                <p>{t(l, "Activities", `${item.key}Description`)}</p>
-              </div>
             </article>
           ))
         }
@@ -220,5 +233,22 @@ const nearby = [
     color: var(--color-muted);
     font-size: var(--fs-sm);
     line-height: var(--lh-body);
+  }
+  .nearby-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    margin-top: var(--space-4);
+    color: var(--color-green);
+    font-weight: 500;
+    font-size: var(--fs-sm);
+    text-decoration: none;
+  }
+  .nearby-card__link:hover {
+    color: var(--color-mint);
+  }
+  .nearby-card__link svg {
+    width: 1em;
+    height: 1em;
   }
 </style>

@@ -41,6 +41,7 @@
     "altSection1Text": "Vanaf onze camping bent u slechts een korte auto- of fietsrit verwijderd van alles — Skaargaard, Fossiel- en Molenmuseum, Nykøbing Mors, Museum Mors en de indrukwekkende kliffen bij Hanklit en Skærbæk.",
     "altSection2Title": "Rust, ruimte en frisse lucht",
     "altSection2Text": "Frisse lucht, alle tijd van de wereld en ruimte om diep adem te halen. Bij Camping Slap Af geloven we dat de beste vakanties die zijn waarin je echt de tijd hebt om te ontspannen.",
+    "altSection2Cta": "Bekijk accommodaties",
     "testimonialTitle": "Wat onze gasten zeggen",
     "testimonial1Text": "We komen elke zomer terug. De kinderen zijn dol op de speeltuin en wij genieten van de rust. Het voelt als een tweede thuis.",
     "testimonial1Author": "Familie Jensen",
@@ -53,7 +54,7 @@
     "testimonial3Origin": "Utrecht, Nederland",
     "ctaTitle": "Klaar voor uw volgende avontuur?",
     "ctaDescription": "Boek uw plek bij Camping Slap Af en beleef het beste van Mors. Seizoen open tot 18 oktober 2026.",
-    "ctaButton": "Neem contact op",
+    "ctaButton": "Boek nu",
     "seasonNotice": "Seizoen 2026 — open tot 18 oktober"
   },
   "About": {
@@ -125,7 +126,12 @@
     "pricePerNight": "per nacht",
     "priceTba": "Prijs: x EUR",
     "priceTbaEur": "Prijs: x EUR",
-    "bookCta": "Neem contact op om te boeken"
+    "bookCta": "Neem contact op om te boeken",
+    "campsiteBookCta": "Boek campingplaats",
+    "camperBookCta": "Boek camper",
+    "cottageBookCta": "Boek huisje",
+    "fieldBookCta": "Boek kampveld",
+    "seasonalBookCta": "Boek seizoensplaats"
   },
   "Booking": {
     "title": "Boeken",

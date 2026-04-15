@@ -12,12 +12,7 @@ const { locale } = Astro.params;
 if (!isValidLocale(locale)) return Astro.redirect("/da");
 const l = locale as Locale;
 
-const unsplash = (id: string, w = 1600) =>
-  `https://images.unsplash.com/${id}?w=${w}&q=80&auto=format&fit=crop`;
-
 const heroImage = "/images/old-gerlis-placeholder.webp";
-const storyImage = unsplash("photo-1441974231531-c6227db76b6e", 1200);
-const locationImage = unsplash("photo-1518655048521-f130df041f66", 1200);
 ---
 
 <Layout title={t(l, "About", "title")} locale={l}>
@@ -32,8 +27,8 @@ const locationImage = unsplash("photo-1518655048521-f130df041f66", 1200);
   <!-- Our story -->
   <section class="section">
     <div class="container alt">
-      <div class="alt__media">
-        <img src={storyImage} alt={t(l, "About", "storyTitle")} loading="lazy" />
+      <div class="alt__media alt__media--gradient-1" role="img" aria-label={t(l, "About", "storyTitle")}>
+        <span class="alt__media-label">Billede kommer snart</span>
       </div>
       <div class="alt__text">
         <h2>{t(l, "About", "storyTitle")}</h2>
@@ -48,8 +43,8 @@ const locationImage = unsplash("photo-1518655048521-f130df041f66", 1200);
   <!-- Sejerslev & Mors -->
   <section class="section">
     <div class="container alt alt--reverse">
-      <div class="alt__media">
-        <img src={locationImage} alt={t(l, "About", "locationTitle")} loading="lazy" />
+      <div class="alt__media alt__media--gradient-2" role="img" aria-label={t(l, "About", "locationTitle")}>
+        <span class="alt__media-label">Billede kommer snart</span>
       </div>
       <div class="alt__text">
         <h2>{t(l, "About", "locationTitle")}</h2>
@@ -131,11 +126,41 @@ const locationImage = unsplash("photo-1518655048521-f130df041f66", 1200);
       order: 2;
     }
   }
-  .alt__media img {
+  .alt__media {
+    position: relative;
     width: 100%;
     aspect-ratio: 4 / 3;
-    object-fit: cover;
     border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .alt__media-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-heading);
+    font-weight: 500;
+    font-size: var(--fs-sm);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.92);
+    background: rgba(26, 26, 26, 0.22);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+  }
+  .alt__media--gradient-1 {
+    background:
+      radial-gradient(at 20% 25%, #a8c9a5 0%, transparent 55%),
+      radial-gradient(at 80% 80%, #d9e4cf 0%, transparent 60%),
+      linear-gradient(135deg, #77BA8A 0%, #2B9854 100%);
+  }
+  .alt__media--gradient-2 {
+    background:
+      radial-gradient(at 75% 20%, #e8d9c0 0%, transparent 55%),
+      radial-gradient(at 25% 85%, #9fb8a4 0%, transparent 60%),
+      linear-gradient(160deg, #c8b99c 0%, #6b8b6e 100%);
   }
   .alt__text h2 {
     font-size: var(--fs-2xl);

@@ -12,20 +12,17 @@ const { locale } = Astro.params;
 if (!isValidLocale(locale)) return Astro.redirect("/da");
 const l = locale as Locale;
 
-const unsplash = (id: string, w = 1200) =>
-  `https://images.unsplash.com/${id}?w=${w}&q=80&auto=format&fit=crop`;
-
 const heroImage = "/images/old-gerlis-placeholder.webp";
 
 const photos = [
-  { id: "photo-1504280390367-361c6d9f38f4", altKey: "image1Alt", span: "tall" },
-  { id: "photo-1445308394109-4ec2920981b1", altKey: "image2Alt", span: null },
-  { id: "photo-1464822759023-fed622ff2c3b", altKey: "image3Alt", span: "wide" },
-  { id: "photo-1517824806704-9040b037703b", altKey: "image4Alt", span: null },
-  { id: "photo-1496545672447-f699b503d270", altKey: "image5Alt", span: null },
-  { id: "photo-1510312305653-8ed496efae75", altKey: "image6Alt", span: "tall" },
-  { id: "photo-1518655048521-f130df041f66", altKey: "image7Alt", span: "wide" },
-  { id: "photo-1472214103451-9374bd1c798e", altKey: "image8Alt", span: null },
+  { gradient: 1, altKey: "image1Alt", span: "tall" },
+  { gradient: 2, altKey: "image2Alt", span: null },
+  { gradient: 1, altKey: "image3Alt", span: "wide" },
+  { gradient: 2, altKey: "image4Alt", span: null },
+  { gradient: 1, altKey: "image5Alt", span: null },
+  { gradient: 2, altKey: "image6Alt", span: "tall" },
+  { gradient: 1, altKey: "image7Alt", span: "wide" },
+  { gradient: 2, altKey: "image8Alt", span: null },
 ] as const;
 ---
 
@@ -43,12 +40,16 @@ const photos = [
       <div class="gallery">
         {
           photos.map((photo) => (
-            <figure class:list={["gallery__item", photo.span && `gallery__item--${photo.span}`]}>
-              <img
-                src={unsplash(photo.id, 1000)}
-                alt={t(l, "Gallery", photo.altKey)}
-                loading="lazy"
-              />
+            <figure
+              class:list={[
+                "gallery__item",
+                `gallery__item--gradient-${photo.gradient}`,
+                photo.span && `gallery__item--${photo.span}`,
+              ]}
+              role="img"
+              aria-label={t(l, "Gallery", photo.altKey)}
+            >
+              <span class="gallery__item-label">Billede kommer snart</span>
             </figure>
           ))
         }
@@ -111,19 +112,45 @@ const photos = [
 
   .gallery__item {
     margin: 0;
+    position: relative;
     border-radius: var(--radius-lg);
     overflow: hidden;
     background: var(--color-cream);
-  }
-  .gallery__item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
     aspect-ratio: 4 / 3;
+  }
+  .gallery__item-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-heading);
+    font-weight: 500;
+    font-size: var(--fs-sm);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.92);
+    background: rgba(26, 26, 26, 0.22);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .gallery__item--gradient-1 {
+    background:
+      radial-gradient(at 20% 25%, #a8c9a5 0%, transparent 55%),
+      radial-gradient(at 80% 80%, #d9e4cf 0%, transparent 60%),
+      linear-gradient(135deg, #77BA8A 0%, #2B9854 100%);
+  }
+  .gallery__item--gradient-2 {
+    background:
+      radial-gradient(at 75% 20%, #e8d9c0 0%, transparent 55%),
+      radial-gradient(at 25% 85%, #9fb8a4 0%, transparent 60%),
+      linear-gradient(160deg, #c8b99c 0%, #6b8b6e 100%);
   }
 
   @media (min-width: 960px) {
-    .gallery__item img {
+    .gallery__item {
       aspect-ratio: auto;
     }
     .gallery__item--wide {

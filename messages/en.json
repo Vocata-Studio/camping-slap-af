@@ -41,6 +41,7 @@
     "altSection1Text": "From our campsite, you're just a short drive or bike ride from everything the island has to offer — Skaargaard, Fossil and Mill Museum, Nykobing Mors, Museum Mors, and the impressive cliffs at Hanklit and Skaerbaek.",
     "altSection2Title": "Calm, space, and fresh air",
     "altSection2Text": "Fresh air, unhurried time, and room to breathe deeply. At Camping Slap Af, we believe the best holidays are the ones where you have time to truly relax.",
+    "altSection2Cta": "View accommodation",
     "testimonialTitle": "What our guests say",
     "testimonial1Text": "We come back every summer. The kids love the playground and we love the peace and quiet. It feels like a second home.",
     "testimonial1Author": "The Jensen family",
@@ -53,7 +54,7 @@
     "testimonial3Origin": "Utrecht, Netherlands",
     "ctaTitle": "Ready for your next adventure?",
     "ctaDescription": "Book your spot at Camping Slap Af and experience the best of Mors. Season open until October 18, 2026.",
-    "ctaButton": "Contact us",
+    "ctaButton": "Book now",
     "seasonNotice": "2026 season — open until October 18"
   },
   "About": {
@@ -125,7 +126,12 @@
     "pricePerNight": "per night",
     "priceTba": "Price: x DKK",
     "priceTbaEur": "Price: x EUR",
-    "bookCta": "Contact us to book"
+    "bookCta": "Contact us to book",
+    "campsiteBookCta": "Book campsite",
+    "camperBookCta": "Book motorhome",
+    "cottageBookCta": "Book cottage",
+    "fieldBookCta": "Book field",
+    "seasonalBookCta": "Book seasonal pitch"
   },
   "Booking": {
     "title": "Booking",

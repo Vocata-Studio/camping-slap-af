@@ -41,6 +41,7 @@
     "altSection1Text": "Från vår campingplats är du bara en kort bil- eller cykeltur från allt — Skaargaard, Fossil- och Kvarnmuseet, Nykøbing Mors, Museum Mors och de imponerande klipporna vid Hanklit och Skærbæk.",
     "altSection2Title": "Lugn, rymd och frisk luft",
     "altSection2Text": "Frisk luft, gott om tid och plats att andas djupt. På Camping Slap Af tror vi att de bästa semestrarna är de där man verkligen hinner slappna av.",
+    "altSection2Cta": "Se boenden",
     "testimonialTitle": "Vad våra gäster säger",
     "testimonial1Text": "Vi kommer tillbaka varje sommar. Barnen älskar lekplatsen och vi njuter av lugnet. Det känns som ett andra hem.",
     "testimonial1Author": "Familjen Jensen",
@@ -53,7 +54,7 @@
     "testimonial3Origin": "Utrecht, Nederländerna",
     "ctaTitle": "Redo för ditt nästa äventyr?",
     "ctaDescription": "Boka din plats på Camping Slap Af och upplev det bästa av Mors. Säsongen öppen till 18 oktober 2026.",
-    "ctaButton": "Kontakta oss",
+    "ctaButton": "Boka nu",
     "seasonNotice": "Säsong 2026 — öppet till 18 oktober"
   },
   "About": {
@@ -125,7 +126,12 @@
     "pricePerNight": "per natt",
     "priceTba": "Pris: x DKK",
     "priceTbaEur": "Pris: x EUR",
-    "bookCta": "Kontakta oss för att boka"
+    "bookCta": "Kontakta oss för att boka",
+    "campsiteBookCta": "Boka campingplats",
+    "camperBookCta": "Boka husbil",
+    "cottageBookCta": "Boka stuga",
+    "fieldBookCta": "Boka fält",
+    "seasonalBookCta": "Boka säsongsplats"
   },
   "Booking": {
     "title": "Bokning",

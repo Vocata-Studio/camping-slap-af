@@ -41,6 +41,7 @@
     "altSection1Text": "Depuis notre camping, vous êtes à quelques minutes en voiture ou à vélo de tout — Skaargaard, le Musée des Fossiles et des Moulins, Nykøbing Mors, Museum Mors et les impressionnantes falaises de Hanklit et Skærbæk.",
     "altSection2Title": "Calme, espace et air frais",
     "altSection2Text": "De l'air frais, du temps sans hâte et la place pour respirer profondément. Au Camping Slap Af, nous croyons que les meilleures vacances sont celles où l'on a vraiment le temps de se détendre.",
+    "altSection2Cta": "Voir les hébergements",
     "testimonialTitle": "Ce que disent nos hôtes",
     "testimonial1Text": "Nous revenons chaque été. Les enfants adorent l'aire de jeux et nous apprécions le calme et la tranquillité. C'est comme une deuxième maison.",
     "testimonial1Author": "Famille Jensen",
@@ -53,7 +54,7 @@
     "testimonial3Origin": "Utrecht, Pays-Bas",
     "ctaTitle": "Prêt pour votre prochaine aventure ?",
     "ctaDescription": "Réservez votre place au Camping Slap Af et découvrez le meilleur de Mors. Saison ouverte jusqu'au 18 octobre 2026.",
-    "ctaButton": "Contactez-nous",
+    "ctaButton": "Réserver maintenant",
     "seasonNotice": "Saison 2026 — ouvert jusqu'au 18 octobre"
   },
   "About": {
@@ -125,7 +126,12 @@
     "pricePerNight": "par nuit",
     "priceTba": "Prix : x EUR",
     "priceTbaEur": "Prix : x EUR",
-    "bookCta": "Contactez-nous pour réserver"
+    "bookCta": "Contactez-nous pour réserver",
+    "campsiteBookCta": "Réserver emplacement",
+    "camperBookCta": "Réserver camping-car",
+    "cottageBookCta": "Réserver cottage",
+    "fieldBookCta": "Réserver champ",
+    "seasonalBookCta": "Réserver saisonnier"
   },
   "Booking": {
     "title": "Réservation",

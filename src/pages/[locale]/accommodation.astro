@@ -12,9 +12,6 @@ const { locale } = Astro.params;
 if (!isValidLocale(locale)) return Astro.redirect("/da");
 const l = locale as Locale;
 
-const unsplash = (id: string, w = 1600) =>
-  `https://images.unsplash.com/${id}?w=${w}&q=80&auto=format&fit=crop`;
-
 const heroImage = "/images/old-gerlis-placeholder.webp";
 
 /** Locales that display EUR instead of DKK */
@@ -22,11 +19,11 @@ const eurLocales: Locale[] = ["de", "nl", "fr", "es", "it"];
 const showEur = eurLocales.includes(l);
 
 const accommodations = [
-  { key: "campsite", image: unsplash("photo-1504280390367-361c6d9f38f4", 1000) },
-  { key: "camper", image: unsplash("photo-1523987355523-c7b5b0dd90a7", 1000) },
-  { key: "cottage", image: unsplash("photo-1517824806704-9040b037703b", 1000) },
-  { key: "field", image: unsplash("photo-1510312305653-8ed496efae75", 1000) },
-  { key: "seasonal", image: unsplash("photo-1496545672447-f699b503d270", 1000) },
+  { key: "campsite", gradient: 1 },
+  { key: "camper", gradient: 2 },
+  { key: "cottage", gradient: 1 },
+  { key: "field", gradient: 2 },
+  { key: "seasonal", gradient: 1 },
 ] as const;
 
 const facilityKeys = [
@@ -68,8 +65,12 @@ const optionKeys = ["optionTowels", "optionBedding", "optionCleaning"] as const;
         {
           accommodations.map((acc, index) => (
             <article class:list={["acc", index % 2 === 1 && "acc--reverse"]}>
-              <div class="acc__media">
-                <img src={acc.image} alt={t(l, "Accommodation", acc.key)} loading="lazy" />
+              <div
+                class:list={["acc__media", `acc__media--gradient-${acc.gradient}`]}
+                role="img"
+                aria-label={t(l, "Accommodation", acc.key)}
+              >
+                <span class="acc__media-label">Billede kommer snart</span>
               </div>
               <div class="acc__body">
                 <h2>{t(l, "Accommodation", acc.key)}</h2>
@@ -101,7 +102,7 @@ const optionKeys = ["optionTowels", "optionBedding", "optionCleaning"] as const;
                     {showEur ? t(l, "Accommodation", "priceTbaEur") : t(l, "Accommodation", "priceTba")}
                   </span>
                   <a href={localePath(l, "/booking")} class="btn">
-                    {t(l, "Accommodation", "bookCta")}
+                    {t(l, "Accommodation", `${acc.key}BookCta`)}
                   </a>
                 </div>
               </div>
@@ -234,11 +235,41 @@ const optionKeys = ["optionTowels", "optionBedding", "optionCleaning"] as const;
     }
   }
 
-  .acc__media img {
+  .acc__media {
+    position: relative;
     width: 100%;
     aspect-ratio: 4 / 3;
-    object-fit: cover;
     border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .acc__media-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-heading);
+    font-weight: 500;
+    font-size: var(--fs-sm);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.92);
+    background: rgba(26, 26, 26, 0.22);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+  }
+  .acc__media--gradient-1 {
+    background:
+      radial-gradient(at 20% 25%, #a8c9a5 0%, transparent 55%),
+      radial-gradient(at 80% 80%, #d9e4cf 0%, transparent 60%),
+      linear-gradient(135deg, #77BA8A 0%, #2B9854 100%);
+  }
+  .acc__media--gradient-2 {
+    background:
+      radial-gradient(at 75% 20%, #e8d9c0 0%, transparent 55%),
+      radial-gradient(at 25% 85%, #9fb8a4 0%, transparent 60%),
+      linear-gradient(160deg, #c8b99c 0%, #6b8b6e 100%);
   }
 
   .acc__body h2 {

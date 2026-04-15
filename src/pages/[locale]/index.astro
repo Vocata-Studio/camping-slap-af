@@ -131,6 +131,9 @@ const heroImage = "/images/old-gerlis-placeholder.webp";
       <div class="alt__text">
         <h2>{t(l, "Home", "altSection2Title")}</h2>
         <p>{t(l, "Home", "altSection2Text")}</p>
+        <a href={localePath(l, "/accommodation")} class="btn alt__cta">
+          {t(l, "Home", "altSection2Cta")}
+        </a>
       </div>
     </div>
   </section>
@@ -185,7 +188,7 @@ const heroImage = "/images/old-gerlis-placeholder.webp";
     <div class="container cta-band__inner">
       <h2>{t(l, "Home", "ctaTitle")}</h2>
       <p>{t(l, "Home", "ctaDescription")}</p>
-      <a href={localePath(l, "/contact")} class="btn">{t(l, "Home", "ctaButton")}</a>
+      <a href={localePath(l, "/booking")} class="btn">{t(l, "Home", "ctaButton")}</a>
     </div>
   </section>
 </Layout>

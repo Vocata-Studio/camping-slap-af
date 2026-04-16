@@ -25,7 +25,7 @@ const heroImage = "/images/old-gerlis-placeholder.webp";
     overlay="flat"
     primaryCta={{
       label: t(l, "Home", "heroCta"),
-      href: localePath(l, "/accommodation"),
+      href: localePath(l, "/booking"),
     }}
     secondaryCta={{
       label: t(l, "Home", "heroSecondary"),
@@ -39,7 +39,40 @@ const heroImage = "/images/old-gerlis-placeholder.webp";
       <h2 class="intro__title">{t(l, "Home", "introTitle")}</h2>
       <div class="intro__prose">
         <p>{t(l, "Home", "introText")}</p>
-        <p>{t(l, "Home", "introText2")}</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hairline" />
+
+  <!-- Alternating content block 1 -->
+  <section class="section">
+    <div class="container alt">
+      <div class="alt__media alt__media--gradient-1" role="img" aria-label={t(l, "Home", "altSection1Title")}>
+        <span class="alt__media-label">Billede kommer snart</span>
+      </div>
+      <div class="alt__text">
+        <h2>{t(l, "Home", "altSection1Title")}</h2>
+        <p>{t(l, "Home", "altSection1Text")}</p>
+        <a href={`${localePath(l, "/activities")}#nearby`} class="btn alt__cta">
+          {t(l, "Home", "altSection1Cta")}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Alternating content block 2 -->
+  <section class="section">
+    <div class="container alt alt--reverse">
+      <div class="alt__media alt__media--gradient-2" role="img" aria-label={t(l, "Home", "altSection2Title")}>
+        <span class="alt__media-label">Billede kommer snart</span>
+      </div>
+      <div class="alt__text">
+        <h2>{t(l, "Home", "altSection2Title")}</h2>
+        <p>{t(l, "Home", "altSection2Text")}</p>
+        <a href={localePath(l, "/accommodation")} class="btn alt__cta">
+          {t(l, "Home", "altSection2Cta")}
+        </a>
       </div>
     </div>
   </section>
@@ -100,40 +133,6 @@ const heroImage = "/images/old-gerlis-placeholder.webp";
           <h3>{t(l, "Home", "feature4Title")}</h3>
           <p>{t(l, "Home", "feature4Description")}</p>
         </article>
-      </div>
-    </div>
-  </section>
-
-  <hr class="hairline" />
-
-  <!-- Alternating content block 1 -->
-  <section class="section">
-    <div class="container alt">
-      <div class="alt__media">
-        <img src="/images/ejerslev-havn-klit.jpg" alt={t(l, "Home", "altSection1Title")} loading="lazy" />
-      </div>
-      <div class="alt__text">
-        <h2>{t(l, "Home", "altSection1Title")}</h2>
-        <p>{t(l, "Home", "altSection1Text")}</p>
-        <a href={`${localePath(l, "/activities")}#nearby`} class="btn alt__cta">
-          {t(l, "Home", "altSection1Cta")}
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Alternating content block 2 -->
-  <section class="section">
-    <div class="container alt alt--reverse">
-      <div class="alt__media alt__media--gradient-2" role="img" aria-label={t(l, "Home", "altSection2Title")}>
-        <span class="alt__media-label">Billede kommer snart</span>
-      </div>
-      <div class="alt__text">
-        <h2>{t(l, "Home", "altSection2Title")}</h2>
-        <p>{t(l, "Home", "altSection2Text")}</p>
-        <a href={localePath(l, "/accommodation")} class="btn alt__cta">
-          {t(l, "Home", "altSection2Cta")}
-        </a>
       </div>
     </div>
   </section>

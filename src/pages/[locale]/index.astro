@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
-import { locales, isValidLocale, t, localePath } from "../../i18n/utils";
+import { locales, isValidLocale, t, localePath, bookingLink } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
 
 export function getStaticPaths() {
@@ -25,7 +25,7 @@ const heroImage = "/images/old-gerlis-placeholder.webp";
     overlay="flat"
     primaryCta={{
       label: t(l, "Home", "heroCta"),
-      href: localePath(l, "/booking"),
+      href: localePath(l, bookingLink.href),
     }}
     secondaryCta={{
       label: t(l, "Home", "heroSecondary"),
@@ -188,7 +188,7 @@ const heroImage = "/images/old-gerlis-placeholder.webp";
     <div class="container cta-band__inner">
       <h2>{t(l, "Home", "ctaTitle")}</h2>
       <p>{t(l, "Home", "ctaDescription")}</p>
-      <a href={localePath(l, "/booking")} class="btn">{t(l, "Home", "ctaButton")}</a>
+      <a href={localePath(l, bookingLink.href)} class="btn">{t(l, "Home", "ctaButton")}</a>
     </div>
   </section>
 </Layout>

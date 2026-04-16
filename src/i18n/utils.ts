@@ -53,10 +53,16 @@ export const navLinks = [
   { href: "/contact", key: "contact" },
 ] as const;
 
-export const bookingLink = { href: "/booking", key: "booking" } as const;
+export const bookingLink = {
+  href: "https://camping-slap-af-booking.vercel.app/",
+  key: "booking",
+} as const;
 
-/** Build an absolute path for a given locale + route (`/` or `/about`, etc.) */
+/** Build an absolute path for a given locale + route (`/` or `/about`, etc.).
+ *  Absolute URLs (http(s)://…) are returned as-is so they can flow through the
+ *  same helper as internal routes. */
 export function localePath(locale: Locale, href: string): string {
+  if (/^https?:\/\//i.test(href)) return href;
   if (href === "/") return `/${locale}/`;
   return `/${locale}${href}`;
 }

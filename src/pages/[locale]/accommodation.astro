@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
-import { locales, isValidLocale, t, localePath } from "../../i18n/utils";
+import { locales, isValidLocale, t, localePath, bookingLink } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
 
 export function getStaticPaths() {
@@ -101,7 +101,7 @@ const optionKeys = ["optionTowels", "optionBedding", "optionCleaning"] as const;
                   <span class="acc__price">
                     {showEur ? t(l, "Accommodation", "priceTbaEur") : t(l, "Accommodation", "priceTba")}
                   </span>
-                  <a href={localePath(l, "/booking")} class="btn">
+                  <a href={localePath(l, bookingLink.href)} class="btn">
                     {t(l, "Accommodation", `${acc.key}BookCta`)}
                   </a>
                 </div>

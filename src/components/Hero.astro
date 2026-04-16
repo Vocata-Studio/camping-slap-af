@@ -25,6 +25,8 @@ interface Props {
    * - "flat": uniform slight darkening — used on the homepage hero
    */
   overlay?: "gradient" | "flat";
+  /** Decorative mouse icon at the bottom of the hero — purely visual cue. */
+  scrollIndicator?: boolean;
 }
 
 const {
@@ -37,6 +39,7 @@ const {
   secondaryCta,
   compact = false,
   overlay = "gradient",
+  scrollIndicator = false,
 } = Astro.props;
 ---
 
@@ -72,6 +75,23 @@ const {
       }
     </div>
   </div>
+  {
+    scrollIndicator && (
+      <div class="hero__scroll" aria-hidden="true">
+        <svg
+          viewBox="0 0 24 36"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="1" y="1" width="22" height="34" rx="11" />
+          <circle cx="12" cy="10" r="2" fill="currentColor" />
+        </svg>
+      </div>
+    )
+  }
 </section>
 
 <style>
@@ -174,6 +194,21 @@ const {
     color: var(--color-white);
   }
 
+  /* Decorative mouse-shaped scroll cue — sits centered at the bottom of the hero */
+  .hero__scroll {
+    position: absolute;
+    left: 50%;
+    bottom: var(--space-5);
+    transform: translateX(-50%);
+    z-index: 2;
+    pointer-events: none;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .hero__scroll svg {
+    width: 22px;
+    height: 34px;
+  }
+
   @media (max-width: 640px) {
     .hero {
       min-height: 62vh;
@@ -184,6 +219,13 @@ const {
     .hero__inner {
       padding-top: var(--space-10);
       padding-bottom: var(--space-8);
+    }
+    .hero__scroll {
+      bottom: var(--space-4);
+    }
+    .hero__scroll svg {
+      width: 20px;
+      height: 30px;
     }
   }
 </style>

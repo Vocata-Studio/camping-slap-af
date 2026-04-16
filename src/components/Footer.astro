@@ -14,16 +14,23 @@ const copyright = t(locale, "Footer", "copyright").replace("{year}", String(year
 <footer class="site-footer">
   <div class="container site-footer__inner">
     <div class="site-footer__brand">
-      <a href={localePath(locale, "/")} class="site-footer__brand-link" aria-label="Camping Slap Af">
+      <button
+        type="button"
+        class="site-footer__brand-link"
+        data-logo-toggle
+        aria-label="Toggle logo variant (demo)"
+        title="Click to switch logo variant"
+      >
         <img
-          src="/csa-iconv1.png"
+          src="/images/CSA-logo-w-flower.png"
           alt=""
-          width="72"
-          height="72"
+          width="170"
+          height="170"
           class="site-footer__logo"
+          data-logo-img
         />
         <span class="site-footer__wordmark">Camping Slap Af</span>
-      </a>
+      </button>
       <p class="site-footer__tagline">{t(locale, "Footer", "tagline")}</p>
     </div>
 
@@ -92,6 +99,49 @@ const copyright = t(locale, "Footer", "copyright").replace("{year}", String(year
   </div>
 </footer>
 
+<!-- Demo: toggle between logo variants by clicking the footer logo. Choice persists across pages. -->
+<script is:inline>
+  (function () {
+    var STORAGE_KEY = "campingslapaf.logo";
+    var VARIANTS = {
+      flower: "/images/CSA-logo-w-flower.png",
+      classic: "/csa-iconv1.png",
+    };
+
+    function getCurrent() {
+      try {
+        var v = localStorage.getItem(STORAGE_KEY);
+        return v === "classic" ? "classic" : "flower";
+      } catch (e) {
+        return "flower";
+      }
+    }
+
+    function apply(variant) {
+      var src = VARIANTS[variant] || VARIANTS.flower;
+      var imgs = document.querySelectorAll("[data-logo-img]");
+      for (var i = 0; i < imgs.length; i++) {
+        if (imgs[i].getAttribute("src") !== src) {
+          imgs[i].setAttribute("src", src);
+        }
+      }
+    }
+
+    apply(getCurrent());
+
+    var toggles = document.querySelectorAll("[data-logo-toggle]");
+    for (var j = 0; j < toggles.length; j++) {
+      toggles[j].addEventListener("click", function () {
+        var next = getCurrent() === "flower" ? "classic" : "flower";
+        try {
+          localStorage.setItem(STORAGE_KEY, next);
+        } catch (e) {}
+        apply(next);
+      });
+    }
+  })();
+</script>
+
 <style>
   .site-footer {
     margin-top: var(--space-16);
@@ -109,22 +159,35 @@ const copyright = t(locale, "Footer", "copyright").replace("{year}", String(year
 
   .site-footer__brand-link {
     display: inline-flex;
-    align-items: center;
-    gap: var(--space-3);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
     color: var(--color-ink);
+    background: none;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
   }
   .site-footer__brand-link:hover {
     color: var(--color-ink);
   }
+  .site-footer__brand-link:focus-visible {
+    outline: 2px solid var(--color-green);
+    outline-offset: 4px;
+    border-radius: var(--radius-sm);
+  }
   .site-footer__logo {
-    width: 72px;
-    height: 72px;
+    width: 170px;
+    height: 170px;
     object-fit: contain;
+    margin-bottom: -0.25rem;
   }
   .site-footer__wordmark {
     font-family: var(--font-heading);
     font-weight: 600;
-    font-size: 1.0625rem;
+    font-size: 1.125rem;
   }
   .site-footer__tagline {
     margin-top: var(--space-3);

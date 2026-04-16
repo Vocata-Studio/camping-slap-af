@@ -11,6 +11,9 @@ out/
 build/
 dist/
 
+# astro (generated types, content cache)
+.astro/
+
 # env files
 .env
 .env.*

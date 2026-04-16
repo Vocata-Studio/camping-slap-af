@@ -76,6 +76,9 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  /* Reserve space for the scrollbar on every page so navigating between
+     short and tall pages doesn't shift the centered layout horizontally. */
+  scrollbar-gutter: stable;
 }
 
 html,

@@ -17,7 +17,8 @@
     "email": "campingslapaf@outlook.com",
     "copyright": "© {year} Camping Slap Af. Alla rättigheter förbehållna.",
     "dkCampAlt": "DK-CAMP — Camping i Danmark",
-    "visitMorsAlt": "VisitMors — Upptäck Mors"
+    "visitMorsAlt": "VisitMors — Upptäck Mors",
+    "smaaCampingAlt": "Små Campingplatser — DK-CAMP"
   },
   "Home": {
     "heroTitle": "Vakna upp i naturen på Mors",
@@ -134,7 +135,9 @@
     "camperBookCta": "Boka husbil",
     "cottageBookCta": "Boka stuga",
     "fieldBookCta": "Boka fält",
-    "seasonalBookCta": "Boka säsongsplats"
+    "seasonalBookCta": "Boka säsongsplats",
+    "camperBadge": "3 husbilsplatser",
+    "fieldBadge": "Max. 3 nätter"
   },
   "Booking": {
     "title": "Bokning",

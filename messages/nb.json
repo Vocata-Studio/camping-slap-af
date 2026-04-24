@@ -17,7 +17,8 @@
     "email": "campingslapaf@outlook.com",
     "copyright": "© {year} Camping Slap Af. Alle rettigheter reservert.",
     "dkCampAlt": "DK-CAMP — Camping i Danmark",
-    "visitMorsAlt": "VisitMors — Oppdag Mors"
+    "visitMorsAlt": "VisitMors — Oppdag Mors",
+    "smaaCampingAlt": "Små Campingplasser — DK-CAMP"
   },
   "Home": {
     "heroTitle": "Våkn opp til naturen på Mors",
@@ -134,7 +135,9 @@
     "camperBookCta": "Book bobil",
     "cottageBookCta": "Book hytte",
     "fieldBookCta": "Book campingfelt",
-    "seasonalBookCta": "Book sesongplass"
+    "seasonalBookCta": "Book sesongplass",
+    "camperBadge": "3 bobil-plasser",
+    "fieldBadge": "Maks. 3 netter"
   },
   "Booking": {
     "title": "Booking",

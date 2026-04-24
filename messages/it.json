@@ -17,7 +17,8 @@
     "email": "campingslapaf@outlook.com",
     "copyright": "© {year} Camping Slap Af. Tutti i diritti riservati.",
     "dkCampAlt": "DK-CAMP — Camping in Danimarca",
-    "visitMorsAlt": "VisitMors — Scopri Mors"
+    "visitMorsAlt": "VisitMors — Scopri Mors",
+    "smaaCampingAlt": "Piccoli Campeggi — DK-CAMP"
   },
   "Home": {
     "heroTitle": "Svegliati nella natura a Mors",
@@ -134,7 +135,9 @@
     "camperBookCta": "Prenota camper",
     "cottageBookCta": "Prenota cottage",
     "fieldBookCta": "Prenota campo",
-    "seasonalBookCta": "Prenota stagionale"
+    "seasonalBookCta": "Prenota stagionale",
+    "camperBadge": "3 piazzole camper",
+    "fieldBadge": "Max. 3 notti"
   },
   "Booking": {
     "title": "Prenotazione",

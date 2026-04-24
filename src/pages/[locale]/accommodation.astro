@@ -19,11 +19,11 @@ const eurLocales: Locale[] = ["de", "nl", "fr", "es", "it"];
 const showEur = eurLocales.includes(l);
 
 const accommodations = [
-  { key: "campsite", gradient: 1 },
-  { key: "camper", gradient: 2 },
-  { key: "cottage", gradient: 1 },
-  { key: "field", gradient: 2 },
-  { key: "seasonal", gradient: 1 },
+  { key: "campsite", gradient: 1, badge: null },
+  { key: "camper", gradient: 2, badge: "camperBadge" },
+  { key: "cottage", gradient: 1, badge: null },
+  { key: "field", gradient: 2, badge: "fieldBadge" },
+  { key: "seasonal", gradient: 1, badge: null },
 ] as const;
 
 const facilityKeys = [
@@ -75,6 +75,9 @@ const optionKeys = ["optionTowels", "optionBedding", "optionCleaning"] as const;
               </div>
               <div class="acc__body">
                 <h2>{t(l, "Accommodation", acc.key)}</h2>
+                {acc.badge && (
+                  <span class="acc__badge">{t(l, "Accommodation", acc.badge)}</span>
+                )}
                 <p class="acc__description">
                   {t(l, "Accommodation", `${acc.key}Description`)}
                 </p>
@@ -283,6 +286,20 @@ const optionKeys = ["optionTowels", "optionBedding", "optionCleaning"] as const;
 
   .acc__body h2 {
     font-size: var(--fs-2xl);
+    margin-bottom: var(--space-2);
+  }
+  .acc__badge {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--color-green);
+    background: var(--color-cream);
+    border: 1px solid #c4ddc9;
+    border-radius: 999px;
+    padding: 0.2em 0.75em;
     margin-bottom: var(--space-4);
   }
   .acc__description {

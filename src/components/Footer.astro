@@ -87,6 +87,15 @@ const copyright = t(locale, "Footer", "copyright").replace("{year}", String(year
             class="site-footer__visitmors-logo"
           />
         </a>
+        <a href="https://www.dk-camp.dk/inspiration/smaa-campingpladser/" target="_blank" rel="noopener noreferrer" class="site-footer__smaacamping">
+          <img
+            src="/images/smaacamping-logo.png"
+            alt={t(locale, "Footer", "smaaCampingAlt")}
+            width="80"
+            height="40"
+            class="site-footer__smaacamping-logo"
+          />
+        </a>
       </div>
     </div>
   </div>
@@ -202,8 +211,18 @@ const copyright = t(locale, "Footer", "copyright").replace("{year}", String(year
     object-fit: contain;
     opacity: 0.8;
   }
+  .site-footer__smaacamping {
+    display: inline-block;
+  }
+  .site-footer__smaacamping-logo {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+    opacity: 0.8;
+  }
   .site-footer__dkcamp:hover .site-footer__dkcamp-logo,
-  .site-footer__visitmors:hover .site-footer__visitmors-logo {
+  .site-footer__visitmors:hover .site-footer__visitmors-logo,
+  .site-footer__smaacamping:hover .site-footer__smaacamping-logo {
     opacity: 1;
   }
 

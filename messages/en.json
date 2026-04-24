@@ -17,7 +17,8 @@
     "email": "campingslapaf@outlook.com",
     "copyright": "© {year} Camping Slap Af. All rights reserved.",
     "dkCampAlt": "DK-CAMP — Camping in Denmark",
-    "visitMorsAlt": "VisitMors — Discover Mors"
+    "visitMorsAlt": "VisitMors — Discover Mors",
+    "smaaCampingAlt": "Small Campsites — DK-CAMP"
   },
   "Home": {
     "heroTitle": "Wake up to nature on Mors",
@@ -134,7 +135,9 @@
     "camperBookCta": "Book motorhome",
     "cottageBookCta": "Book cottage",
     "fieldBookCta": "Book field",
-    "seasonalBookCta": "Book seasonal pitch"
+    "seasonalBookCta": "Book seasonal pitch",
+    "camperBadge": "3 motorhome pitches",
+    "fieldBadge": "Max. 3 nights"
   },
   "Booking": {
     "title": "Booking",

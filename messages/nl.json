@@ -17,7 +17,8 @@
     "email": "campingslapaf@outlook.com",
     "copyright": "© {year} Camping Slap Af. Alle rechten voorbehouden.",
     "dkCampAlt": "DK-CAMP — Camping in Denemarken",
-    "visitMorsAlt": "VisitMors — Ontdek Mors"
+    "visitMorsAlt": "VisitMors — Ontdek Mors",
+    "smaaCampingAlt": "Kleine Campings — DK-CAMP"
   },
   "Home": {
     "heroTitle": "Wakker worden in de natuur op Mors",
@@ -134,7 +135,9 @@
     "camperBookCta": "Boek camper",
     "cottageBookCta": "Boek huisje",
     "fieldBookCta": "Boek kampveld",
-    "seasonalBookCta": "Boek seizoensplaats"
+    "seasonalBookCta": "Boek seizoensplaats",
+    "camperBadge": "3 camperplaatsen",
+    "fieldBadge": "Max. 3 nachten"
   },
   "Booking": {
     "title": "Boeken",

@@ -28,7 +28,7 @@ const heroImage = "/images/old-gerlis-placeholder.webp";
   <section class="section">
     <div class="container alt">
       <div class="alt__media alt__media--gradient-1" role="img" aria-label={t(l, "About", "storyTitle")}>
-        <span class="alt__media-label">Billede kommer snart</span>
+        <span class="alt__media-label">Image of Angele and Jeroen</span>
       </div>
       <div class="alt__text">
         <h2>{t(l, "About", "storyTitle")}</h2>
@@ -40,10 +40,26 @@ const heroImage = "/images/old-gerlis-placeholder.webp";
 
   <hr class="hairline" />
 
-  <!-- Sejerslev & Mors -->
+  <!-- A renewal in motion -->
   <section class="section">
     <div class="container alt alt--reverse">
-      <div class="alt__media alt__media--gradient-2" role="img" aria-label={t(l, "About", "locationTitle")}>
+      <div class="alt__media alt__media--gradient-2" role="img" aria-label={t(l, "About", "renewalTitle")}>
+        <span class="alt__media-label">Billede kommer snart</span>
+      </div>
+      <div class="alt__text">
+        <h2>{t(l, "About", "renewalTitle")}</h2>
+        <p>{t(l, "About", "renewalText1")}</p>
+        <p>{t(l, "About", "renewalText2")}</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hairline" />
+
+  <!-- Sejerslev & Mors -->
+  <section class="section">
+    <div class="container alt">
+      <div class="alt__media alt__media--gradient-3" role="img" aria-label={t(l, "About", "locationTitle")}>
         <span class="alt__media-label">Billede kommer snart</span>
       </div>
       <div class="alt__text">
@@ -151,6 +167,7 @@ const heroImage = "/images/old-gerlis-placeholder.webp";
     -webkit-backdrop-filter: blur(6px);
     padding: 0.5rem 1rem;
     border-radius: 999px;
+    white-space: nowrap;
   }
   .alt__media--gradient-1 {
     background:
@@ -163,6 +180,12 @@ const heroImage = "/images/old-gerlis-placeholder.webp";
       radial-gradient(at 75% 20%, #e8d9c0 0%, transparent 55%),
       radial-gradient(at 25% 85%, #9fb8a4 0%, transparent 60%),
       linear-gradient(160deg, #c8b99c 0%, #6b8b6e 100%);
+  }
+  .alt__media--gradient-3 {
+    background:
+      radial-gradient(at 30% 30%, #cfe3d4 0%, transparent 55%),
+      radial-gradient(at 70% 70%, #8fb39a 0%, transparent 60%),
+      linear-gradient(135deg, #b9d2bd 0%, #4f8b66 100%);
   }
   .alt__text h2 {
     font-size: var(--fs-2xl);

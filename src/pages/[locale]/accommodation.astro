@@ -19,11 +19,11 @@ const eurLocales: Locale[] = ["de", "nl", "fr", "es", "it"];
 const showEur = eurLocales.includes(l);
 
 const accommodations = [
-  { key: "campsite", gradient: 1, badge: null },
-  { key: "camper", gradient: 2, badge: "camperBadge" },
-  { key: "cottage", gradient: 1, badge: null },
-  { key: "field", gradient: 2, badge: "fieldBadge" },
-  { key: "seasonal", gradient: 1, badge: null },
+  { key: "campsite", gradient: 1, badge: null, image: "/images/location-images/20260427_164517.jpg" },
+  { key: "camper", gradient: 2, badge: "camperBadge", image: "/images/location-images/20260427_164637.jpg" },
+  { key: "cottage", gradient: 1, badge: null, image: null },
+  { key: "field", gradient: 2, badge: "fieldBadge", image: "/images/location-images/20260427_164737.jpg" },
+  { key: "seasonal", gradient: 1, badge: null, image: "/images/location-images/20260427_164750.jpg" },
 ] as const;
 
 const facilityKeys = [
@@ -66,13 +66,23 @@ const optionKeys = ["optionTowels", "optionBedding", "optionCleaning"] as const;
         {
           accommodations.map((acc, index) => (
             <article class:list={["acc", index % 2 === 1 && "acc--reverse"]}>
-              <div
-                class:list={["acc__media", `acc__media--gradient-${acc.gradient}`]}
-                role="img"
-                aria-label={t(l, "Accommodation", acc.key)}
-              >
-                <span class="acc__media-label">Billede kommer snart</span>
-              </div>
+              {acc.image ? (
+                <div class="acc__media">
+                  <img
+                    src={acc.image}
+                    alt={t(l, "Accommodation", acc.key)}
+                    loading="lazy"
+                  />
+                </div>
+              ) : (
+                <div
+                  class:list={["acc__media", `acc__media--gradient-${acc.gradient}`]}
+                  role="img"
+                  aria-label={t(l, "Accommodation", acc.key)}
+                >
+                  <span class="acc__media-label">Billede kommer snart</span>
+                </div>
+              )}
               <div class="acc__body">
                 <h2>{t(l, "Accommodation", acc.key)}</h2>
                 {acc.badge && (
@@ -235,24 +245,35 @@ const optionKeys = ["optionTowels", "optionBedding", "optionCleaning"] as const;
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-8);
-    align-items: center;
+    align-items: start;
   }
   @media (min-width: 900px) {
     .acc {
       grid-template-columns: 1.1fr 1fr;
       gap: var(--space-10);
     }
-    .acc--reverse .acc__media {
-      order: 2;
+    .acc--reverse {
+      grid-template-columns: 1fr 1.1fr;
     }
+    .acc--reverse .acc__media { grid-column: 2; grid-row: 1; }
+    .acc--reverse .acc__body { grid-column: 1; grid-row: 1; }
   }
 
   .acc__media {
     position: relative;
     width: 100%;
     aspect-ratio: 4 / 3;
+    align-self: start;
     border-radius: var(--radius-lg);
     overflow: hidden;
+  }
+  .acc__media > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
   .acc__media-label {
     position: absolute;

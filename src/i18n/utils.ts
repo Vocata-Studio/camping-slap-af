@@ -58,6 +58,85 @@ export const bookingLink = {
   key: "booking",
 } as const;
 
+const contactUiMessages = {
+  da: {
+    copy: "kopier",
+    copied: "Kopieret",
+    emailCopied: "E-mail kopieret",
+    phoneCopied: "Telefonnummer kopieret",
+    copyFailed: "Kunne ikke kopiere",
+  },
+  en: {
+    copy: "copy",
+    copied: "Copied",
+    emailCopied: "Email copied",
+    phoneCopied: "Phone number copied",
+    copyFailed: "Couldn't copy",
+  },
+  de: {
+    copy: "kopieren",
+    copied: "Kopiert",
+    emailCopied: "E-Mail kopiert",
+    phoneCopied: "Telefonnummer kopiert",
+    copyFailed: "Kopieren fehlgeschlagen",
+  },
+  nl: {
+    copy: "kopieer",
+    copied: "Gekopieerd",
+    emailCopied: "E-mailadres gekopieerd",
+    phoneCopied: "Telefoonnummer gekopieerd",
+    copyFailed: "Kopieren mislukt",
+  },
+  fr: {
+    copy: "copier",
+    copied: "Copie effectuee",
+    emailCopied: "E-mail copie",
+    phoneCopied: "Numero de telephone copie",
+    copyFailed: "Copie impossible",
+  },
+  es: {
+    copy: "copiar",
+    copied: "Copiado",
+    emailCopied: "Correo copiado",
+    phoneCopied: "Numero de telefono copiado",
+    copyFailed: "No se pudo copiar",
+  },
+  it: {
+    copy: "copia",
+    copied: "Copiato",
+    emailCopied: "Email copiata",
+    phoneCopied: "Numero di telefono copiato",
+    copyFailed: "Impossibile copiare",
+  },
+  sv: {
+    copy: "kopiera",
+    copied: "Kopierat",
+    emailCopied: "E-post kopierad",
+    phoneCopied: "Telefonnummer kopierat",
+    copyFailed: "Kunde inte kopiera",
+  },
+  nb: {
+    copy: "kopier",
+    copied: "Kopiert",
+    emailCopied: "E-post kopiert",
+    phoneCopied: "Telefonnummer kopiert",
+    copyFailed: "Kunne ikke kopiere",
+  },
+  pl: {
+    copy: "kopiuj",
+    copied: "Skopiowano",
+    emailCopied: "Email skopiowany",
+    phoneCopied: "Numer telefonu skopiowany",
+    copyFailed: "Nie udalo sie skopiowac",
+  },
+} as const satisfies Record<Locale, {
+  copy: string;
+  copied: string;
+  emailCopied: string;
+  phoneCopied: string;
+  copyFailed: string;
+}>;
+
 /** Build an absolute path for a given locale + route (`/` or `/about`, etc.).
  *  Absolute URLs (http(s)://…) are returned as-is so they can flow through the
  *  same helper as internal routes. */
@@ -65,6 +144,10 @@ export function localePath(locale: Locale, href: string): string {
   if (/^https?:\/\//i.test(href)) return href;
   if (href === "/") return `/${locale}/`;
   return `/${locale}${href}`;
+}
+
+export function contactUi(locale: Locale) {
+  return contactUiMessages[locale] ?? contactUiMessages[fallbackLocale];
 }
 
 /**

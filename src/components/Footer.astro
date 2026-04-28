@@ -1,5 +1,5 @@
 ---
-import { navLinks, bookingLink, localePath, t } from "../i18n/utils";
+import { navLinks, bookingLink, contactUi, localePath, t } from "../i18n/utils";
 import type { Locale } from "../i18n/utils";
 
 interface Props {
@@ -9,6 +9,9 @@ interface Props {
 const { locale } = Astro.props;
 const year = new Date().getFullYear();
 const copyright = t(locale, "Footer", "copyright").replace("{year}", String(year));
+const copyUi = contactUi(locale);
+const phone = t(locale, "Footer", "phone");
+const email = t(locale, "Footer", "email");
 ---
 
 <footer class="site-footer">
@@ -52,14 +55,27 @@ const copyright = t(locale, "Footer", "copyright").replace("{year}", String(year
       <ul class="site-footer__contact">
         <li>{t(locale, "Footer", "address")}</li>
         <li>
-          <a href={`tel:${t(locale, "Footer", "phone").replace(/\s+/g, "")}`} class="site-footer__link">
-            {t(locale, "Footer", "phone")}
+          <a
+            href={`tel:${phone.replace(/\s+/g, "")}`}
+            class="site-footer__link site-footer__copy-link"
+            data-copy-value={phone}
+            data-copy-toast={copyUi.phoneCopied}
+            data-copy-mobile-call="true"
+          >
+            <span>{phone}</span>
+            <span class="contact-copy-subtext">{copyUi.copy}</span>
           </a>
         </li>
         <li>
-          <a href={`mailto:${t(locale, "Footer", "email")}`} class="site-footer__link">
-            {t(locale, "Footer", "email")}
-          </a>
+          <button
+            type="button"
+            class="site-footer__link site-footer__copy-link"
+            data-copy-value={email}
+            data-copy-toast={copyUi.emailCopied}
+          >
+            <span>{email}</span>
+            <span class="contact-copy-subtext">{copyUi.copy}</span>
+          </button>
         </li>
       </ul>
     </div>
@@ -78,22 +94,22 @@ const copyright = t(locale, "Footer", "copyright").replace("{year}", String(year
             class="site-footer__dkcamp-logo"
           />
         </a>
-        <a href="https://www.visitmors.dk/" target="_blank" rel="noopener noreferrer" class="site-footer__visitmors">
-          <img
-            src="/images/visitmors.dk-favicon.ico"
-            alt={t(locale, "Footer", "visitMorsAlt")}
-            width="40"
-            height="40"
-            class="site-footer__visitmors-logo"
-          />
-        </a>
         <a href="https://www.dk-camp.dk/inspiration/smaa-campingpladser/" target="_blank" rel="noopener noreferrer" class="site-footer__smaacamping">
           <img
-            src="/images/smaacamping-logo.png"
+            src="/images/smaa-pladsers-logo.png"
             alt={t(locale, "Footer", "smaaCampingAlt")}
             width="80"
             height="40"
             class="site-footer__smaacamping-logo"
+          />
+        </a>
+        <a href="https://www.visitmors.dk/" target="_blank" rel="noopener noreferrer" class="site-footer__visitmors">
+          <img
+            src="/images/visitmors.dk-favicon.png"
+            alt={t(locale, "Footer", "visitMorsAlt")}
+            width="40"
+            height="40"
+            class="site-footer__visitmors-logo"
           />
         </a>
       </div>
@@ -173,6 +189,17 @@ const copyright = t(locale, "Footer", "copyright").replace("{year}", String(year
   .site-footer__link:hover {
     color: var(--color-green);
   }
+  .site-footer__copy-link {
+    width: 100%;
+    display: inline-flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-4);
+    text-align: left;
+  }
+  .site-footer__copy-link:hover .contact-copy-subtext {
+    color: var(--color-green);
+  }
 
   .site-footer__base {
     border-top: 1px solid var(--color-hairline);
@@ -200,14 +227,14 @@ const copyright = t(locale, "Footer", "copyright").replace("{year}", String(year
     display: inline-block;
   }
   .site-footer__dkcamp-logo {
-    height: 40px;
+    height: 56px;
     width: auto;
     object-fit: contain;
     opacity: 0.8;
   }
   .site-footer__visitmors-logo {
-    height: 40px;
-    width: 40px;
+    height: 56px;
+    width: 56px;
     object-fit: contain;
     opacity: 0.8;
   }
@@ -215,7 +242,7 @@ const copyright = t(locale, "Footer", "copyright").replace("{year}", String(year
     display: inline-block;
   }
   .site-footer__smaacamping-logo {
-    height: 40px;
+    height: 56px;
     width: auto;
     object-fit: contain;
     opacity: 0.8;

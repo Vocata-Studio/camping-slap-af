@@ -2,7 +2,7 @@
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import { stripLocaleFromPath } from "../i18n/utils";
+import { contactUi, stripLocaleFromPath } from "../i18n/utils";
 import type { Locale } from "../i18n/utils";
 
 interface Props {
@@ -13,6 +13,7 @@ interface Props {
 
 const { title, locale, description } = Astro.props;
 const currentRoute = stripLocaleFromPath(Astro.url.pathname);
+const copyUi = contactUi(locale);
 const pageDescription =
   description ??
   "Camping Slap Af — rolig camping i Sejerslev på Mors, midt i den danske natur.";
@@ -32,7 +33,7 @@ const pageDescription =
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -45,5 +46,71 @@ const pageDescription =
       <slot />
     </main>
     <Footer locale={locale} />
+    <div class="copy-toast" id="contact-copy-toast" aria-live="polite" aria-atomic="true"></div>
+    <script define:vars={{ copyUi }}>
+      const toast = document.getElementById("contact-copy-toast");
+      let toastTimer;
+
+      const canUseNativePhoneLink = () =>
+        window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+
+      const fallbackCopy = async (value) => {
+        const input = document.createElement("textarea");
+        input.value = value;
+        input.setAttribute("readonly", "");
+        input.style.position = "absolute";
+        input.style.opacity = "0";
+        document.body.append(input);
+        input.select();
+        document.execCommand("copy");
+        input.remove();
+      };
+
+      const copyValue = async (value) => {
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(value);
+          return;
+        }
+        await fallbackCopy(value);
+      };
+
+      const showToast = (message) => {
+        if (!toast) return;
+        toast.textContent = message || copyUi.copied;
+        toast.classList.add("copy-toast--visible");
+        window.clearTimeout(toastTimer);
+        toastTimer = window.setTimeout(() => {
+          toast.classList.remove("copy-toast--visible");
+        }, 2200);
+      };
+
+      const markCopied = (trigger) => {
+        trigger.dataset.copied = "true";
+        window.setTimeout(() => {
+          if (trigger.dataset.copied === "true") {
+            delete trigger.dataset.copied;
+          }
+        }, 1800);
+      };
+
+      document.querySelectorAll("[data-copy-value]").forEach((trigger) => {
+        trigger.addEventListener("click", async (event) => {
+          const shouldKeepPhoneLink =
+            trigger.dataset.copyMobileCall === "true" && canUseNativePhoneLink();
+
+          if (shouldKeepPhoneLink) return;
+
+          event.preventDefault();
+
+          try {
+            await copyValue(trigger.dataset.copyValue || "");
+            markCopied(trigger);
+            showToast(trigger.dataset.copyToast || copyUi.copied);
+          } catch {
+            showToast(copyUi.copyFailed);
+          }
+        });
+      });
+    </script>
   </body>
 </html>

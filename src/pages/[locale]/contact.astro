@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
-import { locales, isValidLocale, t } from "../../i18n/utils";
+import { contactUi, locales, isValidLocale, t } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
 
 export function getStaticPaths() {
@@ -17,6 +17,7 @@ const heroImage = "/images/old-gerlis-placeholder.webp";
 const phone = t(l, "Contact", "phone");
 const email = t(l, "Contact", "email");
 const phoneHref = `tel:${phone.replace(/\s+/g, "")}`;
+const copyUi = contactUi(l);
 ---
 
 <Layout title={t(l, "Contact", "title")} locale={l}>
@@ -56,8 +57,15 @@ const phoneHref = `tel:${phone.replace(/\s+/g, "")}`;
             </div>
             <div>
               <div class="contact-info__label">{t(l, "Booking", "phoneLabel")}</div>
-              <a href={phoneHref} class="contact-info__value contact-info__value--link">
-                {phone}
+              <a
+                href={phoneHref}
+                class="contact-info__value contact-info__value--link contact-info__copy-trigger"
+                data-copy-value={phone}
+                data-copy-toast={copyUi.phoneCopied}
+                data-copy-mobile-call="true"
+              >
+                <span>{phone}</span>
+                <span class="contact-copy-subtext">{copyUi.copy}</span>
               </a>
             </div>
           </li>
@@ -70,9 +78,15 @@ const phoneHref = `tel:${phone.replace(/\s+/g, "")}`;
             </div>
             <div>
               <div class="contact-info__label">{t(l, "Booking", "emailLabel")}</div>
-              <a href={`mailto:${email}`} class="contact-info__value contact-info__value--link">
-                {email}
-              </a>
+              <button
+                type="button"
+                class="contact-info__value contact-info__value--link contact-info__copy-trigger"
+                data-copy-value={email}
+                data-copy-toast={copyUi.emailCopied}
+              >
+                <span>{email}</span>
+                <span class="contact-copy-subtext">{copyUi.copy}</span>
+              </button>
             </div>
           </li>
           <li>
@@ -91,28 +105,51 @@ const phoneHref = `tel:${phone.replace(/\s+/g, "")}`;
       </div>
 
       <!-- Form column -->
-      <form class="contact-form" action={`mailto:${email}`} method="post" enctype="text/plain">
+      <div class="contact-form">
         <h2 class="contact-form__heading">{t(l, "Contact", "formTitle")}</h2>
+        <p class="contact-form__note">{t(l, "Contact", "formComingSoon")}</p>
+        <form class="contact-form__fields" onsubmit="return false;">
+          <div class="field">
+            <label for="contact-name">{t(l, "Contact", "nameLabel")}</label>
+            <input type="text" id="contact-name" name="name" autocomplete="name" />
+          </div>
 
-        <div class="field">
-          <label for="contact-name">{t(l, "Contact", "nameLabel")}</label>
-          <input type="text" id="contact-name" name="name" required autocomplete="name" />
-        </div>
+          <div class="field">
+            <label for="contact-email">{t(l, "Contact", "emailLabel")}</label>
+            <input type="email" id="contact-email" name="email" autocomplete="email" />
+          </div>
 
-        <div class="field">
-          <label for="contact-email">{t(l, "Contact", "emailLabel")}</label>
-          <input type="email" id="contact-email" name="email" required autocomplete="email" />
-        </div>
+          <div class="field">
+            <label for="contact-message">{t(l, "Contact", "messageLabel")}</label>
+            <textarea id="contact-message" name="message" rows="5"></textarea>
+          </div>
 
-        <div class="field">
-          <label for="contact-message">{t(l, "Contact", "messageLabel")}</label>
-          <textarea id="contact-message" name="message" rows="5" required></textarea>
-        </div>
+          <div class="contact-form__actions">
+            <button
+              type="button"
+              class="btn contact-form__submit"
+              data-copy-value={email}
+              data-copy-toast={copyUi.emailCopied}
+            >
+              {t(l, "Contact", "sendButton")}
+            </button>
 
-        <button type="submit" class="btn contact-form__submit">
-          {t(l, "Contact", "sendButton")}
-        </button>
-      </form>
+            <a
+              href={phoneHref}
+              class="contact-form__method"
+              data-copy-value={phone}
+              data-copy-toast={copyUi.phoneCopied}
+              data-copy-mobile-call="true"
+            >
+              <span class="contact-form__method-label">{t(l, "Booking", "phoneLabel")}</span>
+              <span class="contact-form__method-meta">
+                <span class="contact-form__method-value">{phone}</span>
+                <span class="contact-copy-subtext">{copyUi.copy}</span>
+              </span>
+            </a>
+          </div>
+        </form>
+      </div>
     </div>
   </section>
 
@@ -197,6 +234,17 @@ const phoneHref = `tel:${phone.replace(/\s+/g, "")}`;
   .contact-info__value--link:hover {
     color: var(--color-green);
   }
+  .contact-info__copy-trigger {
+    display: inline-flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-4);
+    min-width: min(100%, 24rem);
+    text-align: left;
+  }
+  .contact-info__copy-trigger:hover .contact-copy-subtext {
+    color: var(--color-green);
+  }
 
   /* Form column */
   .contact-form {
@@ -211,11 +259,20 @@ const phoneHref = `tel:${phone.replace(/\s+/g, "")}`;
     font-size: var(--fs-xl);
     margin: 0 0 var(--space-2);
   }
-
+  .contact-form__note {
+    color: var(--color-muted);
+    font-size: var(--fs-md);
+  }
+  .contact-form__fields {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
   .field {
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
+    width: 100%;
   }
   .field label {
     font-family: var(--font-body);
@@ -225,6 +282,7 @@ const phoneHref = `tel:${phone.replace(/\s+/g, "")}`;
   }
   .field input,
   .field textarea {
+    width: 100%;
     font: inherit;
     font-size: var(--fs-base);
     color: var(--color-ink);
@@ -241,10 +299,61 @@ const phoneHref = `tel:${phone.replace(/\s+/g, "")}`;
     border-color: var(--color-green);
     box-shadow: 0 0 0 3px rgba(43, 152, 84, 0.18);
   }
-
+  .contact-form__actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-top: var(--space-1);
+  }
   .contact-form__submit {
     align-self: flex-start;
-    margin-top: var(--space-2);
+  }
+  .contact-form__method {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-4) var(--space-5);
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+    border: 1px solid var(--color-hairline);
+    text-align: left;
+    color: var(--color-ink);
+  }
+  .contact-form__method:hover {
+    border-color: var(--color-green);
+  }
+  .contact-form__method:hover .contact-copy-subtext {
+    color: var(--color-green);
+  }
+  .contact-form__method-label {
+    font-family: var(--font-body);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .contact-form__method-meta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+  .contact-form__method-value {
+    font-family: var(--font-heading);
+    font-size: var(--fs-md);
+    font-weight: 600;
+  }
+
+  @media (min-width: 720px) {
+    .contact-form__actions {
+      align-items: flex-start;
+    }
+    .contact-form__method {
+      width: min(100%, 32rem);
+    }
   }
 
   /* Map placeholder */

@@ -12,6 +12,7 @@ const copyright = t(locale, "Footer", "copyright").replace("{year}", String(year
 const copyUi = contactUi(locale);
 const phone = t(locale, "Footer", "phone");
 const email = t(locale, "Footer", "email");
+const cvr = t(locale, "Footer", "cvr");
 ---
 
 <footer class="site-footer">
@@ -53,7 +54,17 @@ const email = t(locale, "Footer", "email");
     <div class="site-footer__col">
       <h4 class="site-footer__heading">{t(locale, "Footer", "contactInfo")}</h4>
       <ul class="site-footer__contact">
-        <li>{t(locale, "Footer", "address")}</li>
+        <li>
+          <button
+            type="button"
+            class="site-footer__link site-footer__copy-link"
+            data-copy-value={email}
+            data-copy-toast={copyUi.emailCopied}
+          >
+            <span>{email}</span>
+            <span class="contact-copy-subtext">{copyUi.copy}</span>
+          </button>
+        </li>
         <li>
           <a
             href={`tel:${phone.replace(/\s+/g, "")}`}
@@ -70,13 +81,14 @@ const email = t(locale, "Footer", "email");
           <button
             type="button"
             class="site-footer__link site-footer__copy-link"
-            data-copy-value={email}
-            data-copy-toast={copyUi.emailCopied}
+            data-copy-value={cvr}
+            data-copy-toast={copyUi.cvrCopied}
           >
-            <span>{email}</span>
+            <span>CVR: {cvr}</span>
             <span class="contact-copy-subtext">{copyUi.copy}</span>
           </button>
         </li>
+        <li class="site-footer__address">{t(locale, "Footer", "address")}</li>
       </ul>
     </div>
   </div>
@@ -190,12 +202,13 @@ const email = t(locale, "Footer", "email");
     color: var(--color-green);
   }
   .site-footer__copy-link {
-    width: 100%;
     display: inline-flex;
     align-items: baseline;
-    justify-content: space-between;
-    gap: var(--space-4);
+    gap: var(--space-2);
     text-align: left;
+  }
+  .site-footer__address {
+    margin-top: var(--space-3);
   }
   .site-footer__copy-link:hover .contact-copy-subtext {
     color: var(--color-green);

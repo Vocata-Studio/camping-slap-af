@@ -64,6 +64,7 @@ const contactUiMessages = {
     copied: "Kopieret",
     emailCopied: "E-mail kopieret",
     phoneCopied: "Telefonnummer kopieret",
+    cvrCopied: "CVR-nummer kopieret",
     copyFailed: "Kunne ikke kopiere",
   },
   en: {
@@ -71,6 +72,7 @@ const contactUiMessages = {
     copied: "Copied",
     emailCopied: "Email copied",
     phoneCopied: "Phone number copied",
+    cvrCopied: "CVR number copied",
     copyFailed: "Couldn't copy",
   },
   de: {
@@ -78,6 +80,7 @@ const contactUiMessages = {
     copied: "Kopiert",
     emailCopied: "E-Mail kopiert",
     phoneCopied: "Telefonnummer kopiert",
+    cvrCopied: "CVR-Nummer kopiert",
     copyFailed: "Kopieren fehlgeschlagen",
   },
   nl: {
@@ -85,6 +88,7 @@ const contactUiMessages = {
     copied: "Gekopieerd",
     emailCopied: "E-mailadres gekopieerd",
     phoneCopied: "Telefoonnummer gekopieerd",
+    cvrCopied: "CVR-nummer gekopieerd",
     copyFailed: "Kopieren mislukt",
   },
   fr: {
@@ -92,6 +96,7 @@ const contactUiMessages = {
     copied: "Copie effectuee",
     emailCopied: "E-mail copie",
     phoneCopied: "Numero de telephone copie",
+    cvrCopied: "Numero CVR copie",
     copyFailed: "Copie impossible",
   },
   es: {
@@ -99,6 +104,7 @@ const contactUiMessages = {
     copied: "Copiado",
     emailCopied: "Correo copiado",
     phoneCopied: "Numero de telefono copiado",
+    cvrCopied: "Numero CVR copiado",
     copyFailed: "No se pudo copiar",
   },
   it: {
@@ -106,6 +112,7 @@ const contactUiMessages = {
     copied: "Copiato",
     emailCopied: "Email copiata",
     phoneCopied: "Numero di telefono copiato",
+    cvrCopied: "Numero CVR copiato",
     copyFailed: "Impossibile copiare",
   },
   sv: {
@@ -113,6 +120,7 @@ const contactUiMessages = {
     copied: "Kopierat",
     emailCopied: "E-post kopierad",
     phoneCopied: "Telefonnummer kopierat",
+    cvrCopied: "CVR-nummer kopierat",
     copyFailed: "Kunde inte kopiera",
   },
   nb: {
@@ -120,6 +128,7 @@ const contactUiMessages = {
     copied: "Kopiert",
     emailCopied: "E-post kopiert",
     phoneCopied: "Telefonnummer kopiert",
+    cvrCopied: "CVR-nummer kopiert",
     copyFailed: "Kunne ikke kopiere",
   },
   pl: {
@@ -127,6 +136,7 @@ const contactUiMessages = {
     copied: "Skopiowano",
     emailCopied: "Email skopiowany",
     phoneCopied: "Numer telefonu skopiowany",
+    cvrCopied: "Numer CVR skopiowany",
     copyFailed: "Nie udalo sie skopiowac",
   },
 } as const satisfies Record<Locale, {
@@ -134,6 +144,7 @@ const contactUiMessages = {
   copied: string;
   emailCopied: string;
   phoneCopied: string;
+  cvrCopied: string;
   copyFailed: string;
 }>;
 

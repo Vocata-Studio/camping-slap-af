@@ -3,11 +3,14 @@
 /* ------------------------------------------------------------------ */
 
 :root {
+  color-scheme: light;
+
   /* Brand colors */
   --color-green: #2B9854;
   --color-green-dark: #22793F;
   --color-mint: #77BA8A;
   --color-white: #FFFFFF;
+  --color-bg: #FFFFFF;
   --color-cream: #EEF4F0;
   --color-ink: #1A1A1A;
   --color-muted: #6B7280;
@@ -62,6 +65,24 @@
   --radius-pill: 999px;
 }
 
+/* Dark theme — earthy near-black with a faint forest tint. Switched
+   instantly via [data-theme="dark"] on <html>; no transitions to honour
+   the project's "static, no animation" rule. */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-green: #3DB770;
+  --color-green-dark: #56C988;
+  --color-bg: #10130F;
+  --color-cream: #1A201A;
+  --color-ink: #E8EAE6;
+  --color-muted: #9BA39A;
+
+  --color-hairline: rgba(255, 255, 255, 0.08);
+  --color-hairline-strong: rgba(255, 255, 255, 0.18);
+  --color-overlay: rgba(0, 0, 0, 0.55);
+}
+
 /* ------------------------------------------------------------------ */
 /* Reset                                                                */
 /* ------------------------------------------------------------------ */
@@ -93,7 +114,7 @@ body {
   font-size: var(--fs-base);
   line-height: var(--lh-body);
   color: var(--color-ink);
-  background: var(--color-white);
+  background: var(--color-bg);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -279,7 +300,7 @@ details > summary::-webkit-details-marker {
 
 /* Generic card shell — used by feature grids, accommodation cards, etc. */
 .card {
-  background: var(--color-white);
+  background: var(--color-bg);
   border: 1px solid var(--color-hairline);
   border-radius: var(--radius-lg);
   padding: var(--space-6);

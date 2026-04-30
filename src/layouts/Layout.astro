@@ -38,6 +38,17 @@ const pageDescription =
     />
 
     <title>{title} | Camping Slap Af</title>
+
+    <script is:inline>
+      (function () {
+        var mode = "light";
+        try {
+          var stored = localStorage.getItem("campingslapaf.theme");
+          if (stored === "dark") mode = "dark";
+        } catch (e) {}
+        document.documentElement.setAttribute("data-theme", mode);
+      })();
+    </script>
   </head>
   <body>
     <a href="#main" class="visually-hidden">Skip to content</a>

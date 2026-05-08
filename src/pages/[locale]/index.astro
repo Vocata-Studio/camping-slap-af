@@ -146,39 +146,14 @@ const heroImage = "/images/old-gerlis-placeholder.webp";
       <div class="section__head">
         <h2>{t(l, "Home", "testimonialTitle")}</h2>
       </div>
-      <div class="testimonial-grid">
-        <blockquote class="testimonial">
-          <svg class="testimonial__mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M7.17 6C4.32 6 2 8.32 2 11.17V18h6.83v-6.83H5.34c0-1.92 1.57-3.49 3.49-3.49V6h-1.66zm10 0c-2.85 0-5.17 2.32-5.17 5.17V18h6.83v-6.83h-3.49c0-1.92 1.57-3.49 3.49-3.49V6h-1.66z" />
+      <div class="testimonial-soon">
+        <div class="testimonial-soon__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
           </svg>
-          <p class="testimonial__text">{t(l, "Home", "testimonial1Text")}</p>
-          <footer class="testimonial__footer">
-            <div class="testimonial__author">{t(l, "Home", "testimonial1Author")}</div>
-            <div class="testimonial__origin">{t(l, "Home", "testimonial1Origin")}</div>
-          </footer>
-        </blockquote>
-
-        <blockquote class="testimonial">
-          <svg class="testimonial__mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M7.17 6C4.32 6 2 8.32 2 11.17V18h6.83v-6.83H5.34c0-1.92 1.57-3.49 3.49-3.49V6h-1.66zm10 0c-2.85 0-5.17 2.32-5.17 5.17V18h6.83v-6.83h-3.49c0-1.92 1.57-3.49 3.49-3.49V6h-1.66z" />
-          </svg>
-          <p class="testimonial__text">{t(l, "Home", "testimonial2Text")}</p>
-          <footer class="testimonial__footer">
-            <div class="testimonial__author">{t(l, "Home", "testimonial2Author")}</div>
-            <div class="testimonial__origin">{t(l, "Home", "testimonial2Origin")}</div>
-          </footer>
-        </blockquote>
-
-        <blockquote class="testimonial">
-          <svg class="testimonial__mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M7.17 6C4.32 6 2 8.32 2 11.17V18h6.83v-6.83H5.34c0-1.92 1.57-3.49 3.49-3.49V6h-1.66zm10 0c-2.85 0-5.17 2.32-5.17 5.17V18h6.83v-6.83h-3.49c0-1.92 1.57-3.49 3.49-3.49V6h-1.66z" />
-          </svg>
-          <p class="testimonial__text">{t(l, "Home", "testimonial3Text")}</p>
-          <footer class="testimonial__footer">
-            <div class="testimonial__author">{t(l, "Home", "testimonial3Author")}</div>
-            <div class="testimonial__origin">{t(l, "Home", "testimonial3Origin")}</div>
-          </footer>
-        </blockquote>
+        </div>
+        <h3 class="testimonial-soon__title">{t(l, "Home", "testimonialComingSoonTitle")}</h3>
+        <p class="testimonial-soon__text">{t(l, "Home", "testimonialComingSoonText")}</p>
       </div>
     </div>
   </section>
@@ -346,49 +321,43 @@ const heroImage = "/images/old-gerlis-placeholder.webp";
     margin-top: var(--space-6);
   }
 
-  /* Testimonials */
-  .testimonial-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-5);
-  }
-  @media (min-width: 768px) {
-    .testimonial-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-  .testimonial {
-    background: var(--color-bg);
-    border: 1px solid var(--color-hairline);
+  /* Testimonials — coming soon placeholder */
+  .testimonial-soon {
+    max-width: 560px;
+    margin-inline: auto;
+    padding: var(--space-8) var(--space-6);
+    background: var(--color-cream);
     border-radius: var(--radius-lg);
-    padding: var(--space-6);
-    margin: 0;
+    text-align: center;
     display: flex;
     flex-direction: column;
-    gap: var(--space-5);
+    align-items: center;
+    gap: var(--space-4);
   }
-  .testimonial__mark {
-    width: 28px;
-    height: 28px;
-    color: var(--color-mint);
+  .testimonial-soon__icon {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-md);
+    background: var(--color-bg);
+    color: var(--color-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  .testimonial__text {
-    color: var(--color-ink);
-    font-size: var(--fs-md);
-    line-height: 1.55;
+  .testimonial-soon__icon svg {
+    width: 26px;
+    height: 26px;
   }
-  .testimonial__footer {
-    margin-top: auto;
+  .testimonial-soon__title {
+    font-size: var(--fs-lg);
+    margin: 0;
   }
-  .testimonial__author {
-    font-family: var(--font-heading);
-    font-weight: 600;
-    color: var(--color-ink);
-  }
-  .testimonial__origin {
-    font-size: var(--fs-xs);
+  .testimonial-soon__text {
     color: var(--color-muted);
-    margin-top: 2px;
+    font-size: var(--fs-sm);
+    line-height: var(--lh-body);
+    max-width: 46ch;
+    margin: 0;
   }
 
   /* CTA band */

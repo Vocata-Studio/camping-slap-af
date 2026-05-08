@@ -1,5 +1,5 @@
 ---
-import { navLinks, bookingLink, contactUi, localePath, t } from "../i18n/utils";
+import { navLinks, bookingLink, bookingHref, contactUi, localePath, t } from "../i18n/utils";
 import type { Locale } from "../i18n/utils";
 
 interface Props {
@@ -44,7 +44,7 @@ const cvr = t(locale, "Footer", "cvr");
           ))
         }
         <li>
-          <a href={localePath(locale, bookingLink.href)} class="site-footer__link">
+          <a href={bookingHref(locale)} class="site-footer__link">
             {t(locale, "Header", bookingLink.key)}
           </a>
         </li>

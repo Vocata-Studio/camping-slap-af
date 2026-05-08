@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
-import { locales, isValidLocale, t, localePath, bookingLink } from "../../i18n/utils";
+import { locales, isValidLocale, t, localePath, bookingHref } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
 
 export function getStaticPaths() {
@@ -94,7 +94,7 @@ const optionKeys = ["optionTowels", "optionBedding", "optionCleaning"] as const;
                   </li>
                 </ul>
                 <div class="acc__meta">
-                  <a href={localePath(l, bookingLink.href)} class="btn">
+                  <a href={bookingHref(l)} class="btn">
                     {t(l, "Accommodation", `${acc.key}BookCta`)}
                   </a>
                 </div>

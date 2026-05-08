@@ -53,8 +53,15 @@ export const navLinks = [
   { href: "/contact", key: "contact" },
 ] as const;
 
+const BOOKING_APP_BASE = "https://camping-slap-af-booking.vercel.app";
+
+/** Locale-aware URL to the booking app — keeps the user's chosen language. */
+export function bookingHref(locale: Locale): string {
+  return `${BOOKING_APP_BASE}/${locale}`;
+}
+
 export const bookingLink = {
-  href: "https://camping-slap-af-booking.vercel.app/",
+  href: BOOKING_APP_BASE,
   key: "booking",
 } as const;
 

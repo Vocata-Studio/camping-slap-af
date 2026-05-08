@@ -2,6 +2,7 @@
 import {
   navLinks,
   bookingLink,
+  bookingHref,
   locales,
   localeLabels,
   localePath,
@@ -120,7 +121,7 @@ function isActive(href: string): boolean {
         </ul>
       </details>
 
-      <a href={localePath(locale, bookingLink.href)} class="btn site-header__cta">
+      <a href={bookingHref(locale)} class="btn site-header__cta">
         {t(locale, "Header", bookingLink.key)}
       </a>
 
@@ -162,7 +163,7 @@ function isActive(href: string): boolean {
             }
             <li>
               <a
-                href={localePath(locale, bookingLink.href)}
+                href={bookingHref(locale)}
                 class="btn menu-toggle__cta"
               >
                 {t(locale, "Header", bookingLink.key)}

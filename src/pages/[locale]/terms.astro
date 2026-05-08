@@ -1,0 +1,432 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero.astro";
+import { locales, isValidLocale, localePath } from "../../i18n/utils";
+import type { Locale } from "../../i18n/utils";
+
+export function getStaticPaths() {
+  return locales.map((locale) => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params;
+if (!isValidLocale(locale)) return Astro.redirect("/da");
+const l = locale as Locale;
+
+const isDanish = l === "da";
+
+const heroImage = "/images/old-gerlis-placeholder.webp";
+const title = isDanish ? "Handelsbetingelser" : "Terms of Service";
+const subtitle = isDanish
+  ? "Vilkårene der gælder, når du booker et ophold hos os."
+  : "The terms that apply when you book a stay with us.";
+const lastUpdated = "2026-05-08";
+const privacyHref = localePath(l, "/privacy");
+---
+
+<Layout title={title} locale={l}>
+  <Hero
+    image={heroImage}
+    imageAlt={title}
+    title={title}
+    subtitle={subtitle}
+    compact
+  />
+
+  <section class="section">
+    <div class="container legal-container">
+      <article class="legal">
+        {isDanish ? (
+          <Fragment>
+            <p class="legal-lead">
+              Disse handelsbetingelser gælder for bookinger og køb foretaget hos Camping Slap af på
+              campingslapaf.dk og via vores bookingside. Læs dem igennem, før du bekræfter en reservation.
+            </p>
+
+            <h2>1. Sælger</h2>
+            <div class="legal-block">
+              <strong>Camping Slap af</strong>
+              Kærvang 7<br />
+              7900 Nykøbing M<br />
+              CVR: 46328973<br />
+              E-mail: <a href="mailto:campingslapaf@outlook.com">campingslapaf@outlook.com</a><br />
+              Telefon: <a href="tel:+4591199674">+45 91 19 96 74</a>
+            </div>
+
+            <h2>2. Bestilling og aftale</h2>
+            <p>
+              Når du gennemfører en booking via vores bookingside, sender vi dig en bookingbekræftelse på
+              e-mail. Aftalen er først bindende, når bekræftelsen er modtaget. Vi forbeholder os retten til at
+              annullere en booking i tilfælde af åbenlyse pris- eller tilgængelighedsfejl, og du får i så fald
+              alle indbetalte beløb retur.
+            </p>
+            <p>
+              Du er ansvarlig for, at de oplysninger, du giver i forbindelse med bookingen, er korrekte. Hvis
+              ankomstdato, antal personer eller andre detaljer ændrer sig, skal du give os besked hurtigst
+              muligt.
+            </p>
+
+            <h2>3. Priser</h2>
+            <p>
+              Alle priser er angivet i danske kroner (DKK) og er <strong>inklusive moms</strong>. For udvalgte
+              sprog kan priser også vises i euro (EUR) til orientering — det endelige beløb opkræves i DKK.
+              Eventuelle gebyrer eller tilvalg fremgår tydeligt, før du gennemfører bookingen.
+            </p>
+
+            <h2>4. Betaling</h2>
+            <p>Betalingen for et ophold opdeles i to dele:</p>
+            <ul>
+              <li>
+                <strong>Depositum</strong>: 25 % af det samlede beløb opkræves med det samme, når bookingen
+                gennemføres.
+              </li>
+              <li>
+                <strong>Restbeløb</strong>: De resterende 75 % skal være indbetalt senest 5 dage før ankomst.
+              </li>
+            </ul>
+            <p>
+              Vi modtager betaling med Visa og Mastercard. Vi kan løbende tilføje yderligere betalingsmetoder
+              (fx MobilePay) — de aktuelt tilgængelige metoder vises i bookingflowet. Kortoplysninger gemmes
+              alene hos vores betalingsudbyder, og vi modtager kun en betalingsreference og det betalte beløb.
+            </p>
+            <p>
+              Hvis restbeløbet ikke er indbetalt rettidigt, betragtes bookingen som annulleret, og det
+              indbetalte depositum refunderes ikke.
+            </p>
+
+            <h2>5. Ankomst og afrejse</h2>
+            <p>
+              Ankomst- og afrejsetidspunkter samt praktiske detaljer om check-in fremgår af din
+              bookingbekræftelse. Giv os gerne besked, hvis du forventer at ankomme uden for normal åbningstid.
+            </p>
+
+            <h2>6. Fortrydelsesret</h2>
+            <p>
+              Reservation af overnatning på en bestemt dato eller i en bestemt periode er
+              <strong> undtaget fra den 14 dages fortrydelsesret</strong> efter forbrugeraftaleloven, jf. § 18,
+              stk. 2, nr. 12. Det betyder, at du <strong>ikke</strong> har en lovbestemt fortrydelsesret, når du
+              bekræfter en booking hos Camping Slap af.
+            </p>
+
+            <h2>7. Afbestilling og ændringer</h2>
+            <p>Når din booking er bekræftet, er den bindende.</p>
+            <ul>
+              <li>
+                <strong>Afbestilling</strong>: Hvis du afbestiller hele eller dele af opholdet, refunderes
+                indbetalte beløb ikke. Det gælder uanset årsag og uanset, hvor lang tid før ankomst du
+                afbestiller. Vi anbefaler, at du tegner en afbestillingsforsikring hos dit forsikringsselskab
+                eller dit kreditkortselskab, så du kan være dækket ved sygdom eller andre uforudsete hændelser.
+              </li>
+              <li>
+                <strong>Ændringer</strong>: Vi forsøger så vidt muligt at imødekomme ønsker om at flytte
+                ankomst- eller afrejsedato, men vi er ikke forpligtede til det. Mulige ændringer afhænger af
+                ledig kapacitet på pladsen og aftales individuelt.
+              </li>
+              <li>
+                <strong>Force majeure</strong>: Hvis vi er forhindrede i at gennemføre dit ophold på grund af
+                forhold uden for vores kontrol (fx myndighedsforanstaltninger eller alvorlige
+                driftsforstyrrelser), kontakter vi dig hurtigst muligt og finder en løsning — fx ombooking
+                eller tilbagebetaling af det indbetalte beløb.
+              </li>
+            </ul>
+
+            <h2>8. Ophold på pladsen</h2>
+            <p>Som gæst på Camping Slap af forventer vi, at du:</p>
+            <ul>
+              <li>Behandler pladsen, faciliteter og fællesarealer med respekt.</li>
+              <li>
+                Følger pladsens ordensregler, herunder regler om ro, åben ild og hunde (maks. tre hunde i snor
+                pr. enhed; flere efter aftale).
+              </li>
+              <li>Tager hensyn til andre gæster og naboer.</li>
+            </ul>
+            <p>
+              Ved alvorlige eller gentagne overtrædelser kan vi afbryde dit ophold uden refusion. Du er
+              erstatningsansvarlig for skader, du eller dit rejsefølge måtte påføre pladsen, faciliteter eller
+              andre gæsters ejendele.
+            </p>
+
+            <h2>9. Klager over opholdet</h2>
+            <p>
+              Hvis noget ikke lever op til dine forventninger, vil vi gerne høre det med det samme — så har vi
+              mulighed for at rette op på det, mens du er hos os. Skriv eller ring til
+              <a href="mailto:campingslapaf@outlook.com">campingslapaf@outlook.com</a> /
+              <a href="tel:+4591199674">+45 91 19 96 74</a>. Klager indgivet efter hjemkomst behandles efter
+              dansk rets almindelige regler.
+            </p>
+
+            <h2>10. Persondata</h2>
+            <p>
+              Behandlingen af dine personoplysninger i forbindelse med en booking er beskrevet i vores
+              <a href={privacyHref}>privatlivspolitik</a>.
+            </p>
+
+            <h2>11. Klage til klagemyndighed</h2>
+            <p>
+              Vi vil altid foretrække at finde en løsning direkte med dig. Hvis det ikke lykkes, kan du
+              indbringe klagen for:
+            </p>
+            <div class="legal-block">
+              <strong>Center for Klageløsning</strong>
+              Nævnenes Hus<br />
+              Toldboden 2<br />
+              8800 Viborg<br />
+              <a href="https://www.naevneneshus.dk" target="_blank" rel="noopener noreferrer">www.naevneneshus.dk</a>
+            </div>
+            <p>
+              EU-borgere bosat uden for Danmark kan også benytte EU-Kommissionens online klageplatform:
+              <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">ec.europa.eu/consumers/odr</a>.
+              Angiv vores e-mail campingslapaf@outlook.com som kontakt.
+            </p>
+
+            <h2>12. Lovvalg og værneting</h2>
+            <p>
+              Aftalen er underlagt dansk ret, og eventuelle tvister afgøres ved en dansk domstol. Forbrugere
+              er altid sikret de rettigheder, der følger af ufravigelig dansk forbrugerbeskyttelseslovgivning.
+            </p>
+          </Fragment>
+        ) : (
+          <Fragment>
+            <p class="legal-lead">
+              These terms apply to bookings and purchases made with Camping Slap af on campingslapaf.dk and
+              through our booking page. Please read them before confirming a reservation.
+            </p>
+
+            <h2>1. Seller</h2>
+            <div class="legal-block">
+              <strong>Camping Slap af</strong>
+              Kærvang 7<br />
+              7900 Nykøbing M<br />
+              Denmark<br />
+              CVR: 46328973<br />
+              Email: <a href="mailto:campingslapaf@outlook.com">campingslapaf@outlook.com</a><br />
+              Phone: <a href="tel:+4591199674">+45 91 19 96 74</a>
+            </div>
+
+            <h2>2. Orders and contract</h2>
+            <p>
+              When you complete a booking on our booking page, we send you a booking confirmation by email.
+              The agreement only becomes binding once that confirmation has been received. We reserve the right
+              to cancel a booking in the event of obvious price or availability errors, in which case any
+              amount paid will be refunded in full.
+            </p>
+            <p>
+              You are responsible for the accuracy of the details you provide when booking. If your arrival
+              date, party size or other details change, please let us know as soon as possible.
+            </p>
+
+            <h2>3. Prices</h2>
+            <p>
+              All prices are quoted in Danish kroner (DKK) and are <strong>inclusive of VAT</strong>. For some
+              languages, prices may also be displayed in euro (EUR) for reference — the final amount is charged
+              in DKK. Any fees or add-ons are clearly shown before you complete the booking.
+            </p>
+
+            <h2>4. Payment</h2>
+            <p>The payment for a stay is split into two parts:</p>
+            <ul>
+              <li>
+                <strong>Deposit</strong>: 25% of the total amount is charged immediately when the booking is
+                completed.
+              </li>
+              <li>
+                <strong>Balance</strong>: The remaining 75% must be paid no later than 5 days before arrival.
+              </li>
+            </ul>
+            <p>
+              We accept payments by Visa and Mastercard. We may add further payment methods over time (for
+              example MobilePay) — the methods currently available are shown during the booking flow. Card
+              details are stored only with our payment provider, and we only see a payment reference and the
+              amount paid.
+            </p>
+            <p>
+              If the balance is not paid on time, the booking is treated as cancelled and the deposit is not
+              refunded.
+            </p>
+
+            <h2>5. Arrival and departure</h2>
+            <p>
+              Arrival and departure times, along with practical check-in details, are stated in your booking
+              confirmation. Please let us know if you expect to arrive outside of normal opening hours.
+            </p>
+
+            <h2>6. Right of withdrawal</h2>
+            <p>
+              Reservations of accommodation for a specific date or within a specific period are
+              <strong> exempt from the 14-day right of withdrawal</strong> under the Danish Consumer Contracts
+              Act (Forbrugeraftaleloven), section 18(2)(12). This means you do <strong>not</strong> have a
+              statutory right of withdrawal once you confirm a booking with Camping Slap af.
+            </p>
+
+            <h2>7. Cancellation and changes</h2>
+            <p>Once your booking is confirmed, it is binding.</p>
+            <ul>
+              <li>
+                <strong>Cancellation</strong>: If you cancel all or part of your stay, amounts paid are not
+                refunded. This applies regardless of the reason and regardless of how far in advance you
+                cancel. We recommend taking out a cancellation insurance through your insurance provider or
+                credit card to cover illness or other unforeseen events.
+              </li>
+              <li>
+                <strong>Changes</strong>: We will try to accommodate requests to move arrival or departure
+                dates, but we are not obliged to do so. Any change depends on availability at the campsite and
+                is agreed individually.
+              </li>
+              <li>
+                <strong>Force majeure</strong>: If we are prevented from delivering your stay due to
+                circumstances outside our control (such as government measures or serious operational
+                disruption), we will contact you as soon as possible to find a solution — for example
+                rebooking or refunding the amount paid.
+              </li>
+            </ul>
+
+            <h2>8. Stay at the campsite</h2>
+            <p>As a guest at Camping Slap af, we expect that you:</p>
+            <ul>
+              <li>Treat the site, facilities and shared areas with respect.</li>
+              <li>
+                Follow the campsite's house rules, including rules about quiet hours, open fires and dogs (max.
+                three dogs on a leash per unit; more by arrangement).
+              </li>
+              <li>Show consideration for other guests and neighbours.</li>
+            </ul>
+            <p>
+              In the case of serious or repeated violations, we may end your stay without a refund. You are
+              liable for any damage that you or your party cause to the site, the facilities or other guests'
+              belongings.
+            </p>
+
+            <h2>9. Complaints about your stay</h2>
+            <p>
+              If something does not live up to your expectations, please tell us straight away — that gives us
+              a chance to put it right while you are with us. Email or call
+              <a href="mailto:campingslapaf@outlook.com">campingslapaf@outlook.com</a> /
+              <a href="tel:+4591199674">+45 91 19 96 74</a>. Complaints raised after departure are handled
+              under the general rules of Danish law.
+            </p>
+
+            <h2>10. Personal data</h2>
+            <p>
+              How we handle your personal data in connection with a booking is described in our
+              <a href={privacyHref}>privacy policy</a>.
+            </p>
+
+            <h2>11. Disputes</h2>
+            <p>
+              We will always prefer to find a solution directly with you. If that is not possible, you may
+              refer the complaint to:
+            </p>
+            <div class="legal-block">
+              <strong>Center for Klageløsning</strong>
+              Nævnenes Hus<br />
+              Toldboden 2<br />
+              8800 Viborg<br />
+              Denmark<br />
+              <a href="https://www.naevneneshus.dk" target="_blank" rel="noopener noreferrer">www.naevneneshus.dk</a>
+            </div>
+            <p>
+              EU citizens living outside Denmark may also use the European Commission's online dispute
+              resolution platform:
+              <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">ec.europa.eu/consumers/odr</a>.
+              Use our email campingslapaf@outlook.com as the contact address.
+            </p>
+
+            <h2>12. Governing law and venue</h2>
+            <p>
+              The agreement is governed by Danish law, and any disputes are decided by a Danish court.
+              Consumers are always entitled to the rights granted by mandatory Danish consumer-protection
+              legislation.
+            </p>
+          </Fragment>
+        )}
+
+        <hr class="legal-hr" />
+        <p class="legal-meta">
+          {isDanish ? "Senest opdateret" : "Last updated"}: {lastUpdated}
+        </p>
+      </article>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .legal-container {
+    max-width: 760px;
+  }
+
+  .legal {
+    color: var(--color-ink);
+  }
+
+  .legal-lead {
+    font-size: var(--fs-md);
+    line-height: var(--lh-body);
+    color: var(--color-ink);
+    margin-bottom: var(--space-8);
+  }
+
+  .legal h2 {
+    font-family: var(--font-heading);
+    font-size: var(--fs-xl);
+    font-weight: 600;
+    margin-top: var(--space-10);
+    margin-bottom: var(--space-4);
+    color: var(--color-ink);
+  }
+
+  .legal h2:first-of-type {
+    margin-top: 0;
+  }
+
+  .legal p {
+    line-height: var(--lh-body);
+    margin: 0 0 var(--space-4);
+    color: var(--color-ink);
+  }
+
+  .legal ul {
+    margin: 0 0 var(--space-5) 0;
+    padding-left: var(--space-5);
+  }
+
+  .legal li {
+    margin-bottom: var(--space-2);
+    line-height: var(--lh-body);
+    color: var(--color-ink);
+  }
+
+  .legal a {
+    color: var(--color-green);
+  }
+
+  .legal a:hover {
+    color: var(--color-mint);
+  }
+
+  .legal-block {
+    background: var(--color-cream);
+    border-radius: var(--radius-md);
+    padding: var(--space-5) var(--space-6);
+    margin-bottom: var(--space-5);
+    line-height: var(--lh-body);
+  }
+
+  .legal-block strong {
+    display: block;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    margin-bottom: var(--space-2);
+    color: var(--color-ink);
+  }
+
+  .legal-hr {
+    border: none;
+    border-top: 1px solid var(--color-hairline);
+    margin: var(--space-10) 0 var(--space-5);
+  }
+
+  .legal-meta {
+    color: var(--color-muted);
+    font-size: var(--fs-sm);
+    margin: 0;
+  }
+</style>

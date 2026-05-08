@@ -1,0 +1,531 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero.astro";
+import { locales, isValidLocale } from "../../i18n/utils";
+import type { Locale } from "../../i18n/utils";
+
+export function getStaticPaths() {
+  return locales.map((locale) => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params;
+if (!isValidLocale(locale)) return Astro.redirect("/da");
+const l = locale as Locale;
+
+const isDanish = l === "da";
+
+const heroImage = "/images/old-gerlis-placeholder.webp";
+const title = isDanish ? "Privatlivspolitik" : "Privacy Policy";
+const subtitle = isDanish
+  ? "Sådan håndterer vi dine personoplysninger."
+  : "How we handle your personal data.";
+const lastUpdated = "2026-05-08";
+---
+
+<Layout title={title} locale={l}>
+  <Hero
+    image={heroImage}
+    imageAlt={title}
+    title={title}
+    subtitle={subtitle}
+    compact
+  />
+
+  <section class="section">
+    <div class="container legal-container">
+      <article class="legal">
+        {isDanish ? (
+          <Fragment>
+            <p class="legal-lead">
+              Hos Camping Slap af passer vi på dine personoplysninger. Denne politik beskriver, hvilke
+              oplysninger vi indsamler, når du bruger campingslapaf.dk eller booker et ophold, hvad vi bruger
+              dem til, og hvordan du kan udøve dine rettigheder efter GDPR.
+            </p>
+
+            <h2>1. Dataansvarlig</h2>
+            <div class="legal-block">
+              <strong>Camping Slap af</strong>
+              Kærvang 7<br />
+              7900 Nykøbing M<br />
+              CVR: 46328973<br />
+              E-mail: <a href="mailto:campingslapaf@outlook.com">campingslapaf@outlook.com</a><br />
+              Telefon: <a href="tel:+4591199674">+45 91 19 96 74</a>
+            </div>
+            <p>
+              Du er altid velkommen til at kontakte os, hvis du har spørgsmål til behandlingen af dine
+              personoplysninger.
+            </p>
+
+            <h2>2. Hvilke oplysninger vi indsamler</h2>
+            <div class="legal-table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Kategori</th>
+                    <th>Eksempler</th>
+                    <th>Hvornår</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Tekniske oplysninger</td>
+                    <td>IP-adresse, browser, enhedstype, sprogvalg, henvisende side, tidsstempel</td>
+                    <td>Automatisk når du besøger campingslapaf.dk</td>
+                  </tr>
+                  <tr>
+                    <td>Kontaktoplysninger</td>
+                    <td>Navn, e-mail, telefonnummer og din besked</td>
+                    <td>Når du kontakter os via e-mail, telefon eller kontaktformular</td>
+                  </tr>
+                  <tr>
+                    <td>Booking- og ordreoplysninger</td>
+                    <td>Navn, adresse, e-mail, telefon, ankomst- og afrejsedato, antal gæster og enhedstype, eventuelt køretøj/regnummer, tilvalg samt betalingsreference</td>
+                    <td>Når du foretager en reservation</td>
+                  </tr>
+                  <tr>
+                    <td>Korrespondance</td>
+                    <td>E-mails, beskeder og noter knyttet til din henvendelse eller dit ophold</td>
+                    <td>Løbende, når vi taler sammen</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>
+              Vi indsamler ikke følsomme personoplysninger (fx oplysninger om helbred, religion eller politisk
+              overbevisning), og vi bruger ikke statistik- eller marketingcookies på campingslapaf.dk.
+            </p>
+
+            <h2>3. Hvad vi bruger oplysningerne til</h2>
+            <ul>
+              <li>Besvare henvendelser og vejlede dig før, under og efter dit ophold.</li>
+              <li>Behandle din booking, sende bekræftelse og kommunikere praktiske detaljer.</li>
+              <li>Modtage betaling og udstede kvittering eller faktura.</li>
+              <li>Drive og forbedre campingslapaf.dk og pladsen i øvrigt.</li>
+              <li>Beskytte mod misbrug og uautoriseret brug af vores systemer.</li>
+              <li>Overholde lovkrav, herunder bogføringsloven og oplysningspligt over for myndigheder.</li>
+            </ul>
+
+            <h2>4. Retsgrundlag</h2>
+            <ul>
+              <li>
+                <strong>Opfyldelse af aftale</strong> (GDPR art. 6, stk. 1, litra b) — når vi behandler din
+                booking eller besvarer en konkret henvendelse fra dig.
+              </li>
+              <li>
+                <strong>Legitime interesser</strong> (GDPR art. 6, stk. 1, litra f) — når vi driver og forbedrer
+                pladsen og hjemmesiden, fx for at forebygge misbrug og sikre stabil drift.
+              </li>
+              <li>
+                <strong>Samtykke</strong> (GDPR art. 6, stk. 1, litra a) — i de tilfælde hvor vi specifikt beder
+                om dit samtykke, fx ved tilmelding til fremtidige tilbud.
+              </li>
+              <li>
+                <strong>Retlig forpligtelse</strong> (GDPR art. 6, stk. 1, litra c) — når vi er forpligtede til
+                at gemme oplysninger efter bogføringsloven eller anden lovgivning.
+              </li>
+            </ul>
+
+            <h2>5. Hvor længe vi opbevarer oplysningerne</h2>
+            <ul>
+              <li>Henvendelser og e-mails: op til 2 år efter sidste kontakt, hvorefter de slettes.</li>
+              <li>Server- og adgangslogs: typisk 30 dage.</li>
+              <li>
+                Bookinger og betalingsdokumentation: 5 år fra udløbet af det regnskabsår, ordren vedrører,
+                jf. bogføringsloven.
+              </li>
+            </ul>
+
+            <h2>6. Hvem vi deler oplysningerne med</h2>
+            <p>
+              Vi deler kun oplysninger med betroede databehandlere, der hjælper os med at drive pladsen og
+              hjemmesiden:
+            </p>
+            <ul>
+              <li>Hosting og infrastruktur for campingslapaf.dk.</li>
+              <li>
+                Betalingsudbyder, der håndterer korttransaktioner ved booking. Kortdata gemmes alene hos
+                betalingsudbyderen — vi ser kun en betalingsreference og det betalte beløb.
+              </li>
+              <li>E-mail- og kommunikationsudbyder, der leverer vores e-mailkonto.</li>
+              <li>Myndigheder, hvis vi er forpligtede ved lov, fx skattemyndigheder eller politi.</li>
+            </ul>
+            <p>
+              Vi har skriftlige databehandleraftaler med vores leverandører og sørger for, at eventuel
+              overførsel af personoplysninger uden for EU/EØS sker på et lovligt grundlag, fx EU-Kommissionens
+              standardkontraktbestemmelser.
+            </p>
+
+            <h2>7. Cookies</h2>
+            <p>
+              Vi bruger ikke statistik- eller marketingcookies på campingslapaf.dk. Hvis vi tilføjer den slags
+              i fremtiden, opdaterer vi denne politik og indhenter dit samtykke først.
+            </p>
+
+            <h2>8. Sikkerhed</h2>
+            <p>
+              Vi beskytter dine oplysninger med tidssvarende tekniske og organisatoriske foranstaltninger.
+              Trafik til og fra campingslapaf.dk sker over HTTPS, og adgang til personoplysninger er begrænset
+              til personer, der har et arbejdsbetinget behov.
+            </p>
+
+            <h2>9. Dine rettigheder</h2>
+            <p>Efter GDPR har du følgende rettigheder vedrørende dine personoplysninger:</p>
+            <ul>
+              <li><strong>Indsigt</strong> — du kan få at vide, hvilke oplysninger vi behandler om dig.</li>
+              <li><strong>Berigtigelse</strong> — du kan få rettet forkerte oplysninger.</li>
+              <li>
+                <strong>Sletning</strong> ("retten til at blive glemt") — du kan i visse tilfælde få oplysninger
+                slettet.
+              </li>
+              <li>
+                <strong>Begrænsning af behandling</strong> — du kan i visse tilfælde få begrænset, hvordan vi
+                behandler dine oplysninger.
+              </li>
+              <li>
+                <strong>Indsigelse</strong> — du kan gøre indsigelse mod behandling, der bygger på legitime
+                interesser.
+              </li>
+              <li>
+                <strong>Dataportabilitet</strong> — du kan få udleveret de oplysninger, du selv har givet os, i
+                et almindeligt elektronisk format.
+              </li>
+              <li>
+                <strong>Tilbagetrækning af samtykke</strong> — har du givet samtykke, kan du trække det tilbage
+                når som helst.
+              </li>
+            </ul>
+            <p>
+              Skriv til <a href="mailto:campingslapaf@outlook.com">campingslapaf@outlook.com</a>, hvis du vil
+              gøre brug af en af dine rettigheder. Vi besvarer din henvendelse inden for én måned.
+            </p>
+
+            <h2>10. Klage</h2>
+            <p>
+              Vi vil meget gerne høre fra dig først, hvis du er utilfreds med vores behandling af dine
+              personoplysninger — så vi har mulighed for at finde en løsning sammen. Du kan også til enhver tid
+              indgive en klage til:
+            </p>
+            <div class="legal-block">
+              <strong>Datatilsynet</strong>
+              Carl Jacobsens Vej 35<br />
+              2500 Valby<br />
+              <a href="https://www.datatilsynet.dk" target="_blank" rel="noopener noreferrer">www.datatilsynet.dk</a>
+            </div>
+
+            <h2>11. Ændringer</h2>
+            <p>
+              Vi kan opdatere denne politik, hvis vi ændrer den måde, vi behandler personoplysninger på, eller
+              hvis lovgivningen kræver det. Den til enhver tid gældende version ligger her, og datoen nederst
+              viser, hvornår vi sidst opdaterede.
+            </p>
+          </Fragment>
+        ) : (
+          <Fragment>
+            <p class="legal-lead">
+              At Camping Slap af we take care of your personal data. This policy explains what information we
+              collect when you use campingslapaf.dk or book a stay, what we use it for, and how you can exercise
+              your rights under the GDPR.
+            </p>
+
+            <h2>1. Data controller</h2>
+            <div class="legal-block">
+              <strong>Camping Slap af</strong>
+              Kærvang 7<br />
+              7900 Nykøbing M<br />
+              Denmark<br />
+              CVR: 46328973<br />
+              Email: <a href="mailto:campingslapaf@outlook.com">campingslapaf@outlook.com</a><br />
+              Phone: <a href="tel:+4591199674">+45 91 19 96 74</a>
+            </div>
+            <p>You are always welcome to contact us with questions about how we handle your personal data.</p>
+
+            <h2>2. What we collect</h2>
+            <div class="legal-table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Category</th>
+                    <th>Examples</th>
+                    <th>When</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Technical data</td>
+                    <td>IP address, browser, device type, language preference, referrer, timestamp</td>
+                    <td>Automatically when you visit campingslapaf.dk</td>
+                  </tr>
+                  <tr>
+                    <td>Contact details</td>
+                    <td>Name, email, phone number and the message you send us</td>
+                    <td>When you contact us by email, phone or the contact form</td>
+                  </tr>
+                  <tr>
+                    <td>Booking and order data</td>
+                    <td>Name, address, email, phone, arrival and departure dates, number of guests and unit type, optional vehicle/registration, add-ons and a payment reference</td>
+                    <td>When you make a reservation</td>
+                  </tr>
+                  <tr>
+                    <td>Correspondence</td>
+                    <td>Emails, messages and notes related to your enquiry or stay</td>
+                    <td>On an ongoing basis while we are in touch</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>
+              We do not collect sensitive personal data (such as health, religion or political beliefs), and we
+              do not use analytics or marketing cookies on campingslapaf.dk.
+            </p>
+
+            <h2>3. Why we use it</h2>
+            <ul>
+              <li>To answer enquiries and guide you before, during and after your stay.</li>
+              <li>To process your booking, send confirmations and share practical details.</li>
+              <li>To collect payment and issue receipts or invoices.</li>
+              <li>To operate and improve campingslapaf.dk and the campsite.</li>
+              <li>To protect against misuse and unauthorised use of our systems.</li>
+              <li>To comply with legal requirements, including bookkeeping rules and obligations to authorities.</li>
+            </ul>
+
+            <h2>4. Legal basis</h2>
+            <ul>
+              <li>
+                <strong>Performance of a contract</strong> (GDPR art. 6(1)(b)) — when we handle your booking or
+                respond to a specific request from you.
+              </li>
+              <li>
+                <strong>Legitimate interests</strong> (GDPR art. 6(1)(f)) — when we operate and improve the
+                campsite and website, for example to prevent misuse and ensure stable service.
+              </li>
+              <li>
+                <strong>Consent</strong> (GDPR art. 6(1)(a)) — where we specifically ask for your consent, for
+                example to sign up for future offers.
+              </li>
+              <li>
+                <strong>Legal obligation</strong> (GDPR art. 6(1)(c)) — when we are required to retain
+                information under the Danish Bookkeeping Act or other legislation.
+              </li>
+            </ul>
+
+            <h2>5. How long we keep your data</h2>
+            <ul>
+              <li>Enquiries and emails: up to 2 years after the last contact, after which they are deleted.</li>
+              <li>Server and access logs: typically 30 days.</li>
+              <li>
+                Bookings and payment documentation: 5 years from the end of the financial year, as required by
+                the Danish Bookkeeping Act.
+              </li>
+            </ul>
+
+            <h2>6. Who we share with</h2>
+            <p>
+              We only share data with trusted processors that help us run the campsite and the website:
+            </p>
+            <ul>
+              <li>Hosting and infrastructure for campingslapaf.dk.</li>
+              <li>
+                Payment provider, which handles card transactions during booking. Card details are stored only
+                with the payment provider — we only see a payment reference and the amount paid.
+              </li>
+              <li>Email and communication provider that delivers our mailbox.</li>
+              <li>Public authorities, where we are legally required to disclose information.</li>
+            </ul>
+            <p>
+              We have written data processing agreements with our suppliers and ensure that any transfer of
+              personal data outside the EU/EEA takes place on a lawful basis, for example the European
+              Commission's Standard Contractual Clauses.
+            </p>
+
+            <h2>7. Cookies</h2>
+            <p>
+              We do not use analytics or marketing cookies on campingslapaf.dk. If we add any in the future,
+              we will update this policy and ask for your consent first.
+            </p>
+
+            <h2>8. Security</h2>
+            <p>
+              We protect your data with appropriate technical and organisational measures. Traffic to and from
+              campingslapaf.dk runs over HTTPS, and access to personal data is limited to the people who need
+              it to do their job.
+            </p>
+
+            <h2>9. Your rights</h2>
+            <p>Under the GDPR you have the following rights regarding your personal data:</p>
+            <ul>
+              <li><strong>Access</strong> — you can ask what data we hold about you.</li>
+              <li><strong>Rectification</strong> — you can have inaccurate data corrected.</li>
+              <li>
+                <strong>Erasure</strong> ("the right to be forgotten") — in certain cases you can have your data
+                deleted.
+              </li>
+              <li>
+                <strong>Restriction</strong> — in certain cases you can ask us to restrict how we process your
+                data.
+              </li>
+              <li>
+                <strong>Objection</strong> — you can object to processing based on legitimate interests.
+              </li>
+              <li>
+                <strong>Data portability</strong> — you can receive the data you have provided to us in a
+                common electronic format.
+              </li>
+              <li>
+                <strong>Withdraw consent</strong> — if you have given consent, you can withdraw it at any time.
+              </li>
+            </ul>
+            <p>
+              Email <a href="mailto:campingslapaf@outlook.com">campingslapaf@outlook.com</a> if you want to
+              exercise any of these rights. We will respond within one month.
+            </p>
+
+            <h2>10. Lodging a complaint</h2>
+            <p>
+              We would much rather hear from you first if you are unhappy with how we handle your data — that
+              way we can try to resolve it together. You can also lodge a complaint at any time with the Danish
+              data protection authority:
+            </p>
+            <div class="legal-block">
+              <strong>Datatilsynet</strong>
+              Carl Jacobsens Vej 35<br />
+              2500 Valby<br />
+              Denmark<br />
+              <a href="https://www.datatilsynet.dk" target="_blank" rel="noopener noreferrer">www.datatilsynet.dk</a>
+            </div>
+
+            <h2>11. Changes</h2>
+            <p>
+              We may update this policy if we change how we handle personal data or if the law requires it.
+              The current version always lives on this page, and the date below shows when it was last updated.
+            </p>
+          </Fragment>
+        )}
+
+        <hr class="legal-hr" />
+        <p class="legal-meta">
+          {isDanish ? "Senest opdateret" : "Last updated"}: {lastUpdated}
+        </p>
+      </article>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .legal-container {
+    max-width: 760px;
+  }
+
+  .legal {
+    color: var(--color-ink);
+  }
+
+  .legal-lead {
+    font-size: var(--fs-md);
+    line-height: var(--lh-body);
+    color: var(--color-ink);
+    margin-bottom: var(--space-8);
+  }
+
+  .legal h2 {
+    font-family: var(--font-heading);
+    font-size: var(--fs-xl);
+    font-weight: 600;
+    margin-top: var(--space-10);
+    margin-bottom: var(--space-4);
+    color: var(--color-ink);
+  }
+
+  .legal h2:first-of-type {
+    margin-top: 0;
+  }
+
+  .legal p {
+    line-height: var(--lh-body);
+    margin: 0 0 var(--space-4);
+    color: var(--color-ink);
+  }
+
+  .legal ul {
+    margin: 0 0 var(--space-5) 0;
+    padding-left: var(--space-5);
+  }
+
+  .legal li {
+    margin-bottom: var(--space-2);
+    line-height: var(--lh-body);
+    color: var(--color-ink);
+  }
+
+  .legal a {
+    color: var(--color-green);
+  }
+
+  .legal a:hover {
+    color: var(--color-mint);
+  }
+
+  .legal-block {
+    background: var(--color-cream);
+    border-radius: var(--radius-md);
+    padding: var(--space-5) var(--space-6);
+    margin-bottom: var(--space-5);
+    line-height: var(--lh-body);
+  }
+
+  .legal-block strong {
+    display: block;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    margin-bottom: var(--space-2);
+    color: var(--color-ink);
+  }
+
+  .legal-table-wrap {
+    overflow-x: auto;
+    margin-bottom: var(--space-5);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-md);
+  }
+
+  .legal table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--fs-sm);
+  }
+
+  .legal th,
+  .legal td {
+    text-align: left;
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--color-hairline);
+    vertical-align: top;
+  }
+
+  .legal tr:last-child td {
+    border-bottom: none;
+  }
+
+  .legal th {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--color-ink);
+    background: var(--color-cream);
+    white-space: nowrap;
+  }
+
+  .legal td {
+    color: var(--color-ink);
+  }
+
+  .legal-hr {
+    border: none;
+    border-top: 1px solid var(--color-hairline);
+    margin: var(--space-10) 0 var(--space-5);
+  }
+
+  .legal-meta {
+    color: var(--color-muted);
+    font-size: var(--fs-sm);
+    margin: 0;
+  }
+</style>

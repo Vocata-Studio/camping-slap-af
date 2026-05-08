@@ -95,7 +95,21 @@ const cvr = t(locale, "Footer", "cvr");
 
   <div class="container site-footer__base">
     <div class="site-footer__base-inner">
-      <p class="site-footer__copyright">{copyright}</p>
+      <div class="site-footer__base-left">
+        <p class="site-footer__copyright">{copyright}</p>
+        <ul class="site-footer__legal">
+          <li>
+            <a href={localePath(locale, "/privacy")} class="site-footer__link">
+              {t(locale, "Footer", "privacy")}
+            </a>
+          </li>
+          <li>
+            <a href={localePath(locale, "/terms")} class="site-footer__link">
+              {t(locale, "Footer", "terms")}
+            </a>
+          </li>
+        </ul>
+      </div>
       <div class="site-footer__partners">
         <a href="https://www.dk-camp.dk" target="_blank" rel="noopener noreferrer" class="site-footer__dkcamp">
           <img
@@ -229,6 +243,27 @@ const cvr = t(locale, "Footer", "cvr");
   .site-footer__copyright {
     font-size: var(--fs-xs);
     color: var(--color-muted);
+    margin: 0;
+  }
+  .site-footer__base-left {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-3) var(--space-5);
+  }
+  .site-footer__legal {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+    font-size: var(--fs-xs);
+    margin: 0;
+    padding: 0;
+  }
+  .site-footer__legal li {
+    list-style: none;
+  }
+  .site-footer__legal .site-footer__link {
+    font-size: var(--fs-xs);
   }
   .site-footer__partners {
     display: inline-flex;

@@ -1,12 +1,30 @@
 ---
 import { t } from "../i18n/utils";
 import type { Locale } from "../i18n/utils";
+import { getEvents, imageUrl } from "../lib/vocata";
 
 interface Props {
   locale: Locale;
 }
 
 const { locale } = Astro.props;
+
+// All site activity is anchored to the campsite's timezone so day-of-week and
+// day-of-month are consistent regardless of the build server's TZ.
+const SITE_TZ = "Europe/Copenhagen";
+
+const isoTzFmt = new Intl.DateTimeFormat("en-CA", {
+  timeZone: SITE_TZ,
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+});
+
+const dateTimeFmt = new Intl.DateTimeFormat(locale, {
+  timeZone: SITE_TZ,
+  dateStyle: "long",
+  timeStyle: "short",
+});
 
 // Localized weekday labels, Monday-first. Jan 1 2024 is a Monday.
 function buildWeekdays(loc: Locale): string[] {
@@ -19,22 +37,41 @@ function buildWeekdays(loc: Locale): string[] {
 }
 const weekdays = buildWeekdays(locale);
 
-// Sample events — placeholder until wired up to a real source.
-// Spread across the 2026 season (May–Oct).
-const sampleEvents = [
-  { date: "2026-05-15", titleKey: "event1Title" },
-  { date: "2026-05-23", titleKey: "event2Title" },
-  { date: "2026-06-13", titleKey: "event3Title" },
-  { date: "2026-06-23", titleKey: "event4Title" },
-  { date: "2026-07-04", titleKey: "event5Title" },
-  { date: "2026-07-18", titleKey: "event6Title" },
-  { date: "2026-08-08", titleKey: "event7Title" },
-  { date: "2026-09-12", titleKey: "event8Title" },
-];
-const events = sampleEvents.map((e) => ({
-  date: e.date,
-  title: t(locale, "Calendar", e.titleKey),
-}));
+// Pull events from Vocata. Resolve bilingual fields with DA as the canonical
+// source: non-DA locales prefer EN but fall back to DA so nothing ever disappears.
+const cmsEvents = await getEvents();
+
+interface DisplayEvent {
+  date: string; // YYYY-MM-DD in SITE_TZ — used by both server and JS for filtering
+  title: string;
+  description: string;
+  dateLabel: string;
+  imageThumb: string | null;
+  imageFull: string | null;
+  imageAlt: string;
+}
+
+const events: DisplayEvent[] = cmsEvents
+  .filter((e) => e.data?.date && e.data?.titleDa)
+  .map((e) => {
+    const d = new Date(e.data.date);
+    const title = locale === "da"
+      ? e.data.titleDa
+      : (e.data.titleEn ?? e.data.titleDa);
+    const description = locale === "da"
+      ? (e.data.descriptionDa ?? "")
+      : (e.data.descriptionEn ?? e.data.descriptionDa ?? "");
+    const img = e.data.image;
+    return {
+      date: isoTzFmt.format(d),
+      title,
+      description,
+      dateLabel: dateTimeFmt.format(d),
+      imageThumb: img ? imageUrl(img.assetId, { w: 800, q: 75, f: "webp" }) : null,
+      imageFull: img ? imageUrl(img.assetId, { w: 1800, q: 85, f: "webp" }) : null,
+      imageAlt: img?.alt ?? title,
+    };
+  });
 
 // Initial month = today's local month.
 const today = new Date();
@@ -55,7 +92,7 @@ interface Cell {
   day: number;
   isOther: boolean;
   isToday: boolean;
-  events: { title: string }[];
+  events: DisplayEvent[];
 }
 
 function buildCells(year: number, month: number): Cell[] {
@@ -89,6 +126,7 @@ const labels = {
   subtitle: t(locale, "Calendar", "subtitle"),
   prev: t(locale, "Calendar", "prevMonth"),
   next: t(locale, "Calendar", "nextMonth"),
+  close: t(locale, "Calendar", "close"),
 };
 ---
 
@@ -145,6 +183,7 @@ const labels = {
               cell.isToday && "cal__cell--today",
               cell.events.length > 0 && "cal__cell--has-event",
             ]}
+            {...(cell.events.length > 0 ? { "data-day": cell.events[0].date, role: "button", tabindex: "0" } : {})}
           >
             <span class="cal__day">{cell.day}</span>
             {cell.events.length > 0 && (
@@ -157,6 +196,31 @@ const labels = {
             {cell.events.length > 0 && <span class="cal__dot" aria-hidden="true"></span>}
           </div>
         ))}
+      </div>
+    </div>
+
+    <div
+      class="cal-modal"
+      data-modal
+      hidden
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cal-modal-heading"
+    >
+      <div class="cal-modal__backdrop" data-modal-backdrop></div>
+      <div class="cal-modal__card" role="document">
+        <button
+          type="button"
+          class="cal-modal__close"
+          data-modal-close
+          aria-label={labels.close}
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+          </svg>
+        </button>
+        <div class="cal-modal__body" data-modal-body></div>
       </div>
     </div>
   </div>
@@ -181,6 +245,7 @@ const labels = {
         d.setDate(start.getDate() + i);
         var iso = isoLocal(d);
         cells.push({
+          iso: iso,
           day: d.getDate(),
           isOther: d.getMonth() !== month,
           isToday: iso === todayIso,
@@ -194,11 +259,12 @@ const labels = {
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;");
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
     }
     // Astro scopes our <style> block by tagging elements with a
-     // data-astro-cid-XXX attribute. Cells we render via innerHTML need that
-     // same attribute or none of the scoped CSS applies. Read it off the root.
+    // data-astro-cid-XXX attribute. Cells we render via innerHTML need that
+    // same attribute or none of the scoped CSS applies. Read it off the root.
     function getScopeAttr(root) {
       for (var i = 0; i < root.attributes.length; i++) {
         var name = root.attributes[i].name;
@@ -214,7 +280,11 @@ const labels = {
         if (cell.isOther) cls.push("cal__cell--other");
         if (cell.isToday) cls.push("cal__cell--today");
         if (cell.events.length) cls.push("cal__cell--has-event");
-        var html = '<div class="' + cls.join(" ") + '"' + scope + ">";
+        var dayAttrs = "";
+        if (cell.events.length) {
+          dayAttrs = ' data-day="' + cell.iso + '" role="button" tabindex="0"';
+        }
+        var html = '<div class="' + cls.join(" ") + '"' + scope + dayAttrs + ">";
         html += '<span class="cal__day"' + scope + ">" + cell.day + "</span>";
         if (cell.events.length) {
           html += '<ul class="cal__events"' + scope + ">";
@@ -246,8 +316,78 @@ const labels = {
         label.textContent = new Intl.DateTimeFormat("en", { month: "long", year: "numeric" }).format(new Date(year, month, 1));
       }
     }
+    function renderModalBody(events, scope) {
+      var html = "";
+      for (var i = 0; i < events.length; i++) {
+        var ev = events[i];
+        var headingId = i === 0 ? ' id="cal-modal-heading"' : "";
+        html += '<article class="cal-modal__event"' + scope + ">";
+        if (ev.imageThumb) {
+          var alt = escapeHtml(ev.imageAlt || ev.title);
+          html += '<img class="cal-modal__image" src="' + escapeHtml(ev.imageThumb) + '" alt="' + alt + '" loading="lazy"' + scope + ">";
+        }
+        html += '<p class="cal-modal__date"' + scope + ">" + escapeHtml(ev.dateLabel) + "</p>";
+        html += '<h3 class="cal-modal__title"' + headingId + scope + ">" + escapeHtml(ev.title) + "</h3>";
+        if (ev.description) {
+          html += '<p class="cal-modal__desc"' + scope + ">" + escapeHtml(ev.description) + "</p>";
+        }
+        html += "</article>";
+      }
+      return html;
+    }
+    function attachCellClicks(root, events, modal, modalBody, scope, openModal) {
+      var cells = root.querySelectorAll("[data-day]");
+      for (var i = 0; i < cells.length; i++) {
+        (function (cell) {
+          function open() {
+            var iso = cell.getAttribute("data-day");
+            var dayEvents = events.filter(function (e) { return e.date === iso; });
+            if (!dayEvents.length) return;
+            modalBody.innerHTML = renderModalBody(dayEvents, scope);
+            openModal(cell);
+          }
+          cell.addEventListener("click", open);
+          cell.addEventListener("keydown", function (e) {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              open();
+            }
+          });
+        })(cells[i]);
+      }
+    }
     function init(root) {
       root.__calScope = getScopeAttr(root);
+      var dataEl = root.querySelector("[data-events]");
+      var events = JSON.parse((dataEl && dataEl.textContent) || "[]");
+      var modal = root.parentElement.querySelector("[data-modal]");
+      var modalBody = modal.querySelector("[data-modal-body]");
+      var modalClose = modal.querySelector("[data-modal-close]");
+      var modalBackdrop = modal.querySelector("[data-modal-backdrop]");
+      var lastTrigger = null;
+
+      function openModal(trigger) {
+        lastTrigger = trigger;
+        modal.hidden = false;
+        document.body.style.overflow = "hidden";
+        modalClose.focus();
+      }
+      function closeModal() {
+        modal.hidden = true;
+        document.body.style.overflow = "";
+        if (lastTrigger && lastTrigger.focus) lastTrigger.focus();
+        lastTrigger = null;
+      }
+      modalClose.addEventListener("click", closeModal);
+      modalBackdrop.addEventListener("click", closeModal);
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && !modal.hidden) closeModal();
+      });
+
+      function rewireCells() {
+        attachCellClicks(root, events, modal, modalBody, root.__calScope, openModal);
+      }
+
       var prev = root.querySelector("[data-prev]");
       var next = root.querySelector("[data-next]");
       prev.addEventListener("click", function () {
@@ -258,6 +398,7 @@ const labels = {
         root.dataset.year = String(y);
         root.dataset.month = String(m);
         update(root);
+        rewireCells();
       });
       next.addEventListener("click", function () {
         var y = parseInt(root.dataset.year, 10);
@@ -267,7 +408,10 @@ const labels = {
         root.dataset.year = String(y);
         root.dataset.month = String(m);
         update(root);
+        rewireCells();
       });
+
+      rewireCells();
     }
     var roots = document.querySelectorAll("[data-event-calendar]");
     for (var i = 0; i < roots.length; i++) init(roots[i]);
@@ -358,6 +502,16 @@ const labels = {
   }
   .cal__cell--other {
     background: color-mix(in srgb, var(--color-cream) 55%, var(--color-bg));
+  }
+  .cal__cell--has-event {
+    cursor: pointer;
+  }
+  .cal__cell--has-event:hover {
+    background: color-mix(in srgb, var(--color-green) 6%, var(--color-bg));
+  }
+  .cal__cell--has-event:focus-visible {
+    outline: 2px solid var(--color-green);
+    outline-offset: -2px;
   }
 
   .cal__day {
@@ -467,6 +621,112 @@ const labels = {
       bottom: 6px;
       left: 50%;
       transform: translateX(-50%);
+    }
+  }
+
+  /* Modal — centered card with backdrop */
+  .cal-modal[hidden] {
+    display: none;
+  }
+  .cal-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-5);
+  }
+  .cal-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(26, 26, 26, 0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+  .cal-modal__card {
+    position: relative;
+    z-index: 1;
+    width: min(560px, 100%);
+    max-height: 88vh;
+    overflow-y: auto;
+    background: var(--color-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 30px 70px rgba(26, 26, 26, 0.25);
+    padding: var(--space-7) var(--space-6) var(--space-6);
+  }
+  .cal-modal__close {
+    position: absolute;
+    top: var(--space-3);
+    right: var(--space-3);
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-ink);
+    background: transparent;
+    border: 1px solid transparent;
+  }
+  .cal-modal__close:hover {
+    background: var(--color-cream);
+    color: var(--color-green);
+  }
+  .cal-modal__close:focus-visible {
+    outline: 2px solid var(--color-green);
+    outline-offset: 2px;
+  }
+  .cal-modal__close svg {
+    width: 18px;
+    height: 18px;
+  }
+  .cal-modal__event + .cal-modal__event {
+    margin-top: var(--space-7);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-hairline);
+  }
+  .cal-modal__image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-5);
+  }
+  .cal-modal__date {
+    font-family: var(--font-body);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-green);
+    margin: 0 0 var(--space-2);
+  }
+  .cal-modal__title {
+    font-family: var(--font-heading);
+    font-size: var(--fs-xl);
+    font-weight: 600;
+    color: var(--color-ink);
+    margin: 0 0 var(--space-3);
+  }
+  .cal-modal__desc {
+    color: var(--color-muted);
+    font-size: var(--fs-md);
+    line-height: var(--lh-body);
+    white-space: pre-line;
+    margin: 0;
+  }
+
+  @media (max-width: 640px) {
+    .cal-modal {
+      padding: var(--space-3);
+    }
+    .cal-modal__card {
+      padding: var(--space-6) var(--space-5) var(--space-5);
+    }
+    .cal-modal__title {
+      font-size: var(--fs-lg);
     }
   }
 </style>

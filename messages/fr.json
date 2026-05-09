@@ -181,14 +181,7 @@
     "subtitle": "Ce qui se passe au camping et alentour cette saison",
     "prevMonth": "Mois précédent",
     "nextMonth": "Mois suivant",
-    "event1Title": "Fête du printemps",
-    "event2Title": "Marché aux puces",
-    "event3Title": "Concert live",
-    "event4Title": "Soirée de la Saint-Jean",
-    "event5Title": "Soirée feu de camp",
-    "event6Title": "Fête de l'été",
-    "event7Title": "Barbecue commun",
-    "event8Title": "Marché des récoltes"
+    "close": "Fermer"
   },
   "Contact": {
     "title": "Contact",

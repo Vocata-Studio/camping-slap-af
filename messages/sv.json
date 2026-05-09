@@ -181,14 +181,7 @@
     "subtitle": "Vad som händer på och runt campingen den här säsongen",
     "prevMonth": "Föregående månad",
     "nextMonth": "Nästa månad",
-    "event1Title": "Vårfest",
-    "event2Title": "Loppmarknad",
-    "event3Title": "Livemusik",
-    "event4Title": "Midsommarafton",
-    "event5Title": "Lägereldskväll",
-    "event6Title": "Sommarfest",
-    "event7Title": "Gemensam grillkväll",
-    "event8Title": "Skördemarknad"
+    "close": "Stäng"
   },
   "Contact": {
     "title": "Kontakt",

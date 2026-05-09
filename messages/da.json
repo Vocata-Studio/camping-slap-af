@@ -184,14 +184,7 @@
     "subtitle": "Hvad sker der på og omkring pladsen i denne sæson",
     "prevMonth": "Forrige måned",
     "nextMonth": "Næste måned",
-    "event1Title": "Forårsfest",
-    "event2Title": "Loppemarked",
-    "event3Title": "Live musik",
-    "event4Title": "Sankt Hans Aften",
-    "event5Title": "Bålhygge",
-    "event6Title": "Sommerfest",
-    "event7Title": "Fællesgrill",
-    "event8Title": "Høstmarked"
+    "close": "Luk"
   },
   "Contact": {
     "title": "Kontakt",

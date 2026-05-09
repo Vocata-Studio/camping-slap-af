@@ -181,14 +181,7 @@
     "subtitle": "Was diese Saison auf dem Platz und in der Umgebung los ist",
     "prevMonth": "Vorheriger Monat",
     "nextMonth": "Nächster Monat",
-    "event1Title": "Frühlingsfest",
-    "event2Title": "Flohmarkt",
-    "event3Title": "Livemusik",
-    "event4Title": "Mittsommerabend",
-    "event5Title": "Lagerfeuerabend",
-    "event6Title": "Sommerfest",
-    "event7Title": "Gemeinsames Grillen",
-    "event8Title": "Erntemarkt"
+    "close": "Schließen"
   },
   "Contact": {
     "title": "Kontakt",

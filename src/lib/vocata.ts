@@ -18,6 +18,32 @@ export const vocata = createClient({
 
 export const CMS_URL = url;
 
+export interface VocataImage {
+  assetId: string;
+  url?: string;
+  alt?: string;
+}
+
+export interface VocataEvent {
+  id: string;
+  data: {
+    titleDa: string;
+    titleEn: string | null;
+    date: string;
+    descriptionDa: string | null;
+    descriptionEn: string | null;
+    image: VocataImage | null;
+  };
+}
+
+export async function getEvents(): Promise<VocataEvent[]> {
+  const { data } = await vocata.getAll("event", {
+    sort: "date:asc",
+    limit: 100,
+  });
+  return data as VocataEvent[];
+}
+
 export function imageUrl(
   assetId: string,
   opts: { w?: number; h?: number; q?: number; f?: "webp" | "jpeg" | "png" | "avif" } = {},

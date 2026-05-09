@@ -184,14 +184,7 @@
     "subtitle": "What's happening on-site and nearby this season",
     "prevMonth": "Previous month",
     "nextMonth": "Next month",
-    "event1Title": "Spring festival",
-    "event2Title": "Flea market",
-    "event3Title": "Live music",
-    "event4Title": "Midsummer Eve",
-    "event5Title": "Campfire night",
-    "event6Title": "Summer festival",
-    "event7Title": "Communal BBQ",
-    "event8Title": "Harvest market"
+    "close": "Close"
   },
   "Contact": {
     "title": "Contact",

@@ -1,0 +1,12 @@
+{
+  "name": "event",
+  "title": "Begivenhed",
+  "fields": [
+    { "name": "titleDa", "type": "string", "title": "Titel (DK)", "required": true },
+    { "name": "titleEn", "type": "string", "title": "Title (EN)" },
+    { "name": "date", "type": "datetime", "title": "Dato", "required": true },
+    { "name": "descriptionDa", "type": "text", "title": "Beskrivelse (DK)" },
+    { "name": "descriptionEn", "type": "text", "title": "Description (EN)" },
+    { "name": "image", "type": "image", "title": "Billede" }
+  ]
+}

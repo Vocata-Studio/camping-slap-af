@@ -181,14 +181,7 @@
     "subtitle": "Qué pasa en el camping y alrededores esta temporada",
     "prevMonth": "Mes anterior",
     "nextMonth": "Mes siguiente",
-    "event1Title": "Fiesta de primavera",
-    "event2Title": "Mercadillo",
-    "event3Title": "Música en vivo",
-    "event4Title": "Noche de San Juan",
-    "event5Title": "Noche de hoguera",
-    "event6Title": "Fiesta de verano",
-    "event7Title": "Barbacoa común",
-    "event8Title": "Mercado de cosecha"
+    "close": "Cerrar"
   },
   "Contact": {
     "title": "Contacto",

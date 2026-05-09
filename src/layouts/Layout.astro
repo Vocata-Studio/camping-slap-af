@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import Analytics from "@vercel/analytics/astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { contactUi, stripLocaleFromPath } from "../i18n/utils";
@@ -38,6 +39,8 @@ const pageDescription =
     />
 
     <title>{title} | Camping Slap Af</title>
+
+    <Analytics />
 
     <script is:inline>
       (function () {

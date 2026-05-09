@@ -6,9 +6,15 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "cms:deploy": "node --env-file=.env ./node_modules/@vocata-studio/cms-cli/dist/cli.js deploy --project camping-slap-af --dir ./schemas"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
+    "@vocata-studio/cms-client": "^0.1.0",
     "astro": "^5"
+  },
+  "devDependencies": {
+    "@vocata-studio/cms-cli": "^0.1.0"
   }
 }

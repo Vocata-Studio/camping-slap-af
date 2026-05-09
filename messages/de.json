@@ -176,6 +176,20 @@
     "nearby8Title": "Feggesund Kro",
     "nearby8Description": "Klassische dänische Spezialitäten in gemütlicher Atmosphäre am Fähranleger Feggesund."
   },
+  "Calendar": {
+    "title": "Veranstaltungen",
+    "subtitle": "Was diese Saison auf dem Platz und in der Umgebung los ist",
+    "prevMonth": "Vorheriger Monat",
+    "nextMonth": "Nächster Monat",
+    "event1Title": "Frühlingsfest",
+    "event2Title": "Flohmarkt",
+    "event3Title": "Livemusik",
+    "event4Title": "Mittsommerabend",
+    "event5Title": "Lagerfeuerabend",
+    "event6Title": "Sommerfest",
+    "event7Title": "Gemeinsames Grillen",
+    "event8Title": "Erntemarkt"
+  },
   "Contact": {
     "title": "Kontakt",
     "subtitle": "Wir freuen uns, von Ihnen zu hören",

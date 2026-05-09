@@ -1,0 +1,472 @@
+---
+import { t } from "../i18n/utils";
+import type { Locale } from "../i18n/utils";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+// Localized weekday labels, Monday-first. Jan 1 2024 is a Monday.
+function buildWeekdays(loc: Locale): string[] {
+  const fmt = new Intl.DateTimeFormat(loc, { weekday: "short" });
+  const out: string[] = [];
+  for (let i = 0; i < 7; i++) {
+    out.push(fmt.format(new Date(2024, 0, 1 + i)));
+  }
+  return out;
+}
+const weekdays = buildWeekdays(locale);
+
+// Sample events — placeholder until wired up to a real source.
+// Spread across the 2026 season (May–Oct).
+const sampleEvents = [
+  { date: "2026-05-15", titleKey: "event1Title" },
+  { date: "2026-05-23", titleKey: "event2Title" },
+  { date: "2026-06-13", titleKey: "event3Title" },
+  { date: "2026-06-23", titleKey: "event4Title" },
+  { date: "2026-07-04", titleKey: "event5Title" },
+  { date: "2026-07-18", titleKey: "event6Title" },
+  { date: "2026-08-08", titleKey: "event7Title" },
+  { date: "2026-09-12", titleKey: "event8Title" },
+];
+const events = sampleEvents.map((e) => ({
+  date: e.date,
+  title: t(locale, "Calendar", e.titleKey),
+}));
+
+// Initial month = today's local month.
+const today = new Date();
+const initialYear = today.getFullYear();
+const initialMonth = today.getMonth();
+
+const monthFmt = new Intl.DateTimeFormat(locale, { month: "long", year: "numeric" });
+const initialMonthLabel = monthFmt.format(new Date(initialYear, initialMonth, 1));
+
+function isoLocal(d: Date): string {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+}
+
+interface Cell {
+  day: number;
+  isOther: boolean;
+  isToday: boolean;
+  events: { title: string }[];
+}
+
+function buildCells(year: number, month: number): Cell[] {
+  const first = new Date(year, month, 1);
+  const dow = (first.getDay() + 6) % 7; // Mon = 0 ... Sun = 6
+  const start = new Date(year, month, 1 - dow);
+  const todayIso = isoLocal(new Date());
+  const cells: Cell[] = [];
+  for (let i = 0; i < 42; i++) {
+    const d = new Date(start);
+    d.setDate(start.getDate() + i);
+    const iso = isoLocal(d);
+    cells.push({
+      day: d.getDate(),
+      isOther: d.getMonth() !== month,
+      isToday: iso === todayIso,
+      events: events.filter((e) => e.date === iso),
+    });
+  }
+  return cells;
+}
+
+const initialCells = buildCells(initialYear, initialMonth);
+
+// Encode events as a JSON island the inline script can read. Escape `<`
+// to keep `</script>` from ever appearing in the data block.
+const eventsJson = JSON.stringify(events).replace(/</g, "\\u003c");
+
+const labels = {
+  title: t(locale, "Calendar", "title"),
+  subtitle: t(locale, "Calendar", "subtitle"),
+  prev: t(locale, "Calendar", "prevMonth"),
+  next: t(locale, "Calendar", "nextMonth"),
+};
+---
+
+<section class="section">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <h2>{labels.title}</h2>
+      {labels.subtitle && <p>{labels.subtitle}</p>}
+    </div>
+
+    <div
+      class="cal"
+      data-event-calendar
+      data-locale={locale}
+      data-year={initialYear}
+      data-month={initialMonth}
+    >
+      <script type="application/json" is:inline data-events set:html={eventsJson}></script>
+
+      <div class="cal__head">
+        <button
+          type="button"
+          class="cal__nav-btn"
+          data-prev
+          aria-label={labels.prev}
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m15 18-6-6 6-6" />
+          </svg>
+        </button>
+        <span class="cal__month-label" data-month-label>{initialMonthLabel}</span>
+        <button
+          type="button"
+          class="cal__nav-btn"
+          data-next
+          aria-label={labels.next}
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m9 18 6-6-6-6" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="cal__weekdays" aria-hidden="true">
+        {weekdays.map((w) => <span>{w}</span>)}
+      </div>
+
+      <div class="cal__grid" data-grid>
+        {initialCells.map((cell) => (
+          <div
+            class:list={[
+              "cal__cell",
+              cell.isOther && "cal__cell--other",
+              cell.isToday && "cal__cell--today",
+              cell.events.length > 0 && "cal__cell--has-event",
+            ]}
+          >
+            <span class="cal__day">{cell.day}</span>
+            {cell.events.length > 0 && (
+              <ul class="cal__events">
+                {cell.events.map((ev) => (
+                  <li class="cal__event" title={ev.title}>{ev.title}</li>
+                ))}
+              </ul>
+            )}
+            {cell.events.length > 0 && <span class="cal__dot" aria-hidden="true"></span>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    function isoLocal(d) {
+      var y = d.getFullYear();
+      var m = String(d.getMonth() + 1).padStart(2, "0");
+      var day = String(d.getDate()).padStart(2, "0");
+      return y + "-" + m + "-" + day;
+    }
+    function buildCells(year, month, events) {
+      var first = new Date(year, month, 1);
+      var dow = (first.getDay() + 6) % 7;
+      var start = new Date(year, month, 1 - dow);
+      var todayIso = isoLocal(new Date());
+      var cells = [];
+      for (var i = 0; i < 42; i++) {
+        var d = new Date(start);
+        d.setDate(start.getDate() + i);
+        var iso = isoLocal(d);
+        cells.push({
+          day: d.getDate(),
+          isOther: d.getMonth() !== month,
+          isToday: iso === todayIso,
+          events: events.filter(function (e) { return e.date === iso; }),
+        });
+      }
+      return cells;
+    }
+    function escapeHtml(s) {
+      return String(s)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+    // Astro scopes our <style> block by tagging elements with a
+     // data-astro-cid-XXX attribute. Cells we render via innerHTML need that
+     // same attribute or none of the scoped CSS applies. Read it off the root.
+    function getScopeAttr(root) {
+      for (var i = 0; i < root.attributes.length; i++) {
+        var name = root.attributes[i].name;
+        if (name.indexOf("data-astro-cid-") === 0) return " " + name;
+      }
+      return "";
+    }
+    function renderCells(cells, scope) {
+      var parts = [];
+      for (var i = 0; i < cells.length; i++) {
+        var cell = cells[i];
+        var cls = ["cal__cell"];
+        if (cell.isOther) cls.push("cal__cell--other");
+        if (cell.isToday) cls.push("cal__cell--today");
+        if (cell.events.length) cls.push("cal__cell--has-event");
+        var html = '<div class="' + cls.join(" ") + '"' + scope + ">";
+        html += '<span class="cal__day"' + scope + ">" + cell.day + "</span>";
+        if (cell.events.length) {
+          html += '<ul class="cal__events"' + scope + ">";
+          for (var j = 0; j < cell.events.length; j++) {
+            var t = escapeHtml(cell.events[j].title);
+            html += '<li class="cal__event" title="' + t + '"' + scope + ">" + t + "</li>";
+          }
+          html += "</ul>";
+          html += '<span class="cal__dot" aria-hidden="true"' + scope + "></span>";
+        }
+        html += "</div>";
+        parts.push(html);
+      }
+      return parts.join("");
+    }
+    function update(root) {
+      var year = parseInt(root.dataset.year, 10);
+      var month = parseInt(root.dataset.month, 10);
+      var locale = root.dataset.locale;
+      var dataEl = root.querySelector("[data-events]");
+      var events = JSON.parse((dataEl && dataEl.textContent) || "[]");
+      var cells = buildCells(year, month, events);
+      var scope = root.__calScope || "";
+      root.querySelector("[data-grid]").innerHTML = renderCells(cells, scope);
+      var label = root.querySelector("[data-month-label]");
+      try {
+        label.textContent = new Intl.DateTimeFormat(locale, { month: "long", year: "numeric" }).format(new Date(year, month, 1));
+      } catch (e) {
+        label.textContent = new Intl.DateTimeFormat("en", { month: "long", year: "numeric" }).format(new Date(year, month, 1));
+      }
+    }
+    function init(root) {
+      root.__calScope = getScopeAttr(root);
+      var prev = root.querySelector("[data-prev]");
+      var next = root.querySelector("[data-next]");
+      prev.addEventListener("click", function () {
+        var y = parseInt(root.dataset.year, 10);
+        var m = parseInt(root.dataset.month, 10);
+        m -= 1;
+        if (m < 0) { m = 11; y -= 1; }
+        root.dataset.year = String(y);
+        root.dataset.month = String(m);
+        update(root);
+      });
+      next.addEventListener("click", function () {
+        var y = parseInt(root.dataset.year, 10);
+        var m = parseInt(root.dataset.month, 10);
+        m += 1;
+        if (m > 11) { m = 0; y += 1; }
+        root.dataset.year = String(y);
+        root.dataset.month = String(m);
+        update(root);
+      });
+    }
+    var roots = document.querySelectorAll("[data-event-calendar]");
+    for (var i = 0; i < roots.length; i++) init(roots[i]);
+  })();
+</script>
+
+<style>
+  .cal {
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--color-bg);
+  }
+
+  /* Header — month label centred between prev/next pills */
+  .cal__head {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--color-hairline);
+  }
+  .cal__month-label {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: var(--fs-md);
+    min-width: 11ch;
+    text-align: center;
+    color: var(--color-ink);
+  }
+  .cal__nav-btn {
+    width: 36px;
+    height: 36px;
+    flex: 0 0 auto;
+    border: 1px solid var(--color-hairline);
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-ink);
+    background: var(--color-bg);
+  }
+  .cal__nav-btn:hover {
+    background: var(--color-cream);
+    color: var(--color-green);
+    border-color: var(--color-hairline-strong);
+  }
+  .cal__nav-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Weekday strip */
+  .cal__weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background: var(--color-cream);
+    border-bottom: 1px solid var(--color-hairline);
+  }
+  .cal__weekdays span {
+    padding: var(--space-3) var(--space-2);
+    font-family: var(--font-body);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    text-align: center;
+  }
+
+  /* Day grid — fixed 7 columns × 6 rows. Background grid + 1px gap fakes
+     visible cell borders without depending on the very faint hairline color. */
+  .cal__grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    background: var(--color-hairline-strong);
+  }
+  .cal__cell {
+    position: relative;
+    min-height: 104px;
+    padding: var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    background: var(--color-bg);
+  }
+  .cal__cell--other {
+    background: color-mix(in srgb, var(--color-cream) 55%, var(--color-bg));
+  }
+
+  .cal__day {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    font-size: var(--fs-sm);
+    color: var(--color-ink);
+    line-height: 1;
+    align-self: flex-start;
+  }
+  .cal__cell--other .cal__day {
+    color: var(--color-muted);
+    opacity: 0.5;
+  }
+  .cal__cell--today .cal__day {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    height: 28px;
+    padding: 0 0.45rem;
+    margin: -4px 0 -4px -4px;
+    border-radius: 999px;
+    background: var(--color-green);
+    color: var(--color-white);
+    font-weight: 600;
+  }
+
+  .cal__events {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+  }
+  .cal__event {
+    font-family: var(--font-body);
+    font-size: var(--fs-xs);
+    font-weight: 500;
+    line-height: 1.25;
+    color: var(--color-green-dark);
+    background: color-mix(in srgb, var(--color-green) 14%, var(--color-bg));
+    border-left: 2px solid var(--color-green);
+    padding: 0.25rem 0.45rem;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .cal__dot {
+    display: none;
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--color-green);
+  }
+
+  /* Tablet: keep event pills but tighter */
+  @media (max-width: 900px) {
+    .cal__cell {
+      min-height: 80px;
+      padding: var(--space-2);
+    }
+    .cal__event {
+      font-size: 11px;
+      padding: 0.15rem 0.35rem;
+    }
+  }
+
+  /* Mobile: hide event titles, show a single dot indicator */
+  @media (max-width: 640px) {
+    .cal__head {
+      padding: var(--space-3) var(--space-4);
+      gap: var(--space-3);
+    }
+    .cal__month-label {
+      font-size: var(--fs-sm);
+      min-width: 9ch;
+    }
+    .cal__weekdays span {
+      padding: var(--space-2) 0;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+    }
+    .cal__cell {
+      min-height: 52px;
+      padding: 6px;
+      gap: 4px;
+    }
+    .cal__day {
+      font-size: var(--fs-xs);
+    }
+    .cal__cell--today .cal__day {
+      min-width: 22px;
+      height: 22px;
+      padding: 0 0.3rem;
+      margin: -2px 0 -2px -2px;
+      font-size: var(--fs-xs);
+    }
+    .cal__events {
+      display: none;
+    }
+    .cal__cell--has-event .cal__dot {
+      display: block;
+      position: absolute;
+      bottom: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+</style>

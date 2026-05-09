@@ -179,6 +179,20 @@
     "nearby8Title": "Feggesund Kro",
     "nearby8Description": "Klassieke Deense specialiteiten in een gezellige sfeer bij de veerhaven van Feggesund."
   },
+  "Calendar": {
+    "title": "Evenementen",
+    "subtitle": "Wat er dit seizoen op en rond de camping te beleven valt",
+    "prevMonth": "Vorige maand",
+    "nextMonth": "Volgende maand",
+    "event1Title": "Lentefeest",
+    "event2Title": "Vlooienmarkt",
+    "event3Title": "Live muziek",
+    "event4Title": "Midzomeravond",
+    "event5Title": "Kampvuuravond",
+    "event6Title": "Zomerfeest",
+    "event7Title": "Gezamenlijke barbecue",
+    "event8Title": "Oogstmarkt"
+  },
   "Contact": {
     "title": "Contact",
     "subtitle": "We horen graag van u",

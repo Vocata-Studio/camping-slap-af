@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
+import EventCalendar from "../../components/EventCalendar.astro";
 import { locales, isValidLocale, t, localePath, bookingHref } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
 
@@ -157,6 +158,10 @@ const heroImage = "/images/old-gerlis-placeholder.webp";
       </div>
     </div>
   </section>
+
+  <hr class="hairline" />
+
+  <EventCalendar locale={l} />
 
   <!-- CTA banner -->
   <section class="cta-band">

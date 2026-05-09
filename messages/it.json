@@ -176,6 +176,20 @@
     "nearby8Title": "Feggesund Kro",
     "nearby8Description": "Specialità danesi classiche in un ambiente accogliente vicino all'imbarcadero di Feggesund."
   },
+  "Calendar": {
+    "title": "Eventi",
+    "subtitle": "Cosa succede al campeggio e nei dintorni in questa stagione",
+    "prevMonth": "Mese precedente",
+    "nextMonth": "Mese successivo",
+    "event1Title": "Festa di primavera",
+    "event2Title": "Mercatino delle pulci",
+    "event3Title": "Musica dal vivo",
+    "event4Title": "Vigilia di San Giovanni",
+    "event5Title": "Serata attorno al fuoco",
+    "event6Title": "Festa d'estate",
+    "event7Title": "Grigliata comune",
+    "event8Title": "Mercato del raccolto"
+  },
   "Contact": {
     "title": "Contatti",
     "subtitle": "Ci piacerebbe sentirvi",

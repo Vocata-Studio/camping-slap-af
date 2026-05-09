@@ -176,6 +176,20 @@
     "nearby8Title": "Feggesund Kro",
     "nearby8Description": "Klassiske danske spesialiteter i koselige omgivelser ved Feggesund fergeleie."
   },
+  "Calendar": {
+    "title": "Arrangementer",
+    "subtitle": "Hva som skjer på og rundt plassen denne sesongen",
+    "prevMonth": "Forrige måned",
+    "nextMonth": "Neste måned",
+    "event1Title": "Vårfest",
+    "event2Title": "Loppemarked",
+    "event3Title": "Livemusikk",
+    "event4Title": "Sankthansaften",
+    "event5Title": "Bålkveld",
+    "event6Title": "Sommerfest",
+    "event7Title": "Fellesgrill",
+    "event8Title": "Høstmarked"
+  },
   "Contact": {
     "title": "Kontakt",
     "subtitle": "Vi vil gjerne høre fra deg",

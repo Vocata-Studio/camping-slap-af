@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
+import EventCalendar from "../../components/EventCalendar.astro";
 import { locales, isValidLocale, t } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
 
@@ -178,6 +179,10 @@ const nearby = [
       </div>
     </div>
   </section>
+
+  <hr class="hairline" />
+
+  <EventCalendar locale={l} />
 </Layout>
 
 <style>

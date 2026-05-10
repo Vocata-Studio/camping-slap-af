@@ -41,10 +41,32 @@ const weekdays = buildWeekdays(locale);
 // source: non-DA locales prefer EN but fall back to DA so nothing ever disappears.
 const cmsEvents = await getEvents();
 
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+// Convert plain-text http(s) URLs into anchor tags. Trailing sentence
+// punctuation is excluded from the link so "see foo.com." doesn't capture
+// the period as part of the URL.
+function linkify(text: string): string {
+  const escaped = escapeHtml(text);
+  return escaped.replace(/https?:\/\/[^\s<]+/g, (raw) => {
+    const trailingMatch = raw.match(/[.,!?;:)\]]+$/);
+    const trailing = trailingMatch ? trailingMatch[0] : "";
+    const url = trailing ? raw.slice(0, -trailing.length) : raw;
+    return `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>${trailing}`;
+  });
+}
+
 interface DisplayEvent {
   date: string; // YYYY-MM-DD in SITE_TZ — used by both server and JS for filtering
   title: string;
-  description: string;
+  descriptionHtml: string;
   dateLabel: string;
   imageThumb: string | null;
   imageFull: string | null;
@@ -65,7 +87,7 @@ const events: DisplayEvent[] = cmsEvents
     return {
       date: isoTzFmt.format(d),
       title,
-      description,
+      descriptionHtml: linkify(description),
       dateLabel: dateTimeFmt.format(d),
       imageThumb: img ? imageUrl(img.assetId, { w: 800, q: 75, f: "webp" }) : null,
       imageFull: img ? imageUrl(img.assetId, { w: 1800, q: 85, f: "webp" }) : null,
@@ -328,8 +350,9 @@ const labels = {
         }
         html += '<p class="cal-modal__date"' + scope + ">" + escapeHtml(ev.dateLabel) + "</p>";
         html += '<h3 class="cal-modal__title"' + headingId + scope + ">" + escapeHtml(ev.title) + "</h3>";
-        if (ev.description) {
-          html += '<p class="cal-modal__desc"' + scope + ">" + escapeHtml(ev.description) + "</p>";
+        if (ev.descriptionHtml) {
+          // descriptionHtml is escaped + linkified server-side, inject as-is
+          html += '<p class="cal-modal__desc"' + scope + ">" + ev.descriptionHtml + "</p>";
         }
         html += "</article>";
       }
@@ -716,6 +739,15 @@ const labels = {
     line-height: var(--lh-body);
     white-space: pre-line;
     margin: 0;
+  }
+  .cal-modal__desc a {
+    color: var(--color-green);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    word-break: break-word;
+  }
+  .cal-modal__desc a:hover {
+    color: var(--color-mint);
   }
 
   @media (max-width: 640px) {

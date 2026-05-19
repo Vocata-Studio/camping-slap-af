@@ -1,7 +1,5 @@
 # Camping Slap Af — pricelist 2026
 
-Cleaned and consolidated from `public/CSA-Prislister/*.pdf`, with answers from the owners filled in.
-
 - **Åbningssæson:** 1. april – 18. oktober 2026
 - **Alle priser inkl. moms**
 - **Valuta:** DKK
@@ -18,7 +16,7 @@ Cleaned and consolidated from `public/CSA-Prislister/*.pdf`, with answers from t
 | Barn 2–14 år | 40 |
 | El (tilvalg) | 50 / nat |
 | Dagsgæst | 15 |
-| Vask | 40 / vask |
+| Vaskemaskine | 40 / vask |
 | Tørretumbler | 10 / ½ time |
 
 Inkluderet: varmt vand.
@@ -36,6 +34,9 @@ Kun 3 dedikerede pladser: **Sted 1, Sted 4, Sted 5**. Ligger tæt på toiletbygn
 | Barn 0–2 år | gratis |
 | Barn 2–14 år | 30 |
 | El (tilvalg) | 50 / nat |
+| Dagsgæst | 15 |
+| Vaskemaskine | 40 / vask |
+| Tørretumbler | 10 / ½ time |
 
 Inkluderet: varmt vand.
 
@@ -52,10 +53,10 @@ For små telte, **maksimalt 3 nætter**. Betal ved booking eller på forhånd i 
 | Ekstra voksen | 25 |
 | Barn 0–2 år | gratis |
 | Barn 2–14 år | 15 |
+| Vaskemaskine | 40 / vask |
+| Tørretumbler | 10 / ½ time |
 
 Inkluderet: varmt vand.
-
-> Kilde-PDF kalder dette "Trækkersmark" — på sitet og i bookingflowet hedder det **Campingfelt**.
 
 ---
 
@@ -81,7 +82,7 @@ Ligger tæt på toiletbygningen.
 | Sengelinned | 50 / person |
 | Håndklæder | 25 / person |
 | Viskestykker og karklude | 25 / person |
-| Vask | 40 / vask |
+| Vaskemaskine | 40 / vask |
 | El | 50 / nat |
 | Slutrengøring | 100 (valgfrit) |
 
@@ -95,7 +96,20 @@ Ligger tæt på toiletbygningen.
 | 2 voksne | 9 500 | 4 750 |
 | 1 voksen | 8 000 | 4 000 |
 
-**El:** ekskl. — afregnes separat. Den specifikke sats aftales individuelt med ejerne pr. sæsonplads, så den udstilles ikke offentligt.
+**Tilvalg og ekstra (sæsonpladslejere):**
+
+| Item | DKK |
+|---|---|
+| Gæstekort | 500 |
+| Børn/børnebørn 2–14 år | 800 |
+| Ekstra voksen | 800 |
+| Vinteropbevaring | 800 |
+| El | 4 / kWh |
+| Vaskemaskine | 40 / vask |
+| Tørretumbler | 10 / ½ time |
+| Målerudlejning | gratis |
+
+**El:** afregnes separat fra målerstart til målerslut. Tages forbehold for energiprisændringer.
 
 ---
 
@@ -113,15 +127,3 @@ Ligger tæt på toiletbygningen.
 - **WiFi:** findes ikke på pladsen
 - **Brusebad:** inkluderet ("varmt vand")
 - **Depositum / afbestilling:** ikke fastsat — afklares senere
-
----
-
-## Kilder
-
-Originale prislister fra ejerne:
-
-- `public/CSA-Prislister/campister-priser.pdf` → Campingplads
-- `public/CSA-Prislister/campingvogn-priser.pdf` → Autocamper (PDF'en kalder det "Campingvogn")
-- `public/CSA-Prislister/trækkersmark-priser.pdf` → Campingfelt
-- `public/CSA-Prislister/hytter-priser.pdf` → Hytter
-- `public/CSA-Prislister/seasonplads-priser.pdf` → Sæsonplads

@@ -12,20 +12,26 @@ const { locale } = Astro.params;
 if (!isValidLocale(locale)) return Astro.redirect("/da");
 const l = locale as Locale;
 
-const heroImage = "/billeder-fra-anders/cabins-lawn.jpg";
+const heroImage = "/billeder-fra-anders/cabins-lawn.webp";
 
 const photos = [
-  { src: "/images/location-images/facilities-shared-kitchen.jpg", altKey: "kitchenAlt", captionKey: "kitchenCaption", format: "square" },
-  { src: "/images/location-images/facilities-common-room.jpg", altKey: "commonArea1Alt", captionKey: "commonAreaCaption", format: "square" },
-  { src: "/images/location-images/facilities-common-room-entrance.jpg", altKey: "commonArea2Alt", captionKey: "commonAreaCaption", format: "square" },
-  { src: "/images/location-images/cabins-exterior-path.jpg", altKey: "cabinAlt", captionKey: "cabinCaption", format: "square" },
-  { src: "/images/location-images/kiosk-exterior-bench.jpg", altKey: "kioskAlt", captionKey: "kioskCaption", format: "square" },
-  { src: "/images/location-images/facilities-bathroom-shower.jpg", altKey: "showerAlt", captionKey: "showerCaption", format: "square" },
-  { src: "/images/location-images/facilities-toilet-stalls.jpg", altKey: "restroomsAlt", captionKey: "restroomsCaption", format: "square" },
-  { src: "/images/location-images/campsite-field-caravan.jpg", altKey: "site1Alt", captionKey: "siteCaption", format: "portrait" },
-  { src: "/images/location-images/campsite-field-trees.jpg", altKey: "site2Alt", captionKey: "siteCaption", format: "portrait" },
-  { src: "/images/location-images/campsite-pitch-numbered.jpg", altKey: "site3Alt", captionKey: "siteCaption", format: "portrait" },
-  { src: "/images/location-images/campsite-open-field.jpg", altKey: "site4Alt", captionKey: "siteCaption", format: "portrait" },
+  { src: "/billeder-fra-anders/campsite-overview.webp",                   altKey: "andersOverviewAlt",      captionKey: "andersOverviewCaption"      },
+  { src: "/billeder-fra-anders/cabins-lawn.webp",                          altKey: "andersCabinsLawnAlt",    captionKey: "andersCabinsLawnCaption"    },
+  { src: "/billeder-fra-anders/entrance-signpost.webp",                    altKey: "andersEntranceAlt",      captionKey: "andersEntranceCaption"      },
+  { src: "/billeder-fra-anders/cabin9-exterior.webp",                      altKey: "andersCabin9ExteriorAlt",captionKey: "andersCabinExteriorCaption" },
+  { src: "/billeder-fra-anders/cabin8-bedroom.webp",                       altKey: "andersCabin8BedroomAlt", captionKey: "andersCabinBedroomCaption"  },
+  { src: "/billeder-fra-anders/cabin9-kitchen.webp",                       altKey: "andersCabin9KitchenAlt", captionKey: "andersCabinKitchenCaption"  },
+  { src: "/billeder-fra-anders/guests-caravan.webp",                       altKey: "andersGuestsAlt",        captionKey: "andersGuestsCaption"        },
+  { src: "/billeder-fra-anders/reception-kiosk.webp",                      altKey: "andersReceptionAlt",     captionKey: "andersReceptionCaption"     },
+  { src: "/billeder-fra-anders/vegetable-garden.webp",                     altKey: "andersGardenAlt",        captionKey: "andersGardenCaption"        },
+  { src: "/images/location-images/facilities-shared-kitchen.webp",         altKey: "kitchenAlt",             captionKey: "kitchenCaption"             },
+  { src: "/images/location-images/facilities-common-room.webp",            altKey: "commonArea1Alt",         captionKey: "commonAreaCaption"          },
+  { src: "/images/location-images/facilities-common-room-entrance.webp",   altKey: "commonArea2Alt",         captionKey: "commonAreaCaption"          },
+  { src: "/images/location-images/cabins-exterior-path.webp",              altKey: "cabinAlt",               captionKey: "cabinCaption"               },
+  { src: "/images/location-images/kiosk-exterior-bench.webp",              altKey: "kioskAlt",               captionKey: "kioskCaption"               },
+  { src: "/images/location-images/facilities-bathroom-shower.webp",        altKey: "showerAlt",              captionKey: "showerCaption"              },
+  { src: "/images/location-images/facilities-toilet-stalls.webp",          altKey: "restroomsAlt",           captionKey: "restroomsCaption"           },
+  { src: "/images/location-images/campsite-field-caravan.webp",            altKey: "site1Alt",               captionKey: "siteCaption"                },
 ] as const;
 
 const lightboxData = photos.map((p) => ({
@@ -46,34 +52,37 @@ const lightboxData = photos.map((p) => ({
 
   <section class="section">
     <div class="container">
-      <ul class="gallery">
-        {
-          photos.map((photo, i) => (
-            <li class:list={["gallery__item", `gallery__item--${photo.format}`]}>
-              <button
-                type="button"
-                class="gallery__trigger"
-                data-index={i}
-                aria-label={t(l, "Gallery", photo.altKey)}
-              >
-                <span class:list={["gallery__media", `gallery__media--${photo.format}`]}>
-                  <img src={photo.src} alt={t(l, "Gallery", photo.altKey)} loading="lazy" />
-                </span>
-                <span class="gallery__caption">{t(l, "Gallery", photo.captionKey)}</span>
-              </button>
-            </li>
-          ))
-        }
+      <ul class="masonry" role="list">
+        {photos.map((photo, i) => (
+          <li class="masonry__item">
+            <button
+              type="button"
+              class="masonry__btn"
+              data-index={i}
+              aria-label={t(l, "Gallery", photo.altKey)}
+            >
+              <img
+                src={photo.src}
+                alt={t(l, "Gallery", photo.altKey)}
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="masonry__overlay" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="m21 21-4.35-4.35" />
+                  <path d="M11 8v6M8 11h6" />
+                </svg>
+              </span>
+            </button>
+          </li>
+        ))}
       </ul>
     </div>
   </section>
 
   <!-- Lightbox -->
-  <dialog
-    class="lightbox"
-    id="gallery-lightbox"
-    aria-label={t(l, "Gallery", "title")}
-  >
+  <dialog class="lightbox" id="gallery-lightbox" aria-label={t(l, "Gallery", "title")}>
     <button
       type="button"
       class="lightbox__close"
@@ -81,10 +90,10 @@ const lightboxData = photos.map((p) => ({
       aria-label={t(l, "Gallery", "lightboxClose")}
     >
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M18 6 6 18" />
-        <path d="m6 6 12 12" />
+        <path d="M18 6 6 18" /><path d="m6 6 12 12" />
       </svg>
     </button>
+
     <button
       type="button"
       class="lightbox__nav lightbox__nav--prev"
@@ -95,13 +104,15 @@ const lightboxData = photos.map((p) => ({
         <path d="m15 18-6-6 6-6" />
       </svg>
     </button>
+
     <figure class="lightbox__figure">
-      <div class="lightbox__media">
-        <img class="lightbox__image" src="" alt="" />
+      <div class="lightbox__frame">
+        <img class="lightbox__img" src="" alt="" />
       </div>
       <figcaption class="lightbox__caption"></figcaption>
-      <div class="lightbox__counter" aria-hidden="true"></div>
+      <p class="lightbox__counter" aria-live="polite"></p>
     </figure>
+
     <button
       type="button"
       class="lightbox__nav lightbox__nav--next"
@@ -124,10 +135,9 @@ const lightboxData = photos.map((p) => ({
       const dialog = document.getElementById("gallery-lightbox");
       if (!dialog || !photos.length) return;
 
-      const img = dialog.querySelector(".lightbox__image");
+      const img = dialog.querySelector(".lightbox__img");
       const captionEl = dialog.querySelector(".lightbox__caption");
       const counterEl = dialog.querySelector(".lightbox__counter");
-      const triggers = document.querySelectorAll(".gallery__trigger");
       let current = 0;
 
       function show(i) {
@@ -139,117 +149,113 @@ const lightboxData = photos.map((p) => ({
         counterEl.textContent = `${current + 1} / ${photos.length}`;
       }
 
-      triggers.forEach((btn) => {
+      document.querySelectorAll(".masonry__btn").forEach((btn) => {
         btn.addEventListener("click", () => {
           const idx = parseInt(btn.getAttribute("data-index") || "0", 10);
           show(idx);
-          if (typeof dialog.showModal === "function") {
-            dialog.showModal();
-          } else {
-            dialog.setAttribute("open", "");
-          }
+          dialog.showModal ? dialog.showModal() : dialog.setAttribute("open", "");
         });
       });
 
       dialog.addEventListener("click", (e) => {
-        const target = e.target;
-        if (!(target instanceof Element)) return;
-        const action = target.closest("[data-action]")?.getAttribute("data-action");
-        if (action === "close") {
-          dialog.close();
-        } else if (action === "prev") {
-          show(current - 1);
-        } else if (action === "next") {
-          show(current + 1);
-        } else if (target === dialog) {
-          dialog.close();
-        }
+        const action = e.target.closest?.("[data-action]")?.getAttribute("data-action");
+        if (action === "close") dialog.close();
+        else if (action === "prev") show(current - 1);
+        else if (action === "next") show(current + 1);
+        else if (e.target === dialog) dialog.close();
       });
 
       document.addEventListener("keydown", (e) => {
         if (!dialog.open) return;
-        if (e.key === "ArrowLeft") {
-          e.preventDefault();
-          show(current - 1);
-        } else if (e.key === "ArrowRight") {
-          e.preventDefault();
-          show(current + 1);
-        }
+        if (e.key === "ArrowLeft") { e.preventDefault(); show(current - 1); }
+        else if (e.key === "ArrowRight") { e.preventDefault(); show(current + 1); }
       });
     })();
   </script>
 </Layout>
 
 <style>
-  .gallery {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-6);
-    align-items: start;
+  /* ── Masonry grid ─────────────────────────────────────────────────── */
+
+  .masonry {
+    columns: 2;
+    column-gap: var(--space-4);
   }
-  @media (min-width: 640px) {
-    .gallery {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  @media (min-width: 960px) {
-    .gallery {
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--space-7);
+
+  @media (min-width: 900px) {
+    .masonry {
+      columns: 3;
+      column-gap: var(--space-5);
     }
   }
 
-  .gallery__item {
-    margin: 0;
+  @media (max-width: 480px) {
+    .masonry {
+      columns: 1;
+    }
   }
-  .gallery__trigger {
-    appearance: none;
-    background: transparent;
-    border: 0;
-    padding: 0;
-    width: 100%;
-    text-align: left;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
-    color: inherit;
-    font: inherit;
+
+  .masonry__item {
+    break-inside: avoid;
+    margin-bottom: var(--space-4);
   }
-  .gallery__trigger:focus-visible {
-    outline: 2px solid var(--color-green);
-    outline-offset: 4px;
-    border-radius: var(--radius-md);
+
+  @media (min-width: 900px) {
+    .masonry__item {
+      margin-bottom: var(--space-5);
+    }
   }
-  .gallery__media {
+
+  .masonry__btn {
+    position: relative;
     display: block;
     width: 100%;
+    cursor: zoom-in;
     border-radius: var(--radius-lg);
     overflow: hidden;
     background: var(--color-cream);
   }
-  .gallery__media--square {
-    aspect-ratio: 1 / 1;
-  }
-  .gallery__media--portrait {
-    aspect-ratio: 3 / 4;
-  }
-  .gallery__media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  .gallery__caption {
-    color: var(--color-muted);
-    font-size: var(--fs-sm);
-    line-height: 1.5;
+
+  .masonry__btn:focus-visible {
+    outline: 2px solid var(--color-green);
+    outline-offset: 3px;
+    border-radius: var(--radius-lg);
   }
 
-  /* Lightbox */
+  .masonry__btn img {
+    width: 100%;
+    height: auto;
+    display: block;
+    vertical-align: bottom;
+  }
+
+  .masonry__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: var(--color-white);
+  }
+
+  .masonry__overlay svg {
+    width: 30px;
+    height: 30px;
+    opacity: 0;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+  }
+
+  .masonry__btn:hover .masonry__overlay {
+    background: rgba(26, 26, 26, 0.28);
+  }
+
+  .masonry__btn:hover .masonry__overlay svg {
+    opacity: 1;
+  }
+
+  /* ── Lightbox ─────────────────────────────────────────────────────── */
+
   .lightbox {
     border: 0;
     padding: 0;
@@ -261,77 +267,89 @@ const lightboxData = photos.map((p) => ({
     height: 100vh;
     margin: 0;
     inset: 0;
+    overflow: hidden;
   }
+
   .lightbox::backdrop {
-    background: rgba(0, 0, 0, 0.92);
+    background: rgba(0, 0, 0, 0.93);
   }
+
   .lightbox[open] {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: 64px 1fr 64px;
     grid-template-rows: 1fr;
     align-items: center;
     justify-items: center;
-    padding: var(--space-5);
+    padding-block: var(--space-10);
     box-sizing: border-box;
   }
 
+  /* Close */
   .lightbox__close {
     position: fixed;
-    top: var(--space-4);
-    right: var(--space-4);
+    top: var(--space-5);
+    right: var(--space-5);
     width: 44px;
     height: 44px;
-    border-radius: 999px;
-    border: 0;
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--color-white);
-    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--color-white);
+    cursor: pointer;
     z-index: 10;
   }
+
   .lightbox__close:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.16);
   }
+
   .lightbox__close svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Prev / next arrows */
+  .lightbox__nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--color-white);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .lightbox__nav:hover {
+    background: rgba(255, 255, 255, 0.16);
+  }
+
+  .lightbox__nav svg {
     width: 22px;
     height: 22px;
   }
 
-  .lightbox__nav {
-    width: 48px;
-    height: 48px;
-    border-radius: 999px;
-    border: 0;
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--color-white);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-  .lightbox__nav:hover {
-    background: rgba(255, 255, 255, 0.2);
-  }
-  .lightbox__nav svg {
-    width: 24px;
-    height: 24px;
-  }
-
+  /* Figure — center column */
   .lightbox__figure {
     margin: 0;
+    min-height: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: var(--space-4);
-    width: 100%;
-    height: 100%;
-    min-height: 0;
+    padding-inline: var(--space-3);
   }
-  .lightbox__media {
+
+  .lightbox__frame {
     flex: 1;
     min-height: 0;
     width: 100%;
@@ -339,97 +357,56 @@ const lightboxData = photos.map((p) => ({
     align-items: center;
     justify-content: center;
   }
-  .lightbox__image {
+
+  .lightbox__img {
     max-width: 100%;
     max-height: 100%;
+    width: auto;
+    height: auto;
     object-fit: contain;
     border-radius: var(--radius-md);
-  }
-  .lightbox__caption {
-    color: rgba(255, 255, 255, 0.92);
-    font-size: var(--fs-md);
-    line-height: 1.5;
-    text-align: center;
-    max-width: 70ch;
-    padding: 0 var(--space-4);
-  }
-  .lightbox__counter {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: var(--fs-xs);
-    font-family: var(--font-heading);
-    letter-spacing: 0.08em;
+    display: block;
   }
 
-  @media (max-width: 640px) {
+  .lightbox__caption {
+    color: rgba(255, 255, 255, 0.82);
+    font-size: var(--fs-sm);
+    line-height: 1.55;
+    text-align: center;
+    max-width: 60ch;
+    padding-inline: var(--space-4);
+  }
+
+  .lightbox__counter {
+    font-family: var(--font-heading);
+    font-size: var(--fs-xs);
+    letter-spacing: 0.12em;
+    color: rgba(255, 255, 255, 0.35);
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  /* Mobile: stack arrows at bottom */
+  @media (max-width: 600px) {
     .lightbox[open] {
       grid-template-columns: 1fr;
-      grid-template-rows: 1fr auto;
-      padding: var(--space-3);
+      grid-template-rows: 1fr;
+      padding: var(--space-4);
+      padding-bottom: var(--space-16);
     }
+
     .lightbox__nav {
       position: fixed;
       bottom: var(--space-5);
-      width: 44px;
-      height: 44px;
       z-index: 10;
     }
-    .lightbox__nav--prev {
-      left: var(--space-4);
-    }
-    .lightbox__nav--next {
-      right: var(--space-4);
-    }
-  }
 
-  /* Before & After */
-  .ba-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-6);
-  }
-  @media (min-width: 768px) {
-    .ba-grid {
-      grid-template-columns: repeat(2, 1fr);
+    .lightbox__nav--prev {
+      left: var(--space-5);
     }
-  }
-  .ba-card {
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    border: 1px solid var(--color-hairline);
-    background: var(--color-bg);
-  }
-  .ba-card__label {
-    font-family: var(--font-heading);
-    font-weight: 600;
-    font-size: var(--fs-sm);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: var(--space-3) var(--space-5);
-    background: var(--color-cream);
-    color: var(--color-ink);
-  }
-  .ba-card__media {
-    aspect-ratio: 16 / 10;
-    overflow: hidden;
-  }
-  .ba-card__media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .ba-card__media--placeholder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-3);
-    background: var(--color-cream);
-    color: var(--color-muted);
-    font-size: var(--fs-sm);
-  }
-  .ba-card__media--placeholder svg {
-    width: 40px;
-    height: 40px;
-    color: var(--color-mint);
+
+    .lightbox__nav--next {
+      right: var(--space-5);
+    }
   }
 </style>

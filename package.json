@@ -10,9 +10,12 @@
     "cms:deploy": "node --env-file=.env ./node_modules/@vocata-studio/cms-cli/dist/cli.js deploy --project camping-slap-af --dir ./schemas"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.2",
+    "@astrojs/vercel": "^8.2.11",
     "@vercel/analytics": "^2.0.1",
     "@vocata-studio/cms-client": "^0.1.0",
-    "astro": "^5"
+    "astro": "^5",
+    "resend": "^6.12.3"
   },
   "devDependencies": {
     "@vocata-studio/cms-cli": "^0.1.0"

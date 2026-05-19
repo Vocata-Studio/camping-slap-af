@@ -13,7 +13,7 @@ const { locale } = Astro.params;
 if (!isValidLocale(locale)) return Astro.redirect("/da");
 const l = locale as Locale;
 
-const heroImage = "/billeder-fra-anders/campsite-overview.jpg";
+const heroImage = "/billeder-fra-anders/campsite-overview.webp";
 ---
 
 <Layout title={t(l, "About", "title")} locale={l} description={t(l, "Meta", "aboutDescription")}>
@@ -30,7 +30,7 @@ const heroImage = "/billeder-fra-anders/campsite-overview.jpg";
   <section class="section">
     <div class="container alt">
       <div class="alt__media">
-        <img src="/billeder-fra-anders/owners-portrait-smiling.jpg" alt={t(l, "About", "storyTitle")} loading="lazy" class="focal-left" />
+        <img src="/billeder-fra-anders/owners-portrait-smiling.webp" alt={t(l, "About", "storyTitle")} loading="lazy" class="focal-left" />
       </div>
       <div class="alt__text">
         <h2>{t(l, "About", "storyTitle")}</h2>
@@ -46,7 +46,7 @@ const heroImage = "/billeder-fra-anders/campsite-overview.jpg";
   <section class="section">
     <div class="container alt alt--reverse">
       <div class="alt__media">
-        <img src="/billeder-fra-anders/owners-walking.jpg" alt={t(l, "About", "renewalTitle")} loading="lazy" />
+        <img src="/billeder-fra-anders/owners-walking.webp" alt={t(l, "About", "renewalTitle")} loading="lazy" />
       </div>
       <div class="alt__text">
         <h2>{t(l, "About", "renewalTitle")}</h2>
@@ -62,7 +62,7 @@ const heroImage = "/billeder-fra-anders/campsite-overview.jpg";
   <section class="section">
     <div class="container alt">
       <div class="alt__media">
-        <img src="/images/ejerslev-havn-klit.jpg" alt={t(l, "About", "locationTitle")} loading="lazy" />
+        <img src="/images/ejerslev-havn-klit.webp" alt={t(l, "About", "locationTitle")} loading="lazy" />
       </div>
       <div class="alt__text">
         <h2>{t(l, "About", "locationTitle")}</h2>

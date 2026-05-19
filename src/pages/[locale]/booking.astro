@@ -12,7 +12,7 @@ const { locale } = Astro.params;
 if (!isValidLocale(locale)) return Astro.redirect("/da");
 const l = locale as Locale;
 
-const heroImage = "/billeder-fra-anders/reception-kiosk.jpg";
+const heroImage = "/billeder-fra-anders/reception-kiosk.webp";
 
 const phone = t(l, "Contact", "phone");
 const email = t(l, "Contact", "email");

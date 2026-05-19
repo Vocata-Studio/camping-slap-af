@@ -14,7 +14,7 @@ const { locale } = Astro.params;
 if (!isValidLocale(locale)) return Astro.redirect("/da");
 const l = locale as Locale;
 
-const heroImage = "/images/ejerslev-havn-klit.jpg";
+const heroImage = "/images/ejerslev-havn-klit.webp";
 
 const onSite = [
   { key: "activity1", icon: "playground" },
@@ -27,14 +27,14 @@ const onSite = [
 
 const nearby = [
   { key: "nearby1", image: "/images/temp-images/hanklik-temp.webp", url: "https://www.visitmors.dk/mors/planlaeg-din-tur/hanklit-gdk602374" },
-  { key: "nearby2", image: "/images/temp-images/skærbæk-klint-temp.jpg", url: "https://udinaturen.dk/rute/vandrerute/?routeid=13504380-4B81-11EC-934D-062AD32497BD" },
-  { key: "nearby3", image: "/images/temp-images/skarregaard-temp.jpg", url: "https://www.skarregaard-center.dk/DK.aspx" },
-  { key: "nearby4", image: "/images/temp-images/fossil-møllemuseum-temp.jpg", url: "https://museummors.dk/museerne/fossil-og-molermuseet/" },
+  { key: "nearby2", image: "/images/temp-images/skærbæk-klint-temp.webp", url: "https://udinaturen.dk/rute/vandrerute/?routeid=13504380-4B81-11EC-934D-062AD32497BD" },
+  { key: "nearby3", image: "/images/temp-images/skarregaard-temp.webp", url: "https://www.skarregaard-center.dk/DK.aspx" },
+  { key: "nearby4", image: "/images/temp-images/fossil-møllemuseum-temp.webp", url: "https://museummors.dk/museerne/fossil-og-molermuseet/" },
   { key: "nearby5", image: "/images/temp-images/ejerslev-havn-temp.webp", url: "https://www.ejerslevhavn.dk/" },
-  { key: "nearby6", image: "/images/temp-images/nykøbing-kirke-temp.jpg", url: "https://nykoebingmorskirke.dk/" },
-  { key: "nearby7", image: "/images/temp-images/morsø-museum-temp.jpg", url: "https://museummors.dk/" },
+  { key: "nearby6", image: "/images/temp-images/nykøbing-kirke-temp.webp", url: "https://nykoebingmorskirke.dk/" },
+  { key: "nearby7", image: "/images/temp-images/morsø-museum-temp.webp", url: "https://museummors.dk/" },
   { key: "nearby8", image: "/images/feggesundkro.jpg", url: "https://feggesundkro.dk/" },
-  { key: "nearby9", image: "/images/Højriis_Slot.jpeg", url: "https://hojriis.dk/", credit: "Leif Jørgensen, CC BY-SA 2.5" },
+  { key: "nearby9", image: "/images/Højriis_Slot.webp", url: "https://hojriis.dk/", credit: "Leif Jørgensen, CC BY-SA 2.5" },
 ] as const;
 ---
 
@@ -180,7 +180,7 @@ const nearby = [
       </div>
       <div class="onsite-image">
         <img
-          src="/billeder-fra-anders/vegetable-garden.jpg"
+          src="/billeder-fra-anders/vegetable-garden.webp"
           alt={t(l, "Activities", "activity2Title")}
           loading="lazy"
         />

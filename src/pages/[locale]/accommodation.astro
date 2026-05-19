@@ -13,14 +13,14 @@ const { locale } = Astro.params;
 if (!isValidLocale(locale)) return Astro.redirect("/da");
 const l = locale as Locale;
 
-const heroImage = "/billeder-fra-anders/guests-caravan.jpg";
+const heroImage = "/billeder-fra-anders/guests-caravan.webp";
 
 const accommodations = [
-  { key: "campsite", gradient: 1, badge: null, image: "/images/location-images/campsite-field-caravan.jpg" },
-  { key: "camper", gradient: 2, badge: "camperBadge", image: "/images/location-images/campsite-field-trees.jpg" },
-  { key: "cottage", gradient: 1, badge: null, image: "/billeder-fra-anders/cabins-lawn.jpg" },
-  { key: "field", gradient: 2, badge: "fieldBadge", image: "/images/location-images/campsite-open-field.jpg" },
-  { key: "seasonal", gradient: 1, badge: null, image: "/images/location-images/campsite-pitch-numbered.jpg" },
+  { key: "campsite", gradient: 1, badge: null, image: "/images/location-images/campsite-field-caravan.webp" },
+  { key: "camper", gradient: 2, badge: "camperBadge", image: "/images/location-images/campsite-field-trees.webp" },
+  { key: "cottage", gradient: 1, badge: null, image: "/billeder-fra-anders/cabins-lawn.webp" },
+  { key: "field", gradient: 2, badge: "fieldBadge", image: "/images/location-images/campsite-open-field.webp" },
+  { key: "seasonal", gradient: 1, badge: null, image: "/images/location-images/campsite-pitch-numbered.webp" },
 ] as const;
 
 const facilityKeys = [

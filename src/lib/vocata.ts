@@ -44,6 +44,33 @@ export async function getEvents(): Promise<VocataEvent[]> {
   return data as VocataEvent[];
 }
 
+export interface VocataReview {
+  id: string;
+  data: {
+    name: string;
+    location: string | null;
+    rating: number | null;
+    quoteDa: string;
+    quoteEn: string | null;
+    date: string | null;
+  };
+}
+
+// Reviews are optional content — if the schema hasn't been deployed yet, or the
+// content type returns nothing, fall back to an empty list so the site still
+// builds. Network/auth errors are swallowed for the same reason.
+export async function getReviews(): Promise<VocataReview[]> {
+  try {
+    const { data } = await vocata.getAll("review", {
+      sort: "date:desc",
+      limit: 100,
+    });
+    return data as VocataReview[];
+  } catch {
+    return [];
+  }
+}
+
 export function imageUrl(
   assetId: string,
   opts: { w?: number; h?: number; q?: number; f?: "webp" | "jpeg" | "png" | "avif" } = {},

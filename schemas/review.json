@@ -1,0 +1,12 @@
+{
+  "name": "review",
+  "title": "Anmeldelse",
+  "fields": [
+    { "name": "name", "type": "string", "title": "Navn på gæst", "required": true },
+    { "name": "location", "type": "string", "title": "By / land (valgfri)" },
+    { "name": "rating", "type": "number", "title": "Bedømmelse (1-5)" },
+    { "name": "quoteDa", "type": "text", "title": "Anmeldelse (DK)", "required": true },
+    { "name": "quoteEn", "type": "text", "title": "Review (EN)" },
+    { "name": "date", "type": "datetime", "title": "Dato (valgfri)" }
+  ]
+}

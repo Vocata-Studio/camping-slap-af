@@ -140,12 +140,26 @@ const formError = t(l, "Contact", "formError");
           </div>
 
           <div class="contact-form__actions">
-            <button type="submit" class="btn contact-form__submit">
-              {t(l, "Contact", "sendButton")}
+            <button type="submit" class="btn contact-form__submit" data-submit-btn>
+              <span class="btn-label">{t(l, "Contact", "sendButton")}</span>
+              <span class="btn-spinner" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </span>
             </button>
             <p data-form-status role="status" aria-live="polite" class="form-status hidden"></p>
           </div>
         </form>
+
+        <div class="form-success-panel hidden" data-success-panel aria-live="polite">
+          <div class="form-success-panel__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="9 12 11.5 14.5 15 10" />
+            </svg>
+          </div>
+          <h3 class="form-success-panel__title" data-success-title></h3>
+          <p class="form-success-panel__body" data-success-body></p>
+        </div>
       </div>
     </div>
   </section>
@@ -217,13 +231,55 @@ const formError = t(l, "Contact", "formError");
   var form = document.getElementById('contact-form');
   if (form) {
     var status = form.querySelector('[data-form-status]');
-    var submit = form.querySelector('button[type="submit"]');
+    var submit = form.querySelector('[data-submit-btn]');
+    var successPanel = document.querySelector('[data-success-panel]');
 
-    function setStatus(message, tone) {
-      if (!status) return;
-      status.textContent = message;
-      status.classList.remove('hidden', 'form-status--success', 'form-status--error');
-      status.classList.add(tone === 'error' ? 'form-status--error' : 'form-status--success');
+    // Inline validation on blur for required fields
+    form.querySelectorAll('input[required], textarea[required]').forEach(function(field) {
+      field.addEventListener('blur', function() {
+        if (!field.value.trim()) {
+          field.classList.add('field--invalid');
+        } else {
+          field.classList.remove('field--invalid');
+        }
+      });
+      field.addEventListener('input', function() {
+        if (field.value.trim()) field.classList.remove('field--invalid');
+      });
+    });
+
+    function setLoading(loading) {
+      if (!submit) return;
+      submit.disabled = loading;
+      submit.classList.toggle('btn--loading', loading);
+    }
+
+    function shakeError() {
+      if (!submit) return;
+      submit.classList.add('btn--shake');
+      submit.addEventListener('animationend', function() {
+        submit.classList.remove('btn--shake');
+      }, { once: true });
+    }
+
+    function showSuccess() {
+      if (!successPanel) return;
+      var title = successPanel.querySelector('[data-success-title]');
+      var body = successPanel.querySelector('[data-success-body]');
+      var sepIdx = formSuccess.indexOf('! ');
+      if (sepIdx !== -1) {
+        if (title) title.textContent = formSuccess.slice(0, sepIdx + 1);
+        if (body) body.textContent = formSuccess.slice(sepIdx + 2);
+      } else {
+        if (title) title.textContent = formSuccess;
+      }
+      var formWrapper = form.closest('.contact-form');
+      if (formWrapper) formWrapper.classList.add('form--sent');
+      successPanel.classList.remove('hidden');
+      // Trigger transition on next frame
+      requestAnimationFrame(function() {
+        successPanel.classList.add('form-success-panel--visible');
+      });
     }
 
     form.addEventListener('submit', function(event) {
@@ -236,7 +292,7 @@ const formError = t(l, "Contact", "formError");
         message: String(data.get('message') || ''),
       };
 
-      if (submit) submit.disabled = true;
+      setLoading(true);
       if (status) status.classList.add('hidden');
 
       fetch('/api/contact', {
@@ -245,13 +301,18 @@ const formError = t(l, "Contact", "formError");
         body: JSON.stringify(payload),
       }).then(function(res) {
         if (!res.ok) throw new Error('status ' + res.status);
-        setStatus(formSuccess, 'success');
+        showSuccess();
         form.reset();
       }).catch(function(err) {
         console.error('contact submit failed', err);
-        setStatus(formError, 'error');
+        shakeError();
+        if (status) {
+          status.textContent = formError;
+          status.classList.remove('hidden', 'form-status--success');
+          status.classList.add('form-status--error');
+        }
       }).finally(function() {
-        if (submit) submit.disabled = false;
+        setLoading(false);
       });
     });
   }
@@ -382,12 +443,18 @@ const formError = t(l, "Contact", "formError");
     padding: 0.7rem 0.9rem;
     line-height: 1.4;
     resize: vertical;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
   }
   .field input:focus,
   .field textarea:focus {
     outline: none;
     border-color: var(--color-green);
     box-shadow: 0 0 0 3px rgba(43, 152, 84, 0.18);
+  }
+  .field input.field--invalid,
+  .field textarea.field--invalid {
+    border-color: #c0392b;
+    box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.14);
   }
   .contact-form__actions {
     display: flex;
@@ -433,6 +500,94 @@ const formError = t(l, "Contact", "formError");
   :global(.leaflet-popup-content strong) {
     font-family: var(--font-heading);
     font-weight: 600;
+  }
+
+  /* Button loading + shake */
+  .contact-form__submit .btn-spinner {
+    display: none;
+    align-items: center;
+    gap: 4px;
+  }
+  .contact-form__submit .btn-spinner span {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.5;
+    animation: dot-pulse 1.2s ease-in-out infinite;
+  }
+  .contact-form__submit .btn-spinner span:nth-child(2) { animation-delay: 0.2s; }
+  .contact-form__submit .btn-spinner span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes dot-pulse {
+    0%, 80%, 100% { transform: scale(0.75); opacity: 0.4; }
+    40% { transform: scale(1); opacity: 1; }
+  }
+  .btn--loading .btn-label { display: none; }
+  .btn--loading .btn-spinner { display: inline-flex; }
+  .btn--loading { opacity: 0.85; cursor: default; }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-5px); }
+    40% { transform: translateX(5px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+  }
+  .btn--shake { animation: shake 0.4s ease; }
+
+  /* Success panel */
+  .form--sent .contact-form__heading,
+  .form--sent .contact-form__fields { display: none; }
+
+  .form-success-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-4);
+    padding: var(--space-8) var(--space-4);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+  .form-success-panel.hidden { display: none; }
+  .form-success-panel--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .form-success-panel__icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(43, 152, 84, 0.12);
+    color: var(--color-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .form-success-panel__icon svg {
+    width: 30px;
+    height: 30px;
+    stroke-dasharray: 60;
+    stroke-dashoffset: 60;
+    animation: draw-check 0.5s ease 0.1s forwards;
+  }
+  @keyframes draw-check {
+    to { stroke-dashoffset: 0; }
+  }
+  .form-success-panel__title {
+    font-size: var(--fs-lg);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--color-ink);
+    margin: 0;
+  }
+  .form-success-panel__body {
+    font-size: var(--fs-sm);
+    color: var(--color-muted);
+    line-height: var(--lh-body);
+    margin: 0;
   }
 
   .form-status {

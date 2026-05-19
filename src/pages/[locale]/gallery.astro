@@ -12,20 +12,20 @@ const { locale } = Astro.params;
 if (!isValidLocale(locale)) return Astro.redirect("/da");
 const l = locale as Locale;
 
-const heroImage = "/images/old-gerlis-placeholder.webp";
+const heroImage = "/billeder-fra-anders/cabins-lawn.jpg";
 
 const photos = [
-  { src: "/images/location-images/20260427_112848.jpg", altKey: "kitchenAlt", captionKey: "kitchenCaption", format: "square" },
-  { src: "/images/location-images/20260427_113003.jpg", altKey: "commonArea1Alt", captionKey: "commonAreaCaption", format: "square" },
-  { src: "/images/location-images/20260427_113055.jpg", altKey: "commonArea2Alt", captionKey: "commonAreaCaption", format: "square" },
-  { src: "/images/location-images/20260427_113129.jpg", altKey: "cabinAlt", captionKey: "cabinCaption", format: "square" },
-  { src: "/images/location-images/20260427_113206.jpg", altKey: "kioskAlt", captionKey: "kioskCaption", format: "square" },
-  { src: "/images/location-images/20260427_113219.jpg", altKey: "showerAlt", captionKey: "showerCaption", format: "square" },
-  { src: "/images/location-images/20260427_113449.jpg", altKey: "restroomsAlt", captionKey: "restroomsCaption", format: "square" },
-  { src: "/images/location-images/20260427_164517.jpg", altKey: "site1Alt", captionKey: "siteCaption", format: "portrait" },
-  { src: "/images/location-images/20260427_164637.jpg", altKey: "site2Alt", captionKey: "siteCaption", format: "portrait" },
-  { src: "/images/location-images/20260427_164737.jpg", altKey: "site3Alt", captionKey: "siteCaption", format: "portrait" },
-  { src: "/images/location-images/20260427_164750.jpg", altKey: "site4Alt", captionKey: "siteCaption", format: "portrait" },
+  { src: "/images/location-images/facilities-shared-kitchen.jpg", altKey: "kitchenAlt", captionKey: "kitchenCaption", format: "square" },
+  { src: "/images/location-images/facilities-common-room.jpg", altKey: "commonArea1Alt", captionKey: "commonAreaCaption", format: "square" },
+  { src: "/images/location-images/facilities-common-room-entrance.jpg", altKey: "commonArea2Alt", captionKey: "commonAreaCaption", format: "square" },
+  { src: "/images/location-images/cabins-exterior-path.jpg", altKey: "cabinAlt", captionKey: "cabinCaption", format: "square" },
+  { src: "/images/location-images/kiosk-exterior-bench.jpg", altKey: "kioskAlt", captionKey: "kioskCaption", format: "square" },
+  { src: "/images/location-images/facilities-bathroom-shower.jpg", altKey: "showerAlt", captionKey: "showerCaption", format: "square" },
+  { src: "/images/location-images/facilities-toilet-stalls.jpg", altKey: "restroomsAlt", captionKey: "restroomsCaption", format: "square" },
+  { src: "/images/location-images/campsite-field-caravan.jpg", altKey: "site1Alt", captionKey: "siteCaption", format: "portrait" },
+  { src: "/images/location-images/campsite-field-trees.jpg", altKey: "site2Alt", captionKey: "siteCaption", format: "portrait" },
+  { src: "/images/location-images/campsite-pitch-numbered.jpg", altKey: "site3Alt", captionKey: "siteCaption", format: "portrait" },
+  { src: "/images/location-images/campsite-open-field.jpg", altKey: "site4Alt", captionKey: "siteCaption", format: "portrait" },
 ] as const;
 
 const lightboxData = photos.map((p) => ({
@@ -35,7 +35,7 @@ const lightboxData = photos.map((p) => ({
 }));
 ---
 
-<Layout title={t(l, "Gallery", "title")} locale={l}>
+<Layout title={t(l, "Gallery", "title")} locale={l} description={t(l, "Meta", "galleryDescription")}>
   <Hero
     image={heroImage}
     imageAlt={t(l, "Gallery", "title")}

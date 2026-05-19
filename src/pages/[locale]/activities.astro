@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
 import EventCalendar from "../../components/EventCalendar.astro";
+import StartBookingCta from "../../components/StartBookingCta.astro";
 import { locales, isValidLocale, t } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
 
@@ -13,7 +14,7 @@ const { locale } = Astro.params;
 if (!isValidLocale(locale)) return Astro.redirect("/da");
 const l = locale as Locale;
 
-const heroImage = "/images/old-gerlis-placeholder.webp";
+const heroImage = "/images/ejerslev-havn-klit.jpg";
 
 const onSite = [
   { key: "activity1", icon: "playground" },
@@ -25,18 +26,19 @@ const onSite = [
 ] as const;
 
 const nearby = [
-  { key: "nearby1", image: "/images/temp-images/hanklik-temp.webp", url: "#" },
-  { key: "nearby2", image: "/images/temp-images/skærbæk-klint-temp.jpg", url: "#" },
+  { key: "nearby1", image: "/images/temp-images/hanklik-temp.webp", url: "https://www.visitmors.dk/mors/planlaeg-din-tur/hanklit-gdk602374" },
+  { key: "nearby2", image: "/images/temp-images/skærbæk-klint-temp.jpg", url: "https://udinaturen.dk/rute/vandrerute/?routeid=13504380-4B81-11EC-934D-062AD32497BD" },
   { key: "nearby3", image: "/images/temp-images/skarregaard-temp.jpg", url: "https://www.skarregaard-center.dk/DK.aspx" },
-  { key: "nearby4", image: "/images/temp-images/fossil-møllemuseum-temp.jpg", url: "#" },
-  { key: "nearby5", image: "/images/temp-images/ejerslev-havn-temp.webp", url: "#" },
-  { key: "nearby6", image: "/images/temp-images/nykøbing-kirke-temp.jpg", url: "#" },
-  { key: "nearby7", image: "/images/temp-images/morsø-museum-temp.jpg", url: "#" },
-  { key: "nearby8", image: null, url: "#" },
+  { key: "nearby4", image: "/images/temp-images/fossil-møllemuseum-temp.jpg", url: "https://museummors.dk/museerne/fossil-og-molermuseet/" },
+  { key: "nearby5", image: "/images/temp-images/ejerslev-havn-temp.webp", url: "https://www.ejerslevhavn.dk/" },
+  { key: "nearby6", image: "/images/temp-images/nykøbing-kirke-temp.jpg", url: "https://nykoebingmorskirke.dk/" },
+  { key: "nearby7", image: "/images/temp-images/morsø-museum-temp.jpg", url: "https://museummors.dk/" },
+  { key: "nearby8", image: "/images/feggesundkro.jpg", url: "https://feggesundkro.dk/" },
+  { key: "nearby9", image: "/images/Højriis_Slot.jpeg", url: "https://hojriis.dk/", credit: "Leif Jørgensen, CC BY-SA 2.5" },
 ] as const;
 ---
 
-<Layout title={t(l, "Activities", "title")} locale={l}>
+<Layout title={t(l, "Activities", "title")} locale={l} description={t(l, "Meta", "activitiesDescription")}>
   <Hero
     image={heroImage}
     imageAlt={t(l, "Activities", "title")}
@@ -57,37 +59,43 @@ const nearby = [
             <article class="nearby-card">
               <div class="nearby-card__media">
                 {item.image ? (
-                  <img
-                    src={item.image}
-                    alt={t(l, "Activities", `${item.key}Title`)}
-                    loading="lazy"
-                  />
+                  <>
+                    <img
+                      src={item.image}
+                      alt={t(l, "Activities", `${item.key}Title`)}
+                      loading="lazy"
+                    />
+                    {"credit" in item && item.credit && (
+                      <span class="nearby-card__credit">{item.credit}</span>
+                    )}
+                  </>
                 ) : (
                   <div
                     class="nearby-card__placeholder"
                     role="img"
                     aria-label={t(l, "Activities", `${item.key}Title`)}
                   >
-                    <span class="nearby-card__placeholder-label">Billede kommer snart</span>
+                    <span class="nearby-card__placeholder-label">{t(l, "Gallery", "afterComingSoon")}</span>
                   </div>
                 )}
               </div>
               <div class="nearby-card__body">
                 <h3>{t(l, "Activities", `${item.key}Title`)}</h3>
                 <p>{t(l, "Activities", `${item.key}Description`)}</p>
-                <a
-                  class="nearby-card__link"
-                  href={item.url}
-                  {...(item.url.startsWith("http")
-                    ? { target: "_blank", rel: "noopener noreferrer" }
-                    : {})}
-                >
-                  Læs mere
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M5 12h14" />
-                    <path d="m12 5 7 7-7 7" />
-                  </svg>
-                </a>
+                {item.url !== "#" && (
+                  <a
+                    class="nearby-card__link"
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {t(l, "Common", "learnMore")}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M5 12h14" />
+                      <path d="m12 5 7 7-7 7" />
+                    </svg>
+                  </a>
+                )}
               </div>
             </article>
           ))
@@ -170,12 +178,12 @@ const nearby = [
           ))
         }
       </div>
-      <div
-        class="onsite-placeholder"
-        role="img"
-        aria-label={t(l, "Activities", "onSiteTitle")}
-      >
-        <span class="onsite-placeholder__label">Billede kommer snart</span>
+      <div class="onsite-image">
+        <img
+          src="/billeder-fra-anders/vegetable-garden.jpg"
+          alt={t(l, "Activities", "activity2Title")}
+          loading="lazy"
+        />
       </div>
     </div>
   </section>
@@ -183,6 +191,8 @@ const nearby = [
   <hr class="hairline" />
 
   <EventCalendar locale={l} />
+
+  <StartBookingCta locale={l} />
 </Layout>
 
 <style>
@@ -232,34 +242,18 @@ const nearby = [
     line-height: var(--lh-body);
   }
 
-  .onsite-placeholder {
-    position: relative;
+  .onsite-image {
     margin-top: var(--space-8);
     width: 100%;
     aspect-ratio: 16 / 7;
     border-radius: var(--radius-lg);
     overflow: hidden;
-    background-image:
-      radial-gradient(at 20% 25%, #a8c9a5 0%, transparent 55%),
-      radial-gradient(at 80% 80%, #d9e4cf 0%, transparent 60%),
-      linear-gradient(135deg, #77BA8A 0%, #2B9854 100%);
   }
-  .onsite-placeholder__label {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: var(--font-heading);
-    font-weight: 500;
-    font-size: var(--fs-sm);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.92);
-    background: rgba(26, 26, 26, 0.22);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    padding: 0.5rem 1rem;
-    border-radius: 999px;
+  .onsite-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   /* Nearby cards */
@@ -287,6 +281,7 @@ const nearby = [
     background: var(--color-bg);
   }
   .nearby-card__media {
+    position: relative;
     aspect-ratio: 4 / 3;
     overflow: hidden;
   }
@@ -294,6 +289,16 @@ const nearby = [
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+  .nearby-card__credit {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 2px 6px;
+    font-size: 10px;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.75);
+    background: rgba(0, 0, 0, 0.35);
   }
   .nearby-card__placeholder {
     position: relative;

@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
+import StartBookingCta from "../../components/StartBookingCta.astro";
 import { locales, isValidLocale, t, localePath, bookingHref } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
 
@@ -12,14 +13,14 @@ const { locale } = Astro.params;
 if (!isValidLocale(locale)) return Astro.redirect("/da");
 const l = locale as Locale;
 
-const heroImage = "/images/old-gerlis-placeholder.webp";
+const heroImage = "/billeder-fra-anders/guests-caravan.jpg";
 
 const accommodations = [
-  { key: "campsite", gradient: 1, badge: null, image: "/images/location-images/20260427_164517.jpg" },
-  { key: "camper", gradient: 2, badge: "camperBadge", image: "/images/location-images/20260427_164637.jpg" },
-  { key: "cottage", gradient: 1, badge: null, image: "/images/location-images/20260421_074712.jpg" },
-  { key: "field", gradient: 2, badge: "fieldBadge", image: "/images/location-images/20260427_164750.jpg" },
-  { key: "seasonal", gradient: 1, badge: null, image: "/images/location-images/20260427_164737.jpg" },
+  { key: "campsite", gradient: 1, badge: null, image: "/images/location-images/campsite-field-caravan.jpg" },
+  { key: "camper", gradient: 2, badge: "camperBadge", image: "/images/location-images/campsite-field-trees.jpg" },
+  { key: "cottage", gradient: 1, badge: null, image: "/billeder-fra-anders/cabins-lawn.jpg" },
+  { key: "field", gradient: 2, badge: "fieldBadge", image: "/images/location-images/campsite-open-field.jpg" },
+  { key: "seasonal", gradient: 1, badge: null, image: "/images/location-images/campsite-pitch-numbered.jpg" },
 ] as const;
 
 const facilityKeys = [
@@ -32,7 +33,7 @@ const facilityKeys = [
 const optionKeys = ["optionTowels", "optionBedding", "optionCleaning"] as const;
 ---
 
-<Layout title={t(l, "Accommodation", "title")} locale={l}>
+<Layout title={t(l, "Accommodation", "title")} locale={l} description={t(l, "Meta", "accommodationDescription")}>
   <Hero
     image={heroImage}
     imageAlt={t(l, "Accommodation", "title")}
@@ -62,7 +63,7 @@ const optionKeys = ["optionTowels", "optionBedding", "optionCleaning"] as const;
                   role="img"
                   aria-label={t(l, "Accommodation", acc.key)}
                 >
-                  <span class="acc__media-label">Billede kommer snart</span>
+                  <span class="acc__media-label">{t(l, "Gallery", "afterComingSoon")}</span>
                 </div>
               )}
               <div class="acc__body">
@@ -94,7 +95,7 @@ const optionKeys = ["optionTowels", "optionBedding", "optionCleaning"] as const;
                   </li>
                 </ul>
                 <div class="acc__meta">
-                  <a href={bookingHref(l)} class="btn">
+                  <a href={bookingHref(l)} class="btn" target="_blank" rel="noopener noreferrer">
                     {t(l, "Accommodation", `${acc.key}BookCta`)}
                   </a>
                 </div>
@@ -184,6 +185,8 @@ const optionKeys = ["optionTowels", "optionBedding", "optionCleaning"] as const;
       </div>
     </div>
   </section>
+
+  <StartBookingCta locale={l} />
 </Layout>
 
 <style>

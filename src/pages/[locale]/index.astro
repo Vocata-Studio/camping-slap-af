@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
 import EventCalendar from "../../components/EventCalendar.astro";
+import Reviews from "../../components/Reviews.astro";
 import { locales, isValidLocale, t, localePath, bookingHref } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
 
@@ -13,10 +14,10 @@ const { locale } = Astro.params;
 if (!isValidLocale(locale)) return Astro.redirect("/da");
 const l = locale as Locale;
 
-const heroImage = "/images/old-gerlis-placeholder.webp";
+const heroImage = "/images/overhead-shot.webp";
 ---
 
-<Layout title={t(l, "Header", "home")} locale={l}>
+<Layout title={t(l, "Header", "home")} locale={l} description={t(l, "Meta", "homeDescription")}>
   <Hero
     image={heroImage}
     imageAlt={t(l, "Home", "heroTitle")}
@@ -27,6 +28,7 @@ const heroImage = "/images/old-gerlis-placeholder.webp";
     primaryCta={{
       label: t(l, "Home", "heroCta"),
       href: bookingHref(l),
+      target: "_blank",
     }}
     secondaryCta={{
       label: t(l, "Home", "heroSecondary"),
@@ -51,7 +53,7 @@ const heroImage = "/images/old-gerlis-placeholder.webp";
   <section class="section">
     <div class="container alt">
       <div class="alt__media">
-        <img src="/images/location-images/20260427_113206.jpg" alt={t(l, "Home", "altSection1Title")} loading="lazy" />
+        <img src="/billeder-fra-anders/entrance-signpost.jpg" alt={t(l, "Home", "altSection1Title")} loading="lazy" style="object-position: left center" />
       </div>
       <div class="alt__text">
         <h2>{t(l, "Home", "altSection1Title")}</h2>
@@ -67,7 +69,7 @@ const heroImage = "/images/old-gerlis-placeholder.webp";
   <section class="section">
     <div class="container alt alt--reverse">
       <div class="alt__media">
-        <img src="/images/location-images/20260427_164517.jpg" alt={t(l, "Home", "altSection2Title")} loading="lazy" />
+        <img src="/billeder-fra-anders/guests-caravan.jpg" alt={t(l, "Home", "altSection2Title")} loading="lazy" />
       </div>
       <div class="alt__text">
         <h2>{t(l, "Home", "altSection2Title")}</h2>
@@ -142,22 +144,7 @@ const heroImage = "/images/old-gerlis-placeholder.webp";
   <hr class="hairline" />
 
   <!-- Testimonials -->
-  <section class="section">
-    <div class="container">
-      <div class="section__head">
-        <h2>{t(l, "Home", "testimonialTitle")}</h2>
-      </div>
-      <div class="testimonial-soon">
-        <div class="testimonial-soon__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
-          </svg>
-        </div>
-        <h3 class="testimonial-soon__title">{t(l, "Home", "testimonialComingSoonTitle")}</h3>
-        <p class="testimonial-soon__text">{t(l, "Home", "testimonialComingSoonText")}</p>
-      </div>
-    </div>
-  </section>
+  <Reviews locale={l} />
 
   <hr class="hairline" />
 
@@ -168,7 +155,7 @@ const heroImage = "/images/old-gerlis-placeholder.webp";
     <div class="container cta-band__inner">
       <h2>{t(l, "Home", "ctaTitle")}</h2>
       <p>{t(l, "Home", "ctaDescription")}</p>
-      <a href={bookingHref(l)} class="btn">{t(l, "Home", "ctaButton")}</a>
+      <a href={bookingHref(l)} class="btn" target="_blank" rel="noopener noreferrer">{t(l, "Home", "ctaButton")}</a>
     </div>
   </section>
 </Layout>
@@ -326,45 +313,6 @@ const heroImage = "/images/old-gerlis-placeholder.webp";
     margin-top: var(--space-6);
   }
 
-  /* Testimonials — coming soon placeholder */
-  .testimonial-soon {
-    max-width: 560px;
-    margin-inline: auto;
-    padding: var(--space-8) var(--space-6);
-    background: var(--color-cream);
-    border-radius: var(--radius-lg);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-4);
-  }
-  .testimonial-soon__icon {
-    width: 52px;
-    height: 52px;
-    border-radius: var(--radius-md);
-    background: var(--color-bg);
-    color: var(--color-green);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .testimonial-soon__icon svg {
-    width: 26px;
-    height: 26px;
-  }
-  .testimonial-soon__title {
-    font-size: var(--fs-lg);
-    margin: 0;
-  }
-  .testimonial-soon__text {
-    color: var(--color-muted);
-    font-size: var(--fs-sm);
-    line-height: var(--lh-body);
-    max-width: 46ch;
-    margin: 0;
-  }
-
   /* CTA band */
   .cta-band {
     background: var(--color-cream);
@@ -386,4 +334,5 @@ const heroImage = "/images/old-gerlis-placeholder.webp";
     font-size: var(--fs-md);
     margin-bottom: var(--space-7);
   }
+
 </style>

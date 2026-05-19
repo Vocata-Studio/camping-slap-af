@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
+import StartBookingCta from "../../components/StartBookingCta.astro";
 import { locales, isValidLocale, t } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
 
@@ -12,23 +13,24 @@ const { locale } = Astro.params;
 if (!isValidLocale(locale)) return Astro.redirect("/da");
 const l = locale as Locale;
 
-const heroImage = "/images/old-gerlis-placeholder.webp";
+const heroImage = "/billeder-fra-anders/campsite-overview.jpg";
 ---
 
-<Layout title={t(l, "About", "title")} locale={l}>
+<Layout title={t(l, "About", "title")} locale={l} description={t(l, "Meta", "aboutDescription")}>
   <Hero
     image={heroImage}
     imageAlt={t(l, "About", "title")}
     title={t(l, "About", "title")}
     subtitle={t(l, "About", "subtitle")}
+    imagePosition="65% 0%"
     compact
   />
 
   <!-- Our story -->
   <section class="section">
     <div class="container alt">
-      <div class="alt__media alt__media--gradient-1" role="img" aria-label={t(l, "About", "storyTitle")}>
-        <span class="alt__media-label">Image of Angela and Jeroen</span>
+      <div class="alt__media">
+        <img src="/billeder-fra-anders/owners-portrait-smiling.jpg" alt={t(l, "About", "storyTitle")} loading="lazy" class="focal-left" />
       </div>
       <div class="alt__text">
         <h2>{t(l, "About", "storyTitle")}</h2>
@@ -43,8 +45,8 @@ const heroImage = "/images/old-gerlis-placeholder.webp";
   <!-- A renewal in motion -->
   <section class="section">
     <div class="container alt alt--reverse">
-      <div class="alt__media alt__media--gradient-2" role="img" aria-label={t(l, "About", "renewalTitle")}>
-        <span class="alt__media-label">Billede kommer snart</span>
+      <div class="alt__media">
+        <img src="/billeder-fra-anders/owners-walking.jpg" alt={t(l, "About", "renewalTitle")} loading="lazy" />
       </div>
       <div class="alt__text">
         <h2>{t(l, "About", "renewalTitle")}</h2>
@@ -59,8 +61,8 @@ const heroImage = "/images/old-gerlis-placeholder.webp";
   <!-- Sejerslev & Mors -->
   <section class="section">
     <div class="container alt">
-      <div class="alt__media alt__media--gradient-3" role="img" aria-label={t(l, "About", "locationTitle")}>
-        <span class="alt__media-label">Billede kommer snart</span>
+      <div class="alt__media">
+        <img src="/images/ejerslev-havn-klit.jpg" alt={t(l, "About", "locationTitle")} loading="lazy" />
       </div>
       <div class="alt__text">
         <h2>{t(l, "About", "locationTitle")}</h2>
@@ -125,6 +127,8 @@ const heroImage = "/images/old-gerlis-placeholder.webp";
       </div>
     </div>
   </section>
+
+  <StartBookingCta locale={l} />
 </Layout>
 
 <style>
@@ -150,6 +154,16 @@ const heroImage = "/images/old-gerlis-placeholder.webp";
     aspect-ratio: 4 / 3;
     border-radius: var(--radius-lg);
     overflow: hidden;
+  }
+  .alt__media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .alt__media img.focal-left {
+    object-position: 25% center;
   }
   .alt__media-label {
     position: absolute;

@@ -1,0 +1,306 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero.astro";
+import { locales, isValidLocale, localePath } from "../../i18n/utils";
+import type { Locale } from "../../i18n/utils";
+
+export function getStaticPaths() {
+  return locales.map((locale) => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params;
+if (!isValidLocale(locale)) return Astro.redirect("/da");
+const l = locale as Locale;
+
+const isDanish = l === "da";
+
+const heroImage = "/images/location-images/campsite-open-field.jpg";
+const title = isDanish ? "Tilgængelighedserklæring" : "Accessibility Statement";
+const subtitle = isDanish
+  ? "Sådan arbejder vi med tilgængelighed på campingslapaf.dk."
+  : "How we work with accessibility on campingslapaf.dk.";
+const lastUpdated = "2026-05-19";
+const contactHref = localePath(l, "/contact");
+---
+
+<Layout title={title} locale={l}>
+  <Hero
+    image={heroImage}
+    imageAlt={title}
+    title={title}
+    subtitle={subtitle}
+    compact
+  />
+
+  <section class="section">
+    <div class="container legal-container">
+      <article class="legal">
+        {isDanish ? (
+          <Fragment>
+            <p class="legal-lead">
+              Hos Camping Slap af ønsker vi, at så mange som muligt kan bruge campingslapaf.dk — uanset
+              syn, hørelse, motorik eller hvilken enhed eller hjælpeteknologi der benyttes. Denne
+              erklæring beskriver, hvordan vi arbejder med tilgængelighed, hvilke kendte begrænsninger
+              hjemmesiden har, og hvordan du kan kontakte os, hvis du støder på problemer.
+            </p>
+
+            <h2>1. Vores mål</h2>
+            <p>
+              Vi tilstræber, at campingslapaf.dk lever op til <strong>WCAG 2.1 niveau AA</strong> —
+              den internationale standard for tilgængeligt webindhold. Selvom Camping Slap af som
+              privat virksomhed ikke er omfattet af EU's webtilgængelighedsdirektiv (2016/2102), der
+              gælder for offentlige myndigheder, ser vi det som en del af god service over for vores
+              gæster — også gæster med funktionsnedsættelser eller særlige behov.
+            </p>
+
+            <h2>2. Hvad vi gør</h2>
+            <ul>
+              <li>Vi bruger semantisk HTML, så skærmlæsere og tastaturnavigation fungerer naturligt.</li>
+              <li>Alle vigtige billeder har en beskrivende alternativ tekst.</li>
+              <li>Tekst og baggrund har tilstrækkelig kontrast efter WCAG-anbefalingerne.</li>
+              <li>Hele hjemmesiden kan betjenes med tastatur uden brug af mus.</li>
+              <li>Fokusmarkeringer er tydelige, så det altid er klart, hvor du befinder dig på siden.</li>
+              <li>Skriftstørrelser og linjelængder er valgt med henblik på god læsbarhed.</li>
+              <li>Indholdet er oversat til ti sprog, så du kan læse på dit foretrukne sprog.</li>
+              <li>Vi undgår animationer og bevægelser, der kan forstyrre eller udløse ubehag.</li>
+            </ul>
+
+            <h2>3. Kendte begrænsninger</h2>
+            <p>
+              Vi arbejder løbende på at forbedre tilgængeligheden. Følgende områder er vi opmærksomme på:
+            </p>
+            <ul>
+              <li>
+                <strong>Galleriet</strong> — enkelte billeder har korte, beskrivende alternative
+                tekster, som ikke fuldt ud gengiver det visuelle motiv. Skriv til os, hvis du har
+                brug for en udvidet beskrivelse.
+              </li>
+              <li>
+                <strong>Bookingsystemet</strong> — selve bookingen håndteres på en separat side, som
+                vi ikke selv har fuld kontrol over. Hvis du oplever problemer med at gennemføre en
+                booking, er du meget velkommen til at ringe eller skrive til os — vi opretter
+                bookingen for dig manuelt.
+              </li>
+              <li>
+                <strong>PDF-prislister</strong> — vores prisoversigter findes også som PDF. Vi har
+                priserne i fuldt tilgængelig form på hjemmesiden, så PDF'en er et supplement, ikke
+                den eneste kilde.
+              </li>
+              <li>
+                <strong>Indlejret kort</strong> — kort fra eksterne udbydere kan have begrænsninger
+                med skærmlæsere. Vores adresse vises også som tekst, så du ikke er afhængig af
+                kortet.
+              </li>
+            </ul>
+
+            <h2>4. Sådan tester vi</h2>
+            <p>
+              Vi vurderer selv tilgængeligheden løbende ved at gennemgå hjemmesiden med tastatur,
+              kontrolværktøjer til kontrast og semantik samt ved at se på siden i forskellige
+              skærmstørrelser og browsere. Vi har ikke fået lavet en formel ekstern tilgængelighedsaudit.
+            </p>
+
+            <h2>5. Brug for hjælp eller har du fundet et problem?</h2>
+            <p>
+              Hvis du oplever, at noget på campingslapaf.dk er svært at bruge — eller hvis du har
+              brug for, at vi formidler oplysninger på en anden måde (fx oplæst, i et andet format
+              eller pr. telefon) — så hører vi meget gerne fra dig. Vi besvarer henvendelser
+              hurtigst muligt og hjælper også gerne med at gennemføre en booking telefonisk.
+            </p>
+            <div class="legal-block">
+              <strong>Camping Slap af</strong>
+              E-mail: <a href="mailto:campingslapaf@outlook.com">campingslapaf@outlook.com</a><br />
+              Telefon: <a href="tel:+4591199674">+45 91 19 96 74</a><br />
+              <a href={contactHref}>Gå til kontaktsiden</a>
+            </div>
+            <p>
+              Beskriv gerne, hvilken side eller funktion det drejer sig om, og hvilken enhed eller
+              hjælpeteknologi du bruger — så er det lettere for os at rette op på det.
+            </p>
+
+            <h2>6. Ændringer</h2>
+            <p>
+              Vi opdaterer denne erklæring, når vi forbedrer tilgængeligheden eller bliver opmærksomme
+              på nye begrænsninger. Datoen nederst viser, hvornår erklæringen senest blev opdateret.
+            </p>
+          </Fragment>
+        ) : (
+          <Fragment>
+            <p class="legal-lead">
+              At Camping Slap af we want as many people as possible to be able to use
+              campingslapaf.dk — regardless of sight, hearing, motor ability or which device or
+              assistive technology you use. This statement describes how we work with accessibility,
+              the known limitations of the website, and how you can reach us if you run into a
+              problem.
+            </p>
+
+            <h2>1. Our goal</h2>
+            <p>
+              We aim to meet <strong>WCAG 2.1 Level AA</strong> — the international standard for
+              accessible web content. Although Camping Slap af, as a private business, is not
+              covered by the EU Web Accessibility Directive (2016/2102), which applies to public
+              sector bodies, we consider accessibility part of good service to our guests — including
+              guests with disabilities or specific needs.
+            </p>
+
+            <h2>2. What we do</h2>
+            <ul>
+              <li>We use semantic HTML so that screen readers and keyboard navigation work naturally.</li>
+              <li>All meaningful images have descriptive alternative text.</li>
+              <li>Text and background colours meet WCAG-recommended contrast ratios.</li>
+              <li>The whole website can be operated by keyboard, without a mouse.</li>
+              <li>Focus styles are clearly visible, so it is always clear where you are on the page.</li>
+              <li>Font sizes and line lengths are chosen for good readability.</li>
+              <li>The content is translated into ten languages so you can read in your preferred one.</li>
+              <li>We avoid animations and motion that could be distracting or trigger discomfort.</li>
+            </ul>
+
+            <h2>3. Known limitations</h2>
+            <p>We are continuously improving accessibility. The following areas are on our radar:</p>
+            <ul>
+              <li>
+                <strong>Gallery</strong> — some images carry short descriptive alt text that does not
+                fully convey the visual subject. Contact us if you need an extended description.
+              </li>
+              <li>
+                <strong>Booking system</strong> — the booking itself is handled on a separate page
+                that we do not fully control. If you have any trouble completing a booking, you are
+                very welcome to call or email us — we will create the booking for you manually.
+              </li>
+              <li>
+                <strong>PDF price lists</strong> — our price overviews are also available as PDFs.
+                The prices are presented in fully accessible form on the website, so the PDF is a
+                supplement, not the only source.
+              </li>
+              <li>
+                <strong>Embedded map</strong> — maps from external providers may have limitations
+                with screen readers. Our address is also shown as plain text, so you don't have to
+                rely on the map.
+              </li>
+            </ul>
+
+            <h2>4. How we test</h2>
+            <p>
+              We assess accessibility ourselves on an ongoing basis by going through the site with
+              the keyboard, with contrast and semantic checking tools, and by viewing it across
+              different screen sizes and browsers. We have not yet commissioned a formal external
+              accessibility audit.
+            </p>
+
+            <h2>5. Need help or found a problem?</h2>
+            <p>
+              If you find something on campingslapaf.dk hard to use — or if you need us to share
+              information in a different way (for example read out, in another format, or by phone)
+              — we would very much like to hear from you. We respond as quickly as we can and are
+              happy to walk you through a booking by phone.
+            </p>
+            <div class="legal-block">
+              <strong>Camping Slap af</strong>
+              Email: <a href="mailto:campingslapaf@outlook.com">campingslapaf@outlook.com</a><br />
+              Phone: <a href="tel:+4591199674">+45 91 19 96 74</a><br />
+              <a href={contactHref}>Go to the contact page</a>
+            </div>
+            <p>
+              Please tell us which page or feature is affected and which device or assistive
+              technology you are using — that makes it easier for us to put things right.
+            </p>
+
+            <h2>6. Changes</h2>
+            <p>
+              We update this statement whenever we improve accessibility or become aware of new
+              limitations. The date below shows when it was last updated.
+            </p>
+          </Fragment>
+        )}
+
+        <hr class="legal-hr" />
+        <p class="legal-meta">
+          {isDanish ? "Senest opdateret" : "Last updated"}: {lastUpdated}
+        </p>
+      </article>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .legal-container {
+    max-width: 760px;
+  }
+
+  .legal {
+    color: var(--color-ink);
+  }
+
+  .legal-lead {
+    font-size: var(--fs-md);
+    line-height: var(--lh-body);
+    color: var(--color-ink);
+    margin-bottom: var(--space-8);
+  }
+
+  .legal h2 {
+    font-family: var(--font-heading);
+    font-size: var(--fs-xl);
+    font-weight: 600;
+    margin-top: var(--space-10);
+    margin-bottom: var(--space-4);
+    color: var(--color-ink);
+  }
+
+  .legal h2:first-of-type {
+    margin-top: 0;
+  }
+
+  .legal p {
+    line-height: var(--lh-body);
+    margin: 0 0 var(--space-4);
+    color: var(--color-ink);
+  }
+
+  .legal ul {
+    margin: 0 0 var(--space-5) 0;
+    padding-left: var(--space-5);
+  }
+
+  .legal li {
+    margin-bottom: var(--space-2);
+    line-height: var(--lh-body);
+    color: var(--color-ink);
+  }
+
+  .legal a {
+    color: var(--color-green);
+  }
+
+  .legal a:hover {
+    color: var(--color-mint);
+  }
+
+  .legal-block {
+    background: var(--color-cream);
+    border-radius: var(--radius-md);
+    padding: var(--space-5) var(--space-6);
+    margin-bottom: var(--space-5);
+    line-height: var(--lh-body);
+  }
+
+  .legal-block strong {
+    display: block;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    margin-bottom: var(--space-2);
+    color: var(--color-ink);
+  }
+
+  .legal-hr {
+    border: none;
+    border-top: 1px solid var(--color-hairline);
+    margin: var(--space-10) 0 var(--space-5);
+  }
+
+  .legal-meta {
+    color: var(--color-muted);
+    font-size: var(--fs-sm);
+    margin: 0;
+  }
+</style>

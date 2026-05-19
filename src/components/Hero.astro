@@ -7,6 +7,7 @@
 interface CtaProps {
   label: string;
   href: string;
+  target?: string;
 }
 
 interface Props {
@@ -19,6 +20,8 @@ interface Props {
   secondaryCta?: CtaProps;
   /** Compact hero used on inner pages (smaller height, title-only feel). */
   compact?: boolean;
+  /** CSS object-position for the hero image. Defaults to "center". */
+  imagePosition?: string;
   /**
    * Scrim style.
    * - "gradient" (default): soft bottom-weighted gradient for inner pages
@@ -38,6 +41,7 @@ const {
   primaryCta,
   secondaryCta,
   compact = false,
+  imagePosition = "center",
   overlay = "gradient",
   scrollIndicator = false,
 } = Astro.props;
@@ -50,6 +54,8 @@ const {
     alt={imageAlt}
     loading="eager"
     decoding="async"
+    fetchpriority="high"
+    style={imagePosition !== "center" ? `object-position: ${imagePosition}` : undefined}
   />
   <div class:list={["hero__scrim", `hero__scrim--${overlay}`]}></div>
   <div class="container hero__inner">
@@ -61,7 +67,11 @@ const {
         (primaryCta || secondaryCta) && (
           <div class="hero__actions">
             {primaryCta && (
-              <a href={primaryCta.href} class="btn">
+              <a
+                href={primaryCta.href}
+                class="btn"
+                {...(primaryCta.target ? { target: primaryCta.target, rel: "noopener noreferrer" } : {})}
+              >
                 {primaryCta.label}
               </a>
             )}

@@ -9,6 +9,10 @@
     "gallery": "Galerie",
     "themeToggle": "Changer de thème"
   },
+  "Banner": {
+    "bookingComingSoon": "La réservation en ligne arrive bientôt — contactez-nous directement pour réserver votre place.",
+    "contactLink": "Nous contacter"
+  },
   "Footer": {
     "tagline": "Camping au cœur de Mors",
     "quickLinks": "Liens rapides",

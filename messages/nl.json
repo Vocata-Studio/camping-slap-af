@@ -9,6 +9,10 @@
     "gallery": "Galerij",
     "themeToggle": "Thema wisselen"
   },
+  "Banner": {
+    "bookingComingSoon": "Online boeken komt eraan — neem rechtstreeks contact met ons op om je plek te reserveren.",
+    "contactLink": "Contact"
+  },
   "Footer": {
     "tagline": "Camping in het hart van Mors",
     "quickLinks": "Snelkoppelingen",

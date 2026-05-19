@@ -3,6 +3,7 @@ import "../styles/global.css";
 import Analytics from "@vercel/analytics/astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import BookingBanner from "../components/BookingBanner.astro";
 import { contactUi, stripLocaleFromPath, locales } from "../i18n/utils";
 import type { Locale } from "../i18n/utils";
 
@@ -135,6 +136,7 @@ const schema = JSON.stringify({
   </head>
   <body>
     <a href="#main" class="visually-hidden">Skip to content</a>
+    <BookingBanner locale={locale} />
     <Header locale={locale} currentRoute={currentRoute} />
     <main id="main">
       <slot />

@@ -9,6 +9,10 @@
     "gallery": "Galleri",
     "themeToggle": "Växla tema"
   },
+  "Banner": {
+    "bookingComingSoon": "Onlinebokning är på väg — kontakta oss direkt för att boka din plats.",
+    "contactLink": "Kontakta oss"
+  },
   "Footer": {
     "tagline": "Camping i hjärtat av Mors",
     "quickLinks": "Snabblänkar",

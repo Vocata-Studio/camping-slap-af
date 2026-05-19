@@ -9,6 +9,10 @@
     "gallery": "Galleri",
     "themeToggle": "Bytt tema"
   },
+  "Banner": {
+    "bookingComingSoon": "Nettbestilling er på vei — kontakt oss direkte for å reservere plassen din.",
+    "contactLink": "Kontakt oss"
+  },
   "Footer": {
     "tagline": "Camping i hjertet av Mors",
     "quickLinks": "Hurtiglenker",

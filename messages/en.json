@@ -9,6 +9,10 @@
     "gallery": "Gallery",
     "themeToggle": "Toggle theme"
   },
+  "Banner": {
+    "bookingComingSoon": "Online booking is on its way — contact us directly to reserve your spot.",
+    "contactLink": "Contact us"
+  },
   "Footer": {
     "tagline": "Camping in the heart of Mors",
     "quickLinks": "Quick links",

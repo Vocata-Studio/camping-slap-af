@@ -9,6 +9,10 @@
     "gallery": "Galeria",
     "themeToggle": "Przełącz motyw"
   },
+  "Banner": {
+    "bookingComingSoon": "Rezerwacja online już wkrótce — skontaktuj się z nami bezpośrednio, aby zarezerwować miejsce.",
+    "contactLink": "Skontaktuj się"
+  },
   "Footer": {
     "tagline": "Camping w sercu Mors",
     "quickLinks": "Szybkie linki",

@@ -75,24 +75,17 @@ const optionKeys = ["optionTowels", "optionBedding", "optionCleaning"] as const;
                   {t(l, "Accommodation", `${acc.key}Description`)}
                 </p>
                 <ul class="acc__features">
-                  <li>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                    <span>{t(l, "Accommodation", `${acc.key}Feature1`)}</span>
-                  </li>
-                  <li>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                    <span>{t(l, "Accommodation", `${acc.key}Feature2`)}</span>
-                  </li>
-                  <li>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                    <span>{t(l, "Accommodation", `${acc.key}Feature3`)}</span>
-                  </li>
+                  {[1, 2, 3].map((n) => {
+                    const feat = t(l, "Accommodation", `${acc.key}Feature${n}`);
+                    return feat ? (
+                      <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                        <span>{feat}</span>
+                      </li>
+                    ) : null;
+                  })}
                 </ul>
                 <div class="acc__meta">
                   <a href={bookingHref(l)} class="btn">

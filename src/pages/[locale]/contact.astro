@@ -14,7 +14,7 @@ const { locale } = Astro.params;
 if (!isValidLocale(locale)) return Astro.redirect("/da");
 const l = locale as Locale;
 
-const heroImage = "/images/location-images/campsite-open-field.jpg";
+const heroImage = "/images/overhead-shot.webp";
 
 const phone = t(l, "Contact", "phone");
 const email = t(l, "Contact", "email");

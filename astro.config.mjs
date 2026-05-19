@@ -2,9 +2,12 @@ import { defineConfig } from "astro/config";
 import vercel from "@astrojs/vercel";
 import sitemap from "@astrojs/sitemap";
 
+import tailwindcss from "@tailwindcss/vite";
+
 export default defineConfig({
   site: "https://campingslapaf.dk",
   adapter: vercel(),
+
   integrations: [
     sitemap({
       filter: (page) => page !== "https://campingslapaf.dk/",
@@ -25,6 +28,7 @@ export default defineConfig({
       },
     }),
   ],
+
   i18n: {
     locales: ["da", "en", "de", "nl", "fr", "es", "it", "sv", "nb", "pl"],
     defaultLocale: "da",
@@ -34,5 +38,9 @@ export default defineConfig({
       // detection. Disable Astro's automatic / -> /da/ redirect so our page wins.
       redirectToDefaultLocale: false,
     },
+  },
+
+  vite: {
+    plugins: [tailwindcss()],
   },
 });

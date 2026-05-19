@@ -20,6 +20,7 @@
     "copyright": "© {year} Camping Slap Af. Tous droits réservés.",
     "privacy": "Politique de confidentialité",
     "terms": "Conditions générales",
+    "accessibility": "Accessibilité",
     "dkCampAlt": "DK-CAMP — Camping au Danemark",
     "visitMorsAlt": "VisitMors — Découvrez Mors",
     "smaaCampingAlt": "Petits Campings — DK-CAMP"
@@ -174,7 +175,14 @@
     "nearby7Title": "Museum Mors",
     "nearby7Description": "Plongez dans l'histoire naturelle et culturelle fascinante de Mors dans ce musée bien entretenu.",
     "nearby8Title": "Feggesund Kro",
-    "nearby8Description": "Spécialités danoises classiques dans un cadre chaleureux près de l'embarcadère de Feggesund."
+    "nearby8Description": "Spécialités danoises classiques dans un cadre chaleureux près de l'embarcadère de Feggesund.",
+    "nearby9Title": "Højriis Slot",
+    "nearby9Description": "Manoir historique du XVIe siècle entouré d'un beau parc — un monument paisible et emblématique de Mors."
+  },
+  "Reviews": {
+    "prev": "Avis précédents",
+    "next": "Avis suivants",
+    "ratingLabel": "Note"
   },
   "Calendar": {
     "title": "Événements",
@@ -199,8 +207,10 @@
     "sendButton": "Envoyer le message",
     "mapTitle": "Trouvez-nous",
     "mapDescription": "Nous sommes situés à Sejerslev sur la pointe nord-ouest de Mors, près de Hanklit.",
-    "formComingSoon": "Formulaire de contact bientôt disponible. Veuillez utiliser l'e-mail ou le téléphone en attendant.",
-    "addressLabel": "Adresse"
+    "addressLabel": "Adresse",
+    "phoneLabel": "Téléphone",
+    "formSuccess": "Merci pour votre message ! Nous vous répondrons bientôt.",
+    "formError": "Une erreur s'est produite. Veuillez réessayer ou nous contacter directement."
   },
   "Gallery": {
     "title": "Galerie",
@@ -235,6 +245,15 @@
   "Common": {
     "learnMore": "En savoir plus",
     "backToTop": "Retour en haut",
-    "loading": "Chargement..."
+    "loading": "Chargement...",
+    "newReservation": "Nouvelle réservation"
+  },
+  "Meta": {
+    "homeDescription": "Camping Slap Af à Sejerslev sur l'île de Mors — camping familial tranquille au bord du Limfjord. Tentes, camping-cars et chalets. Animaux acceptés. Ouvert jusqu'au 18 octobre 2026.",
+    "aboutDescription": "Rencontrez Angela et Jeroen, les nouveaux propriétaires de Camping Slap Af sur Mors. Lisez l'histoire du camping et notre vision pour des vacances reposantes dans la nature.",
+    "accommodationDescription": "Choisissez votre hébergement à Camping Slap Af — emplacements de camping, places pour camping-car, chalets, terrain et emplacements saisonniers. Installations communes pour tous.",
+    "activitiesDescription": "Vacances actives sur Mors — découvrez Hanklit, Skærbæk Klint, le Musée des Fossiles, le port d'Ejerslev et Nykøbing Mors. Activités sur place et aux alentours.",
+    "galleryDescription": "Photos de Camping Slap Af à Sejerslev sur Mors — découvrez le camping, les équipements, les chalets et les environs.",
+    "contactDescription": "Contactez Camping Slap Af — Kærvang 7, Sejerslev, 7900 Nykøbing Mors. Appelez le +45 91 19 96 74 ou envoyez-nous un message. Ouvert tous les jours en saison."
   }
 }

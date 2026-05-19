@@ -121,7 +121,7 @@ function isActive(href: string): boolean {
         </ul>
       </details>
 
-      <a href={bookingHref(locale)} class="btn site-header__cta" target="_blank" rel="noopener noreferrer">
+      <a href={bookingHref(locale)} class="btn site-header__cta">
         {t(locale, "Header", bookingLink.key)}
       </a>
 
@@ -165,8 +165,6 @@ function isActive(href: string): boolean {
               <a
                 href={bookingHref(locale)}
                 class="btn menu-toggle__cta"
-                target="_blank"
-                rel="noopener noreferrer"
               >
                 {t(locale, "Header", bookingLink.key)}
               </a>

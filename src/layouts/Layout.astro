@@ -3,7 +3,7 @@ import "../styles/global.css";
 import Analytics from "@vercel/analytics/astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import { contactUi, stripLocaleFromPath } from "../i18n/utils";
+import { contactUi, stripLocaleFromPath, locales } from "../i18n/utils";
 import type { Locale } from "../i18n/utils";
 
 interface Props {
@@ -18,6 +18,63 @@ const copyUi = contactUi(locale);
 const pageDescription =
   description ??
   "Camping Slap Af — rolig camping i Sejerslev på Mors, midt i den danske natur.";
+
+const SITE_URL = "https://campingslapaf.dk";
+const canonicalPath = currentRoute === "/" ? `/${locale}/` : `/${locale}${currentRoute}`;
+const canonicalUrl = `${SITE_URL}${canonicalPath}`;
+const ogImage = `${SITE_URL}/billeder-fra-anders/campsite-overview.jpg`;
+
+const ogLocaleMap: Record<string, string> = {
+  da: "da_DK", en: "en_US", de: "de_DE", nl: "nl_NL",
+  fr: "fr_FR", es: "es_ES", it: "it_IT", sv: "sv_SE",
+  nb: "nb_NO", pl: "pl_PL",
+};
+
+const localeAlternates = locales.map((l) => ({
+  lang: l,
+  href: currentRoute === "/" ? `${SITE_URL}/${l}/` : `${SITE_URL}/${l}${currentRoute}`,
+}));
+
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": ["Campground", "LodgingBusiness"],
+  "name": "Camping Slap Af",
+  "description": "Rolig familiecamping i Sejerslev på Mors, midt i den danske natur ved Limfjorden.",
+  "url": SITE_URL,
+  "telephone": "+4591199674",
+  "email": "campingslapaf@outlook.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Kærvang 7",
+    "addressLocality": "Sejerslev",
+    "postalCode": "7900",
+    "addressRegion": "Morsø",
+    "addressCountry": "DK"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 56.930468,
+    "longitude": 8.870665
+  },
+  "image": ogImage,
+  "petsAllowed": true,
+  "priceRange": "kr",
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "validThrough": "2026-10-18",
+    "opens": "00:00",
+    "closes": "23:59",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+  },
+  "amenityFeature": [
+    {"@type": "LocationFeatureSpecification", "name": "Toiletter og baderum", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "Fællesrum", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "Legeplads", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "Hundelegeplads", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "Kiosk", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "Bålplads", "value": true}
+  ]
+});
 ---
 
 <!doctype html>
@@ -26,6 +83,28 @@ const pageDescription =
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={pageDescription} />
+
+    <link rel="canonical" href={canonicalUrl} />
+    {localeAlternates.map((alt) => (
+      <link rel="alternate" hreflang={alt.lang} href={alt.href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={`${SITE_URL}/da/`} />
+
+    <meta property="og:title" content={`${title} | Camping Slap Af`} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={ogLocaleMap[locale]} />
+    <meta property="og:site_name" content="Camping Slap Af" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={`${title} | Camping Slap Af`} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script type="application/ld+json" set:html={schema}></script>
+
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/favicon.png" />
@@ -39,6 +118,7 @@ const pageDescription =
     />
 
     <title>{title} | Camping Slap Af</title>
+    <slot name="head" />
 
     <Analytics />
 

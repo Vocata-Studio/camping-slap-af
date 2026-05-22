@@ -13,6 +13,11 @@
     "bookingComingSoon": "Online booking is on its way — contact us directly to reserve your spot.",
     "contactLink": "Contact us"
   },
+  "Weather": {
+    "label": "Weather in Sejerslev",
+    "ariaLabel": "Weather in Sejerslev",
+    "windUnit": "km/h"
+  },
   "Footer": {
     "tagline": "Camping in the heart of Mors",
     "quickLinks": "Quick links",

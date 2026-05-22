@@ -13,6 +13,11 @@
     "bookingComingSoon": "Online booking er på vej — kontakt os direkte for at reservere din plads.",
     "contactLink": "Kontakt os"
   },
+  "Weather": {
+    "label": "Vejr i Sejerslev",
+    "ariaLabel": "Vejret i Sejerslev",
+    "windUnit": "km/t"
+  },
   "Footer": {
     "tagline": "Camping i hjertet af Mors",
     "quickLinks": "Genveje",

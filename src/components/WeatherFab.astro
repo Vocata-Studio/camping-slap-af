@@ -1,0 +1,276 @@
+---
+import { t } from "../i18n/utils";
+import type { Locale } from "../i18n/utils";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const label = t(locale, "Weather", "label");
+const windUnit = t(locale, "Weather", "windUnit");
+const ariaLabel = t(locale, "Weather", "ariaLabel");
+---
+
+<div data-weather-fab class="weather-fab" data-state="loading">
+  <button
+    data-weather-toggle
+    type="button"
+    aria-label={ariaLabel}
+    aria-expanded="false"
+    class="weather-fab__pill"
+  >
+    <span data-weather-icon class="weather-fab__icon" aria-hidden="true">🌡️</span>
+    <span data-weather-temp class="weather-fab__temp">--°</span>
+
+    <span data-weather-details class="weather-fab__details">
+      <span class="weather-fab__details-inner">
+        <span class="weather-fab__divider" aria-hidden="true"></span>
+        <span class="weather-fab__location">{label}</span>
+        <span class="weather-fab__stat">
+          <span aria-hidden="true">💨</span>
+          <span data-weather-wind class="weather-fab__num">--</span>
+          <span class="weather-fab__unit">{windUnit}</span>
+        </span>
+        <span class="weather-fab__stat">
+          <span aria-hidden="true">💧</span>
+          <span data-weather-precip class="weather-fab__num">--</span>
+          <span class="weather-fab__unit">%</span>
+        </span>
+      </span>
+    </span>
+  </button>
+</div>
+
+<style>
+  .weather-fab {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 40;
+    display: none;
+    font-family: var(--font-mono);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .weather-fab[data-state="ready"] {
+    display: block;
+  }
+
+  .weather-fab__pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.85rem;
+    border-radius: var(--radius-pill);
+    color: var(--color-ink);
+    font-size: var(--fs-sm);
+    line-height: 1;
+    cursor: pointer;
+    outline: none;
+
+    /* Off-white liquid glass — matches the cream/white brand palette */
+    background: linear-gradient(
+      160deg,
+      rgba(255, 255, 255, 0.85) 0%,
+      rgba(238, 244, 240, 0.7) 50%,
+      rgba(255, 255, 255, 0.82) 100%
+    );
+    backdrop-filter: blur(24px) saturate(1.8) brightness(1.05);
+    -webkit-backdrop-filter: blur(24px) saturate(1.8) brightness(1.05);
+    border: 0.5px solid rgba(255, 255, 255, 0.7);
+    box-shadow:
+      0 2px 10px rgba(26, 26, 26, 0.07),
+      0 0.5px 0 rgba(255, 255, 255, 0.8) inset,
+      0 -0.5px 0 rgba(26, 26, 26, 0.04) inset,
+      0 0 0 0.5px rgba(26, 26, 26, 0.08);
+  }
+
+  .weather-fab__pill:focus-visible {
+    box-shadow:
+      0 2px 10px rgba(26, 26, 26, 0.07),
+      0 0.5px 0 rgba(255, 255, 255, 0.8) inset,
+      0 -0.5px 0 rgba(26, 26, 26, 0.04) inset,
+      0 0 0 2px var(--color-green);
+  }
+
+  .weather-fab__icon {
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .weather-fab__temp {
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+
+  .weather-fab__details {
+    display: grid;
+    grid-template-columns: 0fr;
+    overflow: hidden;
+    transition: grid-template-columns 280ms ease-out;
+  }
+
+  .weather-fab__details-inner {
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .weather-fab__pill[aria-expanded="true"] .weather-fab__details {
+    grid-template-columns: 1fr;
+  }
+
+  @media (hover: hover) {
+    .weather-fab__pill:hover .weather-fab__details,
+    .weather-fab__pill:focus-visible .weather-fab__details {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .weather-fab__divider {
+    display: inline-block;
+    width: 1px;
+    height: 0.75rem;
+    margin: 0 0.55rem;
+    background: rgba(26, 26, 26, 0.18);
+    vertical-align: middle;
+  }
+
+  .weather-fab__location {
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted);
+  }
+
+  .weather-fab__stat {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-left: 0.55rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .weather-fab__unit {
+    color: var(--color-muted);
+  }
+
+  /* Dark theme — soft graphite glass to match the dark surface */
+  [data-theme="dark"] .weather-fab__pill {
+    color: var(--color-ink);
+    background: linear-gradient(
+      160deg,
+      rgba(40, 46, 40, 0.7) 0%,
+      rgba(28, 34, 28, 0.55) 50%,
+      rgba(38, 44, 38, 0.65) 100%
+    );
+    backdrop-filter: blur(24px) saturate(1.6) brightness(0.95);
+    -webkit-backdrop-filter: blur(24px) saturate(1.6) brightness(0.95);
+    border: 0.5px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+      0 2px 12px rgba(0, 0, 0, 0.35),
+      0 0.5px 0 rgba(255, 255, 255, 0.1) inset,
+      0 -0.5px 0 rgba(0, 0, 0, 0.18) inset,
+      0 0 0 0.5px rgba(255, 255, 255, 0.08);
+  }
+
+  [data-theme="dark"] .weather-fab__divider {
+    background: rgba(255, 255, 255, 0.18);
+  }
+
+  /* On small screens, keep the collapsed pill tight */
+  @media (max-width: 480px) {
+    .weather-fab {
+      right: 0.75rem;
+      bottom: 0.75rem;
+    }
+    .weather-fab__pill {
+      padding: 0.45rem 0.75rem;
+      font-size: var(--fs-xs);
+    }
+  }
+</style>
+
+<script>
+  // Sejerslev, Mors — Camping Slap Af
+  const LAT = 56.930468;
+  const LON = 8.870665;
+  const API = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current=temperature_2m,weather_code,wind_speed_10m&hourly=precipitation_probability&forecast_days=1&timezone=Europe%2FCopenhagen`;
+  const REFRESH_MS = 15 * 60_000;
+
+  type WeatherData = {
+    temperature: number;
+    weatherCode: number;
+    windSpeed: number;
+    precipitationProbability: number;
+  };
+
+  function getWeatherIcon(code: number): string {
+    if (code === 0) return "☀️";
+    if (code <= 3) return "⛅";
+    if (code <= 48) return "🌫️";
+    if (code <= 57) return "🌦️";
+    if (code <= 67) return "🌧️";
+    if (code <= 77) return "🌨️";
+    if (code <= 82) return "🌧️";
+    if (code <= 86) return "🌨️";
+    if (code <= 99) return "⛈️";
+    return "🌡️";
+  }
+
+  const root = document.querySelector<HTMLElement>("[data-weather-fab]");
+  if (root) {
+    const toggle = root.querySelector<HTMLButtonElement>("[data-weather-toggle]");
+    const iconEl = root.querySelector<HTMLElement>("[data-weather-icon]");
+    const tempEl = root.querySelector<HTMLElement>("[data-weather-temp]");
+    const windEl = root.querySelector<HTMLElement>("[data-weather-wind]");
+    const precipEl = root.querySelector<HTMLElement>("[data-weather-precip]");
+
+    const apply = (w: WeatherData) => {
+      if (iconEl) iconEl.textContent = getWeatherIcon(w.weatherCode);
+      if (tempEl) tempEl.textContent = `${w.temperature}°`;
+      if (windEl) windEl.textContent = String(w.windSpeed);
+      if (precipEl) precipEl.textContent = String(w.precipitationProbability);
+      root.dataset.state = "ready";
+    };
+
+    const fetchWeather = async () => {
+      try {
+        const res = await fetch(API);
+        if (!res.ok) return;
+        const data = await res.json();
+        const currentHour = new Date(data.current.time).getHours();
+        const precipProb =
+          data.hourly?.precipitation_probability?.[currentHour] ?? 0;
+        apply({
+          temperature: Math.round(data.current.temperature_2m),
+          weatherCode: data.current.weather_code,
+          windSpeed: Math.round(data.current.wind_speed_10m),
+          precipitationProbability: precipProb,
+        });
+      } catch {
+        // silent — pill stays hidden if first fetch fails
+      }
+    };
+
+    fetchWeather();
+    setInterval(fetchWeather, REFRESH_MS);
+
+    if (toggle) {
+      toggle.addEventListener("click", () => {
+        const open = toggle.getAttribute("aria-expanded") === "true";
+        toggle.setAttribute("aria-expanded", open ? "false" : "true");
+      });
+
+      document.addEventListener("click", (event) => {
+        if (toggle.getAttribute("aria-expanded") !== "true") return;
+        if (root.contains(event.target as Node)) return;
+        toggle.setAttribute("aria-expanded", "false");
+      });
+    }
+  }
+</script>

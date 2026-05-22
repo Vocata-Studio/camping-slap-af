@@ -13,6 +13,11 @@
     "bookingComingSoon": "Nettbestilling er på vei — kontakt oss direkte for å reservere plassen din.",
     "contactLink": "Kontakt oss"
   },
+  "Weather": {
+    "label": "Vær i Sejerslev",
+    "ariaLabel": "Vær i Sejerslev",
+    "windUnit": "km/t"
+  },
   "Footer": {
     "tagline": "Camping i hjertet av Mors",
     "quickLinks": "Hurtiglenker",

@@ -1,0 +1,724 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero.astro";
+import {
+  locales,
+  isValidLocale,
+  t,
+  localePath,
+  bookingHref,
+} from "../../i18n/utils";
+import type { Locale } from "../../i18n/utils";
+
+export function getStaticPaths() {
+  return locales.map((locale) => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params;
+if (!isValidLocale(locale)) return Astro.redirect("/da");
+const l = locale as Locale;
+
+const tp = (key: string) => t(l, "Prices", key);
+
+const year = new Date().getFullYear();
+const isDkk = l === "da";
+
+/* ---- currency formatting ------------------------------------------- */
+function fmt(dkk: number, eur: number): string {
+  if (isDkk) {
+    return `${Math.round(dkk).toLocaleString("da-DK")} kr.`;
+  }
+  return new Intl.NumberFormat("en-GB", {
+    style: "currency",
+    currency: "EUR",
+    minimumFractionDigits: eur % 1 === 0 ? 0 : 2,
+  }).format(eur);
+}
+
+/* ---- types ---------------------------------------------------------- */
+type Row = { label: string; value: string; suffix?: string; note?: string };
+const perNight = tp("perNight");
+const perWash = tp("perWash");
+const perHalf = tp("perHalfHour");
+const perPerson = tp("perPerson");
+const free = tp("valueFree");
+
+/* ---- price sections ------------------------------------------------- */
+const camping: Row[] = [
+  { label: tp("rowAdults2"), value: fmt(200, 26.75), suffix: perNight },
+  { label: tp("rowExtraAdult"), value: fmt(100, 13.4), suffix: perNight },
+  { label: tp("rowChild02"), value: free },
+  { label: tp("rowChild214"), value: fmt(40, 5.35), suffix: perNight },
+  { label: tp("rowElectricity"), value: fmt(50, 6.7), suffix: perNight },
+  { label: tp("rowDayGuest"), value: fmt(15, 2.0) },
+  { label: tp("rowWashingMachine"), value: fmt(40, 5.35), suffix: perWash },
+  { label: tp("rowDryer"), value: fmt(10, 1.35), suffix: perHalf },
+];
+
+const autocamper: Row[] = [
+  { label: tp("rowAdults2"), value: fmt(256, 34.25), suffix: perNight },
+  { label: tp("rowExtraAdult"), value: fmt(125, 16.75), suffix: perNight },
+  { label: tp("rowChild02"), value: free },
+  { label: tp("rowChild214"), value: fmt(40, 5.35), suffix: perNight },
+  { label: tp("rowElectricity"), value: fmt(50, 6.7), suffix: perNight },
+  { label: tp("rowDayGuest"), value: fmt(15, 2.0) },
+  { label: tp("rowWashingMachine"), value: fmt(40, 5.35), suffix: perWash },
+  { label: tp("rowDryer"), value: fmt(10, 1.35), suffix: perHalf },
+];
+
+const field: Row[] = [
+  { label: tp("rowAdult1"), value: fmt(100, 13.4), suffix: perNight },
+  { label: tp("rowAdults2"), value: fmt(150, 20.0), suffix: perNight },
+  { label: tp("rowExtraAdult"), value: fmt(50, 3.35), suffix: perNight },
+  { label: tp("rowChild02"), value: free },
+  { label: tp("rowChild214"), value: fmt(15, 2.0), suffix: perNight },
+  { label: tp("rowWashingMachine"), value: fmt(40, 5.35), suffix: perWash },
+  { label: tp("rowDryer"), value: fmt(10, 1.35), suffix: perHalf },
+];
+
+type Cabin = {
+  number: number;
+  capacity: string;
+  note?: string;
+  flag?: string;
+  price: string;
+};
+const cabins: Cabin[] = [
+  { number: 2, capacity: tp("cap2adults"), note: tp("noteFence"), price: fmt(373, 50) },
+  { number: 3, capacity: tp("cap2adults"), price: fmt(373, 50) },
+  { number: 6, capacity: tp("cap2adults"), price: fmt(373, 50) },
+  { number: 7, capacity: tp("cap1adult1child"), note: tp("noteSingleBed"), price: fmt(300, 40) },
+  { number: 8, capacity: tp("cap2adults"), flag: tp("flagNoDogs"), price: fmt(373, 50) },
+  { number: 9, capacity: tp("cap4adults"), note: tp("noteLargest"), price: fmt(560, 75) },
+];
+
+const cabinAddons: Row[] = [
+  { label: tp("rowBedding"), value: fmt(50, 6.7), suffix: perPerson },
+  { label: tp("rowTowels"), value: fmt(25, 3.35), suffix: perPerson },
+  { label: tp("rowDishTowels"), value: fmt(25, 3.35), suffix: perPerson },
+  { label: tp("rowWashingMachine"), value: fmt(40, 5.35), suffix: perWash },
+  { label: tp("rowElectricityPlain"), value: fmt(50, 6.7), suffix: perNight },
+  { label: tp("rowFinalCleaning"), value: fmt(100, 13.4) },
+];
+
+type Tier = { label: string; full: string; half: string };
+const tiers: Tier[] = [
+  { label: tp("tierFamily"), full: fmt(10000, 1338.0), half: fmt(5000, 669.0) },
+  { label: tp("tier2adults"), full: fmt(9500, 1271.1), half: fmt(4750, 635.55) },
+  { label: tp("tier1adult"), full: fmt(8000, 1070.4), half: fmt(4000, 535.2) },
+];
+
+const seasonalAddons: Row[] = [
+  { label: tp("rowGuestCard"), value: fmt(500, 66.9) },
+  { label: tp("rowChildrenGrandchildren"), value: fmt(800, 108) },
+  { label: tp("rowExtraAdult"), value: fmt(800, 108) },
+  { label: tp("rowWinterStorage"), value: fmt(800, 108) },
+  { label: tp("rowElFullSeason"), value: fmt(1500, 200) },
+  { label: tp("rowElHalfSeason"), value: fmt(750, 100) },
+  { label: tp("rowWashingMachine"), value: fmt(40, 5.35), suffix: perWash },
+  { label: tp("rowDryer"), value: fmt(10, 1.35), suffix: perHalf },
+];
+
+const dogs = [tp("dog1"), tp("dog2"), tp("dog3"), tp("dog4")];
+const facilities = [tp("facilityWifi"), tp("facilityShower")];
+const payment = [tp("payment1"), tp("payment2"), tp("payment3"), tp("payment4")];
+
+const quickNav = [
+  { href: "#campingplads", label: tp("navCamping") },
+  { href: "#autocamper", label: tp("navAutocamper") },
+  { href: "#campingfelt", label: tp("navField") },
+  { href: "#hytter", label: tp("navCabins") },
+  { href: "#saesonplads", label: tp("navSeasonal") },
+  { href: "#hunde", label: tp("navDogs") },
+  { href: "#faciliteter", label: tp("navFacilities") },
+  { href: "#betaling", label: tp("navPayment") },
+];
+
+const heroImage = "/images/location-images/campsite-pitch-numbered.webp";
+const bookUrl = bookingHref(l);
+const includedText = tp("includedText");
+const includedLabel = tp("includedLabel");
+---
+
+<Layout
+  title={tp("title")}
+  locale={l}
+  description={t(l, "Meta", "pricesDescription")}
+>
+  <Hero
+    image={heroImage}
+    imageAlt={tp("title")}
+    eyebrow={tp("eyebrow").replace("{year}", String(year))}
+    title={tp("title")}
+    subtitle={tp("subtitle")}
+    compact
+  />
+
+  <!-- Info pills -->
+  <section class="section section--tight section--flush-top">
+    <div class="container">
+      <div class="pills">
+        <span class="pill">{tp("season").replace("{year}", String(year))}</span>
+        <span class="pill">{tp("vatNote")}</span>
+        <span class="pill">{tp("currencyLabel")}</span>
+      </div>
+
+      <!-- Quick nav -->
+      <nav class="quicknav" aria-label={tp("title")}>
+        {quickNav.map((item) => (
+          <a href={item.href} class="quicknav__link">{item.label}</a>
+        ))}
+      </nav>
+    </div>
+  </section>
+
+  <div class="container price-stack">
+    <!-- Campingplads -->
+    <section id="campingplads" class="pcard">
+      <header class="pcard__head">
+        <h2>{tp("campingTitle")}</h2>
+        <p>{tp("campingDesc")}</p>
+      </header>
+      <div class="pcard__body">
+        <ul class="ptable">
+          {camping.map((row) => (
+            <li class="prow">
+              <span class="prow__label">{row.label}</span>
+              <span class="prow__value">
+                {row.value}{row.suffix && <span class="prow__suffix">{row.suffix}</span>}
+              </span>
+            </li>
+          ))}
+        </ul>
+        <a href={bookUrl} class="btn btn--ghost pcard__cta">{tp("ctaBookCamping")}</a>
+      </div>
+      <p class="pcard__included">
+        <strong>{includedLabel}:</strong> {includedText}
+      </p>
+    </section>
+
+    <!-- Autocamper -->
+    <section id="autocamper" class="pcard">
+      <header class="pcard__head">
+        <h2>{tp("autocamperTitle")}</h2>
+        <p>{tp("autocamperDesc")}</p>
+      </header>
+      <div class="pcard__body">
+        <ul class="ptable">
+          {autocamper.map((row) => (
+            <li class="prow">
+              <span class="prow__label">{row.label}</span>
+              <span class="prow__value">
+                {row.value}{row.suffix && <span class="prow__suffix">{row.suffix}</span>}
+              </span>
+            </li>
+          ))}
+        </ul>
+        <a href={bookUrl} class="btn btn--ghost pcard__cta">{tp("ctaBookAutocamper")}</a>
+      </div>
+      <p class="pcard__included">
+        <strong>{includedLabel}:</strong> {includedText}
+      </p>
+    </section>
+
+    <!-- Campingfelt -->
+    <section id="campingfelt" class="pcard">
+      <header class="pcard__head">
+        <h2>{tp("fieldTitle")}</h2>
+        <p>{tp("fieldDesc")}</p>
+      </header>
+      <div class="pcard__body">
+        <ul class="ptable">
+          {field.map((row) => (
+            <li class="prow">
+              <span class="prow__label">{row.label}</span>
+              <span class="prow__value">
+                {row.value}{row.suffix && <span class="prow__suffix">{row.suffix}</span>}
+              </span>
+            </li>
+          ))}
+        </ul>
+        <a href={bookUrl} class="btn btn--ghost pcard__cta">{tp("ctaBookField")}</a>
+      </div>
+      <p class="pcard__included">
+        <strong>{includedLabel}:</strong> {includedText}
+      </p>
+    </section>
+
+    <!-- Hytter -->
+    <section id="hytter" class="pcard">
+      <header class="pcard__head">
+        <h2>{tp("cabinsTitle")}</h2>
+        <p>{tp("cabinsDesc")}</p>
+      </header>
+      <div class="pcard__body">
+        <div class="cabins">
+          {cabins.map((cabin) => (
+            <article class="cabin">
+              <div class="cabin__head">
+                <span class="cabin__num">{cabin.number}</span>
+                <div>
+                  <p class="cabin__title">{tp("cabinWord")} {cabin.number}</p>
+                  <p class="cabin__cap">{cabin.capacity}</p>
+                </div>
+              </div>
+              <div class="cabin__body">
+                {cabin.flag && <span class="cabin__flag">{cabin.flag}</span>}
+                {cabin.note && <p class="cabin__note">{cabin.note}</p>}
+                <p class="cabin__price">
+                  {cabin.price}<span class="cabin__per">{perNight}</span>
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+      <div class="pcard__section">
+        <h3 class="pcard__subhead">{tp("cabinsIncludedTitle")}</h3>
+        <p class="pcard__muted">{tp("cabinsIncludedText")}</p>
+      </div>
+      <div class="pcard__section">
+        <h3 class="pcard__subhead">{tp("addonsTitle")}</h3>
+        <ul class="ptable">
+          {cabinAddons.map((row) => (
+            <li class="prow">
+              <span class="prow__label">{row.label}</span>
+              <span class="prow__value">
+                {row.value}{row.suffix && <span class="prow__suffix">{row.suffix}</span>}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Sæsonplads -->
+    <section id="saesonplads" class="pcard">
+      <header class="pcard__head">
+        <h2>{tp("seasonalTitle")}</h2>
+        <p>{tp("seasonalDesc")}</p>
+      </header>
+      <div class="pcard__body">
+        <div class="season-table-wrap">
+          <table class="season-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>{tp("fullSeason")}</th>
+                <th>{tp("halfSeason")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {tiers.map((tier) => (
+                <tr>
+                  <td class="season-table__label">{tier.label}</td>
+                  <td class="season-table__val">{tier.full}</td>
+                  <td class="season-table__val">{tier.half}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="pcard__section">
+        <h3 class="pcard__subhead">{tp("seasonalAddonsTitle")}</h3>
+        <ul class="ptable">
+          {seasonalAddons.map((row) => (
+            <li class="prow">
+              <span class="prow__label">{row.label}</span>
+              <span class="prow__value">
+                {row.value}{row.suffix && <span class="prow__suffix">{row.suffix}</span>}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Dogs + Facilities -->
+    <div class="duo">
+      <section id="hunde" class="pcard">
+        <header class="pcard__head">
+          <h2>{tp("dogsTitle")}</h2>
+        </header>
+        <ul class="bullets pcard__body">
+          {dogs.map((point) => (
+            <li class="bullet"><span class="bullet__dot"></span><span>{point}</span></li>
+          ))}
+        </ul>
+      </section>
+
+      <section id="faciliteter" class="pcard">
+        <header class="pcard__head">
+          <h2>{tp("facilitiesTitle")}</h2>
+        </header>
+        <ul class="bullets pcard__body">
+          {facilities.map((point) => (
+            <li class="bullet"><span class="bullet__dot"></span><span>{point}</span></li>
+          ))}
+        </ul>
+      </section>
+    </div>
+
+    <!-- Payment -->
+    <section id="betaling" class="pcard">
+      <header class="pcard__head">
+        <h2>{tp("paymentTitle")}</h2>
+      </header>
+      <ul class="bullets pcard__body">
+        {payment.map((point) => (
+          <li class="bullet"><span class="bullet__dot"></span><span>{point}</span></li>
+        ))}
+      </ul>
+      <p class="pcard__included">
+        <a href={localePath(l, "/terms")}>{tp("paymentTermsLink")}</a>
+      </p>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+      <div class="final-cta__text">
+        <h2>{tp("finalTitle")}</h2>
+        <p>{tp("finalBody")}</p>
+      </div>
+      <a href={bookUrl} class="btn final-cta__btn">{tp("finalCta")}</a>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  /* Info pills */
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.45rem 0.9rem;
+    background: var(--color-cream);
+    border-radius: var(--radius-pill);
+    font-size: var(--fs-xs);
+    font-weight: 500;
+    color: var(--color-ink);
+  }
+
+  /* Quick nav */
+  .quicknav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-5);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-hairline);
+  }
+  .quicknav__link {
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    color: var(--color-muted);
+    white-space: nowrap;
+  }
+  .quicknav__link:hover {
+    color: var(--color-green);
+  }
+
+  /* Stack of price cards */
+  .price-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    padding-bottom: var(--space-12);
+  }
+
+  .pcard {
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    scroll-margin-top: calc(var(--header-h) + var(--space-4));
+  }
+  .pcard__head {
+    padding: var(--space-6);
+    border-bottom: 1px solid var(--color-hairline);
+    background: var(--color-cream);
+  }
+  .pcard__head h2 {
+    font-size: var(--fs-xl);
+  }
+  .pcard__head p {
+    margin-top: var(--space-2);
+    color: var(--color-muted);
+    font-size: var(--fs-sm);
+    line-height: var(--lh-body);
+  }
+  .pcard__body {
+    padding: var(--space-6);
+  }
+  .pcard__section {
+    padding: var(--space-6);
+    border-top: 1px solid var(--color-hairline);
+  }
+  .pcard__subhead {
+    font-family: var(--font-body);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-green);
+    margin-bottom: var(--space-4);
+  }
+  .pcard__muted {
+    color: var(--color-muted);
+    font-size: var(--fs-sm);
+    line-height: var(--lh-body);
+  }
+  .pcard__included {
+    padding: var(--space-5) var(--space-6);
+    border-top: 1px solid var(--color-hairline);
+    background: var(--color-cream);
+    color: var(--color-muted);
+    font-size: var(--fs-sm);
+    line-height: var(--lh-body);
+  }
+  .pcard__included strong {
+    color: var(--color-ink);
+  }
+  .pcard__included a {
+    color: var(--color-green);
+    font-weight: 600;
+  }
+  .pcard__included a:hover {
+    color: var(--color-mint);
+  }
+
+  /* Price table (definition list style) */
+  .ptable {
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+  .prow {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-3) var(--space-5);
+    font-size: var(--fs-sm);
+  }
+  .prow:not(:last-child) {
+    border-bottom: 1px solid var(--color-hairline);
+  }
+  .prow__label {
+    color: var(--color-ink);
+  }
+  .prow__value {
+    flex-shrink: 0;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--color-ink);
+    text-align: right;
+  }
+  .prow__suffix {
+    margin-left: 0.35rem;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: var(--fs-xs);
+    color: var(--color-muted);
+  }
+  .pcard__cta {
+    margin-top: var(--space-5);
+  }
+
+  /* Cabin cards */
+  .cabins {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+  @media (min-width: 560px) {
+    .cabins { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 900px) {
+    .cabins { grid-template-columns: repeat(3, 1fr); }
+  }
+  .cabin {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+  .cabin__head {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-cream);
+    border-bottom: 1px solid var(--color-hairline);
+  }
+  .cabin__num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: var(--radius-pill);
+    background: var(--color-green);
+    color: var(--color-white);
+    font-family: var(--font-heading);
+    font-weight: 700;
+  }
+  .cabin__title {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: var(--fs-sm);
+    color: var(--color-ink);
+  }
+  .cabin__cap {
+    font-size: var(--fs-xs);
+    color: var(--color-muted);
+  }
+  .cabin__body {
+    padding: var(--space-4);
+  }
+  .cabin__flag {
+    display: inline-block;
+    margin-bottom: var(--space-2);
+    padding: 0.15em 0.6em;
+    border-radius: var(--radius-pill);
+    background: var(--color-cream);
+    border: 1px solid var(--color-hairline-strong);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    color: var(--color-muted);
+  }
+  .cabin__note {
+    font-size: var(--fs-xs);
+    color: var(--color-muted);
+    margin-bottom: var(--space-3);
+  }
+  .cabin__price {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: var(--fs-lg);
+    color: var(--color-ink);
+  }
+  .cabin__per {
+    margin-left: 0.35rem;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: var(--fs-xs);
+    color: var(--color-muted);
+  }
+
+  /* Seasonal table */
+  .season-table-wrap {
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+  }
+  .season-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--fs-sm);
+  }
+  .season-table th {
+    text-align: right;
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-cream);
+    font-family: var(--font-body);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-muted);
+    white-space: nowrap;
+  }
+  .season-table th:first-child {
+    text-align: left;
+  }
+  .season-table td {
+    padding: var(--space-3) var(--space-4);
+    border-top: 1px solid var(--color-hairline);
+  }
+  .season-table__label {
+    color: var(--color-ink);
+  }
+  .season-table__val {
+    text-align: right;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--color-ink);
+    white-space: nowrap;
+  }
+
+  /* Dogs + Facilities */
+  .duo {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+  @media (min-width: 900px) {
+    .duo { grid-template-columns: 1fr 1fr; }
+  }
+  .bullets {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .bullet {
+    display: flex;
+    gap: var(--space-3);
+    font-size: var(--fs-sm);
+    line-height: var(--lh-body);
+    color: var(--color-ink);
+  }
+  .bullet__dot {
+    margin-top: 0.55em;
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
+    border-radius: var(--radius-pill);
+    background: var(--color-green);
+  }
+
+  /* Final CTA */
+  .final-cta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    align-items: flex-start;
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    background: var(--color-green);
+  }
+  .final-cta__text h2 {
+    color: var(--color-white);
+    font-size: var(--fs-xl);
+  }
+  .final-cta__text p {
+    margin-top: var(--space-3);
+    color: rgba(255, 255, 255, 0.9);
+    line-height: var(--lh-body);
+    max-width: 52ch;
+  }
+  .final-cta__btn {
+    background: var(--color-white);
+    color: var(--color-green-dark);
+  }
+  .final-cta__btn:hover {
+    background: var(--color-cream);
+    color: var(--color-green-dark);
+  }
+  @media (min-width: 720px) {
+    .final-cta {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .final-cta__btn {
+      flex-shrink: 0;
+    }
+  }
+</style>

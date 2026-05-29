@@ -48,6 +48,7 @@ export const navLinks = [
   { href: "/", key: "home" },
   { href: "/about", key: "about" },
   { href: "/accommodation", key: "accommodation" },
+  { href: "/priser", key: "prices" },
   { href: "/activities", key: "activities" },
   { href: "/gallery", key: "gallery" },
   { href: "/contact", key: "contact" },
@@ -68,6 +69,10 @@ export const bookingLink = {
   href: BOOKING_APP_BASE,
   key: "booking",
 } as const;
+
+/** Google "write a review" link for Camping Slap Af (opens the review dialog). */
+export const googleReviewUrl =
+  "https://search.google.com/local/writereview?placeid=ChIJ849Q4CR1SUYRBfNssNr_jZ8";
 
 const contactUiMessages = {
   da: {

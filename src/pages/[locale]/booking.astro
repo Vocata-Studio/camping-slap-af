@@ -48,6 +48,10 @@ const copyUi = contactUi(l);
           </div>
           <h2>{t(l, "Booking", "comingSoonTitle")}</h2>
           <p>{t(l, "Booking", "comingSoonText")}</p>
+          <p class="booking__prices-lead">{t(l, "Booking", "pricesLead")}</p>
+          <a href={localePath(l, "/priser")} class="btn btn--ghost booking__prices-btn">
+            {t(l, "Booking", "pricesCta")}
+          </a>
         </div>
       </div>
 
@@ -154,6 +158,14 @@ const copyUi = contactUi(l);
     color: var(--color-muted);
     font-size: var(--fs-md);
     line-height: var(--lh-body);
+  }
+  .booking__prices-lead {
+    margin-top: var(--space-5);
+    color: var(--color-ink);
+    font-size: var(--fs-sm);
+  }
+  .booking__prices-btn {
+    margin-top: var(--space-4);
   }
 
   /* Fallback contact block */

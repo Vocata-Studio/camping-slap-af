@@ -15,12 +15,24 @@ const l = locale as Locale;
 
 const heroImage = "/billeder-fra-anders/guests-caravan.webp";
 
+const isDkk = l === "da";
+
+/** Lowest "from" price per stay type, shown as a teaser linking to /priser. */
+function fmtFrom(dkk: number, eur: number): string {
+  if (isDkk) return `${Math.round(dkk).toLocaleString("da-DK")} kr.`;
+  return new Intl.NumberFormat("en-GB", {
+    style: "currency",
+    currency: "EUR",
+    minimumFractionDigits: eur % 1 === 0 ? 0 : 2,
+  }).format(eur);
+}
+
 const accommodations = [
-  { key: "campsite", gradient: 1, badge: null, image: "/images/location-images/campsite-field-caravan.webp" },
-  { key: "camper", gradient: 2, badge: "camperBadge", image: "/images/location-images/campsite-field-trees.webp" },
-  { key: "cottage", gradient: 1, badge: null, image: "/billeder-fra-anders/cabins-lawn.webp" },
-  { key: "field", gradient: 2, badge: "fieldBadge", image: "/images/location-images/campsite-open-field.webp" },
-  { key: "seasonal", gradient: 1, badge: null, image: "/images/location-images/campsite-pitch-numbered.webp" },
+  { key: "campsite", gradient: 1, badge: null, image: "/images/location-images/campsite-field-caravan.webp", anchor: "#campingplads", fromDkk: 200, fromEur: 26.75, season: false },
+  { key: "camper", gradient: 2, badge: "camperBadge", image: "/images/location-images/campsite-field-trees.webp", anchor: "#autocamper", fromDkk: 256, fromEur: 34.25, season: false },
+  { key: "cottage", gradient: 1, badge: null, image: "/billeder-fra-anders/cabins-lawn.webp", anchor: "#hytter", fromDkk: 300, fromEur: 40, season: false },
+  { key: "field", gradient: 2, badge: "fieldBadge", image: "/images/location-images/campsite-open-field.webp", anchor: "#campingfelt", fromDkk: 100, fromEur: 13.4, season: false },
+  { key: "seasonal", gradient: 1, badge: null, image: "/images/location-images/campsite-pitch-numbered.webp", anchor: "#saesonplads", fromDkk: 8000, fromEur: 1070.4, season: true },
 ] as const;
 
 const facilityKeys = [
@@ -87,9 +99,21 @@ const optionKeys = ["optionTowels", "optionBedding", "optionCleaning"] as const;
                     ) : null;
                   })}
                 </ul>
+                <p class="acc__price">
+                  <span class="acc__price-from">{t(l, "Accommodation", "priceFrom")}</span>
+                  <span class="acc__price-amount">{fmtFrom(acc.fromDkk, acc.fromEur)}</span>
+                  <span class="acc__price-unit">
+                    {acc.season
+                      ? t(l, "Accommodation", "pricePerSeason")
+                      : t(l, "Accommodation", "pricePerNight")}
+                  </span>
+                </p>
                 <div class="acc__meta">
                   <a href={bookingHref(l)} class="btn">
                     {t(l, "Accommodation", `${acc.key}BookCta`)}
+                  </a>
+                  <a href={localePath(l, `/priser${acc.anchor}`)} class="acc__price-link">
+                    {t(l, "Accommodation", "viewPrices")} →
                   </a>
                 </div>
               </div>
@@ -299,11 +323,42 @@ const optionKeys = ["optionTowels", "optionBedding", "optionCleaning"] as const;
     flex-shrink: 0;
   }
 
+  .acc__price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    margin-bottom: var(--space-5);
+    flex-wrap: wrap;
+  }
+  .acc__price-from {
+    font-size: var(--fs-sm);
+    color: var(--color-muted);
+  }
+  .acc__price-amount {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: var(--fs-lg);
+    color: var(--color-ink);
+  }
+  .acc__price-unit {
+    font-size: var(--fs-sm);
+    color: var(--color-muted);
+  }
+
   .acc__meta {
     display: flex;
     align-items: center;
     gap: var(--space-5);
     flex-wrap: wrap;
+  }
+  .acc__price-link {
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    color: var(--color-green);
+    white-space: nowrap;
+  }
+  .acc__price-link:hover {
+    color: var(--color-mint);
   }
 
   /* Options */

@@ -5,7 +5,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import BookingBanner from "../components/BookingBanner.astro";
 import WeatherFab from "../components/WeatherFab.astro";
-import { contactUi, stripLocaleFromPath, locales } from "../i18n/utils";
+import { contactUi, stripLocaleFromPath, locales, t, navLinks, localePath } from "../i18n/utils";
 import type { Locale } from "../i18n/utils";
 
 interface Props {
@@ -37,44 +37,103 @@ const localeAlternates = locales.map((l) => ({
   href: currentRoute === "/" ? `${SITE_URL}/${l}/` : `${SITE_URL}/${l}${currentRoute}`,
 }));
 
+const ORG_ID = `${SITE_URL}/#organization`;
+const SITE_ID = `${SITE_URL}/#website`;
+const isHome = currentRoute === "/";
+
+// Localized navigation items — handed to Google as sitelink candidates.
+const navItems = navLinks.map((link) => ({
+  "@type": "SiteNavigationElement",
+  "name": t(locale, "Header", link.key),
+  "url": `${SITE_URL}${localePath(locale, link.href)}`,
+}));
+
+// Breadcrumb trail on inner pages (Home > current page).
+const breadcrumb = isHome
+  ? null
+  : {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": t(locale, "Header", "home"),
+          "item": `${SITE_URL}/${locale}/`,
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": title,
+          "item": canonicalUrl,
+        },
+      ],
+    };
+
 const schema = JSON.stringify({
   "@context": "https://schema.org",
-  "@type": ["Campground", "LodgingBusiness"],
-  "name": "Camping Slap Af",
-  "description": "Rolig familiecamping i Sejerslev på Mors, midt i den danske natur ved Limfjorden.",
-  "url": SITE_URL,
-  "telephone": "+4591199674",
-  "email": "campingslapaf@outlook.com",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Kærvang 7",
-    "addressLocality": "Sejerslev",
-    "postalCode": "7900",
-    "addressRegion": "Morsø",
-    "addressCountry": "DK"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 56.930468,
-    "longitude": 8.870665
-  },
-  "image": ogImage,
-  "petsAllowed": true,
-  "priceRange": "kr",
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "validThrough": "2026-10-18",
-    "opens": "00:00",
-    "closes": "23:59",
-    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
-  },
-  "amenityFeature": [
-    {"@type": "LocationFeatureSpecification", "name": "Toiletter og baderum", "value": true},
-    {"@type": "LocationFeatureSpecification", "name": "Fællesrum", "value": true},
-    {"@type": "LocationFeatureSpecification", "name": "Legeplads", "value": true},
-    {"@type": "LocationFeatureSpecification", "name": "Hundelegeplads", "value": true},
-    {"@type": "LocationFeatureSpecification", "name": "Kiosk", "value": true},
-    {"@type": "LocationFeatureSpecification", "name": "Bålplads", "value": true}
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": ORG_ID,
+      "name": "Camping Slap Af",
+      "url": SITE_URL,
+      "logo": `${SITE_URL}/CSA-logo-final.png`,
+      "image": ogImage,
+      "email": "campingslapaf@outlook.com",
+      "telephone": "+4591199674",
+      "sameAs": ["https://www.facebook.com/profile.php?id=61584886509520"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": SITE_ID,
+      "url": SITE_URL,
+      "name": "Camping Slap Af",
+      "inLanguage": locale,
+      "publisher": { "@id": ORG_ID }
+    },
+    {
+      "@type": ["Campground", "LodgingBusiness"],
+      "@id": `${SITE_URL}/#business`,
+      "name": "Camping Slap Af",
+      "description": "Rolig familiecamping i Sejerslev på Mors, midt i den danske natur ved Limfjorden.",
+      "url": SITE_URL,
+      "parentOrganization": { "@id": ORG_ID },
+      "telephone": "+4591199674",
+      "email": "campingslapaf@outlook.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Kærvang 7",
+        "addressLocality": "Sejerslev",
+        "postalCode": "7900",
+        "addressRegion": "Morsø",
+        "addressCountry": "DK"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 56.930468,
+        "longitude": 8.870665
+      },
+      "image": ogImage,
+      "petsAllowed": true,
+      "priceRange": "kr",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "validThrough": "2026-10-18",
+        "opens": "00:00",
+        "closes": "23:59",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+      },
+      "amenityFeature": [
+        {"@type": "LocationFeatureSpecification", "name": "Toiletter og baderum", "value": true},
+        {"@type": "LocationFeatureSpecification", "name": "Fællesrum", "value": true},
+        {"@type": "LocationFeatureSpecification", "name": "Legeplads", "value": true},
+        {"@type": "LocationFeatureSpecification", "name": "Hundelegeplads", "value": true},
+        {"@type": "LocationFeatureSpecification", "name": "Kiosk", "value": true},
+        {"@type": "LocationFeatureSpecification", "name": "Bålplads", "value": true}
+      ]
+    },
+    ...navItems,
+    ...(breadcrumb ? [breadcrumb] : [])
   ]
 });
 ---

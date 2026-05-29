@@ -20,7 +20,7 @@ const phoneHref = `tel:${phone.replace(/\s+/g, "")}`;
 const copyUi = contactUi(l);
 ---
 
-<Layout title={t(l, "Booking", "title")} locale={l}>
+<Layout title={t(l, "Booking", "title")} locale={l} preloadImage={heroImage}>
   <Hero
     image={heroImage}
     imageAlt={t(l, "Booking", "title")}

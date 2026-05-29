@@ -1,6 +1,7 @@
 ---
 import { navLinks, bookingLink, bookingHref, contactUi, localePath, t } from "../i18n/utils";
 import type { Locale } from "../i18n/utils";
+import ThemeToggle from "./ThemeToggle.astro";
 
 interface Props {
   locale: Locale;
@@ -29,6 +30,29 @@ const cvr = t(locale, "Footer", "cvr");
         <span class="site-footer__wordmark">Camping Slap Af</span>
       </a>
       <p class="site-footer__tagline">{t(locale, "Footer", "tagline")}</p>
+      <div class="site-footer__social">
+        <a
+          href="https://www.facebook.com/profile.php?id=61584886509520"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="site-footer__social-link"
+          aria-label={t(locale, "Footer", "facebook")}
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+          </svg>
+        </a>
+      </div>
     </div>
 
     <div class="site-footer__col">
@@ -114,6 +138,7 @@ const cvr = t(locale, "Footer", "cvr");
             </a>
           </li>
         </ul>
+        <ThemeToggle locale={locale} />
       </div>
       <div class="site-footer__partners">
         <a href="https://www.dk-camp.dk" target="_blank" rel="noopener noreferrer" class="site-footer__dkcamp">
@@ -211,6 +236,28 @@ const cvr = t(locale, "Footer", "cvr");
     margin-top: var(--space-3);
     color: var(--color-muted);
     max-width: 32ch;
+  }
+
+  .site-footer__social {
+    margin-top: var(--space-4);
+  }
+  .site-footer__social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-sm);
+    color: var(--color-muted);
+  }
+  .site-footer__social-link:hover {
+    color: var(--color-green);
+    border-color: var(--color-green);
+  }
+  .site-footer__social-link:focus-visible {
+    outline: 2px solid var(--color-green);
+    outline-offset: 2px;
   }
 
   .site-footer__heading {

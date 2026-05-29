@@ -4,15 +4,17 @@ import type { Locale } from "../i18n/utils";
 
 interface Props {
   locale: Locale;
+  /** Show the text label next to the icon (used in menus/footer). */
+  labelled?: boolean;
 }
 
-const { locale } = Astro.props;
+const { locale, labelled = false } = Astro.props;
 const label = t(locale, "Header", "themeToggle");
 ---
 
 <button
   type="button"
-  class="theme-toggle"
+  class:list={["theme-toggle", labelled && "theme-toggle--labelled"]}
   data-theme-toggle
   aria-label={label}
   title={label}
@@ -55,43 +57,14 @@ const label = t(locale, "Header", "themeToggle");
   >
     <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
   </svg>
+  {labelled && <span class="theme-toggle__label">{label}</span>}
 </button>
 
-<script is:inline>
-  (function () {
-    var STORAGE_KEY = "campingslapaf.theme";
-
-    function syncIcons() {
-      var dark = document.documentElement.getAttribute("data-theme") === "dark";
-      document.querySelectorAll('[data-theme-icon="sun"]').forEach(function (el) {
-        el.style.display = dark ? "block" : "none";
-      });
-      document.querySelectorAll('[data-theme-icon="moon"]').forEach(function (el) {
-        el.style.display = dark ? "none" : "block";
-      });
-    }
-
-    function apply(next) {
-      document.documentElement.setAttribute("data-theme", next);
-      try { localStorage.setItem(STORAGE_KEY, next); } catch (e) {}
-      syncIcons();
-    }
-
-    syncIcons();
-
-    document.querySelectorAll("[data-theme-toggle]").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        var current = document.documentElement.getAttribute("data-theme");
-        var next = current === "dark" ? "light" : "dark";
-        if (typeof document.startViewTransition === "function") {
-          document.startViewTransition(function () { apply(next); });
-        } else {
-          apply(next);
-        }
-      });
-    });
-  })();
-</script>
+<!--
+  The toggle is markup-only on purpose. The click/icon-sync logic is bound
+  once in Layout.astro at the end of <body>, so the same handler covers every
+  [data-theme-toggle] instance (menu + footer) without double-binding.
+-->
 
 <style>
   .theme-toggle {
@@ -109,5 +82,21 @@ const label = t(locale, "Header", "themeToggle");
   }
   .theme-toggle svg {
     display: none;
+  }
+
+  /* Labelled variant — used inside the mobile menu and the footer */
+  .theme-toggle--labelled {
+    width: auto;
+    height: auto;
+    gap: var(--space-3);
+    color: var(--color-muted);
+  }
+  .theme-toggle--labelled:hover {
+    color: var(--color-green);
+  }
+  .theme-toggle__label {
+    font-family: var(--font-body);
+    font-size: var(--fs-sm);
+    font-weight: 500;
   }
 </style>

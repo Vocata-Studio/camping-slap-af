@@ -63,8 +63,6 @@ function isActive(href: string): boolean {
     </nav>
 
     <div class="site-header__actions">
-      <ThemeToggle locale={locale} />
-
       <details class="lang-switch">
         <summary aria-label="Change language" class="lang-switch__trigger">
           <img
@@ -168,6 +166,9 @@ function isActive(href: string): boolean {
               >
                 {t(locale, "Header", bookingLink.key)}
               </a>
+            </li>
+            <li class="menu-toggle__theme">
+              <ThemeToggle locale={locale} labelled />
             </li>
           </ul>
         </div>
@@ -411,6 +412,11 @@ function isActive(href: string): boolean {
   .menu-toggle__cta {
     margin-top: var(--space-3);
     width: 100%;
+  }
+  .menu-toggle__theme {
+    margin-top: var(--space-2);
+    padding: 0.75rem var(--space-3) 0;
+    border-top: 1px solid var(--color-hairline);
   }
 
   /* ---------------------------------------------------------------- */

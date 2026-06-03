@@ -54,15 +54,14 @@ export const navLinks = [
   { href: "/contact", key: "contact" },
 ] as const;
 
-const BOOKING_APP_BASE = "https://camping-slap-af-booking.vercel.app";
+const BOOKING_APP_BASE = "https://booking.campingslapaf.dk";
 
 /**
- * Locale-aware URL to the booking app — keeps the user's chosen language.
- * TEMP: until the booking app is live, every "Book now" CTA routes to the
- * contact page instead. To restore, return `${BOOKING_APP_BASE}/${locale}`.
+ * URL to the live online booking system. It lives on its own subdomain and
+ * opens in a new tab (see the `target="_blank"` on the CTAs that use this).
  */
-export function bookingHref(locale: Locale): string {
-  return `/${locale}/contact`;
+export function bookingHref(_locale: Locale): string {
+  return BOOKING_APP_BASE;
 }
 
 export const bookingLink = {

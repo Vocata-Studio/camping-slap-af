@@ -11,8 +11,8 @@
     "prices": "Prijzen"
   },
   "Banner": {
-    "bookingComingSoon": "Online boeken komt eraan — neem rechtstreeks contact met ons op om je plek te reserveren.",
-    "contactLink": "Contact"
+    "bookingLive": "Online boeken is nu beschikbaar — reserveer je plek direct online.",
+    "bookingCta": "Boek online"
   },
   "Weather": {
     "label": "Weer in Sejerslev",
@@ -152,13 +152,14 @@
   },
   "Booking": {
     "title": "Boeken",
-    "comingSoonTitle": "Online boeken komt binnenkort",
-    "comingSoonText": "We werken aan een online boekingssysteem zodat u binnenkort uw plek direct hier op de website kunt reserveren.",
-    "contactCta": "In de tussentijd kunt u contact met ons opnemen om uw plek te reserveren.",
+    "liveTitle": "Boek je plek online",
+    "liveText": "Ons online boekingssysteem is nu beschikbaar. Reserveer je plek bij Camping Slap Af direct — het duurt maar een paar minuten.",
+    "openBooking": "Naar het boekingssysteem",
+    "contactCta": "Liever boeken via telefoon of e-mail? Neem contact op.",
     "contactButton": "Neem contact op",
     "phoneLabel": "Bel ons",
     "emailLabel": "Stuur e-mail",
-    "pricesLead": "Wilt u onze prijzen bekijken terwijl u wacht?",
+    "pricesLead": "Wilt u eerst de prijzen bekijken?",
     "pricesCta": "Bekijk prijslijst"
   },
   "Activities": {

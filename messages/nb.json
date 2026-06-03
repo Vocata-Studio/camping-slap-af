@@ -11,8 +11,8 @@
     "prices": "Priser"
   },
   "Banner": {
-    "bookingComingSoon": "Nettbestilling er på vei — kontakt oss direkte for å reservere plassen din.",
-    "contactLink": "Kontakt oss"
+    "bookingLive": "Nettbestilling er nå åpen — reserver plassen din direkte online.",
+    "bookingCta": "Book online"
   },
   "Weather": {
     "label": "Vær i Sejerslev",
@@ -149,13 +149,14 @@
   },
   "Booking": {
     "title": "Booking",
-    "comingSoonTitle": "Online booking kommer snart",
-    "comingSoonText": "Vi jobber med et online bookingsystem slik at du snart kan reservere plassen din direkte her.",
-    "contactCta": "I mellomtiden er du velkommen til å kontakte oss for å reservere plassen din.",
+    "liveTitle": "Book plassen din online",
+    "liveText": "Vårt online bookingsystem er nå åpent. Reserver plassen din på Camping Slap Af direkte — det tar bare et par minutter.",
+    "openBooking": "Gå til bookingsystemet",
+    "contactCta": "Vil du heller booke via telefon eller e-post? Ta kontakt.",
     "contactButton": "Kontakt oss",
     "phoneLabel": "Ring oss",
     "emailLabel": "Send e-post",
-    "pricesLead": "Vil du se prisene mens du venter?",
+    "pricesLead": "Vil du se prisene først?",
     "pricesCta": "Se prisliste"
   },
   "Activities": {

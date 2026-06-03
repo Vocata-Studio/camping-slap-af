@@ -11,8 +11,8 @@
     "prices": "Prices"
   },
   "Banner": {
-    "bookingComingSoon": "Online booking is on its way — contact us directly to reserve your spot.",
-    "contactLink": "Contact us"
+    "bookingLive": "Online booking is now live — reserve your spot directly online.",
+    "bookingCta": "Book online"
   },
   "Weather": {
     "label": "Weather in Sejerslev",
@@ -152,13 +152,14 @@
   },
   "Booking": {
     "title": "Booking",
-    "comingSoonTitle": "Online booking coming soon",
-    "comingSoonText": "We are working on an online booking system so you can soon reserve your spot directly here on the website.",
-    "contactCta": "In the meantime, feel free to contact us to reserve your spot.",
+    "liveTitle": "Book your spot online",
+    "liveText": "Our online booking system is now live. Reserve your spot at Camping Slap Af directly — it only takes a couple of minutes.",
+    "openBooking": "Go to the booking system",
+    "contactCta": "Prefer to book by phone or email? Get in touch.",
     "contactButton": "Contact us",
     "phoneLabel": "Call us",
     "emailLabel": "Send email",
-    "pricesLead": "Want to see our prices while you wait?",
+    "pricesLead": "Want to see the prices first?",
     "pricesCta": "View price list"
   },
   "Activities": {

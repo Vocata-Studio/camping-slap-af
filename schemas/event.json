@@ -1,6 +1,7 @@
 {
   "name": "event",
   "title": "Begivenhed",
+  "preview": { "path": "/" },
   "fields": [
     { "name": "titleDa", "type": "string", "title": "Titel (DK)", "required": true },
     { "name": "titleEn", "type": "string", "title": "Title (EN)" },

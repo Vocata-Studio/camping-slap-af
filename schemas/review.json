@@ -1,6 +1,7 @@
 {
   "name": "review",
   "title": "Anmeldelse",
+  "preview": { "path": "/" },
   "fields": [
     { "name": "name", "type": "string", "title": "Navn på gæst", "required": true },
     { "name": "location", "type": "string", "title": "By / land (valgfri)" },

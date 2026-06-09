@@ -39,7 +39,7 @@ const weekdays = buildWeekdays(locale);
 
 // Pull events from Vocata. Resolve bilingual fields with DA as the canonical
 // source: non-DA locales prefer EN but fall back to DA so nothing ever disappears.
-const cmsEvents = await getEvents();
+const cmsEvents = await getEvents(Astro.locals.preview);
 
 function escapeHtml(s: string): string {
   return s

@@ -3,6 +3,7 @@ import { createClient } from "@vocata-studio/cms-client";
 const project = import.meta.env.VOCATA_PROJECT;
 const apiKey = import.meta.env.VOCATA_API_KEY;
 const url = import.meta.env.VOCATA_URL ?? "https://admin.vocata.studio";
+const baseUrl = url.replace(/\/$/, "");
 
 if (!project || !apiKey) {
   throw new Error(
@@ -13,7 +14,7 @@ if (!project || !apiKey) {
 export const vocata = createClient({
   project,
   apiKey,
-  baseUrl: `${url.replace(/\/$/, "")}/api/v1`,
+  baseUrl: `${baseUrl}/api/v1`,
 });
 
 export const CMS_URL = url;
@@ -36,12 +37,25 @@ export interface VocataEvent {
   };
 }
 
-export async function getEvents(): Promise<VocataEvent[]> {
+export async function getEvents(preview = false): Promise<VocataEvent[]> {
+  if (preview) {
+    const res = await fetch(
+      `${baseUrl}/api/v1/preview/${project}/event?sort=date:asc&limit=100`,
+      {
+        headers: { Authorization: `Bearer ${apiKey}` },
+        cache: "no-store",
+      },
+    );
+    if (!res.ok) return [];
+    const { data } = (await res.json()) as { data: VocataEvent[] };
+    return data;
+  }
+
   const { data } = await vocata.getAll("event", {
     sort: "date:asc",
     limit: 100,
   });
-  return data as VocataEvent[];
+  return data as unknown as VocataEvent[];
 }
 
 export interface VocataReview {
@@ -56,16 +70,26 @@ export interface VocataReview {
   };
 }
 
-// Reviews are optional content — if the schema hasn't been deployed yet, or the
-// content type returns nothing, fall back to an empty list so the site still
-// builds. Network/auth errors are swallowed for the same reason.
-export async function getReviews(): Promise<VocataReview[]> {
+export async function getReviews(preview = false): Promise<VocataReview[]> {
   try {
+    if (preview) {
+      const res = await fetch(
+        `${baseUrl}/api/v1/preview/${project}/review?sort=date:desc&limit=100`,
+        {
+          headers: { Authorization: `Bearer ${apiKey}` },
+          cache: "no-store",
+        },
+      );
+      if (!res.ok) return [];
+      const { data } = (await res.json()) as { data: VocataReview[] };
+      return data;
+    }
+
     const { data } = await vocata.getAll("review", {
       sort: "date:desc",
       limit: 100,
     });
-    return data as VocataReview[];
+    return data as unknown as VocataReview[];
   } catch {
     return [];
   }
@@ -81,5 +105,5 @@ export function imageUrl(
   if (opts.q) params.set("q", String(opts.q));
   if (opts.f) params.set("f", opts.f);
   const qs = params.toString();
-  return `${CMS_URL.replace(/\/$/, "")}/api/images/${assetId}${qs ? `?${qs}` : ""}`;
+  return `${baseUrl}/api/images/${assetId}${qs ? `?${qs}` : ""}`;
 }

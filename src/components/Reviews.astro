@@ -9,7 +9,7 @@ interface Props {
 
 const { locale } = Astro.props;
 
-const cmsReviews = await getReviews();
+const cmsReviews = await getReviews(Astro.locals.preview);
 
 function escapeHtml(s: string): string {
   return s

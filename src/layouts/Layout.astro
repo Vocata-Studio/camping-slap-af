@@ -327,5 +327,10 @@ const schema = JSON.stringify({
         });
       })();
     </script>
+    {Astro.locals.preview && <span hidden data-vocata-preview-scroll></span>}
+    <script>
+      import { initPreview } from "@vocata-studio/cms-client/preview";
+      if (document.querySelector("[data-vocata-preview-scroll]")) initPreview();
+    </script>
   </body>
 </html>

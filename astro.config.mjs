@@ -6,6 +6,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   site: "https://campingslapaf.dk",
+  output: "hybrid",
   adapter: vercel(),
 
   integrations: [

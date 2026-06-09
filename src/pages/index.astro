@@ -71,7 +71,7 @@ const ultimate = defaultLocale;
         try {
           localStorage.setItem("campingslapaf.locale", target);
         } catch (e) {}
-        window.location.replace("/" + target + "/");
+        window.location.replace("/" + target + "/" + window.location.search);
       })();
     </script>
 

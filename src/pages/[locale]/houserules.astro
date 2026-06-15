@@ -1,0 +1,127 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero.astro";
+import { locales, isValidLocale } from "../../i18n/utils";
+import type { Locale } from "../../i18n/utils";
+
+export function getStaticPaths() {
+  return locales.map((locale) => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params;
+if (!isValidLocale(locale)) return Astro.redirect("/da");
+const l = locale as Locale;
+
+const titles: Record<Locale, string> = {
+  da: "Husregler",
+  en: "House Rules",
+  de: "Hausordnung",
+  nl: "Huisregels",
+  fr: "Règlement intérieur",
+  es: "Normas de convivencia",
+  it: "Regolamento interno",
+  sv: "Ordningsregler",
+  nb: "Ordensregler",
+  pl: "Regulamin",
+};
+
+const subtitles: Record<Locale, string> = {
+  da: "Vores ordensregler er snart klar.",
+  en: "Our house rules are coming soon.",
+  de: "Unsere Hausordnung folgt in Kürze.",
+  nl: "Onze huisregels volgen binnenkort.",
+  fr: "Notre règlement intérieur arrive bientôt.",
+  es: "Nuestras normas estarán disponibles pronto.",
+  it: "Il nostro regolamento è in arrivo.",
+  sv: "Våra ordningsregler kommer snart.",
+  nb: "Våre ordensregler kommer snart.",
+  pl: "Regulamin będzie dostępny wkrótce.",
+};
+
+const comingSoonLabel: Record<Locale, string> = {
+  da: "Kommer snart",
+  en: "Coming soon",
+  de: "Demnächst verfügbar",
+  nl: "Binnenkort beschikbaar",
+  fr: "Bientôt disponible",
+  es: "Próximamente",
+  it: "Prossimamente",
+  sv: "Kommer snart",
+  nb: "Kommer snart",
+  pl: "Wkrótce",
+};
+
+const bodyText: Record<Locale, string> = {
+  da: "Vi arbejder på at samle vores ordensregler. De vil snart være tilgængelige her.",
+  en: "We are putting together our house rules. They will be available here shortly.",
+  de: "Wir stellen unsere Hausordnung zusammen. Sie wird in Kürze hier verfügbar sein.",
+  nl: "We stellen onze huisregels samen. Ze zijn binnenkort hier beschikbaar.",
+  fr: "Nous préparons notre règlement intérieur. Il sera bientôt disponible ici.",
+  es: "Estamos preparando nuestras normas. Estarán disponibles aquí pronto.",
+  it: "Stiamo preparando il nostro regolamento. Sarà disponibile qui a breve.",
+  sv: "Vi håller på att sammanställa våra ordningsregler. De kommer snart att finnas här.",
+  nb: "Vi jobber med å sette sammen ordensreglene våre. De vil snart være tilgjengelige her.",
+  pl: "Przygotowujemy nasz regulamin. Wkrótce będzie dostępny tutaj.",
+};
+
+const heroImage = "/images/location-images/kiosk-exterior-bench.webp";
+const title = titles[l];
+const subtitle = subtitles[l];
+---
+
+<Layout title={title} locale={l} description={subtitle} noindex preloadImage={heroImage}>
+  <Hero
+    image={heroImage}
+    imageAlt={title}
+    title={title}
+    subtitle={subtitle}
+    compact
+  />
+
+  <section class="section">
+    <div class="container coming-soon-container">
+      <div class="coming-soon-card">
+        <span class="coming-soon-badge">{comingSoonLabel[l]}</span>
+        <p class="coming-soon-body">{bodyText[l]}</p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .coming-soon-container {
+    max-width: 600px;
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-16);
+  }
+
+  .coming-soon-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+    text-align: center;
+  }
+
+  .coming-soon-badge {
+    display: inline-block;
+    background: var(--color-cream);
+    color: var(--color-green);
+    font-family: var(--font-heading);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: var(--space-2) var(--space-5);
+    border-radius: 999px;
+    border: 1px solid var(--color-green);
+  }
+
+  .coming-soon-body {
+    font-size: var(--fs-md);
+    line-height: var(--lh-body);
+    color: var(--color-muted);
+    max-width: 480px;
+    margin: 0;
+  }
+</style>

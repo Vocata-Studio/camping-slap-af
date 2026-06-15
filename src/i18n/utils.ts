@@ -48,7 +48,7 @@ export const navLinks = [
   { href: "/", key: "home" },
   { href: "/about", key: "about" },
   { href: "/accommodation", key: "accommodation" },
-  { href: "/priser", key: "prices" },
+  { href: "/prices", key: "prices" },
   { href: "/activities", key: "activities" },
   { href: "/gallery", key: "gallery" },
   { href: "/contact", key: "contact" },

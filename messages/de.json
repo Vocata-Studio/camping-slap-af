@@ -31,6 +31,7 @@
     "privacy": "Datenschutzerklärung",
     "terms": "AGB",
     "accessibility": "Barrierefreiheit",
+    "houserules": "Hausordnung",
     "dkCampAlt": "DK-CAMP — Camping in Dänemark",
     "visitMorsAlt": "VisitMors — Entdecke Mors",
     "smaaCampingAlt": "Kleine Campingplätze — DK-CAMP",
@@ -42,7 +43,7 @@
     "heroLocation": "Sejerslev, Mors — Dänemark",
     "heroCta": "Jetzt buchen",
     "heroSecondary": "Mehr über uns",
-    "introTitle": "Willkommen bei Camping Slap Af",
+    "introTitle": "Willkommen bei Camping Slap Af auf Mors",
     "introText": "Eingebettet im ruhigen Dorf Sejerslev auf der Insel Mors bietet unser Campingplatz eine echte Auszeit in dänischer Natur. Ob für ein Wochenende oder einen ganzen Urlaub — hier finden Sie Raum zum Durchatmen, Entdecken und wirklich Entspannen.",
     "featureTitle": "Was wir bieten",
     "feature1Title": "Unterkünfte für jeden",
@@ -286,13 +287,22 @@
     "newReservation": "Neue Reservierung"
   },
   "Meta": {
-    "homeDescription": "Camping Slap Af in Sejerslev auf der Insel Mors — ruhiger Familienurlaub am Limfjord. Zeltplätze, Wohnmobile und Hütten. Hundefreundlich. Geöffnet bis 18. Oktober 2026.",
-    "aboutDescription": "Lernen Sie Angela und Jeroen kennen, die neuen Inhaber von Camping Slap Af auf Mors. Lesen Sie die Geschichte des Campingplatzes und unsere Vision für einen entspannten Urlaub.",
-    "accommodationDescription": "Wählen Sie Ihre Unterkunft auf Camping Slap Af — Stellplätze, Wohnmobilplätze, Hütten, Campingfeld und Saisonplätze. Gemeinschaftseinrichtungen für alle Gäste inklusive.",
-    "activitiesDescription": "Aktiver Urlaub auf Mors — erleben Sie Hanklit, Skærbæk Klint, Fossil- und Mühlenmuseum, Ejerslev Hafen und Nykøbing Mors. Aktivitäten vor Ort und in der Umgebung.",
-    "galleryDescription": "Fotos von Camping Slap Af in Sejerslev auf Mors — erkunden Sie den Campingplatz, die Einrichtungen, Hütten und die Umgebung.",
-    "contactDescription": "Kontakt Camping Slap Af — Kærvang 7, Sejerslev, 7900 Nykøbing Mors. Rufen Sie +45 91 19 96 74 an oder schreiben Sie uns. Täglich in der Saison geöffnet.",
-    "pricesDescription": "Preisliste für Camping Slap Af — Preise für Stellplätze, Wohnmobile, Hütten, Zeltwiese und Saisonplätze. Alle Preise inkl. MwSt."
+    "homeTitle": "Campingplatz Mors am Limfjord, Dänemark",
+    "aboutTitle": "Über uns – Campingplatz auf Mors",
+    "accommodationTitle": "Unterkünfte – Hütten, Zelt & Wohnmobil",
+    "activitiesTitle": "Aktivitäten & Ausflüge auf Mors",
+    "galleryTitle": "Galerie – Fotos vom Campingplatz",
+    "contactTitle": "Kontakt & Anfahrt – Mors, Dänemark",
+    "bookingTitle": "Campingurlaub auf Mors buchen",
+    "pricesTitle": "Preise – Camping, Hütten & Wohnmobil",
+    "homeDescription": "Kleiner, hundefreundlicher Campingplatz auf Mors am Limfjord, Dänemark. Zeltplätze, Wohnmobile und Hütten in ruhiger Natur. Geöffnet bis 18. Oktober 2026.",
+    "aboutDescription": "Lernen Sie Angela und Jeroen kennen, die neuen Inhaber von Camping Slap Af — ein kleiner, ruhiger Campingplatz auf Mors am Limfjord in Dänemark. Unsere Geschichte und Vision.",
+    "accommodationDescription": "Unterkünfte auf Mors am Limfjord, Dänemark — Stell- und Wohnmobilplätze, Hütten, Zeltwiese und Saisonplätze. Hundefreundlich, mit Gemeinschaftsküche und -bad.",
+    "activitiesDescription": "Aktivurlaub auf Mors am Limfjord, Dänemark — erleben Sie Hanklit, Skærbæk Klint, das Molermuseum und Nykøbing Mors. Aktivitäten am Platz und in der Umgebung.",
+    "galleryDescription": "Fotos von Camping Slap Af auf Mors am Limfjord, Dänemark — Campingplatz, Hütten, Einrichtungen und die schöne Natur in Nordjütland.",
+    "contactDescription": "Kontakt Camping Slap Af auf Mors, Dänemark — Kærvang 7, Sejerslev, 7900 Nykøbing Mors. Telefon +45 91 19 96 74. Täglich in der Campingsaison geöffnet.",
+    "pricesDescription": "Preise für Camping auf Mors am Limfjord, Dänemark — Stellplätze, Wohnmobile, Hütten, Zeltwiese und Saisonplätze. Faire Preise inkl. MwSt., Hunde gratis.",
+    "bookingDescription": "Campingurlaub auf Mors am Limfjord in Dänemark online buchen — Zeltplatz, Wohnmobil oder Hütte in ruhiger Natur. Einfache Reservierung in wenigen Minuten."
   },
   "Prices": {
     "title": "Preise",
@@ -385,5 +395,16 @@
     "finalTitle": "Bereit zu buchen?",
     "finalBody": "Wählen Sie Ihre Daten, die passende Unterkunft und nehmen Sie Kontakt auf. Es dauert nur ein paar Minuten.",
     "finalCta": "Kontakt aufnehmen"
+  },
+  "Faq": {
+    "title": "Häufig gestellte Fragen",
+    "q1": "Sind Hunde erlaubt?",
+    "a1": "Ja, Hunde sind willkommen und kostenlos. Sie müssen lediglich an der Leine geführt werden, und pro Stellplatz sind bis zu 3 Hunde erlaubt (mehr nach Absprache). Hütte 8 ist die einzige Hütte, in der Hunde nicht erlaubt sind.",
+    "q2": "Ist Strom im Preis enthalten?",
+    "a2": "Strom ist eine Zusatzoption und kostet €6.70 pro Nacht. Auf Saisonstellplätzen können Sie Strom stattdessen für eine ganze oder halbe Saison wählen.",
+    "q3": "Wann haben Sie geöffnet?",
+    "a3": "Wir haben vom 1. April bis 18. Oktober 2026 geöffnet. Außerhalb der Saison ist der Platz geschlossen.",
+    "q4": "Wie bezahle ich meinen Aufenthalt?",
+    "a4": "Sie zahlen bei der Buchung eine Anzahlung von 25 % und den Restbetrag von 75 % spätestens zwei Wochen vor der Anreise. Wir akzeptieren Visa und Mastercard."
   }
 }

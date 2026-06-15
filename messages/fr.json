@@ -31,6 +31,7 @@
     "privacy": "Politique de confidentialité",
     "terms": "Conditions générales",
     "accessibility": "Accessibilité",
+    "houserules": "Règlement intérieur",
     "dkCampAlt": "DK-CAMP — Camping au Danemark",
     "visitMorsAlt": "VisitMors — Découvrez Mors",
     "smaaCampingAlt": "Petits Campings — DK-CAMP",
@@ -286,13 +287,22 @@
     "newReservation": "Nouvelle réservation"
   },
   "Meta": {
-    "homeDescription": "Camping Slap Af à Sejerslev sur l'île de Mors — camping familial tranquille au bord du Limfjord. Tentes, camping-cars et chalets. Animaux acceptés. Ouvert jusqu'au 18 octobre 2026.",
-    "aboutDescription": "Rencontrez Angela et Jeroen, les nouveaux propriétaires de Camping Slap Af sur Mors. Lisez l'histoire du camping et notre vision pour des vacances reposantes dans la nature.",
-    "accommodationDescription": "Choisissez votre hébergement à Camping Slap Af — emplacements de camping, places pour camping-car, chalets, terrain et emplacements saisonniers. Installations communes pour tous.",
-    "activitiesDescription": "Vacances actives sur Mors — découvrez Hanklit, Skærbæk Klint, le Musée des Fossiles, le port d'Ejerslev et Nykøbing Mors. Activités sur place et aux alentours.",
-    "galleryDescription": "Photos de Camping Slap Af à Sejerslev sur Mors — découvrez le camping, les équipements, les chalets et les environs.",
-    "contactDescription": "Contactez Camping Slap Af — Kærvang 7, Sejerslev, 7900 Nykøbing Mors. Appelez le +45 91 19 96 74 ou envoyez-nous un message. Ouvert tous les jours en saison.",
-    "pricesDescription": "Liste des tarifs de Camping Slap Af — prix des emplacements, camping-cars, chalets, espace tentes et emplacements à la saison. Tous les prix TTC."
+    "homeTitle": "Camping sur Mors, Danemark – Limfjord",
+    "aboutTitle": "À propos – camping sur Mors",
+    "accommodationTitle": "Hébergements – chalets, tente & camping-car",
+    "activitiesTitle": "Activités & visites sur Mors",
+    "galleryTitle": "Galerie – photos du camping",
+    "contactTitle": "Contact & accès – Mors, Danemark",
+    "bookingTitle": "Réserver vos vacances sur Mors",
+    "pricesTitle": "Tarifs – camping, chalets & camping-car",
+    "homeDescription": "Petit camping nature sur Mors, au bord du Limfjord au Danemark. Tentes, camping-cars et chalets, animaux acceptés. Ouvert jusqu'au 18 octobre 2026.",
+    "aboutDescription": "Rencontrez Angela et Jeroen, les nouveaux propriétaires de Camping Slap Af — un petit camping tranquille sur Mors, au bord du Limfjord au Danemark. Notre histoire.",
+    "accommodationDescription": "Hébergements sur Mors, au Danemark — emplacements, places camping-car, chalets, terrain de tentes et forfaits saison. Animaux acceptés, installations communes.",
+    "activitiesDescription": "Vacances nature sur Mors au Danemark — découvrez Hanklit, Skærbæk Klint, le Musée du Moler et Nykøbing Mors. Activités sur place et aux alentours du Limfjord.",
+    "galleryDescription": "Photos de Camping Slap Af sur Mors, au bord du Limfjord au Danemark — le camping, les chalets, les équipements et la belle nature.",
+    "contactDescription": "Contactez Camping Slap Af sur Mors, au Danemark — Kærvang 7, Sejerslev, 7900 Nykøbing Mors. Tél. +45 91 19 96 74. Ouvert tous les jours en saison.",
+    "pricesDescription": "Tarifs du camping sur Mors au Danemark — emplacements, camping-cars, chalets, espace tentes et forfaits saison. Petits prix, animaux gratuits. Prix TTC.",
+    "bookingDescription": "Réservez vos vacances camping sur Mors au Danemark — tente, camping-car ou chalet en pleine nature. Réservation en ligne simple et rapide."
   },
   "Prices": {
     "title": "Tarifs",
@@ -385,5 +395,16 @@
     "finalTitle": "Prêt à réserver ?",
     "finalBody": "Choisissez vos dates, le type de séjour qui convient et contactez-nous. Cela ne prend que quelques minutes.",
     "finalCta": "Contactez-nous"
+  },
+  "Faq": {
+    "title": "Questions fréquentes",
+    "q1": "Les chiens sont-ils acceptés ?",
+    "a1": "Oui, les chiens sont les bienvenus et gratuits. Ils doivent simplement être tenus en laisse, et vous pouvez emmener jusqu'à 3 chiens par emplacement (davantage sur demande). Le chalet 8 est le seul où les chiens ne sont pas admis.",
+    "q2": "L'électricité est-elle comprise ?",
+    "a2": "L'électricité est une option à €6.70 par nuit. Sur les emplacements à la saison, vous pouvez choisir l'électricité pour une saison complète ou une demi-saison.",
+    "q3": "Quand êtes-vous ouverts ?",
+    "a3": "Nous sommes ouverts du 1er avril au 18 octobre 2026. En dehors de la saison, le camping est fermé.",
+    "q4": "Comment régler mon séjour ?",
+    "a4": "Vous versez un acompte de 25 % à la réservation, puis le solde de 75 % au plus tard deux semaines avant l'arrivée. Nous acceptons Visa et Mastercard."
   }
 }

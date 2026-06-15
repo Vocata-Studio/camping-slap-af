@@ -31,6 +31,7 @@
     "privacy": "Privacy policy",
     "terms": "Terms of service",
     "accessibility": "Accessibility",
+    "houserules": "House Rules",
     "dkCampAlt": "DK-CAMP — Camping in Denmark",
     "visitMorsAlt": "VisitMors — Discover Mors",
     "smaaCampingAlt": "Small Campsites — DK-CAMP",
@@ -42,7 +43,7 @@
     "heroLocation": "Sejerslev, Mors — Denmark",
     "heroCta": "Book now",
     "heroSecondary": "Learn about us",
-    "introTitle": "Welcome to Camping Slap Af",
+    "introTitle": "Welcome to Camping Slap Af on Mors",
     "introText": "Nestled in the quiet village of Sejerslev on the island of Mors, our campsite offers a genuine escape into Danish nature. Whether you come for a weekend or a full holiday, you'll find space to breathe, explore, and truly relax.",
     "featureTitle": "What we offer",
     "feature1Title": "Accommodation for everyone",
@@ -289,13 +290,22 @@
     "newReservation": "New reservation"
   },
   "Meta": {
-    "homeDescription": "Camping Slap Af in Sejerslev on the island of Mors — peaceful family camping by the Limfjord. Tents, motorhomes and cottages. Dog-friendly. Open until 18 October 2026.",
-    "aboutDescription": "Meet Angela and Jeroen, the new owners of Camping Slap Af on Mors. Read the story behind the campsite and our vision for a relaxed holiday in nature.",
-    "accommodationDescription": "Choose your stay at Camping Slap Af — campsites, motorhome pitches, cottages, camping field and seasonal pitches. Shared facilities included for all guests.",
-    "activitiesDescription": "Active holidays on Mors — experience Hanklit, Skaerbaek Cliff, Fossil and Mill Museum, Ejerslev Harbour and Nykøbing Mors. Activities on-site and nearby.",
-    "galleryDescription": "Photos from Camping Slap Af in Sejerslev on Mors — explore the campsite, facilities, cottages and surroundings.",
-    "contactDescription": "Contact Camping Slap Af — Kærvang 7, Sejerslev, 7900 Nykøbing Mors. Call +45 91 19 96 74 or send us a message. Open daily during the season.",
-    "pricesDescription": "Price list for Camping Slap Af — prices for pitches, motorhomes, cabins, tent field and seasonal pitches. All prices incl. VAT."
+    "homeTitle": "Campsite on Mors, Denmark – Limfjord",
+    "aboutTitle": "About us – campsite on Mors",
+    "accommodationTitle": "Accommodation – cottages, tent & camper",
+    "activitiesTitle": "Things to do on Mors, Denmark",
+    "galleryTitle": "Gallery – photos of the campsite",
+    "contactTitle": "Contact & directions – Mors, Denmark",
+    "bookingTitle": "Book your camping holiday on Mors",
+    "pricesTitle": "Prices – camping, cottages & motorhome",
+    "homeDescription": "Small, dog-friendly campsite on Mors by the Limfjord in Denmark. Tents, motorhomes and cottages in peaceful nature. Open until 18 October 2026.",
+    "aboutDescription": "Meet Angela and Jeroen, the new owners of Camping Slap Af — a small, quiet campsite on Mors by the Limfjord in Denmark. Read our story and vision.",
+    "accommodationDescription": "Accommodation on Mors by the Limfjord, Denmark — pitches, motorhome pitches, cottages, tent field and seasonal pitches. Dog-friendly, with shared facilities.",
+    "activitiesDescription": "Active holidays on Mors by the Limfjord, Denmark — visit Hanklit, Skaerbaek Cliff, the Moler Museum and Nykøbing Mors. Activities on-site and nearby.",
+    "galleryDescription": "Photos from Camping Slap Af on Mors by the Limfjord, Denmark — see the campsite, cottages, facilities and the beautiful nature.",
+    "contactDescription": "Contact Camping Slap Af on Mors, Denmark — Kærvang 7, Sejerslev, 7900 Nykøbing Mors. Call +45 91 19 96 74. Open daily during the camping season.",
+    "pricesDescription": "Prices for camping on Mors by the Limfjord, Denmark — pitches, motorhomes, cottages, tent field and seasonal pitches. Low rates, dogs free.",
+    "bookingDescription": "Book your camping holiday on Mors by the Limfjord in Denmark online — tent, motorhome or cottage in peaceful nature. Quick and easy reservation."
   },
   "Prices": {
     "title": "Prices",
@@ -388,5 +398,16 @@
     "finalTitle": "Ready to book?",
     "finalBody": "Pick your dates, choose the right stay type and get in touch. It only takes a few minutes.",
     "finalCta": "Contact us"
+  },
+  "Faq": {
+    "title": "Frequently asked questions",
+    "q1": "Are dogs allowed?",
+    "a1": "Yes, dogs are welcome and free of charge. They simply need to be kept on a leash, and you may bring up to 3 dogs per pitch (more by arrangement). Cabin 8 is the only cabin where dogs are not allowed.",
+    "q2": "Is electricity included?",
+    "a2": "Electricity is an optional add-on at €6.70 per night. On seasonal pitches you can instead choose electricity for a full or half season.",
+    "q3": "When are you open?",
+    "a3": "We are open from 1 April to 18 October 2026. The campsite is closed outside the season.",
+    "q4": "How do I pay for my stay?",
+    "a4": "You pay a 25% deposit when you book, and the remaining 75% no later than two weeks before arrival. We accept Visa and Mastercard."
   }
 }

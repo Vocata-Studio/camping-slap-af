@@ -31,6 +31,7 @@
     "privacy": "Polityka prywatności",
     "terms": "Regulamin",
     "accessibility": "Dostępność",
+    "houserules": "Regulamin kempingu",
     "dkCampAlt": "DK-CAMP — Camping w Danii",
     "visitMorsAlt": "VisitMors — Odkryj Mors",
     "smaaCampingAlt": "Małe Kempingi — DK-CAMP",
@@ -286,13 +287,22 @@
     "newReservation": "Nowa rezerwacja"
   },
   "Meta": {
-    "homeDescription": "Camping Slap Af w Sejerslev na wyspie Mors — spokojny kemping rodzinny nad Limfjorden. Namioty, kampery i domki. Zwierzęta mile widziane. Otwarty do 18 października 2026.",
-    "aboutDescription": "Poznaj Angelę i Jeroena, nowych właścicieli Camping Slap Af na wyspie Mors. Przeczytaj historię kempingu i naszą wizję wypoczynku w naturze.",
-    "accommodationDescription": "Wybierz nocleg w Camping Slap Af — miejsca namiotowe, miejsca dla kamperów, domki, pole kempingowe i miejsca sezonowe. Wspólne udogodnienia dla wszystkich gości.",
-    "activitiesDescription": "Aktywne wakacje na Mors — odkryj Hanklit, Skærbæk Klint, Muzeum Skamieniałości, port Ejerslev i Nykøbing Mors. Atrakcje na miejscu i w okolicy.",
-    "galleryDescription": "Zdjęcia z Camping Slap Af w Sejerslev na wyspie Mors — obejrzyj kemping, udogodnienia, domki i okolice.",
-    "contactDescription": "Skontaktuj się z Camping Slap Af — Kærvang 7, Sejerslev, 7900 Nykøbing Mors. Zadzwoń +45 91 19 96 74 lub wyślij wiadomość. Otwarte codziennie w sezonie.",
-    "pricesDescription": "Cennik Camping Slap Af — ceny stanowisk, kamperów, domków, pola namiotowego i miejsc sezonowych. Wszystkie ceny z VAT."
+    "homeTitle": "Kemping na Mors, Dania – Limfjord",
+    "aboutTitle": "O nas – kemping na wyspie Mors",
+    "accommodationTitle": "Noclegi – domki, namiot i kamper",
+    "activitiesTitle": "Atrakcje i wycieczki na Mors",
+    "galleryTitle": "Galeria – zdjęcia z kempingu",
+    "contactTitle": "Kontakt i dojazd – Mors, Dania",
+    "bookingTitle": "Zarezerwuj wakacje na Mors",
+    "pricesTitle": "Cennik – kemping, domki i kamper",
+    "homeDescription": "Mały, przyjazny psom kemping na wyspie Mors nad Limfjorden w Danii. Namioty, kampery i domki w spokojnej naturze. Otwarty do 18 października 2026.",
+    "aboutDescription": "Poznaj Angelę i Jeroena, nowych właścicieli Camping Slap Af — małego, spokojnego kempingu na Mors nad Limfjorden w Danii. Przeczytaj naszą historię.",
+    "accommodationDescription": "Noclegi na Mors w Danii — miejsca namiotowe, miejsca dla kamperów, domki, pole kempingowe i miejsca sezonowe. Przyjazne psom, wspólne udogodnienia.",
+    "activitiesDescription": "Aktywne wakacje na Mors w Danii — odkryj Hanklit, Skærbæk Klint, Muzeum Moleru i Nykøbing Mors. Atrakcje na miejscu i w okolicy nad Limfjorden.",
+    "galleryDescription": "Zdjęcia z Camping Slap Af na Mors nad Limfjorden w Danii — kemping, domki, udogodnienia i piękna przyroda.",
+    "contactDescription": "Skontaktuj się z Camping Slap Af na Mors w Danii — Kærvang 7, Sejerslev, 7900 Nykøbing Mors. Zadzwoń +45 91 19 96 74. Otwarte codziennie w sezonie.",
+    "pricesDescription": "Ceny kempingu na Mors w Danii — stanowiska, kampery, domki, pole namiotowe i miejsca sezonowe. Niskie ceny, psy za darmo. Ceny z VAT.",
+    "bookingDescription": "Zarezerwuj wakacje na kempingu na Mors nad Limfjorden w Danii online — namiot, kamper lub domek w spokojnej naturze. Prosta rezerwacja w kilka minut."
   },
   "Prices": {
     "title": "Cennik",
@@ -385,5 +395,16 @@
     "finalTitle": "Gotowy do rezerwacji?",
     "finalBody": "Wybierz daty, odpowiedni typ pobytu i skontaktuj się z nami. To zajmuje tylko kilka minut.",
     "finalCta": "Skontaktuj się"
+  },
+  "Faq": {
+    "title": "Często zadawane pytania",
+    "q1": "Czy psy są dozwolone?",
+    "a1": "Tak, psy są mile widziane i bezpłatne. Muszą być jedynie prowadzone na smyczy, a na jednym stanowisku dozwolone są maksymalnie 3 psy (więcej po uzgodnieniu). Domek 8 to jedyny domek, w którym psy nie są dozwolone.",
+    "q2": "Czy prąd jest wliczony w cenę?",
+    "a2": "Prąd jest opcją dodatkową i kosztuje €6.70 za noc. Na stanowiskach sezonowych możesz zamiast tego wybrać prąd na cały lub pół sezonu.",
+    "q3": "Kiedy jesteście otwarci?",
+    "a3": "Jesteśmy otwarci od 1 kwietnia do 18 października 2026. Poza sezonem teren jest zamknięty.",
+    "q4": "Jak zapłacić za pobyt?",
+    "a4": "Wpłacasz zaliczkę w wysokości 25 % przy rezerwacji, a pozostałe 75 % najpóźniej dwa tygodnie przed przyjazdem. Akceptujemy Visa i Mastercard."
   }
 }

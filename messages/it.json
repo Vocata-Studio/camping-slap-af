@@ -31,6 +31,7 @@
     "privacy": "Informativa sulla privacy",
     "terms": "Termini e condizioni",
     "accessibility": "Accessibilità",
+    "houserules": "Regolamento interno",
     "dkCampAlt": "DK-CAMP — Camping in Danimarca",
     "visitMorsAlt": "VisitMors — Scopri Mors",
     "smaaCampingAlt": "Piccoli Campeggi — DK-CAMP",
@@ -286,13 +287,22 @@
     "newReservation": "Nuova prenotazione"
   },
   "Meta": {
-    "homeDescription": "Camping Slap Af a Sejerslev sull'isola di Mors — campeggio familiare tranquillo vicino al Limfjord. Tende, camper e bungalow. Animali ammessi. Aperto fino al 18 ottobre 2026.",
-    "aboutDescription": "Conoscete Angela e Jeroen, i nuovi proprietari del Camping Slap Af su Mors. Leggete la storia del campeggio e la nostra visione per una vacanza rilassante nella natura.",
-    "accommodationDescription": "Scegliete il vostro soggiorno al Camping Slap Af — piazzole, piazzole per camper, bungalow, campo e piazzole stagionali. Strutture comuni per tutti gli ospiti.",
-    "activitiesDescription": "Vacanze attive a Mors — scoprite Hanklit, Skærbæk Klint, il Museo dei Fossili, il porto di Ejerslev e Nykøbing Mors. Attività in loco e nei dintorni.",
-    "galleryDescription": "Foto del Camping Slap Af a Sejerslev su Mors — scoprite il campeggio, le strutture, i bungalow e i dintorni.",
-    "contactDescription": "Contattate Camping Slap Af — Kærvang 7, Sejerslev, 7900 Nykøbing Mors. Chiamate il +45 91 19 96 74 o inviateci un messaggio. Aperti ogni giorno durante la stagione.",
-    "pricesDescription": "Listino prezzi di Camping Slap Af — prezzi per piazzole, camper, casette, area tende e piazzole stagionali. Tutti i prezzi IVA inclusa."
+    "homeTitle": "Campeggio a Mors, Danimarca – Limfjord",
+    "aboutTitle": "Chi siamo – campeggio a Mors",
+    "accommodationTitle": "Alloggi – bungalow, tenda & camper",
+    "activitiesTitle": "Attività ed escursioni a Mors",
+    "galleryTitle": "Galleria – foto del campeggio",
+    "contactTitle": "Contatti e come arrivare – Mors",
+    "bookingTitle": "Prenota la vacanza in campeggio a Mors",
+    "pricesTitle": "Prezzi – campeggio, bungalow & camper",
+    "homeDescription": "Piccolo campeggio nella natura a Mors, sul Limfjord in Danimarca. Tende, camper e bungalow, animali ammessi. Aperto fino al 18 ottobre 2026.",
+    "aboutDescription": "Conoscete Angela e Jeroen, i nuovi proprietari del Camping Slap Af — un piccolo campeggio tranquillo a Mors, sul Limfjord in Danimarca. La nostra storia.",
+    "accommodationDescription": "Alloggi a Mors, in Danimarca — piazzole, piazzole per camper, bungalow, campo tende e piazzole stagionali. Animali ammessi, strutture comuni per tutti.",
+    "activitiesDescription": "Vacanze nella natura a Mors, Danimarca — scoprite Hanklit, Skærbæk Klint, il Museo del Moler e Nykøbing Mors. Attività in loco e nei dintorni del Limfjord.",
+    "galleryDescription": "Foto del Camping Slap Af a Mors, sul Limfjord in Danimarca — il campeggio, i bungalow, le strutture e la splendida natura.",
+    "contactDescription": "Contattate Camping Slap Af a Mors, Danimarca — Kærvang 7, Sejerslev, 7900 Nykøbing Mors. Tel. +45 91 19 96 74. Aperto ogni giorno in stagione.",
+    "pricesDescription": "Prezzi del campeggio a Mors, Danimarca — piazzole, camper, bungalow, area tende e piazzole stagionali. Prezzi bassi, cani gratis. IVA inclusa.",
+    "bookingDescription": "Prenota la tua vacanza in campeggio a Mors, sul Limfjord in Danimarca — tenda, camper o bungalow nella natura. Prenotazione online in pochi minuti."
   },
   "Prices": {
     "title": "Prezzi",
@@ -385,5 +395,16 @@
     "finalTitle": "Pronto a prenotare?",
     "finalBody": "Scegli le date, il tipo di soggiorno giusto e contattaci. Bastano pochi minuti.",
     "finalCta": "Contattaci"
+  },
+  "Faq": {
+    "title": "Domande frequenti",
+    "q1": "Sono ammessi i cani?",
+    "a1": "Sì, i cani sono i benvenuti e gratuiti. Devono solo essere tenuti al guinzaglio ed è consentito un massimo di 3 cani per piazzola (di più su richiesta). La casetta 8 è l'unica in cui i cani non sono ammessi.",
+    "q2": "L'elettricità è inclusa?",
+    "a2": "L'elettricità è un'opzione aggiuntiva a €6.70 a notte. Nelle piazzole stagionali puoi invece scegliere l'elettricità per una stagione intera o mezza stagione.",
+    "q3": "Quando siete aperti?",
+    "a3": "Siamo aperti dal 1° aprile al 18 ottobre 2026. Fuori stagione il campeggio è chiuso.",
+    "q4": "Come pago il mio soggiorno?",
+    "a4": "Versi un acconto del 25 % al momento della prenotazione e il restante 75 % entro due settimane prima dell'arrivo. Accettiamo Visa e Mastercard."
   }
 }

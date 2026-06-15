@@ -31,6 +31,7 @@
     "privacy": "Privacybeleid",
     "terms": "Algemene voorwaarden",
     "accessibility": "Toegankelijkheid",
+    "houserules": "Huisregels",
     "dkCampAlt": "DK-CAMP — Camping in Denemarken",
     "visitMorsAlt": "VisitMors — Ontdek Mors",
     "smaaCampingAlt": "Kleine Campings — DK-CAMP",
@@ -42,7 +43,7 @@
     "heroLocation": "Sejerslev, Mors — Denemarken",
     "heroCta": "Boek nu",
     "heroSecondary": "Lees meer over ons",
-    "introTitle": "Welkom bij Camping Slap Af",
+    "introTitle": "Welkom bij Camping Slap Af op Mors",
     "introText": "Gelegen in het rustige dorpje Sejerslev op het eiland Mors biedt onze camping een echte ontsnapping in de Deense natuur. Of u nu komt voor een weekend of een hele vakantie, u vindt hier de ruimte om te ademen, ontdekken en echt te ontspannen.",
     "featureTitle": "Wat wij bieden",
     "feature1Title": "Accommodatie voor iedereen",
@@ -289,13 +290,22 @@
     "newReservation": "Nieuwe reservering"
   },
   "Meta": {
-    "homeDescription": "Camping Slap Af in Sejerslev op het eiland Mors — rustig kamperen aan de Limfjord. Tenten, campers en huisjes. Hondvriendelijk. Open tot 18 oktober 2026.",
-    "aboutDescription": "Maak kennis met Angela en Jeroen, de nieuwe eigenaren van Camping Slap Af op Mors. Lees het verhaal achter de camping en onze visie voor een ontspannen vakantie.",
-    "accommodationDescription": "Kies uw verblijf op Camping Slap Af — kampeerplaatsen, camperplaatsen, huisjes, kampeerterrein en seizoensplaatsen. Gemeenschappelijke faciliteiten voor alle gasten.",
-    "activitiesDescription": "Actieve vakantie op Mors — bezoek Hanklit, Skærbæk Klint, Fossiel- en Molenmuseum, Ejerslev Haven en Nykøbing Mors. Activiteiten op de camping en in de omgeving.",
-    "galleryDescription": "Foto's van Camping Slap Af in Sejerslev op Mors — bekijk de camping, faciliteiten, huisjes en de omgeving.",
-    "contactDescription": "Contact Camping Slap Af — Kærvang 7, Sejerslev, 7900 Nykøbing Mors. Bel +45 91 19 96 74 of stuur ons een bericht. Dagelijks geopend tijdens het seizoen.",
-    "pricesDescription": "Prijslijst voor Camping Slap Af — prijzen voor staanplaatsen, campers, hutten, tentenveld en seizoenplaatsen. Alle prijzen incl. btw."
+    "homeTitle": "Camping op Mors, Denemarken – Limfjord",
+    "aboutTitle": "Over ons – camping op Mors",
+    "accommodationTitle": "Accommodatie – huisjes, tent & camper",
+    "activitiesTitle": "Activiteiten & uitjes op Mors",
+    "galleryTitle": "Fotogalerij van de camping",
+    "contactTitle": "Contact & route – Mors, Denemarken",
+    "bookingTitle": "Kampeervakantie op Mors boeken",
+    "pricesTitle": "Prijzen – camping, huisjes & camper",
+    "homeDescription": "Kleine, hondvriendelijke camping op Mors aan de Limfjord in Denemarken. Tenten, campers en huisjes in rustige natuur. Open tot 18 oktober 2026.",
+    "aboutDescription": "Maak kennis met Angela en Jeroen, de nieuwe eigenaren van Camping Slap Af — een kleine, rustige camping op Mors aan de Limfjord in Denemarken. Ons verhaal en visie.",
+    "accommodationDescription": "Verblijf op Mors aan de Limfjord (Denemarken) — kampeer- en camperplaatsen, huisjes, kampeerveld en seizoensplaatsen. Hondvriendelijk, met gedeelde faciliteiten.",
+    "activitiesDescription": "Actieve natuurvakantie op Mors aan de Limfjord, Denemarken — bezoek Hanklit, Skærbæk Klint, het Molenmuseum en Nykøbing Mors. Activiteiten op en rond de camping.",
+    "galleryDescription": "Foto's van Camping Slap Af op Mors aan de Limfjord, Denemarken — bekijk de camping, huisjes, faciliteiten en de prachtige natuur.",
+    "contactDescription": "Contact Camping Slap Af op Mors, Denemarken — Kærvang 7, Sejerslev, 7900 Nykøbing Mors. Bel +45 91 19 96 74. Dagelijks geopend in het kampeerseizoen.",
+    "pricesDescription": "Prijzen voor kamperen op Mors aan de Limfjord, Denemarken — staanplaatsen, campers, huisjes, kampeerveld en seizoensplaatsen. Lage prijzen, honden gratis.",
+    "bookingDescription": "Boek je kampeervakantie op Mors aan de Limfjord in Denemarken online — tent, camper of huisje in rustige natuur. Eenvoudig reserveren in een paar minuten."
   },
   "Prices": {
     "title": "Prijzen",
@@ -388,5 +398,16 @@
     "finalTitle": "Klaar om te boeken?",
     "finalBody": "Kies uw data, het juiste verblijfstype en neem contact op. Het duurt maar een paar minuten.",
     "finalCta": "Neem contact op"
+  },
+  "Faq": {
+    "title": "Veelgestelde vragen",
+    "q1": "Zijn honden toegestaan?",
+    "a1": "Ja, honden zijn welkom en gratis. Ze moeten alleen aangelijnd zijn, en er zijn maximaal 3 honden per plaats toegestaan (meer in overleg). Hut 8 is de enige hut waar honden niet zijn toegestaan.",
+    "q2": "Is elektriciteit inbegrepen?",
+    "a2": "Elektriciteit is een optie en kost €6.70 per nacht. Op seizoensplaatsen kunt u in plaats daarvan kiezen voor elektriciteit voor een heel of half seizoen.",
+    "q3": "Wanneer zijn jullie open?",
+    "a3": "We zijn open van 1 april tot 18 oktober 2026. Buiten het seizoen is de camping gesloten.",
+    "q4": "Hoe betaal ik voor mijn verblijf?",
+    "a4": "U betaalt een aanbetaling van 25 % bij het boeken en het resterende bedrag van 75 % uiterlijk twee weken voor aankomst. Wij accepteren Visa en Mastercard."
   }
 }

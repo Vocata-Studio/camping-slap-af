@@ -31,6 +31,7 @@
     "privacy": "Personvernerklæring",
     "terms": "Salgsvilkår",
     "accessibility": "Tilgjengelighet",
+    "houserules": "Ordensregler",
     "dkCampAlt": "DK-CAMP — Camping i Danmark",
     "visitMorsAlt": "VisitMors — Oppdag Mors",
     "smaaCampingAlt": "Små Campingplasser — DK-CAMP",
@@ -286,13 +287,22 @@
     "newReservation": "Ny reservasjon"
   },
   "Meta": {
-    "homeDescription": "Camping Slap Af i Sejerslev på øya Mors — rolig familieCamping ved Limfjorden. Telt, bobiler og hytter. Hundevennlig. Åpent til 18. oktober 2026.",
-    "aboutDescription": "Møt Angela og Jeroen, de nye eierne av Camping Slap Af på Mors. Les historien bak campingplassen og vår visjon for et avslappet ferieopphold i naturen.",
-    "accommodationDescription": "Velg ditt opphold på Camping Slap Af — campingplasser, bobilplasser, hytter, campingfelt og sesongplasser. Felles fasiliteter inkludert for alle gjester.",
-    "activitiesDescription": "Aktiv ferie på Mors — opplev Hanklit, Skærbæk Klint, Fossil- og Møllmuseet, Ejerslev havn og Nykøbing Mors. Aktiviteter på stedet og i nærområdet.",
-    "galleryDescription": "Bilder fra Camping Slap Af i Sejerslev på Mors — se campingplassen, fasilitetene, hyttene og omgivelsene.",
-    "contactDescription": "Kontakt Camping Slap Af — Kærvang 7, Sejerslev, 7900 Nykøbing Mors. Ring +45 91 19 96 74 eller send oss en melding. Åpent daglig i sesongen.",
-    "pricesDescription": "Prisliste for Camping Slap Af — priser for campingplasser, bobiler, hytter, teltslette og sesongplasser. Alle priser inkl. mva."
+    "homeTitle": "Camping på Mors, Danmark – Limfjorden",
+    "aboutTitle": "Om oss – camping på Mors",
+    "accommodationTitle": "Overnatting – hytter, telt & bobil",
+    "activitiesTitle": "Aktiviteter & utflukter på Mors",
+    "galleryTitle": "Galleri – bilder fra campingplassen",
+    "contactTitle": "Kontakt & finn fram – Mors",
+    "bookingTitle": "Bestill campingferien på Mors",
+    "pricesTitle": "Priser – camping, hytter & bobil",
+    "homeDescription": "Liten, hundevennlig campingplass på Mors ved Limfjorden i Danmark. Telt, bobiler og hytter i rolige naturomgivelser. Åpent til 18. oktober 2026.",
+    "aboutDescription": "Møt Angela og Jeroen, de nye eierne av Camping Slap Af — en liten, rolig campingplass på Mors ved Limfjorden i Danmark. Les historien vår.",
+    "accommodationDescription": "Overnatting på Mors ved Limfjorden, Danmark — campingplasser, bobilplasser, hytter, campingfelt og sesongplasser. Hundevennlig, med felles fasiliteter.",
+    "activitiesDescription": "Aktiv ferie i naturen på Mors, Danmark — opplev Hanklit, Skærbæk Klint, Molermuseet og Nykøbing Mors. Aktiviteter på stedet og i nærområdet.",
+    "galleryDescription": "Bilder fra Camping Slap Af på Mors ved Limfjorden, Danmark — campingplassen, hyttene, fasilitetene og den vakre naturen.",
+    "contactDescription": "Kontakt Camping Slap Af på Mors, Danmark — Kærvang 7, Sejerslev, 7900 Nykøbing Mors. Ring +45 91 19 96 74. Åpent daglig i campingsesongen.",
+    "pricesDescription": "Priser for camping på Mors, Danmark — campingplasser, bobiler, hytter, teltslette og sesongplasser. Lave priser, hunder gratis. Inkl. mva.",
+    "bookingDescription": "Bestill campingferien på Mors ved Limfjorden i Danmark online — telt, bobil eller hytte i rolige naturomgivelser. Enkel bestilling på få minutter."
   },
   "Prices": {
     "title": "Priser",
@@ -385,5 +395,16 @@
     "finalTitle": "Klar til å bestille?",
     "finalBody": "Velg datoene dine, riktig oppholdstype og ta kontakt. Det tar bare et par minutter.",
     "finalCta": "Kontakt oss"
+  },
+  "Faq": {
+    "title": "Ofte stilte spørsmål",
+    "q1": "Er hunder tillatt?",
+    "a1": "Ja, hunder er velkomne og gratis. De må bare holdes i bånd, og det er tillatt med opptil 3 hunder per plass (flere etter avtale). Hytte 8 er den eneste hytta der hunder ikke er tillatt.",
+    "q2": "Er strøm inkludert i prisen?",
+    "a2": "Strøm er et tillegg og koster €6.70 per natt. På sesongplasser kan du i stedet velge strøm for hel eller halv sesong.",
+    "q3": "Når har dere åpent?",
+    "a3": "Vi har åpent fra 1. april til 18. oktober 2026. Utenfor sesongen er plassen stengt.",
+    "q4": "Hvordan betaler jeg for oppholdet?",
+    "a4": "Du betaler et depositum på 25 % ved booking og resten på 75 % senest to uker før ankomst. Vi tar imot Visa og Mastercard."
   }
 }

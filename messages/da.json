@@ -31,6 +31,7 @@
     "privacy": "Privatlivspolitik",
     "terms": "Handelsbetingelser",
     "accessibility": "Tilgængelighed",
+    "houserules": "Husregler",
     "dkCampAlt": "DK-CAMP — Camping i Danmark",
     "visitMorsAlt": "VisitMors — Oplev Mors",
     "smaaCampingAlt": "Små Campingpladser — DK-CAMP",
@@ -42,7 +43,7 @@
     "heroLocation": "Sejerslev, Mors — Danmark",
     "heroCta": "Book nu",
     "heroSecondary": "Læs om os",
-    "introTitle": "Velkommen til Camping Slap Af",
+    "introTitle": "Velkommen til Camping Slap Af på Mors",
     "introText": "Midt i den stille landsby Sejerslev på øen Mors ligger vores campingplads — et sted, hvor du virkelig kan trække vejret, udforske og slappe af. Uanset om du kommer for en weekend eller en hel ferie, finder du plads til at være dig selv.",
     "featureTitle": "Det tilbyder vi",
     "feature1Title": "Overnatning for alle",
@@ -289,13 +290,22 @@
     "newReservation": "Ny reservation"
   },
   "Meta": {
-    "homeDescription": "Camping Slap Af i Sejerslev på Mors — ro, natur og plads til alle. Telte, autocampere og hytter. Hundevenlig. Åben til 18. oktober 2026.",
-    "aboutDescription": "Mød Angela og Jeroen, de nye ejere af Camping Slap Af på Mors. Læs historien bag pladsen og vores vision om en afslappet ferie i naturen.",
-    "accommodationDescription": "Vælg din overnatning på Camping Slap Af — campingpladser, autocamperpladser, hytter, campingfelt og sæsonpladser. Fælles faciliteter for alle gæster.",
-    "activitiesDescription": "Aktiv ferie på Mors — oplev Hanklit, Skærbæk Klint, Fossil- og Molermuseum, Ejerslev Havn og Nykøbing Mors. Aktiviteter på pladsen og i nærområdet.",
-    "galleryDescription": "Billeder fra Camping Slap Af i Sejerslev på Mors — se pladsen, faciliteterne, hytterne og omgivelserne.",
-    "contactDescription": "Kontakt Camping Slap Af — Kærvang 7, Sejerslev, 7900 Nykøbing Mors. Ring på +45 91 19 96 74 eller skriv til os. Åben dagligt i sæsonen.",
-    "pricesDescription": "Prisliste for Camping Slap Af — priser for campingpladser, autocampere, hytter, campingfelt og sæsonpladser. Alle priser inkl. moms."
+    "homeTitle": "Camping på Mors ved Limfjorden",
+    "aboutTitle": "Om os – campingplads på Mors",
+    "accommodationTitle": "Overnatning – hytter, telt og autocamper",
+    "activitiesTitle": "Aktiviteter og oplevelser på Mors",
+    "galleryTitle": "Galleri – billeder fra campingpladsen",
+    "contactTitle": "Kontakt og find vej til Sejerslev",
+    "bookingTitle": "Book din campingferie på Mors",
+    "pricesTitle": "Priser – camping, hytter og autocamper",
+    "homeDescription": "Hyggelig, hundevenlig camping på Mors ved Limfjorden i Nordjylland. Telt, autocamper og hytter i rolige naturomgivelser. Åben til 18. oktober 2026.",
+    "aboutDescription": "Mød Angela og Jeroen, de nye ejere af Camping Slap Af — en lille, rolig campingplads på Mors ved Limfjorden. Læs historien og vores vision om en afslappet naturferie.",
+    "accommodationDescription": "Overnatning på Mors ved Limfjorden — campingpladser, autocamperpladser, hytter, campingfelt og sæsonpladser. Hundevenlig plads med fælles faciliteter for alle gæster.",
+    "activitiesDescription": "Aktiv naturferie på Mors ved Limfjorden — oplev Hanklit, Skærbæk Klint, Molermuseet, Ejerslev Havn og Nykøbing Mors. Aktiviteter på pladsen og i nærområdet.",
+    "galleryDescription": "Billeder fra Camping Slap Af på Mors ved Limfjorden — se campingpladsen, hytterne, faciliteterne og den smukke natur i Nordjylland.",
+    "contactDescription": "Kontakt Camping Slap Af på Mors — Kærvang 7, Sejerslev, 7900 Nykøbing Mors. Ring på +45 91 19 96 74 eller skriv til os. Åben dagligt i campingsæsonen.",
+    "pricesDescription": "Priser for camping på Mors ved Limfjorden — campingpladser, autocampere, hytter, campingfelt og sæsonpladser. Lave priser, alt inkl. moms. Hunde gratis.",
+    "bookingDescription": "Book dit ophold på Camping Slap Af på Mors online — telt, autocamper eller hytte ved Limfjorden i rolige naturomgivelser. Nem reservation på få minutter."
   },
   "Prices": {
     "title": "Priser",
@@ -388,5 +398,16 @@
     "finalTitle": "Klar til at booke?",
     "finalBody": "Vælg dine datoer, find den rette opholdstype og kontakt os. Det tager kun et par minutter.",
     "finalCta": "Kontakt os"
+  },
+  "Faq": {
+    "title": "Ofte stillede spørgsmål",
+    "q1": "Må vi tage hunden med?",
+    "a1": "Ja, hunde er velkomne og gratis. De skal blot føres i snor, og der må være op til 3 hunde pr. plads (flere efter aftale). Hytte 8 er den eneste hytte, hvor hunde ikke er tilladt.",
+    "q2": "Er el inkluderet i prisen?",
+    "a2": "El er et tilvalg og koster 50 kr. pr. nat. På sæsonpladser kan du i stedet vælge el for hele eller halve sæsoner.",
+    "q3": "Hvornår har I åbent?",
+    "a3": "Vi har åbent fra 1. april til 18. oktober 2026. Uden for sæsonen er pladsen lukket.",
+    "q4": "Hvordan betaler jeg for mit ophold?",
+    "a4": "Du betaler et depositum på 25 % ved booking og restbeløbet på 75 % senest 2 uger før ankomst. Vi modtager Visa og Mastercard."
   }
 }

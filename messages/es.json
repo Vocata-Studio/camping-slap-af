@@ -31,6 +31,7 @@
     "privacy": "Política de privacidad",
     "terms": "Términos y condiciones",
     "accessibility": "Accesibilidad",
+    "houserules": "Normas de convivencia",
     "dkCampAlt": "DK-CAMP — Camping en Dinamarca",
     "visitMorsAlt": "VisitMors — Descubre Mors",
     "smaaCampingAlt": "Pequeños Campings — DK-CAMP",
@@ -286,13 +287,22 @@
     "newReservation": "Nueva reserva"
   },
   "Meta": {
-    "homeDescription": "Camping Slap Af en Sejerslev, isla de Mors — camping familiar tranquilo junto al Limfjord. Tiendas, autocaravanas y cabañas. Admite mascotas. Abierto hasta el 18 de octubre de 2026.",
-    "aboutDescription": "Conoce a Angela y Jeroen, los nuevos propietarios de Camping Slap Af en Mors. Lee la historia del camping y nuestra visión para unas vacaciones relajantes en la naturaleza.",
-    "accommodationDescription": "Elige tu alojamiento en Camping Slap Af — parcelas de acampada, plazas para autocaravanas, cabañas, campo de camping y parcelas de temporada. Instalaciones comunes para todos.",
-    "activitiesDescription": "Vacaciones activas en Mors — descubre Hanklit, Skærbæk Klint, el Museo de Fósiles, el puerto de Ejerslev y Nykøbing Mors. Actividades en el camping y en los alrededores.",
-    "galleryDescription": "Fotos de Camping Slap Af en Sejerslev, isla de Mors — explora el camping, las instalaciones, las cabañas y los alrededores.",
-    "contactDescription": "Contacta con Camping Slap Af — Kærvang 7, Sejerslev, 7900 Nykøbing Mors. Llama al +45 91 19 96 74 o envíanos un mensaje. Abierto a diario durante la temporada.",
-    "pricesDescription": "Lista de precios de Camping Slap Af — precios de parcelas, autocaravanas, cabañas, zona de tiendas y parcelas de temporada. Todos los precios con IVA."
+    "homeTitle": "Camping en Mors, Dinamarca – Limfjord",
+    "aboutTitle": "Sobre nosotros – camping en Mors",
+    "accommodationTitle": "Alojamiento – cabañas, tienda y autocaravana",
+    "activitiesTitle": "Actividades y visitas en Mors",
+    "galleryTitle": "Galería – fotos del camping",
+    "contactTitle": "Contacto y cómo llegar – Mors",
+    "bookingTitle": "Reserva tus vacaciones en Mors",
+    "pricesTitle": "Precios – camping, cabañas y autocaravana",
+    "homeDescription": "Pequeño camping natural en Mors, junto al Limfjord en Dinamarca. Tiendas, autocaravanas y cabañas, admite mascotas. Abierto hasta el 18 de octubre de 2026.",
+    "aboutDescription": "Conoce a Angela y Jeroen, los nuevos propietarios de Camping Slap Af — un pequeño camping tranquilo en Mors, junto al Limfjord en Dinamarca. Nuestra historia.",
+    "accommodationDescription": "Alojamiento en Mors, Dinamarca — parcelas, plazas para autocaravanas, cabañas, zona de tiendas y parcelas de temporada. Admite mascotas, instalaciones comunes.",
+    "activitiesDescription": "Vacaciones activas en Mors, Dinamarca — descubre Hanklit, Skærbæk Klint, el Museo del Moler y Nykøbing Mors. Actividades en el camping y los alrededores.",
+    "galleryDescription": "Fotos de Camping Slap Af en Mors, junto al Limfjord en Dinamarca — el camping, las cabañas, las instalaciones y la hermosa naturaleza.",
+    "contactDescription": "Contacta con Camping Slap Af en Mors, Dinamarca — Kærvang 7, Sejerslev, 7900 Nykøbing Mors. Tel. +45 91 19 96 74. Abierto a diario en temporada.",
+    "pricesDescription": "Precios del camping en Mors, Dinamarca — parcelas, autocaravanas, cabañas, zona de tiendas y temporada. Precios bajos, perros gratis, IVA incluido.",
+    "bookingDescription": "Reserva tus vacaciones de camping en Mors, junto al Limfjord en Dinamarca — tienda, autocaravana o cabaña en plena naturaleza. Reserva online en minutos."
   },
   "Prices": {
     "title": "Precios",
@@ -385,5 +395,16 @@
     "finalTitle": "¿Listo para reservar?",
     "finalBody": "Elija sus fechas, el tipo de estancia adecuado y póngase en contacto. Solo lleva unos minutos.",
     "finalCta": "Contáctenos"
+  },
+  "Faq": {
+    "title": "Preguntas frecuentes",
+    "q1": "¿Se admiten perros?",
+    "a1": "Sí, los perros son bienvenidos y gratuitos. Solo deben ir atados con correa, y se permiten hasta 3 perros por parcela (más, previo acuerdo). La cabaña 8 es la única en la que no se admiten perros.",
+    "q2": "¿Está incluida la electricidad?",
+    "a2": "La electricidad es un extra opcional de €6.70 por noche. En las parcelas de temporada puedes elegir electricidad para una temporada completa o media temporada.",
+    "q3": "¿Cuándo estáis abiertos?",
+    "a3": "Abrimos del 1 de abril al 18 de octubre de 2026. Fuera de temporada el camping permanece cerrado.",
+    "q4": "¿Cómo pago mi estancia?",
+    "a4": "Pagas un depósito del 25 % al reservar y el 75 % restante como muy tarde dos semanas antes de la llegada. Aceptamos Visa y Mastercard."
   }
 }

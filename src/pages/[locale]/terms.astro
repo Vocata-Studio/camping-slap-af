@@ -21,9 +21,12 @@ const subtitle = isDanish
   : "The terms that apply when you book a stay with us.";
 const lastUpdated = "2026-05-08";
 const privacyHref = localePath(l, "/privacy");
+const description = isDanish
+  ? "Handelsbetingelser for booking hos Camping Slap Af på Mors — priser, betaling, afbestilling og ophold på pladsen."
+  : "Terms of service for booking with Camping Slap Af on Mors — prices, payment, cancellation and your stay at the site.";
 ---
 
-<Layout title={title} locale={l} preloadImage={heroImage}>
+<Layout title={title} locale={l} description={description} noindex preloadImage={heroImage}>
   <Hero
     image={heroImage}
     imageAlt={title}

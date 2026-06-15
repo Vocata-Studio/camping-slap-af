@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
+import Faq from "../../components/Faq.astro";
 import {
   locales,
   isValidLocale,
@@ -9,6 +10,7 @@ import {
   bookingHref,
 } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
+import { stayProducts } from "../../data/accommodations";
 
 export function getStaticPaths() {
   return locales.map((locale) => ({ params: { locale } }));
@@ -138,14 +140,24 @@ const heroImage = "/images/location-images/campsite-pitch-numbered.webp";
 const bookUrl = bookingHref(l);
 const includedText = tp("includedText");
 const includedLabel = tp("includedLabel");
+
+// Per-accommodation Product/Offer schema — makes each stay type eligible for a
+// "from" price rich snippet in search results.
+const productSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": stayProducts(l),
+});
 ---
 
 <Layout
-  title={tp("title")}
+  title={t(l, "Meta", "pricesTitle")}
   locale={l}
   description={t(l, "Meta", "pricesDescription")}
+  ogImage={heroImage}
   preloadImage={heroImage}
 >
+  <script type="application/ld+json" slot="head" set:html={productSchema} />
+
   <Hero
     image={heroImage}
     imageAlt={tp("title")}
@@ -375,7 +387,11 @@ const includedLabel = tp("includedLabel");
         <a href={localePath(l, "/terms")}>{tp("paymentTermsLink")}</a>
       </p>
     </section>
+  </div>
 
+  <Faq locale={l} />
+
+  <div class="container final-cta-wrap">
     <!-- Final CTA -->
     <section class="final-cta">
       <div class="final-cta__text">
@@ -429,6 +445,9 @@ const includedLabel = tp("includedLabel");
     display: flex;
     flex-direction: column;
     gap: var(--space-8);
+  }
+
+  .final-cta-wrap {
     padding-bottom: var(--space-12);
   }
 

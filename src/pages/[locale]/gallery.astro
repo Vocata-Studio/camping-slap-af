@@ -41,7 +41,7 @@ const lightboxData = photos.map((p) => ({
 }));
 ---
 
-<Layout title={t(l, "Gallery", "title")} locale={l} description={t(l, "Meta", "galleryDescription")} preloadImage={heroImage}>
+<Layout title={t(l, "Meta", "galleryTitle")} locale={l} description={t(l, "Meta", "galleryDescription")} ogImage={heroImage} preloadImage={heroImage}>
   <Hero
     image={heroImage}
     imageAlt={t(l, "Gallery", "title")}

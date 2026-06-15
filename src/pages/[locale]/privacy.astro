@@ -20,9 +20,12 @@ const subtitle = isDanish
   ? "Sådan håndterer vi dine personoplysninger."
   : "How we handle your personal data.";
 const lastUpdated = "2026-05-08";
+const description = isDanish
+  ? "Privatlivspolitik for Camping Slap Af — hvordan vi indsamler, bruger og beskytter dine personoplysninger ved booking og kontakt."
+  : "Privacy policy for Camping Slap Af — how we collect, use and protect your personal data when you book or contact us.";
 ---
 
-<Layout title={title} locale={l} preloadImage={heroImage}>
+<Layout title={title} locale={l} description={description} noindex preloadImage={heroImage}>
   <Hero
     image={heroImage}
     imageAlt={title}

@@ -20,7 +20,7 @@ const phoneHref = `tel:${phone.replace(/\s+/g, "")}`;
 const copyUi = contactUi(l);
 ---
 
-<Layout title={t(l, "Booking", "title")} locale={l} preloadImage={heroImage}>
+<Layout title={t(l, "Meta", "bookingTitle")} locale={l} description={t(l, "Meta", "bookingDescription")} ogImage={heroImage} preloadImage={heroImage}>
   <Hero
     image={heroImage}
     imageAlt={t(l, "Booking", "title")}
@@ -60,7 +60,7 @@ const copyUi = contactUi(l);
             </svg>
           </a>
           <p class="booking__prices-lead">{t(l, "Booking", "pricesLead")}</p>
-          <a href={localePath(l, "/priser")} class="btn btn--ghost booking__prices-btn">
+          <a href={localePath(l, "/prices")} class="btn btn--ghost booking__prices-btn">
             {t(l, "Booking", "pricesCta")}
           </a>
         </div>

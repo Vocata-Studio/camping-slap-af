@@ -4,6 +4,7 @@ import Hero from "../../components/Hero.astro";
 import StartBookingCta from "../../components/StartBookingCta.astro";
 import { locales, isValidLocale, t, localePath, bookingHref } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
+import { stayTypes, stayProducts } from "../../data/accommodations";
 
 export function getStaticPaths() {
   return locales.map((locale) => ({ params: { locale } }));
@@ -17,7 +18,7 @@ const heroImage = "/billeder-fra-anders/guests-caravan.webp";
 
 const isDkk = l === "da";
 
-/** Lowest "from" price per stay type, shown as a teaser linking to /priser. */
+/** Lowest "from" price per stay type, shown as a teaser linking to /prices. */
 function fmtFrom(dkk: number, eur: number): string {
   if (isDkk) return `${Math.round(dkk).toLocaleString("da-DK")} kr.`;
   return new Intl.NumberFormat("en-GB", {
@@ -27,13 +28,24 @@ function fmtFrom(dkk: number, eur: number): string {
   }).format(eur);
 }
 
-const accommodations = [
-  { key: "campsite", gradient: 1, badge: null, image: "/images/location-images/campsite-field-caravan.webp", anchor: "#campingplads", fromDkk: 200, fromEur: 26.75, season: false },
-  { key: "camper", gradient: 2, badge: "camperBadge", image: "/images/location-images/campsite-field-trees.webp", anchor: "#autocamper", fromDkk: 256, fromEur: 34.25, season: false },
-  { key: "cottage", gradient: 1, badge: null, image: "/billeder-fra-anders/cabins-lawn.webp", anchor: "#hytter", fromDkk: 300, fromEur: 40, season: false },
-  { key: "field", gradient: 2, badge: "fieldBadge", image: "/images/location-images/campsite-open-field.webp", anchor: "#campingfelt", fromDkk: 100, fromEur: 13.4, season: false },
-  { key: "seasonal", gradient: 1, badge: null, image: "/images/location-images/campsite-pitch-numbered.webp", anchor: "#saesonplads", fromDkk: 8000, fromEur: 1070.4, season: true },
-] as const;
+// Display-only metadata (gradient fallback + badge), keyed by stay type. Prices,
+// images and anchors come from the shared `stayTypes` source so they stay in
+// sync with the prices page and the JSON-LD offers.
+const display: Record<string, { gradient: number; badge: string | null }> = {
+  campsite: { gradient: 1, badge: null },
+  camper: { gradient: 2, badge: "camperBadge" },
+  cottage: { gradient: 1, badge: null },
+  field: { gradient: 2, badge: "fieldBadge" },
+  seasonal: { gradient: 1, badge: null },
+};
+
+const accommodations = stayTypes.map((s) => ({ ...s, ...display[s.key] }));
+
+// Per-accommodation Product/Offer schema for "from" price rich snippets.
+const productSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": stayProducts(l),
+});
 
 const facilityKeys = [
   "facility1", "facility2", "facility3",
@@ -45,7 +57,9 @@ const facilityKeys = [
 const optionKeys = ["optionTowels", "optionBedding", "optionCleaning"] as const;
 ---
 
-<Layout title={t(l, "Accommodation", "title")} locale={l} description={t(l, "Meta", "accommodationDescription")} preloadImage={heroImage}>
+<Layout title={t(l, "Meta", "accommodationTitle")} locale={l} description={t(l, "Meta", "accommodationDescription")} ogImage={heroImage} preloadImage={heroImage}>
+  <script type="application/ld+json" slot="head" set:html={productSchema} />
+
   <Hero
     image={heroImage}
     imageAlt={t(l, "Accommodation", "title")}
@@ -112,7 +126,7 @@ const optionKeys = ["optionTowels", "optionBedding", "optionCleaning"] as const;
                   <a href={bookingHref(l)} class="btn">
                     {t(l, "Accommodation", `${acc.key}BookCta`)}
                   </a>
-                  <a href={localePath(l, `/priser${acc.anchor}`)} class="acc__price-link">
+                  <a href={localePath(l, `/prices${acc.anchor}`)} class="acc__price-link">
                     {t(l, "Accommodation", "viewPrices")} →
                   </a>
                 </div>

@@ -21,9 +21,12 @@ const subtitle = isDanish
   : "How we work with accessibility on campingslapaf.dk.";
 const lastUpdated = "2026-05-19";
 const contactHref = localePath(l, "/contact");
+const description = isDanish
+  ? "Tilgængelighedserklæring for campingslapaf.dk — hvordan vi arbejder for at gøre hjemmesiden brugbar for alle."
+  : "Accessibility statement for campingslapaf.dk — how we work to make the website usable for everyone.";
 ---
 
-<Layout title={title} locale={l} preloadImage={heroImage}>
+<Layout title={title} locale={l} description={description} noindex preloadImage={heroImage}>
   <Hero
     image={heroImage}
     imageAlt={title}

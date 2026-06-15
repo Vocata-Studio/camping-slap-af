@@ -7,6 +7,8 @@ import BookingBanner from "../components/BookingBanner.astro";
 import WeatherFab from "../components/WeatherFab.astro";
 import { contactUi, stripLocaleFromPath, locales, t, navLinks, localePath } from "../i18n/utils";
 import type { Locale } from "../i18n/utils";
+import { SITE_URL, stayMakesOffers } from "../data/accommodations";
+import { getReviews } from "../lib/vocata";
 
 interface Props {
   title: string;
@@ -14,19 +16,55 @@ interface Props {
   description?: string;
   /** Path to the page's LCP hero image — preloaded so the browser fetches it ASAP. */
   preloadImage?: string;
+  /** Page-specific social-share image (site-relative). Defaults to the shared CSA-OG.jpeg. */
+  ogImage?: string;
+  /** Keep this page out of search indexes — used for legal/utility pages. */
+  noindex?: boolean;
 }
 
-const { title, locale, description, preloadImage } = Astro.props;
+const { title, locale, description, preloadImage, ogImage: ogImagePath, noindex = false } = Astro.props;
 const currentRoute = stripLocaleFromPath(Astro.url.pathname);
 const copyUi = contactUi(locale);
 const pageDescription =
   description ??
   "Camping Slap Af — rolig camping i Sejerslev på Mors, midt i den danske natur.";
 
-const SITE_URL = "https://campingslapaf.dk";
 const canonicalPath = currentRoute === "/" ? `/${locale}/` : `/${locale}${currentRoute}`;
 const canonicalUrl = `${SITE_URL}${canonicalPath}`;
-const ogImage = `${SITE_URL}/CSA-OG.jpeg`;
+
+// The shared brand image (1200×630) anchors the schema graph. Pages may override
+// the social-share image with their own hero via the `ogImage` prop.
+const brandImage = `${SITE_URL}/CSA-OG.jpeg`;
+const ogImage = ogImagePath ? `${SITE_URL}${ogImagePath}` : brandImage;
+const ogImageIsDefault = !ogImagePath;
+
+// Real photos of the site, handed to search engines as the business image set.
+const businessImages = [
+  brandImage,
+  `${SITE_URL}/billeder-fra-anders/campsite-overview.webp`,
+  `${SITE_URL}/billeder-fra-anders/cabins-lawn.webp`,
+  `${SITE_URL}/images/location-images/campsite-field-caravan.webp`,
+];
+
+// Aggregate rating, computed from real CMS reviews. Stays absent until reviews
+// with numeric ratings exist — so we never publish a fabricated star rating.
+const reviews = await getReviews();
+const ratedReviews = reviews.filter((r) => typeof r.data.rating === "number");
+const aggregateRating =
+  ratedReviews.length > 0
+    ? {
+        "@type": "AggregateRating",
+        "ratingValue": Number(
+          (
+            ratedReviews.reduce((sum, r) => sum + (r.data.rating as number), 0) /
+            ratedReviews.length
+          ).toFixed(1),
+        ),
+        "reviewCount": ratedReviews.length,
+        "bestRating": 5,
+        "worstRating": 1,
+      }
+    : null;
 
 const ogLocaleMap: Record<string, string> = {
   da: "da_DK", en: "en_US", de: "de_DE", nl: "nl_NL",
@@ -80,7 +118,7 @@ const schema = JSON.stringify({
       "name": "Camping Slap Af",
       "url": SITE_URL,
       "logo": `${SITE_URL}/CSA-logo-final.png`,
-      "image": ogImage,
+      "image": brandImage,
       "email": "campingslapaf@outlook.com",
       "telephone": "+4591199674",
       "sameAs": ["https://www.facebook.com/profile.php?id=61584886509520"]
@@ -115,9 +153,13 @@ const schema = JSON.stringify({
         "latitude": 56.930468,
         "longitude": 8.870665
       },
-      "image": ogImage,
+      "image": businessImages,
       "petsAllowed": true,
       "priceRange": "kr",
+      "checkinTime": "14:00",
+      "checkoutTime": "12:00",
+      "makesOffer": stayMakesOffers(locale),
+      ...(aggregateRating ? { "aggregateRating": aggregateRating } : {}),
       "openingHoursSpecification": {
         "@type": "OpeningHoursSpecification",
         "validThrough": "2026-10-18",
@@ -146,6 +188,7 @@ const schema = JSON.stringify({
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={pageDescription} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
 
     <link rel="canonical" href={canonicalUrl} />
     {localeAlternates.map((alt) => (
@@ -158,8 +201,12 @@ const schema = JSON.stringify({
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    {ogImageIsDefault && (
+      <Fragment>
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+      </Fragment>
+    )}
     <meta property="og:image:alt" content="Camping Slap Af — rolig camping i Sejerslev på Mors" />
     <meta property="og:locale" content={ogLocaleMap[locale]} />
     <meta property="og:site_name" content="Camping Slap Af" />
@@ -174,6 +221,8 @@ const schema = JSON.stringify({
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#2B9854" />
     {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
     <link rel="preload" as="image" href="/CSA-logo-final.png" />
 
@@ -326,11 +375,6 @@ const schema = JSON.stringify({
           });
         });
       })();
-    </script>
-    {Astro.locals.preview && <span hidden data-vocata-preview-scroll></span>}
-    <script>
-      import { initPreview } from "@vocata-studio/cms-client/preview";
-      if (document.querySelector("[data-vocata-preview-scroll]")) initPreview();
     </script>
   </body>
 </html>

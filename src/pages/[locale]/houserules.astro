@@ -26,50 +26,91 @@ const titles: Record<Locale, string> = {
 };
 
 const subtitles: Record<Locale, string> = {
-  da: "Vores ordensregler er snart klar.",
-  en: "Our house rules are coming soon.",
-  de: "Unsere Hausordnung folgt in Kürze.",
-  nl: "Onze huisregels volgen binnenkort.",
-  fr: "Notre règlement intérieur arrive bientôt.",
-  es: "Nuestras normas estarán disponibles pronto.",
-  it: "Il nostro regolamento è in arrivo.",
-  sv: "Våra ordningsregler kommer snart.",
-  nb: "Våre ordensregler kommer snart.",
-  pl: "Regulamin będzie dostępny wkrótce.",
+  da: "Regler for en god oplevelse for alle",
+  en: "Rules for a great stay for everyone",
+  de: "Regeln für ein angenehmes Erlebnis für alle",
+  nl: "Rules for a great stay for everyone",
+  fr: "Rules for a great stay for everyone",
+  es: "Rules for a great stay for everyone",
+  it: "Rules for a great stay for everyone",
+  sv: "Rules for a great stay for everyone",
+  nb: "Rules for a great stay for everyone",
+  pl: "Rules for a great stay for everyone",
 };
 
-const comingSoonLabel: Record<Locale, string> = {
-  da: "Kommer snart",
-  en: "Coming soon",
-  de: "Demnächst verfügbar",
-  nl: "Binnenkort beschikbaar",
-  fr: "Bientôt disponible",
-  es: "Próximamente",
-  it: "Prossimamente",
-  sv: "Kommer snart",
-  nb: "Kommer snart",
-  pl: "Wkrótce",
-};
+const enRules = [
+  "Don't drive faster than 15 km per hour on the grounds",
+  "At least 3 meters between the caravans",
+  "Cars in the designated spots or in your own space",
+  "Charging electric cars is not allowed",
+  "Respect quiet hours from 10 PM to 7 AM",
+  "Dogs on a leash, except on the field",
+  "Please clean up the poop",
+  "Smoking is not allowed in the buildings",
+  "Grilling on wood is not allowed at your spot",
+  "Throw the briquettes into the iron bucket",
+  "Open fire only on the fire pit",
+  "Throw your trash in the right bag",
+  "Make sure you leave your spot clean",
+  "Listen to the staff",
+];
 
-const bodyText: Record<Locale, string> = {
-  da: "Vi arbejder på at samle vores ordensregler. De vil snart være tilgængelige her.",
-  en: "We are putting together our house rules. They will be available here shortly.",
-  de: "Wir stellen unsere Hausordnung zusammen. Sie wird in Kürze hier verfügbar sein.",
-  nl: "We stellen onze huisregels samen. Ze zijn binnenkort hier beschikbaar.",
-  fr: "Nous préparons notre règlement intérieur. Il sera bientôt disponible ici.",
-  es: "Estamos preparando nuestras normas. Estarán disponibles aquí pronto.",
-  it: "Stiamo preparando il nostro regolamento. Sarà disponibile qui a breve.",
-  sv: "Vi håller på att sammanställa våra ordningsregler. De kommer snart att finnas här.",
-  nb: "Vi jobber med å sette sammen ordensreglene våre. De vil snart være tilgjengelige her.",
-  pl: "Przygotowujemy nasz regulamin. Wkrótce będzie dostępny tutaj.",
-};
+const daRules = [
+  "Kør ikke hurtigere end 15 km i timen på terrænet",
+  "Mindst 3 meter mellem campingvognene",
+  "Biler på de anviste steder",
+  "Opladning af elektriske biler er ikke tilladt",
+  "Respekter nattesøvnen mellem kl. 22.00 og 7.00",
+  "Hunde i snor, undtagen på marken",
+  "Venligst ryd op efter afføring",
+  "Rygning er ikke tilladt i bygningerne",
+  "Grill på træ er ikke tilladt ved din plads",
+  "Smid briketterne i den jernspand",
+  "Åben ild kun på bålpladsen",
+  "Smid dit affald i den rigtige pose",
+  "Sørg for, at du efterlader din plads ren",
+  "Lytte til medarbejderen",
+];
+
+const deRules = [
+  "Fahren Sie nicht schneller als 15 km/h auf dem Gelände",
+  "Mindestens 3 Meter Abstand zwischen den Wohnwagen",
+  "Autos nur auf den ausgewiesenen Stellplätzen",
+  "Das Laden von Elektroautos ist nicht gestattet",
+  "Bitte die Nachtruhe von 22:00 bis 7:00 Uhr einhalten",
+  "Hunde an der Leine, außer auf der Wiese",
+  "Bitte die Hinterlassenschaften Ihres Hundes beseitigen",
+  "Rauchen ist in den Gebäuden nicht gestattet",
+  "Grillen mit Holz ist auf dem Stellplatz nicht erlaubt",
+  "Briketts in den Eiseneimer werfen",
+  "Offenes Feuer nur auf dem Lagerfeuerplatz",
+  "Müll in den richtigen Beutel werfen",
+  "Bitte hinterlassen Sie Ihren Platz sauber",
+  "Auf die Mitarbeiter hören",
+];
+
+type LocaleBlock = { label: string; rules: string[]; note: string };
+
+const enBlock: LocaleBlock = { label: "English", rules: enRules, note: "But mostly — be relaxed!" };
+const deBlock: LocaleBlock = { label: "Deutsch", rules: deRules, note: "Aber vor allem — entspannt bleiben!" };
+
+const daBlock: LocaleBlock = { label: "Dansk", rules: daRules, note: "Men vær især afslappet!" };
+
+// first = primary (green), second = secondary (ink), null = no secondary
+const blocks: [LocaleBlock, LocaleBlock | null] =
+  l === "da" ? [daBlock, enBlock] :
+  l === "de" ? [deBlock, enBlock] :
+  l === "en" ? [enBlock, daBlock] :
+  [enBlock, null];
+
+const [firstBlock, secondBlock] = blocks;
 
 const heroImage = "/images/location-images/kiosk-exterior-bench.webp";
 const title = titles[l];
 const subtitle = subtitles[l];
 ---
 
-<Layout title={title} locale={l} description={subtitle} noindex preloadImage={heroImage}>
+<Layout title={title} locale={l} description={subtitle} preloadImage={heroImage}>
   <Hero
     image={heroImage}
     imageAlt={title}
@@ -78,50 +119,112 @@ const subtitle = subtitles[l];
     compact
   />
 
-  <section class="section">
-    <div class="container coming-soon-container">
-      <div class="coming-soon-card">
-        <span class="coming-soon-badge">{comingSoonLabel[l]}</span>
-        <p class="coming-soon-body">{bodyText[l]}</p>
+  <section class="section section--tight">
+    <div class="container rules-grid">
+      <div class="rules-block">
+        <span class="lang-label">{firstBlock.label}</span>
+        <ul class="rules-list">
+          {firstBlock.rules.map((rule) => (
+            <li><span class="dot"></span>{rule}</li>
+          ))}
+        </ul>
+        <p class="relax-note">{firstBlock.note}</p>
       </div>
+
+      {secondBlock && (
+        <div class="rules-block secondary">
+          <span class="lang-label">{secondBlock.label}</span>
+          <ul class="rules-list">
+            {secondBlock.rules.map((rule) => (
+              <li>
+                <span class="dot" style="background: var(--color-ink)"></span>
+                {rule}
+              </li>
+            ))}
+          </ul>
+          <p class="relax-note">{secondBlock.note}</p>
+        </div>
+      )}
     </div>
   </section>
 </Layout>
 
 <style>
-  .coming-soon-container {
-    max-width: 600px;
-    padding-top: var(--space-16);
+  .rules-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
     padding-bottom: var(--space-16);
+    max-width: 560px;
   }
 
-  .coming-soon-card {
+  .rules-block {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: var(--space-6);
-    text-align: center;
+    gap: var(--space-5);
   }
 
-  .coming-soon-badge {
+  .lang-label {
     display: inline-block;
-    background: var(--color-cream);
-    color: var(--color-green);
     font-family: var(--font-heading);
-    font-size: var(--fs-sm);
+    font-size: var(--fs-xs);
     font-weight: 600;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    padding: var(--space-2) var(--space-5);
-    border-radius: 999px;
-    border: 1px solid var(--color-green);
+    color: var(--color-green);
+    padding-bottom: var(--space-3);
+    border-bottom: 2px solid var(--color-green);
   }
 
-  .coming-soon-body {
+  .secondary .lang-label {
+    color: var(--color-ink);
+    border-bottom-color: var(--color-ink);
+  }
+
+  .rules-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .rules-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
     font-size: var(--fs-md);
     line-height: var(--lh-body);
-    color: var(--color-muted);
-    max-width: 480px;
-    margin: 0;
+    color: var(--color-ink);
   }
+
+  .secondary .rules-list li {
+    font-size: var(--fs-sm);
+  }
+
+  .dot {
+    flex-shrink: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-green);
+    margin-top: 0.55em;
+  }
+
+  .relax-note {
+    margin: 0;
+    margin-top: var(--space-2);
+    font-family: var(--font-heading);
+    font-size: var(--fs-md);
+    font-weight: 600;
+    color: var(--color-green);
+  }
+
+  .secondary .relax-note {
+    color: var(--color-ink);
+    font-size: var(--fs-sm);
+    font-weight: 500;
+  }
+
 </style>

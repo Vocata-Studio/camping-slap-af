@@ -1,0 +1,14 @@
+{
+  "name": "Camping Slap Af",
+  "short_name": "Slap Af",
+  "description": "Hyggelig, hundevenlig camping på Mors ved Limfjorden.",
+  "lang": "da",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#2B9854",
+  "icons": [
+    { "src": "/favicon.png", "sizes": "any", "type": "image/png" },
+    { "src": "/CSA-logo-final.png", "sizes": "any", "type": "image/png", "purpose": "any" }
+  ]
+}

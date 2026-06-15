@@ -1,0 +1,132 @@
+---
+import { t } from "../i18n/utils";
+import type { Locale } from "../i18n/utils";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const tf = (key: string) => t(locale, "Faq", key);
+
+/* Build the Q/A list, skipping any pair whose translation is missing
+   (t() returns the key name itself when a key is absent). */
+const items = [1, 2, 3, 4]
+  .map((n) => ({ q: tf(`q${n}`), a: tf(`a${n}`), qKey: `q${n}`, aKey: `a${n}` }))
+  .filter((it) => it.q !== it.qKey && it.a !== it.aKey);
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: items.map((it) => ({
+    "@type": "Question",
+    name: it.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: it.a,
+    },
+  })),
+});
+---
+
+<section class="section faq">
+  <div class="container faq__inner">
+    <header class="faq__head">
+      <h2>{tf("title")}</h2>
+    </header>
+    <ul class="faq__list">
+      {
+        items.map((it) => (
+          <li class="faq__item">
+            <details class="faq__details">
+              <summary class="faq__q">
+                <span>{it.q}</span>
+                <svg
+                  class="faq__chevron"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </summary>
+              <div class="faq__a">
+                <p>{it.a}</p>
+              </div>
+            </details>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  <script type="application/ld+json" set:html={faqSchema} is:inline />
+</section>
+
+<style>
+  .faq__inner {
+    max-width: 760px;
+  }
+  .faq__head {
+    margin-bottom: var(--space-7);
+    text-align: center;
+  }
+  .faq__head h2 {
+    font-size: var(--fs-xl);
+  }
+  .faq__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--color-hairline);
+  }
+  .faq__item {
+    border-bottom: 1px solid var(--color-hairline);
+  }
+  .faq__details {
+    /* no transitions — content toggles instantly per design rules */
+  }
+  .faq__q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-5) 0;
+    cursor: pointer;
+    list-style: none;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: var(--fs-md);
+    color: var(--color-ink);
+  }
+  .faq__q::-webkit-details-marker {
+    display: none;
+  }
+  .faq__q:hover {
+    color: var(--color-green);
+  }
+  .faq__chevron {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: var(--color-muted);
+  }
+  .faq__details[open] .faq__chevron {
+    transform: rotate(180deg);
+  }
+  .faq__details[open] .faq__q {
+    color: var(--color-green);
+  }
+  .faq__a {
+    padding: 0 0 var(--space-5);
+    max-width: 64ch;
+  }
+  .faq__a p {
+    color: var(--color-muted);
+    font-size: var(--fs-md);
+    line-height: var(--lh-body);
+  }
+</style>

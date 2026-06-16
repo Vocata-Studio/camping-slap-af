@@ -29,7 +29,7 @@ const subtitles: Record<Locale, string> = {
   da: "Regler for en god oplevelse for alle",
   en: "Rules for a great stay for everyone",
   de: "Regeln für ein angenehmes Erlebnis für alle",
-  nl: "Rules for a great stay for everyone",
+  nl: "Regels voor een fijn verblijf voor iedereen",
   fr: "Rules for a great stay for everyone",
   es: "Rules for a great stay for everyone",
   it: "Rules for a great stay for everyone",
@@ -89,17 +89,36 @@ const deRules = [
   "Auf die Mitarbeiter hören",
 ];
 
+const nlRules = [
+  "Rijd niet sneller dan 15 km per uur op het terrein",
+  "Minstens 3 meter tussen de caravans",
+  "Auto's op de aangewezen plekken of op je eigen plaats",
+  "Het opladen van elektrische auto's is niet toegestaan",
+  "Respecteer de nachtrust van 22.00 tot 7.00 uur",
+  "Honden aan de lijn, behalve op het veld",
+  "Ruim de poep alsjeblieft op",
+  "Roken is niet toegestaan in de gebouwen",
+  "Grillen op hout is niet toegestaan op je plaats",
+  "Gooi de briketten in de ijzeren emmer",
+  "Open vuur alleen op de vuurplaats",
+  "Gooi je afval in de juiste zak",
+  "Zorg ervoor dat je je plaats schoon achterlaat",
+  "Luister naar de medewerkers",
+];
+
 type LocaleBlock = { label: string; rules: string[]; note: string };
 
 const enBlock: LocaleBlock = { label: "English", rules: enRules, note: "But mostly — be relaxed!" };
 const deBlock: LocaleBlock = { label: "Deutsch", rules: deRules, note: "Aber vor allem — entspannt bleiben!" };
 
 const daBlock: LocaleBlock = { label: "Dansk", rules: daRules, note: "Men vær især afslappet!" };
+const nlBlock: LocaleBlock = { label: "Nederlands", rules: nlRules, note: "Maar vooral — blijf relaxed!" };
 
 // first = primary (green), second = secondary (ink), null = no secondary
 const blocks: [LocaleBlock, LocaleBlock | null] =
   l === "da" ? [daBlock, enBlock] :
   l === "de" ? [deBlock, enBlock] :
+  l === "nl" ? [nlBlock, enBlock] :
   l === "en" ? [enBlock, daBlock] :
   [enBlock, null];
 

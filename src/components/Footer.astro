@@ -155,6 +155,21 @@ const cvr = t(locale, "Footer", "cvr");
             class="site-footer__dkcamp-logo"
           />
         </a>
+        <a
+          href="https://svr.nl/"
+          target="_blank"
+          rel="noopener"
+          title={t(locale, "Footer", "svrAlt")}
+          class="site-footer__svr"
+        >
+          <img
+            src="/images/svr_logo.png"
+            alt={t(locale, "Footer", "svrAlt")}
+            width="80"
+            height="40"
+            class="site-footer__svr-logo"
+          />
+        </a>
         <a href="https://www.dk-camp.dk/inspiration/smaa-campingpladser/" target="_blank" rel="noopener noreferrer" class="site-footer__smaacamping">
           <img
             src="/images/smaa-pladsers-logo.png"
@@ -370,9 +385,19 @@ const cvr = t(locale, "Footer", "cvr");
     object-fit: contain;
     opacity: 0.8;
   }
+  .site-footer__svr {
+    display: inline-block;
+  }
+  .site-footer__svr-logo {
+    height: 56px;
+    width: auto;
+    object-fit: contain;
+    opacity: 0.8;
+  }
   .site-footer__dkcamp:hover .site-footer__dkcamp-logo,
   .site-footer__visitmors:hover .site-footer__visitmors-logo,
-  .site-footer__smaacamping:hover .site-footer__smaacamping-logo {
+  .site-footer__smaacamping:hover .site-footer__smaacamping-logo,
+  .site-footer__svr:hover .site-footer__svr-logo {
     opacity: 1;
   }
 

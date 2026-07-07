@@ -28,7 +28,7 @@ Fra pladsen og ned til Nykøbing havn, hvor det meste af Kulturmødet foregår, 
 
 Skal I flere afsted sammen, giver det tit rigtig god mening at dele en bil frem og tilbage, og så have basen stående oppe hos os imens.
 
-![Campingpladsens felt med plads til telt og campingvogn](/images/location-images/campsite-field-caravan.webp)
+![Værterne går en tur mellem hytterne på Camping Slap Af](/billeder-fra-anders/owners-walking.webp)
 
 ## Hvad det koster
 

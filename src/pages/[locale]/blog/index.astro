@@ -1,0 +1,187 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../../layouts/Layout.astro";
+import Hero from "../../../components/Hero.astro";
+import StartBookingCta from "../../../components/StartBookingCta.astro";
+import { t } from "../../../i18n/utils";
+import type { Locale } from "../../../i18n/utils";
+
+// The blog is Danish-only content aimed at organic search, so it is only
+// generated under /da/. Other locales never get a /blog route.
+export function getStaticPaths() {
+  return [{ params: { locale: "da" } }];
+}
+
+const l = "da" as Locale;
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
+);
+
+const dateFmt = new Intl.DateTimeFormat("da-DK", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
+
+const heroImage = "/billeder-fra-anders/campsite-overview.webp";
+---
+
+<Layout
+  title={t(l, "Meta", "blogTitle")}
+  locale={l}
+  description={t(l, "Meta", "blogDescription")}
+  ogImage={heroImage}
+  preloadImage={heroImage}
+  hreflangLocales={["da"]}
+>
+  <Hero
+    image={heroImage}
+    imageAlt={t(l, "Blog", "title")}
+    eyebrow={t(l, "Blog", "eyebrow")}
+    title={t(l, "Blog", "title")}
+    subtitle={t(l, "Blog", "subtitle")}
+    imagePosition="center"
+    compact
+  />
+
+  <section class="section">
+    <div class="container">
+      <ul class="post-grid">
+        {
+          posts.map((post) => (
+            <li>
+              <a href={`/da/blog/${post.id}`} class="post-card">
+                <div class="post-card__media">
+                  <img
+                    src={post.data.heroImage}
+                    alt={post.data.heroImageAlt}
+                    loading="lazy"
+                    decoding="async"
+                    style={
+                      post.data.heroImagePosition
+                        ? `object-position: ${post.data.heroImagePosition}`
+                        : undefined
+                    }
+                  />
+                </div>
+                <div class="post-card__body">
+                  <div class="post-card__meta">
+                    <time datetime={post.data.pubDate.toISOString()}>
+                      {dateFmt.format(post.data.pubDate)}
+                    </time>
+                    <span aria-hidden="true">·</span>
+                    <span>{post.data.readingTime} {t(l, "Blog", "readingTimeLabel")}</span>
+                  </div>
+                  <h2 class="post-card__title">{post.data.title}</h2>
+                  <p class="post-card__excerpt">{post.data.excerpt}</p>
+                  {post.data.tags.length > 0 && (
+                    <ul class="post-card__tags">
+                      {post.data.tags.map((tag) => (
+                        <li class="post-card__tag">{tag}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <StartBookingCta locale={l} />
+</Layout>
+
+<style>
+  .post-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+  @media (min-width: 720px) {
+    .post-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1040px) {
+    .post-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .post-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--color-bg);
+    color: var(--color-ink);
+    box-shadow: 0 1px 2px rgba(26, 26, 26, 0.04);
+    transition: box-shadow 200ms ease, border-color 200ms ease;
+  }
+  .post-card:hover {
+    color: var(--color-ink);
+    border-color: var(--color-hairline-strong);
+    box-shadow: 0 8px 24px rgba(26, 26, 26, 0.08);
+  }
+
+  .post-card__media {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--color-cream);
+  }
+  .post-card__media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .post-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-6);
+  }
+  .post-card__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    letter-spacing: 0.03em;
+    color: var(--color-muted);
+  }
+  .post-card__title {
+    font-size: var(--fs-lg);
+    line-height: var(--lh-snug);
+    text-wrap: balance;
+  }
+  .post-card__excerpt {
+    color: var(--color-muted);
+    font-size: var(--fs-sm);
+    line-height: var(--lh-body);
+  }
+  .post-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: auto;
+    padding-top: var(--space-2);
+  }
+  .post-card__tag {
+    font-size: var(--fs-xs);
+    font-weight: 500;
+    color: var(--color-green);
+    background: var(--color-cream);
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-pill);
+  }
+</style>

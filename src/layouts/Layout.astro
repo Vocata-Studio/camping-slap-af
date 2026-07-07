@@ -20,9 +20,17 @@ interface Props {
   ogImage?: string;
   /** Keep this page out of search indexes — used for legal/utility pages. */
   noindex?: boolean;
+  /**
+   * Restrict the hreflang alternates to a subset of locales. Used by pages
+   * that only exist in some languages (e.g. the Danish-only blog) so we never
+   * advertise alternate URLs that would 404. Defaults to every locale.
+   */
+  hreflangLocales?: Locale[];
+  /** Open Graph object type. Defaults to "website"; articles pass "article". */
+  ogType?: string;
 }
 
-const { title, locale, description, preloadImage, ogImage: ogImagePath, noindex = false } = Astro.props;
+const { title, locale, description, preloadImage, ogImage: ogImagePath, noindex = false, hreflangLocales, ogType = "website" } = Astro.props;
 const currentRoute = stripLocaleFromPath(Astro.url.pathname);
 const copyUi = contactUi(locale);
 const pageDescription =
@@ -72,10 +80,16 @@ const ogLocaleMap: Record<string, string> = {
   nb: "nb_NO", pl: "pl_PL",
 };
 
-const localeAlternates = locales.map((l) => ({
+const altLocales = hreflangLocales ?? locales;
+const localeAlternates = altLocales.map((l) => ({
   lang: l,
   href: currentRoute === "/" ? `${SITE_URL}/${l}/` : `${SITE_URL}/${l}${currentRoute}`,
 }));
+// For single-locale pages, point x-default at that page's own URL rather than
+// the site root, so the fallback resolves to real content.
+const xDefaultHref = hreflangLocales
+  ? localeAlternates[0]?.href ?? `${SITE_URL}/da/`
+  : `${SITE_URL}/da/`;
 
 const ORG_ID = `${SITE_URL}/#organization`;
 const SITE_ID = `${SITE_URL}/#website`;
@@ -194,11 +208,11 @@ const schema = JSON.stringify({
     {localeAlternates.map((alt) => (
       <link rel="alternate" hreflang={alt.lang} href={alt.href} />
     ))}
-    <link rel="alternate" hreflang="x-default" href={`${SITE_URL}/da/`} />
+    <link rel="alternate" hreflang="x-default" href={xDefaultHref} />
 
     <meta property="og:title" content={`${title} | Camping Slap Af`} />
     <meta property="og:description" content={pageDescription} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={ogImage} />
     {ogImageIsDefault && (

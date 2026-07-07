@@ -1,0 +1,370 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../../layouts/Layout.astro";
+import Hero from "../../../components/Hero.astro";
+import { t, bookingHref } from "../../../i18n/utils";
+import type { Locale } from "../../../i18n/utils";
+import { SITE_URL } from "../../../data/accommodations";
+
+// Danish-only: one static page per post, all under /da/blog/…
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { locale: "da", slug: post.id },
+    props: { post },
+  }));
+}
+
+const l = "da" as Locale;
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const dateFmt = new Intl.DateTimeFormat("da-DK", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
+
+// Two most recent other posts for the "read also" block.
+const related = (await getCollection("blog", ({ data }) => !data.draft))
+  .filter((p) => p.id !== post.id)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 2);
+
+const canonicalUrl = `${SITE_URL}/da/blog/${post.id}`;
+const articleImage = `${SITE_URL}${post.data.ogImage ?? post.data.heroImage}`;
+
+// BlogPosting structured data, injected into <head> via the Layout's head slot.
+const articleSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": post.data.title,
+  "description": post.data.description,
+  "image": articleImage,
+  "datePublished": post.data.pubDate.toISOString(),
+  "dateModified": (post.data.updatedDate ?? post.data.pubDate).toISOString(),
+  "inLanguage": "da",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": canonicalUrl },
+  "author": { "@type": "Organization", "name": "Camping Slap Af", "url": SITE_URL },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Camping Slap Af",
+    "logo": { "@type": "ImageObject", "url": `${SITE_URL}/CSA-logo-final.png` },
+  },
+  "keywords": post.data.tags.join(", "),
+});
+---
+
+<Layout
+  title={post.data.title}
+  locale={l}
+  description={post.data.description}
+  ogImage={post.data.ogImage ?? post.data.heroImage}
+  preloadImage={post.data.heroImage}
+  hreflangLocales={["da"]}
+  ogType="article"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={articleSchema} is:inline />
+  </Fragment>
+
+  <Hero
+    image={post.data.heroImage}
+    imageAlt={post.data.heroImageAlt}
+    eyebrow={t(l, "Blog", "eyebrow")}
+    title={post.data.title}
+    imagePosition={post.data.heroImagePosition ?? "center"}
+    compact
+  />
+
+  <article class="section">
+    <div class="container article">
+      <div class="article__meta">
+        <a href="/da/blog" class="article__back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          {t(l, "Blog", "backToBlog")}
+        </a>
+        <div class="article__meta-info">
+          <time datetime={post.data.pubDate.toISOString()}>
+            {dateFmt.format(post.data.pubDate)}
+          </time>
+          <span aria-hidden="true">·</span>
+          <span>{post.data.readingTime} {t(l, "Blog", "readingTimeLabel")}</span>
+        </div>
+      </div>
+
+      <div class="article__prose">
+        <Content />
+      </div>
+
+      <a href={bookingHref(l)} class="article__cta" target="_blank" rel="noopener noreferrer">
+        <div class="article__cta-body">
+          <h2>{t(l, "Blog", "ctaTitle")}</h2>
+          <p>{t(l, "Blog", "ctaText")}</p>
+          <span class="article__cta-btn">
+            {t(l, "Blog", "ctaButton")}
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clip-rule="evenodd" />
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      {
+        related.length > 0 && (
+          <aside class="article__related">
+            <h2 class="article__related-title">{t(l, "Blog", "relatedTitle")}</h2>
+            <ul class="article__related-list">
+              {related.map((p) => (
+                <li>
+                  <a href={`/da/blog/${p.id}`} class="article__related-card">
+                    <div class="article__related-media">
+                      <img
+                        src={p.data.heroImage}
+                        alt={p.data.heroImageAlt}
+                        loading="lazy"
+                        decoding="async"
+                        style={
+                          p.data.heroImagePosition
+                            ? `object-position: ${p.data.heroImagePosition}`
+                            : undefined
+                        }
+                      />
+                    </div>
+                    <div class="article__related-text">
+                      <h3>{p.data.title}</h3>
+                      <p>{p.data.excerpt}</p>
+                    </div>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </aside>
+        )
+      }
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .article {
+    max-width: 760px;
+  }
+
+  .article__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-bottom: var(--space-8);
+    padding-bottom: var(--space-5);
+    border-bottom: 1px solid var(--color-hairline);
+  }
+  .article__back {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    color: var(--color-green);
+  }
+  .article__back svg {
+    width: 16px;
+    height: 16px;
+  }
+  .article__meta-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    letter-spacing: 0.03em;
+    color: var(--color-muted);
+  }
+
+  /* ---- Rendered markdown ---- */
+  .article__prose {
+    font-size: var(--fs-md);
+    line-height: var(--lh-body);
+    color: var(--color-ink);
+  }
+  .article__prose :global(p) {
+    color: var(--color-ink);
+    margin-bottom: var(--space-5);
+  }
+  .article__prose :global(h2) {
+    font-size: var(--fs-xl);
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-4);
+    text-wrap: balance;
+  }
+  .article__prose :global(h3) {
+    font-size: var(--fs-lg);
+    margin-top: var(--space-6);
+    margin-bottom: var(--space-3);
+  }
+  .article__prose :global(a) {
+    color: var(--color-green);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .article__prose :global(a:hover) {
+    color: var(--color-mint);
+  }
+  .article__prose :global(strong) {
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+  .article__prose :global(ul),
+  .article__prose :global(ol) {
+    margin: 0 0 var(--space-5);
+    padding-left: 1.35rem;
+  }
+  .article__prose :global(ul) {
+    list-style: disc;
+  }
+  .article__prose :global(ol) {
+    list-style: decimal;
+  }
+  .article__prose :global(li) {
+    margin-bottom: var(--space-2);
+    padding-left: 0.25rem;
+  }
+  .article__prose :global(li::marker) {
+    color: var(--color-green);
+  }
+  .article__prose :global(img) {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    margin: var(--space-6) 0;
+  }
+  .article__prose :global(blockquote) {
+    margin: var(--space-6) 0;
+    padding: var(--space-4) var(--space-5);
+    border-left: 3px solid var(--color-green);
+    background: var(--color-cream);
+    border-radius: var(--radius-md);
+    color: var(--color-ink);
+  }
+  .article__prose :global(hr) {
+    border: 0;
+    border-top: 1px solid var(--color-hairline);
+    margin: var(--space-8) 0;
+  }
+
+  /* ---- Inline booking CTA ---- */
+  .article__cta {
+    display: block;
+    margin-top: var(--space-10);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-hairline);
+    background:
+      linear-gradient(135deg, var(--color-white) 0%, var(--color-cream) 55%, rgba(119, 186, 138, 0.3) 100%);
+    padding: var(--space-7);
+    color: var(--color-ink);
+    box-shadow: 0 1px 2px rgba(26, 26, 26, 0.04);
+    transition: box-shadow 200ms ease;
+  }
+  .article__cta:hover {
+    color: var(--color-ink);
+    box-shadow: 0 8px 24px rgba(26, 26, 26, 0.08);
+  }
+  .article__cta h2 {
+    font-size: var(--fs-xl);
+    margin: 0;
+    text-wrap: balance;
+  }
+  .article__cta p {
+    margin-top: var(--space-3);
+    max-width: 52ch;
+    color: var(--color-muted);
+    font-size: var(--fs-sm);
+    line-height: var(--lh-body);
+  }
+  .article__cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-top: var(--space-5);
+    padding: 0.7rem 1.25rem;
+    border-radius: var(--radius-md);
+    background: var(--color-green);
+    color: var(--color-white);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+  }
+  .article__cta-btn svg {
+    width: 1rem;
+    height: 1rem;
+  }
+  .article__cta:hover .article__cta-btn {
+    background: var(--color-green-dark);
+  }
+
+  /* ---- Related ---- */
+  .article__related {
+    margin-top: var(--space-10);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-hairline);
+  }
+  .article__related-title {
+    font-size: var(--fs-lg);
+    margin-bottom: var(--space-5);
+  }
+  .article__related-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+  @media (min-width: 640px) {
+    .article__related-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  .article__related-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--color-bg);
+    color: var(--color-ink);
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+  }
+  .article__related-card:hover {
+    color: var(--color-ink);
+    border-color: var(--color-hairline-strong);
+    box-shadow: 0 8px 24px rgba(26, 26, 26, 0.08);
+  }
+  .article__related-media {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: var(--color-cream);
+  }
+  .article__related-media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .article__related-text {
+    padding: var(--space-5);
+  }
+  .article__related-text h3 {
+    font-size: var(--fs-md);
+    line-height: var(--lh-snug);
+    margin-bottom: var(--space-2);
+  }
+  .article__related-text p {
+    color: var(--color-muted);
+    font-size: var(--fs-sm);
+    line-height: var(--lh-body);
+  }
+</style>

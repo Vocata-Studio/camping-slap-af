@@ -40,7 +40,7 @@ De fleste kommer i bil, og der er parkering i og omkring Nykøbing under festiva
 
 Bor du oppe hos os i Sejerslev, er der cirka et kvarters kørsel ned til havnen. Vil du helt slippe for parkering, kan du tage cyklen med, for turen langs fjorden er både kort og pæn.
 
-![Receptionen og kiosken på Camping Slap Af](/billeder-fra-anders/reception-kiosk.webp)
+![Luftfoto af Camping Slap Af i Sejerslev på Mors](/images/overhead-shot.webp)
 
 ## Din base uden for byen
 

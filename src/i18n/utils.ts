@@ -30,6 +30,48 @@ export function isValidLocale(locale: string): locale is Locale {
   return (locales as readonly string[]).includes(locale);
 }
 
+/** localStorage/cookie key used to remember the visitor's language choice */
+export const localeStorageKey = "campingslapaf.locale";
+
+/**
+ * Server-side locale detection for the root redirect. Mirrors the client
+ * detection order: remembered choice → Accept-Language (exact code, then base
+ * language, with Norwegian mapped to `nb`) → fallback (en) → default.
+ */
+export function pickLocale(
+  acceptLanguage: string | null | undefined,
+  remembered?: string | null,
+): Locale {
+  // 1. Remembered choice (cookie set by the language switcher)
+  if (remembered && isValidLocale(remembered)) return remembered;
+
+  // 2. Accept-Language, ordered by q-value
+  if (acceptLanguage) {
+    const ordered = acceptLanguage
+      .split(",")
+      .map((part) => {
+        const [tag, ...params] = part.trim().split(";");
+        const q = params
+          .map((p) => p.trim())
+          .find((p) => p.startsWith("q="));
+        const weight = q ? parseFloat(q.slice(2)) : 1;
+        return { tag: tag.toLowerCase(), weight: Number.isNaN(weight) ? 0 : weight };
+      })
+      .filter((entry) => entry.tag)
+      .sort((a, b) => b.weight - a.weight);
+
+    for (const { tag } of ordered) {
+      if (isValidLocale(tag)) return tag;
+      const base = tag.split("-")[0];
+      if (isValidLocale(base)) return base;
+      if (base === "no" && isValidLocale("nb")) return "nb";
+    }
+  }
+
+  // 3. Fallback chain: fallback (en) → default (da)
+  return fallbackLocale;
+}
+
 /** Human-readable native labels for the language switcher */
 export const localeLabels: Record<Locale, { native: string; short: string; flagCode: string }> = {
   da: { native: "Dansk", short: "DA", flagCode: "dk" },

@@ -1,98 +1,23 @@
 ---
-import { locales, defaultLocale, fallbackLocale } from "../i18n/utils";
+import { pickLocale, localeStorageKey } from "../i18n/utils";
 
-const supported = JSON.stringify(locales);
-const fallback = fallbackLocale;
-const ultimate = defaultLocale;
+// Server-side language redirect. The bare domain resolves the best locale from
+// the visitor's remembered choice (cookie) or Accept-Language header and issues
+// a real 302 — cleaner for crawlers than a JS/meta-refresh splash.
+export const prerender = false;
+
+const remembered = Astro.cookies.get(localeStorageKey)?.value ?? null;
+const acceptLanguage = Astro.request.headers.get("accept-language");
+const target = pickLocale(acceptLanguage, remembered);
+
+// Build the redirect Response directly so the caching headers stick — the
+// response varies per visitor (cookie + header), so it must not be cached.
+return new Response(null, {
+  status: 302,
+  headers: {
+    Location: `/${target}/${Astro.url.search}`,
+    "Cache-Control": "no-store",
+    Vary: "Cookie, Accept-Language",
+  },
+});
 ---
-
-<!doctype html>
-<html lang={defaultLocale}>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Camping Slap Af</title>
-    <meta name="description" content="Camping Slap Af — rolig camping i Sejerslev på Mors." />
-    <meta property="og:title" content="Camping Slap Af" />
-    <meta property="og:description" content="Camping Slap Af — rolig camping i Sejerslev på Mors." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://campingslapaf.dk/" />
-    <meta property="og:image" content="https://campingslapaf.dk/csa-flag-flying.jpeg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Camping Slap Af — rolig camping i Sejerslev på Mors" />
-    <meta property="og:site_name" content="Camping Slap Af" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://campingslapaf.dk/csa-flag-flying.jpeg" />
-    <link rel="icon" type="image/png" href="/CSA-logo-final.png" />
-
-    <!-- No-JS fallback: meta refresh to the default locale. -->
-    <noscript>
-      <meta http-equiv="refresh" content={`0; url=/${defaultLocale}/`} />
-    </noscript>
-
-    <script is:inline define:vars={{ supported, fallback, ultimate }}>
-      (function () {
-        var locales;
-        try {
-          locales = JSON.parse(supported);
-        } catch (e) {
-          locales = [ultimate];
-        }
-
-        function pick() {
-          // 1. Remembered choice
-          try {
-            var saved = localStorage.getItem("campingslapaf.locale");
-            if (saved && locales.indexOf(saved) !== -1) return saved;
-          } catch (e) {}
-
-          // 2. Browser languages — exact code, then base language
-          var candidates = (navigator.languages && navigator.languages.length)
-            ? navigator.languages
-            : [navigator.language || ""];
-
-          for (var i = 0; i < candidates.length; i++) {
-            var raw = (candidates[i] || "").toLowerCase();
-            if (!raw) continue;
-            if (locales.indexOf(raw) !== -1) return raw;
-            var base = raw.split("-")[0];
-            if (locales.indexOf(base) !== -1) return base;
-            // Norwegian maps to `nb` (Norsk Bokmål)
-            if (base === "no" && locales.indexOf("nb") !== -1) return "nb";
-          }
-
-          // 3. PRD fallback chain: browser → English → Danish
-          if (locales.indexOf(fallback) !== -1) return fallback;
-          return ultimate;
-        }
-
-        var target = pick();
-        try {
-          localStorage.setItem("campingslapaf.locale", target);
-        } catch (e) {}
-        window.location.replace("/" + target + "/" + window.location.search);
-      })();
-    </script>
-
-    <style>
-      body {
-        font-family: system-ui, -apple-system, Segoe UI, sans-serif;
-        background: #fff;
-        color: #6B7280;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        margin: 0;
-      }
-      p {
-        font-size: 0.9rem;
-        letter-spacing: 0.02em;
-      }
-    </style>
-  </head>
-  <body>
-    <p>Camping Slap Af</p>
-  </body>
-</html>

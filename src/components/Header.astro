@@ -188,7 +188,12 @@ function isActive(href: string): boolean {
 <script is:inline>
   try {
     var lang = document.documentElement.lang;
-    if (lang) localStorage.setItem("campingslapaf.locale", lang);
+    if (lang) {
+      localStorage.setItem("campingslapaf.locale", lang);
+      // Mirror to a cookie so the server-side root redirect honours the choice.
+      document.cookie =
+        "campingslapaf.locale=" + lang + ";path=/;max-age=31536000;SameSite=Lax";
+    }
   } catch (e) {}
 </script>
 

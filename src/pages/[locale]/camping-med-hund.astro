@@ -1,0 +1,394 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero.astro";
+import StartBookingCta from "../../components/StartBookingCta.astro";
+import { t, localePath } from "../../i18n/utils";
+import type { Locale } from "../../i18n/utils";
+
+// Dog-friendly camping is a Danish-only, search-focused landing page aimed at
+// "camping med hund på Mors" and related geo-qualified queries. Like the blog,
+// it is only generated under /da/ — other locales never get this route.
+export function getStaticPaths() {
+  return [{ params: { locale: "da" } }];
+}
+
+const l = "da" as Locale;
+const tf = (key: string) => t(l, "DogCamping", key);
+
+const heroImage = "/billeder-fra-anders/owners-walking.webp";
+
+const rules = ["rule1", "rule2", "rule3", "rule4", "rule5"] as const;
+const faqItems = [1, 2, 3, 4, 5].map((n) => ({
+  q: tf(`q${n}`),
+  a: tf(`a${n}`),
+}));
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((it) => ({
+    "@type": "Question",
+    name: it.q,
+    acceptedAnswer: { "@type": "Answer", text: it.a },
+  })),
+});
+---
+
+<Layout
+  title={t(l, "Meta", "dogCampingTitle")}
+  locale={l}
+  description={t(l, "Meta", "dogCampingDescription")}
+  ogImage={heroImage}
+  preloadImage={heroImage}
+  hreflangLocales={["da"]}
+>
+  <script type="application/ld+json" slot="head" set:html={faqSchema} />
+
+  <Hero
+    image={heroImage}
+    imageAlt={tf("title")}
+    eyebrow={tf("eyebrow")}
+    title={tf("title")}
+    subtitle={tf("subtitle")}
+    imagePosition="center"
+    compact
+  />
+
+  <!-- Intro + rules -->
+  <section class="section">
+    <div class="container dog">
+      <div class="dog__intro">
+        <h2>{tf("introTitle")}</h2>
+        <p>{tf("introText1")}</p>
+        <p>{tf("introText2")}</p>
+      </div>
+
+      <div class="dog__rules">
+        <h3>{tf("rulesTitle")}</h3>
+        <ul class="dog__rules-list">
+          {
+            rules.map((key) => (
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                <span>{tf(key)}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hairline" />
+
+  <!-- Walks -->
+  <section class="section">
+    <div class="container dog-block">
+      <div class="dog-block__media">
+        <img src="/billeder-fra-anders/campsite-overview.webp" alt="Overblik over Camping Slap Af på Mors med telte og træer" loading="lazy" decoding="async" />
+      </div>
+      <div class="dog-block__body">
+        <h2>{tf("walksTitle")}</h2>
+        <p>{tf("walksText1")}</p>
+        <p>{tf("walksText2")}</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hairline" />
+
+  <!-- Stay types -->
+  <section class="section">
+    <div class="container dog-narrow">
+      <h2>{tf("stayTitle")}</h2>
+      <p>{tf("stayText1")}</p>
+      <div class="dog__links">
+        <a href={localePath(l, "/accommodation")} class="dog__link">{tf("stayLinkAccommodation")} →</a>
+        <a href={localePath(l, "/prices")} class="dog__link">{tf("stayLinkPrices")} →</a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hairline" />
+
+  <!-- Price -->
+  <section class="section">
+    <div class="container dog-narrow">
+      <h2>{tf("priceTitle")}</h2>
+      <p>{tf("priceText")}</p>
+      <p>
+        <a href={localePath(l, "/prices")} class="dog__link">{tf("priceLink")} →</a>
+      </p>
+    </div>
+  </section>
+
+  <hr class="hairline" />
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container dog-faq">
+      <header class="dog-faq__head">
+        <h2>{tf("faqTitle")}</h2>
+      </header>
+      <ul class="dog-faq__list">
+        {
+          faqItems.map((it) => (
+            <li class="dog-faq__item">
+              <details>
+                <summary class="dog-faq__q">
+                  <span>{it.q}</span>
+                  <svg class="dog-faq__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
+                </summary>
+                <div class="dog-faq__a">
+                  <p>{it.a}</p>
+                </div>
+              </details>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="dog-faq__contact">
+        {tf("contactLine")} <a href={localePath(l, "/contact")} class="dog__link">{t(l, "Header", "contact")}</a>
+      </p>
+    </div>
+  </section>
+
+  <hr class="hairline" />
+
+  <!-- Related guides -->
+  <section class="section">
+    <div class="container dog-narrow">
+      <h2>{tf("relatedTitle")}</h2>
+      <ul class="dog__related">
+        <li>
+          <a href="/da/blog/camping-paa-mors-guide">{tf("relatedGuide")} →</a>
+        </li>
+        <li>
+          <a href="/da/blog/severdigheder-paa-mors">{tf("relatedSev")} →</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <StartBookingCta locale={l} />
+</Layout>
+
+<style>
+  .dog {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+    align-items: start;
+  }
+  @media (min-width: 900px) {
+    .dog {
+      grid-template-columns: 1.3fr 1fr;
+      gap: var(--space-12);
+    }
+  }
+  .dog__intro h2 {
+    font-size: var(--fs-2xl);
+    margin-bottom: var(--space-5);
+  }
+  .dog__intro p {
+    color: var(--color-muted);
+    font-size: var(--fs-md);
+    line-height: var(--lh-body);
+    max-width: 60ch;
+  }
+  .dog__intro p + p {
+    margin-top: var(--space-4);
+  }
+
+  .dog__rules {
+    padding: var(--space-7);
+    background: var(--color-cream);
+    border-radius: var(--radius-lg);
+  }
+  .dog__rules h3 {
+    font-size: var(--fs-lg);
+    margin-bottom: var(--space-5);
+  }
+  .dog__rules-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .dog__rules-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    color: var(--color-ink);
+    font-size: var(--fs-sm);
+    line-height: var(--lh-body);
+  }
+  .dog__rules-list svg {
+    width: 18px;
+    height: 18px;
+    color: var(--color-green);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* Image + text block */
+  .dog-block {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .dog-block {
+      grid-template-columns: 1fr 1.1fr;
+      gap: var(--space-10);
+    }
+  }
+  .dog-block__media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .dog-block__media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .dog-block__body h2 {
+    font-size: var(--fs-2xl);
+    margin-bottom: var(--space-5);
+  }
+  .dog-block__body p {
+    color: var(--color-muted);
+    font-size: var(--fs-md);
+    line-height: var(--lh-body);
+    max-width: 60ch;
+  }
+  .dog-block__body p + p {
+    margin-top: var(--space-4);
+  }
+
+  /* Narrow prose sections */
+  .dog-narrow {
+    max-width: 680px;
+  }
+  .dog-narrow h2 {
+    font-size: var(--fs-2xl);
+    margin-bottom: var(--space-5);
+  }
+  .dog-narrow p {
+    color: var(--color-muted);
+    font-size: var(--fs-md);
+    line-height: var(--lh-body);
+  }
+  .dog-narrow p + p {
+    margin-top: var(--space-4);
+  }
+
+  .dog__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    margin-top: var(--space-6);
+  }
+  .dog__link {
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    color: var(--color-green);
+    white-space: nowrap;
+  }
+  .dog__link:hover {
+    color: var(--color-mint);
+  }
+
+  .dog__related {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-top: var(--space-2);
+  }
+  .dog__related a {
+    font-size: var(--fs-md);
+    font-weight: 600;
+    color: var(--color-green);
+  }
+  .dog__related a:hover {
+    color: var(--color-mint);
+  }
+
+  /* FAQ */
+  .dog-faq {
+    max-width: 760px;
+  }
+  .dog-faq__head {
+    margin-bottom: var(--space-7);
+    text-align: center;
+  }
+  .dog-faq__head h2 {
+    font-size: var(--fs-xl);
+  }
+  .dog-faq__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--color-hairline);
+  }
+  .dog-faq__item {
+    border-bottom: 1px solid var(--color-hairline);
+  }
+  .dog-faq__q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-5) 0;
+    cursor: pointer;
+    list-style: none;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: var(--fs-md);
+    color: var(--color-ink);
+  }
+  .dog-faq__q::-webkit-details-marker {
+    display: none;
+  }
+  .dog-faq__q:hover {
+    color: var(--color-green);
+  }
+  .dog-faq__chevron {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: var(--color-muted);
+  }
+  .dog-faq__item details[open] .dog-faq__chevron {
+    transform: rotate(180deg);
+  }
+  .dog-faq__item details[open] .dog-faq__q {
+    color: var(--color-green);
+  }
+  .dog-faq__a {
+    padding: 0 0 var(--space-5);
+    max-width: 64ch;
+  }
+  .dog-faq__a p {
+    color: var(--color-muted);
+    font-size: var(--fs-md);
+    line-height: var(--lh-body);
+  }
+  .dog-faq__contact {
+    margin-top: var(--space-7);
+    text-align: center;
+    color: var(--color-muted);
+    font-size: var(--fs-sm);
+    line-height: var(--lh-body);
+  }
+</style>

@@ -36,3 +36,10 @@ next-env.d.ts
 .DS_Store
 *.pem
 Thumbs.db
+
+# local working files
+.vocata.toml
+Anders photos (original file names)/
+anders-originals/
+docs/
+PageSpeed-*.pdf

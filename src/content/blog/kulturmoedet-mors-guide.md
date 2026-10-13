@@ -1,8 +1,9 @@
 ---
 title: "Kulturmødet Mors: sådan får du mest ud af festivalen"
-description: "Guide til Kulturmødet på Mors, Danmarks store gratis kulturfestival med over 500 arrangementer. Få styr på program, transport og et billigt sted at bo tæt på."
-excerpt: "Over 500 arrangementer på tre dage, og det hele er gratis. Her er en enkel guide til at planlægge dine dage på Kulturmødet, og til hvor du bor uden at det koster en formue."
+description: "Guide til Kulturmødet på Mors, Danmarks store gratis kulturfestival i Nykøbing hver august. Få styr på program, transport og et billigt sted at bo tæt på."
+excerpt: "Flere hundrede arrangementer på tre dage, og det hele er gratis. Her er en enkel guide til at planlægge dine dage på Kulturmødet, og til hvor du bor uden at det koster en formue."
 pubDate: 2026-05-27
+updatedDate: 2026-10-13
 heroImage: "/billeder-fra-anders/campsite-overview.webp"
 heroImageAlt: "Overblik over Camping Slap Af på Mors med telte og træer"
 heroImagePosition: "center"
@@ -10,7 +11,7 @@ readingTime: "6 min"
 tags: ["Kulturmødet", "Guide", "Mors"]
 ---
 
-[Kulturmødet](https://kulturmodet.dk/) er blevet det sted i Danmark hvor kultur mødes og bliver vendt på tværs, og det foregår altså på Mors. I år er det den 20.-22. august 2026. Kunstnere, politikere, folk der bestemmer noget, og helt almindelige gæster render rundt mellem hinanden i tre dage og snakker om alt det der rører sig i kulturen lige nu. Det er mere end 500 samtaler og kunstoplevelser fordelt på 25 scener, over 200 organisationer og mere end 1000 stemmer er med, og der kommer over 37.000 mennesker forbi. Og det bedste er at det er gratis at være med.
+[Kulturmødet](https://kulturmodet.dk/) er blevet det sted i Danmark hvor kultur mødes og bliver vendt på tværs, og det foregår altså på Mors. Det ligger hvert år i august, tre dage i træk nede i Nykøbing. Kunstnere, politikere, folk der bestemmer noget, og helt almindelige gæster render rundt mellem hinanden og snakker om alt det der rører sig i kulturen lige nu. Der er flere hundrede samtaler og kunstoplevelser fordelt på en masse scener, og der kommer titusindvis af mennesker forbi. Og så er det gratis at være med.
 
 Hvis det er første gang du skal afsted, kan det godt virke lidt uoverskueligt med så meget på programmet. Så her er en enkel måde at gribe det an på, plus lidt om hvor du bor når du alligevel er på øen.
 
@@ -22,17 +23,17 @@ Fordi der er så meget forskelligt, er der plads til at du selv bygger din dag. 
 
 ## Hvornår og hvor foregår det
 
-I 2026 er datoerne den 20.-22. august, og det meste foregår nede omkring Nykøbing havn. Hele programmet finder du på [kulturmodet.dk](https://kulturmodet.dk/), og det er værd at tjekke løbende, for der bliver lagt nye arrangementer op hele tiden op til festivalen. Du kan også holde øje med [VisitMors](https://www.visitmors.dk/) som samler en del af det praktiske omkring turen.
+Kulturmødet ligger i august hvert år, typisk sidst på måneden, og det meste foregår nede omkring Nykøbing havn. De præcise datoer og hele programmet finder du på [kulturmodet.dk](https://kulturmodet.dk/). Datoerne bliver som regel meldt ud i god tid, mens programmet først bliver fyldt op hen over foråret og sommeren, så det er værd at kigge forbi et par gange. Du kan også holde øje med [VisitMors](https://www.visitmors.dk/) som samler en del af det praktiske omkring turen.
 
 Det gode ved at det hele ligger samlet på og omkring havnen er at du kan gå fra det ene til det andet. Du skal ikke sidde i bil mellem arrangementerne, du går bare.
 
 ## Sådan planlægger du dine dage
 
-Med 500 arrangementer kan du ikke nå det hele, og det er faktisk pointen. Prøv ikke.
+Med så mange arrangementer kan du ikke nå det hele, og det er faktisk pointen. Prøv ikke.
 
 Det jeg selv ville gøre er at kigge programmet igennem på forhånd og markere en håndfuld ting om dagen som jeg rigtig gerne vil se. Og så lade resten være åbent. For noget af det bedste ved Kulturmødet er at man render ind i et eller andet man ikke havde planlagt, en debat man tilfældigt stopper op ved, eller en scene man ikke vidste var der.
 
-Så: nogle få faste ting, og god plads til at drive rundt imellem. Så bliver det ikke stressende, og du får både det du kom efter og nogle overraskelser.
+Så: nogle få faste ting, og god plads til at drive rundt imellem. Så bliver det ikke stressende, og du når både det du kom efter og et par ting du ikke havde regnet med.
 
 ## Kom nemt frem og tilbage
 
@@ -54,7 +55,7 @@ Du kan sagtens spise dig mæt nede på Kulturmødet, der er masser af boder og s
 
 ## Book før pladserne er væk
 
-Festivalugen er den travleste uge på hele Mors, så hvis du vil være sikker på at have et sted at bo, så book i god tid. Du kan [reservere online her](https://booking.campingslapaf.dk), og skal du bruge hjælp til at vælge, så [skriv eller ring](/da/contact).
+Festivalugen er den travleste uge på hele Mors hvert år, så hvis du vil være sikker på at have et sted at bo, så book så snart du kender datoerne. Du kan [reservere online her](https://booking.campingslapaf.dk), og skal du bruge hjælp til at vælge, så [skriv eller ring](/da/contact).
 
 ---
 

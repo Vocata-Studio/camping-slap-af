@@ -50,7 +50,7 @@ Det gode ved Mors er at der aldrig er langt til det næste. Øen er ikke stor, s
 
 Når du har fundet ud af hvad du vil se, skal du jo bo et sted imens. Vi ligger i Sejerslev oppe i nord, tæt på molerklinterne og havnene, og cirka et kvarters kørsel fra Nykøbing. Så du har både roen og naturen lige uden for teltet, og kort til det meste af det andet på øen.
 
-Du kan bo i telt, campingvogn, autocamper eller hytte hos os, og priserne holder vi nede så det ikke bliver dyrt at blive et par ekstra dage. Se de forskellige [pladser og hytter her](/da/accommodation), eller kig direkte på [priserne](/da/prices). Er du i tvivl om hvad der passer bedst til din tur, så [skriv eller ring til os](/da/contact), så finder vi ud af det sammen.
+Du kan bo i telt, campingvogn, autocamper eller hytte hos os, og priserne holder vi nede så det ikke bliver dyrt at blive et par ekstra dage. Se de forskellige [pladser og hytter her](/da/accommodation), eller kig direkte på [priserne](https://booking.campingslapaf.dk/da/priser). Er du i tvivl om hvad der passer bedst til din tur, så [skriv eller ring til os](/da/contact), så finder vi ud af det sammen.
 
 Du kan [reservere online her](https://booking.campingslapaf.dk) når du er klar.
 

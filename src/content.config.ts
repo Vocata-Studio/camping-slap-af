@@ -4,8 +4,10 @@ import { z } from "astro/zod";
 
 /**
  * Blog / guide articles. Danish-only content aimed at organic search
- * (Kulturmødet Mors and the surrounding tourism week). Long-form copy lives
- * in Markdown here rather than the i18n JSON files, which only hold UI strings.
+ * (camping, sights and recurring events on Mors). Posts are evergreen: no
+ * year-specific dates or prices, link to /prices instead. Long-form copy
+ * lives in Markdown here rather than the i18n JSON files, which only hold UI
+ * strings.
  */
 const blog = defineCollection({
   loader: glob({ base: "./src/content/blog", pattern: "**/[^_]*.md" }),

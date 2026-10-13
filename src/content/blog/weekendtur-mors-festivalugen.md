@@ -3,6 +3,7 @@ title: "Weekendtur til Mors i festivalugen: Kulturmødet og alt det andet"
 description: "Kombiner Kulturmødet med en weekend på Mors. Se natur, klinter og havne omkring Limfjorden, og bo billigt på Camping Slap Af i Sejerslev tæt på det hele."
 excerpt: "Når du alligevel er på Mors til Kulturmødet, er det oplagt at få lidt mere ud af turen. Her er hvad du kan lave omkring festivalen, og hvor du bor så du er tæt på det hele."
 pubDate: 2026-06-03
+updatedDate: 2026-10-13
 heroImage: "/images/ejerslev-havn-klit.webp"
 heroImageAlt: "Klit og kyst ved Ejerslev Havn på Mors ved Limfjorden"
 heroImagePosition: "center"
@@ -10,7 +11,7 @@ readingTime: "6 min"
 tags: ["Mors", "Kulturmødet", "Oplevelser"]
 ---
 
-[Kulturmødet](https://kulturmodet.dk/) er tre dage, i år den 20.-22. august 2026, men når du nu alligevel har kørt hele vejen til Mors, er det ærgerligt bare at se festivalen og køre hjem igen. Øen er faktisk et rigtig fint sted at bruge en weekend, og naturen ligger lige uden for teltet. Så du kan sagtens bygge en lille ferie op omkring festivalen, hvor du veksler mellem debatter og musik nede i Nykøbing, og ro og natur oppe omkring pladsen.
+[Kulturmødet](https://kulturmodet.dk/) er tre dage i Nykøbing hver august, men når du nu alligevel har kørt hele vejen til Mors, er det ærgerligt bare at se festivalen og køre hjem igen. Øen er faktisk et rigtig fint sted at bruge en weekend, og naturen ligger lige uden for teltet. Så du kan sagtens bygge en lille ferie op omkring festivalen, hvor du veksler mellem debatter og musik nede i Nykøbing, og ro og natur oppe omkring pladsen.
 
 Vi ligger i Sejerslev i den nordlige del af Mors, og herfra er der kort til både Kulturmødet og til det meste af det der er værd at se på øen.
 
@@ -46,7 +47,7 @@ Så kan I skiftes til at tage ned til Kulturmødet og til at være hjemme på pl
 
 Det der binder det sammen er at du bor ét sted, tæt på både festivalen og naturen. Ned til Kulturmødet i Nykøbing er der cirka et kvarters kørsel, og op til klinterne og havnene er der endnu kortere. Så du skal ikke skifte overnatning undervejs, du har bare din base stående, og kører ud til det du har lyst til.
 
-Og prisen holder vi nede, så det ikke bliver dyrt at blive nogle ekstra dage. En teltplads er 200 kr. per nat for to voksne, campingfeltet fra 125 kr. hvis du har et lille telt, og vil du have en hytte med sengetøj og det hele, starter det ved 300 kr. Det hele ligger samlet på [prissiden](/da/prices).
+Og prisen holder vi nede, så det ikke bliver dyrt at blive nogle ekstra dage. Vi har samme pris hele sæsonen, også i festivalugen, og har du bare et lille telt er campingfeltet det billigste. Vil du have en hytte med sengetøj og det hele, kan det også lade sig gøre. Årets priser ligger samlet på [prissiden](https://booking.campingslapaf.dk/da/priser).
 
 ## Sådan får du både festival og fri
 

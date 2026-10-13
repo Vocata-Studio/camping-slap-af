@@ -5,8 +5,12 @@
 // Run by .github/workflows/indexnow.yml once Vercel reports a successful
 // production deployment. The key must match public/<key>.txt.
 
-const SITE = "https://campingslapaf.dk";
 const KEY = "802bdc767e189f83934a11fce64a52ae";
+
+// The apex domain redirects to www (Vercel domain setting), and IndexNow wants
+// the key file and URLs on the host that actually serves them. Follow the
+// redirect once and submit everything on the final origin.
+const SITE = new URL((await fetch("https://campingslapaf.dk/")).url).origin;
 
 async function locs(url) {
   const res = await fetch(url);
@@ -16,7 +20,9 @@ async function locs(url) {
 }
 
 const sitemaps = await locs(`${SITE}/sitemap-index.xml`);
-const urlList = (await Promise.all(sitemaps.map(locs))).flat();
+const urlList = (await Promise.all(sitemaps.map(locs)))
+  .flat()
+  .map((u) => SITE + new URL(u).pathname);
 
 const res = await fetch("https://api.indexnow.org/indexnow", {
   method: "POST",

@@ -65,9 +65,8 @@
     "testimonialComingSoonTitle": "Reseñas próximamente",
     "testimonialComingSoonText": "Acabamos de reabrir con un nuevo nombre — las primeras reseñas de huéspedes aparecerán aquí pronto.",
     "ctaTitle": "¿Listo para tu próxima aventura?",
-    "ctaDescription": "Reserva tu plaza en Camping Slap Af y descubre lo mejor de Mors. Temporada abierta hasta el 18 de octubre de 2026.",
-    "ctaButton": "Reservar ahora",
-    "seasonNotice": "Temporada 2026 — abierto hasta el 18 de octubre"
+    "ctaDescription": "Reserva tu plaza en Camping Slap Af y descubre lo mejor de Mors. Abierto de abril a mediados de octubre.",
+    "ctaButton": "Reservar ahora"
   },
   "About": {
     "title": "Sobre Camping Slap Af",
@@ -218,7 +217,7 @@
     "phone": "+45 91 19 96 74",
     "email": "campingslapaf@outlook.com",
     "hoursTitle": "Horario de apertura",
-    "hoursText": "La recepción está abierta diariamente durante la temporada de camping (hasta el 18 de octubre de 2026). Contáctanos para horarios exactos.",
+    "hoursText": "La recepción está abierta diariamente durante la temporada de camping, de abril a mediados de octubre. Contáctanos para horarios exactos.",
     "formTitle": "Envíanos un mensaje",
     "nameLabel": "Nombre",
     "emailLabel": "Email",
@@ -296,7 +295,7 @@
     "contactTitle": "Contacto y cómo llegar – Mors",
     "bookingTitle": "Reserva tus vacaciones en Mors",
     "pricesTitle": "Precios – camping, cabañas y autocaravana",
-    "homeDescription": "Pequeño camping natural en Mors, junto al Limfjord en Dinamarca. Tiendas, autocaravanas y cabañas, admite mascotas. Abierto hasta el 18 de octubre de 2026.",
+    "homeDescription": "Pequeño camping natural en Mors, junto al Limfjord en Dinamarca. Tiendas, autocaravanas y cabañas, admite mascotas. Abierto de abril a mediados de octubre.",
     "aboutDescription": "Conoce a Angela y Jeroen, los nuevos propietarios de Camping Slap Af — un pequeño camping tranquilo en Mors, junto al Limfjord en Dinamarca. Nuestra historia.",
     "accommodationDescription": "Alojamiento en Mors, Dinamarca — parcelas, plazas para autocaravanas, cabañas, zona de tiendas y parcelas de temporada. Admite mascotas, instalaciones comunes.",
     "activitiesDescription": "Vacaciones activas en Mors, Dinamarca — descubre Hanklit, Skærbæk Klint, el Museo del Moler y Nykøbing Mors. Actividades en el camping y los alrededores.",
@@ -308,8 +307,8 @@
   "Prices": {
     "title": "Precios",
     "subtitle": "Todos los precios son por noche e incluyen IVA. Contáctenos con sus fechas para obtener el total.",
-    "eyebrow": "Lista de precios {year}",
-    "season": "Temporada: 1 de abril – 18 de octubre de {year}",
+    "eyebrow": "Lista de precios",
+    "season": "Temporada: abril – mediados de octubre",
     "vatNote": "Todos los precios con IVA",
     "currencyLabel": "Moneda: EUR",
     "navCamping": "Parcela",
@@ -404,7 +403,7 @@
     "q2": "¿Está incluida la electricidad?",
     "a2": "La electricidad es un extra opcional de €6.70 por noche. En las parcelas de temporada puedes elegir electricidad para una temporada completa o media temporada.",
     "q3": "¿Cuándo estáis abiertos?",
-    "a3": "Abrimos del 1 de abril al 18 de octubre de 2026. Fuera de temporada el camping permanece cerrado.",
+    "a3": "Abrimos de abril a mediados de octubre. Verás las fechas exactas de la temporada al reservar. Fuera de temporada el camping permanece cerrado.",
     "q4": "¿Cómo pago mi estancia?",
     "a4": "Pagas un depósito del 25 % al reservar y el 75 % restante como muy tarde dos semanas antes de la llegada. Aceptamos Visa y Mastercard."
   }

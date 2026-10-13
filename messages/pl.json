@@ -65,9 +65,8 @@
     "testimonialComingSoonTitle": "Opinie wkrótce",
     "testimonialComingSoonText": "Właśnie ponownie otworzyliśmy pod nową nazwą — pierwsze opinie gości pojawią się tutaj wkrótce.",
     "ctaTitle": "Gotowy na swoją następną przygodę?",
-    "ctaDescription": "Zarezerwuj swoje miejsce w Camping Slap Af i przeżyj to, co najlepsze na Mors. Sezon otwarty do 18 października 2026.",
-    "ctaButton": "Zarezerwuj teraz",
-    "seasonNotice": "Sezon 2026 — otwarty do 18 października"
+    "ctaDescription": "Zarezerwuj swoje miejsce w Camping Slap Af i przeżyj to, co najlepsze na Mors. Otwarte od kwietnia do połowy października.",
+    "ctaButton": "Zarezerwuj teraz"
   },
   "About": {
     "title": "O Camping Slap Af",
@@ -218,7 +217,7 @@
     "phone": "+45 91 19 96 74",
     "email": "campingslapaf@outlook.com",
     "hoursTitle": "Godziny otwarcia",
-    "hoursText": "Recepcja jest otwarta codziennie w sezonie kempingowym (do 18 października 2026). Skontaktuj się z nami po dokładne godziny.",
+    "hoursText": "Recepcja jest otwarta codziennie w sezonie kempingowym, od kwietnia do połowy października. Skontaktuj się z nami po dokładne godziny.",
     "formTitle": "Wyślij nam wiadomość",
     "nameLabel": "Imię",
     "emailLabel": "Email",
@@ -296,7 +295,7 @@
     "contactTitle": "Kontakt i dojazd – Mors, Dania",
     "bookingTitle": "Zarezerwuj wakacje na Mors",
     "pricesTitle": "Cennik – kemping, domki i kamper",
-    "homeDescription": "Mały, przyjazny psom kemping na wyspie Mors nad Limfjorden w Danii. Namioty, kampery i domki w spokojnej naturze. Otwarty do 18 października 2026.",
+    "homeDescription": "Mały, przyjazny psom kemping na wyspie Mors nad Limfjorden w Danii. Namioty, kampery i domki w spokojnej naturze. Otwarty od kwietnia do połowy października.",
     "aboutDescription": "Poznaj Angelę i Jeroena, nowych właścicieli Camping Slap Af — małego, spokojnego kempingu na Mors nad Limfjorden w Danii. Przeczytaj naszą historię.",
     "accommodationDescription": "Noclegi na Mors w Danii — miejsca namiotowe, miejsca dla kamperów, domki, pole kempingowe i miejsca sezonowe. Przyjazne psom, wspólne udogodnienia.",
     "activitiesDescription": "Aktywne wakacje na Mors w Danii — odkryj Hanklit, Skærbæk Klint, Muzeum Moleru i Nykøbing Mors. Atrakcje na miejscu i w okolicy nad Limfjorden.",
@@ -308,8 +307,8 @@
   "Prices": {
     "title": "Cennik",
     "subtitle": "Wszystkie ceny są za noc i zawierają VAT. Skontaktuj się z nami, podając daty, aby otrzymać kwotę łączną.",
-    "eyebrow": "Cennik {year}",
-    "season": "Sezon: 1 kwietnia – 18 października {year}",
+    "eyebrow": "Cennik",
+    "season": "Sezon: kwiecień – połowa października",
     "vatNote": "Wszystkie ceny z VAT",
     "currencyLabel": "Waluta: EUR",
     "navCamping": "Stanowisko",
@@ -404,7 +403,7 @@
     "q2": "Czy prąd jest wliczony w cenę?",
     "a2": "Prąd jest opcją dodatkową i kosztuje €6.70 za noc. Na stanowiskach sezonowych możesz zamiast tego wybrać prąd na cały lub pół sezonu.",
     "q3": "Kiedy jesteście otwarci?",
-    "a3": "Jesteśmy otwarci od 1 kwietnia do 18 października 2026. Poza sezonem teren jest zamknięty.",
+    "a3": "Jesteśmy otwarci od kwietnia do połowy października. Dokładne daty sezonu zobaczysz podczas rezerwacji. Poza sezonem teren jest zamknięty.",
     "q4": "Jak zapłacić za pobyt?",
     "a4": "Wpłacasz zaliczkę w wysokości 25 % przy rezerwacji, a pozostałe 75 % najpóźniej dwa tygodnie przed przyjazdem. Akceptujemy Visa i Mastercard."
   }

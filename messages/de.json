@@ -65,9 +65,8 @@
     "testimonialComingSoonTitle": "Bewertungen folgen in Kürze",
     "testimonialComingSoonText": "Wir haben gerade unter neuem Namen wiedereröffnet — die ersten Gästebewertungen erscheinen bald hier.",
     "ctaTitle": "Bereit für Ihr nächstes Abenteuer?",
-    "ctaDescription": "Buchen Sie Ihren Platz bei Camping Slap Af und erleben Sie das Beste von Mors. Saison geöffnet bis 18. Oktober 2026.",
-    "ctaButton": "Jetzt buchen",
-    "seasonNotice": "Saison 2026 — geöffnet bis 18. Oktober"
+    "ctaDescription": "Buchen Sie Ihren Platz bei Camping Slap Af und erleben Sie das Beste von Mors. Geöffnet von April bis Mitte Oktober.",
+    "ctaButton": "Jetzt buchen"
   },
   "About": {
     "title": "Über Camping Slap Af",
@@ -218,7 +217,7 @@
     "phone": "+45 91 19 96 74",
     "email": "campingslapaf@outlook.com",
     "hoursTitle": "Öffnungszeiten",
-    "hoursText": "Die Rezeption ist während der Campingsaison täglich geöffnet (bis 18. Oktober 2026). Kontaktieren Sie uns für die genauen Zeiten.",
+    "hoursText": "Die Rezeption ist während der Campingsaison täglich geöffnet, von April bis Mitte Oktober. Kontaktieren Sie uns für die genauen Zeiten.",
     "formTitle": "Schreiben Sie uns eine Nachricht",
     "nameLabel": "Name",
     "emailLabel": "E-Mail",
@@ -296,7 +295,7 @@
     "contactTitle": "Kontakt & Anfahrt – Mors, Dänemark",
     "bookingTitle": "Campingurlaub auf Mors buchen",
     "pricesTitle": "Preise – Camping, Hütten & Wohnmobil",
-    "homeDescription": "Kleiner, hundefreundlicher Campingplatz auf Mors am Limfjord, Dänemark. Zeltplätze, Wohnmobile und Hütten in ruhiger Natur. Geöffnet bis 18. Oktober 2026.",
+    "homeDescription": "Kleiner, hundefreundlicher Campingplatz auf Mors am Limfjord, Dänemark. Zeltplätze, Wohnmobile und Hütten in ruhiger Natur. Geöffnet von April bis Mitte Oktober.",
     "aboutDescription": "Lernen Sie Angela und Jeroen kennen, die neuen Inhaber von Camping Slap Af — ein kleiner, ruhiger Campingplatz auf Mors am Limfjord in Dänemark. Unsere Geschichte und Vision.",
     "accommodationDescription": "Unterkünfte auf Mors am Limfjord, Dänemark — Stell- und Wohnmobilplätze, Hütten, Zeltwiese und Saisonplätze. Hundefreundlich, mit Gemeinschaftsküche und -bad.",
     "activitiesDescription": "Aktivurlaub auf Mors am Limfjord, Dänemark — erleben Sie Hanklit, Skærbæk Klint, das Molermuseum und Nykøbing Mors. Aktivitäten am Platz und in der Umgebung.",
@@ -308,8 +307,8 @@
   "Prices": {
     "title": "Preise",
     "subtitle": "Alle Preise gelten pro Nacht und inkl. MwSt. Kontaktieren Sie uns mit Ihren Daten für den Gesamtbetrag.",
-    "eyebrow": "Preisliste {year}",
-    "season": "Saison: 1. April – 18. Oktober {year}",
+    "eyebrow": "Preisliste",
+    "season": "Saison: April – Mitte Oktober",
     "vatNote": "Alle Preise inkl. MwSt.",
     "currencyLabel": "Währung: EUR",
     "navCamping": "Stellplatz",
@@ -404,7 +403,7 @@
     "q2": "Ist Strom im Preis enthalten?",
     "a2": "Strom ist eine Zusatzoption und kostet €6.70 pro Nacht. Auf Saisonstellplätzen können Sie Strom stattdessen für eine ganze oder halbe Saison wählen.",
     "q3": "Wann haben Sie geöffnet?",
-    "a3": "Wir haben vom 1. April bis 18. Oktober 2026 geöffnet. Außerhalb der Saison ist der Platz geschlossen.",
+    "a3": "Wir haben von April bis Mitte Oktober geöffnet. Die genauen Saisondaten sehen Sie bei der Buchung. Außerhalb der Saison ist der Platz geschlossen.",
     "q4": "Wie bezahle ich meinen Aufenthalt?",
     "a4": "Sie zahlen bei der Buchung eine Anzahlung von 25 % und den Restbetrag von 75 % spätestens zwei Wochen vor der Anreise. Wir akzeptieren Visa und Mastercard."
   }

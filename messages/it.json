@@ -65,9 +65,8 @@
     "testimonialComingSoonTitle": "Recensioni in arrivo",
     "testimonialComingSoonText": "Abbiamo appena riaperto con un nuovo nome — le prime recensioni degli ospiti appariranno qui a breve.",
     "ctaTitle": "Pronti per la vostra prossima avventura?",
-    "ctaDescription": "Prenotate il vostro posto al Camping Slap Af e scoprite il meglio di Mors. Stagione aperta fino al 18 ottobre 2026.",
-    "ctaButton": "Prenota ora",
-    "seasonNotice": "Stagione 2026 — aperto fino al 18 ottobre"
+    "ctaDescription": "Prenotate il vostro posto al Camping Slap Af e scoprite il meglio di Mors. Aperto da aprile a metà ottobre.",
+    "ctaButton": "Prenota ora"
   },
   "About": {
     "title": "Chi è Camping Slap Af",
@@ -218,7 +217,7 @@
     "phone": "+45 91 19 96 74",
     "email": "campingslapaf@outlook.com",
     "hoursTitle": "Orari di apertura",
-    "hoursText": "La reception è aperta tutti i giorni durante la stagione campeggio (fino al 18 ottobre 2026). Contattateci per gli orari esatti.",
+    "hoursText": "La reception è aperta tutti i giorni durante la stagione campeggio, da aprile a metà ottobre. Contattateci per gli orari esatti.",
     "formTitle": "Inviateci un messaggio",
     "nameLabel": "Nome",
     "emailLabel": "Email",
@@ -296,7 +295,7 @@
     "contactTitle": "Contatti e come arrivare – Mors",
     "bookingTitle": "Prenota la vacanza in campeggio a Mors",
     "pricesTitle": "Prezzi – campeggio, bungalow & camper",
-    "homeDescription": "Piccolo campeggio nella natura a Mors, sul Limfjord in Danimarca. Tende, camper e bungalow, animali ammessi. Aperto fino al 18 ottobre 2026.",
+    "homeDescription": "Piccolo campeggio nella natura a Mors, sul Limfjord in Danimarca. Tende, camper e bungalow, animali ammessi. Aperto da aprile a metà ottobre.",
     "aboutDescription": "Conoscete Angela e Jeroen, i nuovi proprietari del Camping Slap Af — un piccolo campeggio tranquillo a Mors, sul Limfjord in Danimarca. La nostra storia.",
     "accommodationDescription": "Alloggi a Mors, in Danimarca — piazzole, piazzole per camper, bungalow, campo tende e piazzole stagionali. Animali ammessi, strutture comuni per tutti.",
     "activitiesDescription": "Vacanze nella natura a Mors, Danimarca — scoprite Hanklit, Skærbæk Klint, il Museo del Moler e Nykøbing Mors. Attività in loco e nei dintorni del Limfjord.",
@@ -308,8 +307,8 @@
   "Prices": {
     "title": "Prezzi",
     "subtitle": "Tutti i prezzi sono a notte e IVA inclusa. Contattaci con le tue date per ricevere il totale.",
-    "eyebrow": "Listino prezzi {year}",
-    "season": "Stagione: 1 aprile – 18 ottobre {year}",
+    "eyebrow": "Listino prezzi",
+    "season": "Stagione: aprile – metà ottobre",
     "vatNote": "Tutti i prezzi IVA inclusa",
     "currencyLabel": "Valuta: EUR",
     "navCamping": "Piazzola",
@@ -404,7 +403,7 @@
     "q2": "L'elettricità è inclusa?",
     "a2": "L'elettricità è un'opzione aggiuntiva a €6.70 a notte. Nelle piazzole stagionali puoi invece scegliere l'elettricità per una stagione intera o mezza stagione.",
     "q3": "Quando siete aperti?",
-    "a3": "Siamo aperti dal 1° aprile al 18 ottobre 2026. Fuori stagione il campeggio è chiuso.",
+    "a3": "Siamo aperti da aprile a metà ottobre. Le date esatte della stagione sono visibili al momento della prenotazione. Fuori stagione il campeggio è chiuso.",
     "q4": "Come pago il mio soggiorno?",
     "a4": "Versi un acconto del 25 % al momento della prenotazione e il restante 75 % entro due settimane prima dell'arrivo. Accettiamo Visa e Mastercard."
   }

@@ -65,9 +65,8 @@
     "testimonialComingSoonTitle": "Beoordelingen komen binnenkort",
     "testimonialComingSoonText": "We zijn net heropend onder een nieuwe naam — de eerste gastbeoordelingen verschijnen hier binnenkort.",
     "ctaTitle": "Klaar voor uw volgende avontuur?",
-    "ctaDescription": "Boek uw plek bij Camping Slap Af en beleef het beste van Mors. Seizoen open tot 18 oktober 2026.",
-    "ctaButton": "Boek nu",
-    "seasonNotice": "Seizoen 2026 — open tot 18 oktober"
+    "ctaDescription": "Boek uw plek bij Camping Slap Af en beleef het beste van Mors. Open van april tot half oktober.",
+    "ctaButton": "Boek nu"
   },
   "About": {
     "title": "Over Camping Slap Af",
@@ -221,7 +220,7 @@
     "phone": "+45 91 19 96 74",
     "email": "campingslapaf@outlook.com",
     "hoursTitle": "Openingstijden",
-    "hoursText": "De receptie is dagelijks geopend tijdens het campingseizoen (tot 18 oktober 2026). Neem contact op voor exacte tijden.",
+    "hoursText": "De receptie is dagelijks geopend tijdens het campingseizoen, van april tot half oktober. Neem contact op voor exacte tijden.",
     "formTitle": "Stuur ons een bericht",
     "nameLabel": "Naam",
     "emailLabel": "E-mail",
@@ -299,7 +298,7 @@
     "contactTitle": "Contact & route – Mors, Denemarken",
     "bookingTitle": "Kampeervakantie op Mors boeken",
     "pricesTitle": "Prijzen – camping, huisjes & camper",
-    "homeDescription": "Kleine, hondvriendelijke camping op Mors aan de Limfjord in Denemarken. Tenten, campers en huisjes in rustige natuur. Open tot 18 oktober 2026.",
+    "homeDescription": "Kleine, hondvriendelijke camping op Mors aan de Limfjord in Denemarken. Tenten, campers en huisjes in rustige natuur. Open van april tot half oktober.",
     "aboutDescription": "Maak kennis met Angela en Jeroen, de nieuwe eigenaren van Camping Slap Af — een kleine, rustige camping op Mors aan de Limfjord in Denemarken. Ons verhaal en visie.",
     "accommodationDescription": "Verblijf op Mors aan de Limfjord (Denemarken) — kampeer- en camperplaatsen, huisjes, kampeerveld en seizoensplaatsen. Hondvriendelijk, met gedeelde faciliteiten.",
     "activitiesDescription": "Actieve natuurvakantie op Mors aan de Limfjord, Denemarken — bezoek Hanklit, Skærbæk Klint, het Molenmuseum en Nykøbing Mors. Activiteiten op en rond de camping.",
@@ -311,8 +310,8 @@
   "Prices": {
     "title": "Prijzen",
     "subtitle": "Alle prijzen zijn per nacht en inclusief btw. Neem contact met ons op met uw data voor het totaalbedrag.",
-    "eyebrow": "Prijslijst {year}",
-    "season": "Seizoen: 1 april – 18 oktober {year}",
+    "eyebrow": "Prijslijst",
+    "season": "Seizoen: april – half oktober",
     "vatNote": "Alle prijzen incl. btw",
     "currencyLabel": "Valuta: EUR",
     "navCamping": "Staanplaats",
@@ -407,7 +406,7 @@
     "q2": "Is elektriciteit inbegrepen?",
     "a2": "Elektriciteit is een optie en kost €6.70 per nacht. Op seizoensplaatsen kunt u in plaats daarvan kiezen voor elektriciteit voor een heel of half seizoen.",
     "q3": "Wanneer zijn jullie open?",
-    "a3": "We zijn open van 1 april tot 18 oktober 2026. Buiten het seizoen is de camping gesloten.",
+    "a3": "We zijn open van april tot half oktober. De exacte data van het seizoen ziet u bij het boeken. Buiten het seizoen is de camping gesloten.",
     "q4": "Hoe betaal ik voor mijn verblijf?",
     "a4": "U betaalt een aanbetaling van 25 % bij het boeken en het resterende bedrag van 75 % uiterlijk twee weken voor aankomst. Wij accepteren Visa en Mastercard."
   }

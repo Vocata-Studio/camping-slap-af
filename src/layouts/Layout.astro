@@ -174,13 +174,6 @@ const schema = JSON.stringify({
       "checkoutTime": "12:00",
       "makesOffer": stayMakesOffers(locale),
       ...(aggregateRating ? { "aggregateRating": aggregateRating } : {}),
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "validThrough": "2026-10-18",
-        "opens": "00:00",
-        "closes": "23:59",
-        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
-      },
       "amenityFeature": [
         {"@type": "LocationFeatureSpecification", "name": "Toiletter og baderum", "value": true},
         {"@type": "LocationFeatureSpecification", "name": "Fællesrum", "value": true},

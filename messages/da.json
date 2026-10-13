@@ -66,9 +66,8 @@
     "testimonialComingSoonTitle": "Anmeldelser kommer snart",
     "testimonialComingSoonText": "Vi har lige åbnet under nyt navn — de første gæsteanmeldelser kommer snart.",
     "ctaTitle": "Klar til dit næste eventyr?",
-    "ctaDescription": "Book din plads på Camping Slap Af og oplev det bedste af Mors. Sæsonen er åben til 18. oktober 2026.",
-    "ctaButton": "Book nu",
-    "seasonNotice": "Sæson 2026 — åben til 18. oktober"
+    "ctaDescription": "Book din plads på Camping Slap Af og oplev det bedste af Mors. Vi har åbent fra april til midt i oktober.",
+    "ctaButton": "Book nu"
   },
   "About": {
     "title": "Om Camping Slap Af",
@@ -222,7 +221,7 @@
     "phone": "+45 91 19 96 74",
     "email": "campingslapaf@outlook.com",
     "hoursTitle": "Åbningstider",
-    "hoursText": "Receptionen er åben dagligt i campingsæsonen (til 18. oktober 2026). Kontakt os for præcise tider.",
+    "hoursText": "Receptionen er åben dagligt i campingsæsonen, fra april til midt i oktober. Kontakt os for præcise tider.",
     "formTitle": "Send os en besked",
     "nameLabel": "Navn",
     "emailLabel": "E-mail",
@@ -300,7 +299,7 @@
     "contactTitle": "Kontakt og find vej til Sejerslev",
     "bookingTitle": "Book din campingferie på Mors",
     "pricesTitle": "Priser – camping, hytter og autocamper",
-    "homeDescription": "Hyggelig, hundevenlig camping på Mors ved Limfjorden i Nordjylland. Telt, autocamper og hytter i rolige naturomgivelser. Åben til 18. oktober 2026.",
+    "homeDescription": "Hyggelig, hundevenlig camping på Mors ved Limfjorden i Nordjylland. Telt, autocamper og hytter i rolige naturomgivelser. Åben fra april til midt i oktober.",
     "aboutDescription": "Mød Angela og Jeroen, de nye ejere af Camping Slap Af — en lille, rolig campingplads på Mors ved Limfjorden. Læs historien og vores vision om en afslappet naturferie.",
     "accommodationDescription": "Overnatning på Mors ved Limfjorden — campingpladser, autocamperpladser, hytter, campingfelt og sæsonpladser. Hundevenlig plads med fælles faciliteter for alle gæster.",
     "activitiesDescription": "Aktiv naturferie på Mors ved Limfjorden — oplev Hanklit, Skærbæk Klint, Molermuseet, Ejerslev Havn og Nykøbing Mors. Aktiviteter på pladsen og i nærområdet.",
@@ -323,8 +322,8 @@
     "backToBlog": "Tilbage til bloggen",
     "relatedTitle": "Læs også",
     "tocLabel": "Flere guides",
-    "ctaTitle": "Klar til at booke plads under Kulturmødet?",
-    "ctaText": "Festivalugen er den travleste uge på hele Mors. Book i god tid, så er du sikker på en plads tæt på det hele.",
+    "ctaTitle": "Klar til en tur til Mors?",
+    "ctaText": "Book din plads i god tid, især hvis du kommer i sommerferien eller festivalugen i august. Så er du sikker på et sted tæt på det hele.",
     "ctaButton": "Se ledige datoer"
   },
   "DogCamping": {
@@ -348,7 +347,7 @@
     "stayLinkAccommodation": "Se pladser og hytter",
     "stayLinkPrices": "Se priserne",
     "priceTitle": "Hvad koster det at have hund med",
-    "priceText": "Ikke noget. Hunden koster ikke ekstra, uanset hvor mange nætter I bliver. Selve pladsen er 200 kr. per nat for to voksne, campingfeltet fra 125 kr. hvis I har et lille telt, autocamper 256 kr., og en hytte med sengetøj og det hele starter ved 300 kr.",
+    "priceText": "Ikke noget. Hunden koster ikke ekstra, uanset hvor mange nætter I bliver. Selve pladsen koster det samme hele sæsonen, og campingfeltet er det billigste hvis I bare har et lille telt. Årets priser kan I se når I booker.",
     "priceLink": "Alle priser ligger samlet på prissiden",
     "faqTitle": "Ofte stillede spørgsmål om hund",
     "q1": "Må vi tage hunden med?",
@@ -369,8 +368,8 @@
   "Prices": {
     "title": "Priser",
     "subtitle": "Alle priser er pr. nat og inkl. moms. Kontakt os med dine datoer for at få det samlede beløb.",
-    "eyebrow": "Prisliste {year}",
-    "season": "Åbningssæson: 1. april – 18. oktober {year}",
+    "eyebrow": "Prisliste",
+    "season": "Åbningssæson: april – midt i oktober",
     "vatNote": "Alle priser inkl. moms",
     "currencyLabel": "Valuta: DKK",
     "navCamping": "Campingplads",
@@ -465,7 +464,7 @@
     "q2": "Er el inkluderet i prisen?",
     "a2": "El er et tilvalg og koster 50 kr. pr. nat. På sæsonpladser kan du i stedet vælge el for hele eller halve sæsoner.",
     "q3": "Hvornår har I åbent?",
-    "a3": "Vi har åbent fra 1. april til 18. oktober 2026. Uden for sæsonen er pladsen lukket.",
+    "a3": "Vi har åbent fra april til midt i oktober. De præcise datoer for sæsonen kan du se når du booker. Uden for sæsonen er pladsen lukket.",
     "q4": "Hvordan betaler jeg for mit ophold?",
     "a4": "Du betaler et depositum på 25 % ved booking og restbeløbet på 75 % senest 2 uger før ankomst. Vi modtager Visa og Mastercard."
   }

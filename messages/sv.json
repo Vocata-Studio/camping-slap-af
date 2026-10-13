@@ -65,9 +65,8 @@
     "testimonialComingSoonTitle": "Recensioner kommer snart",
     "testimonialComingSoonText": "Vi har precis öppnat under ett nytt namn — de första gästrecensionerna dyker upp här snart.",
     "ctaTitle": "Redo för ditt nästa äventyr?",
-    "ctaDescription": "Boka din plats på Camping Slap Af och upplev det bästa av Mors. Säsongen öppen till 18 oktober 2026.",
-    "ctaButton": "Boka nu",
-    "seasonNotice": "Säsong 2026 — öppet till 18 oktober"
+    "ctaDescription": "Boka din plats på Camping Slap Af och upplev det bästa av Mors. Öppet från april till mitten av oktober.",
+    "ctaButton": "Boka nu"
   },
   "About": {
     "title": "Om Camping Slap Af",
@@ -218,7 +217,7 @@
     "phone": "+45 91 19 96 74",
     "email": "campingslapaf@outlook.com",
     "hoursTitle": "Öppettider",
-    "hoursText": "Receptionen är öppen dagligen under campingsäsongen (till 18 oktober 2026). Kontakta oss för exakta tider.",
+    "hoursText": "Receptionen är öppen dagligen under campingsäsongen, från april till mitten av oktober. Kontakta oss för exakta tider.",
     "formTitle": "Skicka ett meddelande",
     "nameLabel": "Namn",
     "emailLabel": "E-post",
@@ -296,7 +295,7 @@
     "contactTitle": "Kontakt & hitta hit – Mors",
     "bookingTitle": "Boka din campingsemester på Mors",
     "pricesTitle": "Priser – camping, stugor & husbil",
-    "homeDescription": "Liten, hundvänlig camping på Mors vid Limfjorden i Danmark. Tält, husbilar och stugor i lugn natur. Öppet till 18 oktober 2026.",
+    "homeDescription": "Liten, hundvänlig camping på Mors vid Limfjorden i Danmark. Tält, husbilar och stugor i lugn natur. Öppet från april till mitten av oktober.",
     "aboutDescription": "Möt Angela och Jeroen, de nya ägarna av Camping Slap Af — en liten, lugn camping på Mors vid Limfjorden i Danmark. Läs vår historia och vision.",
     "accommodationDescription": "Boende på Mors vid Limfjorden, Danmark — campingplatser, husbilsplatser, stugor, campingfält och säsongsplatser. Hundvänligt, med gemensamma faciliteter.",
     "activitiesDescription": "Aktiv semester på Mors, Danmark — upplev Hanklit, Skærbæk Klint, Molermuseet och Nykøbing Mors. Aktiviteter på campingen och i omgivningarna.",
@@ -308,8 +307,8 @@
   "Prices": {
     "title": "Priser",
     "subtitle": "Alla priser är per natt och inkl. moms. Kontakta oss med dina datum för att få totalsumman.",
-    "eyebrow": "Prislista {year}",
-    "season": "Säsong: 1 april – 18 oktober {year}",
+    "eyebrow": "Prislista",
+    "season": "Säsong: april – mitten av oktober",
     "vatNote": "Alla priser inkl. moms",
     "currencyLabel": "Valuta: EUR",
     "navCamping": "Campingplats",
@@ -404,7 +403,7 @@
     "q2": "Ingår el i priset?",
     "a2": "El är ett tillval och kostar €6.70 per natt. På säsongsplatser kan du i stället välja el för en hel eller halv säsong.",
     "q3": "När har ni öppet?",
-    "a3": "Vi har öppet från 1 april till 18 oktober 2026. Utanför säsongen är platsen stängd.",
+    "a3": "Vi har öppet från april till mitten av oktober. De exakta datumen för säsongen ser du när du bokar. Utanför säsongen är platsen stängd.",
     "q4": "Hur betalar jag för min vistelse?",
     "a4": "Du betalar en deposition på 25 % vid bokning och resterande 75 % senast två veckor före ankomst. Vi tar emot Visa och Mastercard."
   }

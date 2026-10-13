@@ -65,9 +65,8 @@
     "testimonialComingSoonTitle": "Reviews coming soon",
     "testimonialComingSoonText": "We've just reopened under a new name — the first guest reviews will appear here soon.",
     "ctaTitle": "Ready for your next adventure?",
-    "ctaDescription": "Book your spot at Camping Slap Af and experience the best of Mors. Season open until October 18, 2026.",
-    "ctaButton": "Book now",
-    "seasonNotice": "2026 season — open until October 18"
+    "ctaDescription": "Book your spot at Camping Slap Af and experience the best of Mors. We're open from April to mid-October.",
+    "ctaButton": "Book now"
   },
   "About": {
     "title": "About Camping Slap Af",
@@ -221,7 +220,7 @@
     "phone": "+45 91 19 96 74",
     "email": "campingslapaf@outlook.com",
     "hoursTitle": "Opening hours",
-    "hoursText": "Reception is open daily during the camping season (until October 18, 2026). Contact us for specific hours.",
+    "hoursText": "Reception is open daily during the camping season, from April to mid-October. Contact us for specific hours.",
     "formTitle": "Send us a message",
     "nameLabel": "Name",
     "emailLabel": "Email",
@@ -299,7 +298,7 @@
     "contactTitle": "Contact & directions – Mors, Denmark",
     "bookingTitle": "Book your camping holiday on Mors",
     "pricesTitle": "Prices – camping, cottages & motorhome",
-    "homeDescription": "Small, dog-friendly campsite on Mors by the Limfjord in Denmark. Tents, motorhomes and cottages in peaceful nature. Open until 18 October 2026.",
+    "homeDescription": "Small, dog-friendly campsite on Mors by the Limfjord in Denmark. Tents, motorhomes and cottages in peaceful nature. Open from April to mid-October.",
     "aboutDescription": "Meet Angela and Jeroen, the new owners of Camping Slap Af — a small, quiet campsite on Mors by the Limfjord in Denmark. Read our story and vision.",
     "accommodationDescription": "Accommodation on Mors by the Limfjord, Denmark — pitches, motorhome pitches, cottages, tent field and seasonal pitches. Dog-friendly, with shared facilities.",
     "activitiesDescription": "Active holidays on Mors by the Limfjord, Denmark — visit Hanklit, Skaerbaek Cliff, the Moler Museum and Nykøbing Mors. Activities on-site and nearby.",
@@ -311,8 +310,8 @@
   "Prices": {
     "title": "Prices",
     "subtitle": "All prices are per night and include VAT. Contact us with your dates to get the total.",
-    "eyebrow": "Price list {year}",
-    "season": "Season: 1 April – 18 October {year}",
+    "eyebrow": "Price list",
+    "season": "Season: April – mid-October",
     "vatNote": "All prices incl. VAT",
     "currencyLabel": "Currency: EUR",
     "navCamping": "Pitch",
@@ -407,7 +406,7 @@
     "q2": "Is electricity included?",
     "a2": "Electricity is an optional add-on at €6.70 per night. On seasonal pitches you can instead choose electricity for a full or half season.",
     "q3": "When are you open?",
-    "a3": "We are open from 1 April to 18 October 2026. The campsite is closed outside the season.",
+    "a3": "We are open from April to mid-October. You can see the exact dates for the season when you book. The campsite is closed outside the season.",
     "q4": "How do I pay for my stay?",
     "a4": "You pay a 25% deposit when you book, and the remaining 75% no later than two weeks before arrival. We accept Visa and Mastercard."
   }

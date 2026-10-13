@@ -22,7 +22,6 @@ const l = locale as Locale;
 
 const tp = (key: string) => t(l, "Prices", key);
 
-const year = new Date().getFullYear();
 const isDkk = l === "da";
 
 /* ---- currency formatting ------------------------------------------- */
@@ -161,7 +160,7 @@ const productSchema = JSON.stringify({
   <Hero
     image={heroImage}
     imageAlt={tp("title")}
-    eyebrow={tp("eyebrow").replace("{year}", String(year))}
+    eyebrow={tp("eyebrow")}
     title={tp("title")}
     subtitle={tp("subtitle")}
     compact
@@ -171,7 +170,7 @@ const productSchema = JSON.stringify({
   <section class="section section--tight section--flush-top">
     <div class="container">
       <div class="pills">
-        <span class="pill">{tp("season").replace("{year}", String(year))}</span>
+        <span class="pill">{tp("season")}</span>
         <span class="pill">{tp("vatNote")}</span>
         <span class="pill">{tp("currencyLabel")}</span>
       </div>

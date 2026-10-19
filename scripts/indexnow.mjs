@@ -7,10 +7,10 @@
 
 const KEY = "802bdc767e189f83934a11fce64a52ae";
 
-// The apex domain redirects to www (Vercel domain setting), and IndexNow wants
-// the key file and URLs on the host that actually serves them. Follow the
-// redirect once and submit everything on the final origin.
-const SITE = new URL((await fetch("https://campingslapaf.dk/")).url).origin;
+// www is the primary domain (the apex redirects to it), and IndexNow wants the
+// key file and URLs on the host that actually serves them. Must match `site`
+// in astro.config.mjs.
+const SITE = "https://www.campingslapaf.dk";
 
 async function locs(url) {
   const res = await fetch(url);

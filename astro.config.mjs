@@ -22,7 +22,7 @@ const blogLastmod = new Map(
 const latestBlogLastmod = [...blogLastmod.values()].sort().at(-1);
 
 export default defineConfig({
-  site: "https://campingslapaf.dk",
+  site: "https://www.campingslapaf.dk",
   adapter: vercel(),
 
   // The prices page moved from the Danish slug /priser to the universal /prices.
@@ -36,7 +36,7 @@ export default defineConfig({
       // Drop the bare root and the noindexed legal pages (terms/privacy/accessibility)
       // so we never submit URLs we've told search engines not to index.
       filter: (page) =>
-        page !== "https://campingslapaf.dk/" &&
+        page !== "https://www.campingslapaf.dk/" &&
         !/\/(terms|privacy|accessibility)\/?$/.test(page),
       serialize(item) {
         const slug = item.url.match(/\/da\/blog\/([^/]+)\/?$/)?.[1];

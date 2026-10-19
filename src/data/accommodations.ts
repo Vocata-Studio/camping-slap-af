@@ -2,7 +2,7 @@ import { t } from "../i18n/utils";
 import type { Locale } from "../i18n/utils";
 
 /** Canonical site origin — single source for absolute URLs in JSON-LD. */
-export const SITE_URL = "https://campingslapaf.dk";
+export const SITE_URL = "https://www.campingslapaf.dk";
 
 export type StayType = {
   /** i18n key under the "Accommodation" namespace — name + `${key}Description`. */

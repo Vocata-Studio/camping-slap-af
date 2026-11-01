@@ -2,24 +2,25 @@
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
 import StartBookingCta from "../../components/StartBookingCta.astro";
-import { locales, isValidLocale, t } from "../../i18n/utils";
+import { isValidLocale, t } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
+import { getSite, photo, photoAlt } from "../../lib/site";
 
-export function getStaticPaths() {
-  return locales.map((locale) => ({ params: { locale } }));
-}
+// Server-rendered so editor changes in Vocata CMS show without a rebuild.
+export const prerender = false;
 
 const { locale } = Astro.params;
-if (!isValidLocale(locale)) return Astro.redirect("/da");
+if (!isValidLocale(locale)) return Astro.rewrite("/404");
 const l = locale as Locale;
 
-const heroImage = "/billeder-fra-anders/campsite-overview.webp";
+const site = await getSite(Astro.locals);
+const heroImage = photo(site, "om", "hero", "/billeder-fra-anders/campsite-overview.webp");
 ---
 
 <Layout title={t(l, "Meta", "aboutTitle")} locale={l} description={t(l, "Meta", "aboutDescription")} ogImage={heroImage} preloadImage={heroImage}>
   <Hero
     image={heroImage}
-    imageAlt={t(l, "About", "title")}
+    imageAlt={photoAlt(site, "om", "hero", t(l, "About", "title"))}
     title={t(l, "About", "title")}
     subtitle={t(l, "About", "subtitle")}
     imagePosition="65% 0%"
@@ -30,7 +31,7 @@ const heroImage = "/billeder-fra-anders/campsite-overview.webp";
   <section class="section">
     <div class="container alt">
       <div class="alt__media">
-        <img src="/billeder-fra-anders/owners-portrait-smiling.webp" alt={t(l, "About", "storyTitle")} loading="lazy" class="focal-left" />
+        <img src={photo(site, "om", "ejere", "/billeder-fra-anders/owners-portrait-smiling.webp")} alt={photoAlt(site, "om", "ejere", t(l, "About", "storyTitle"))} loading="lazy" class={site.billeder.om?.ejere ? undefined : "focal-left"} />
       </div>
       <div class="alt__text">
         <h2>{t(l, "About", "storyTitle")}</h2>
@@ -46,7 +47,7 @@ const heroImage = "/billeder-fra-anders/campsite-overview.webp";
   <section class="section">
     <div class="container alt alt--reverse">
       <div class="alt__media">
-        <img src="/billeder-fra-anders/owners-walking.webp" alt={t(l, "About", "renewalTitle")} loading="lazy" />
+        <img src={photo(site, "om", "ejereGaatur", "/billeder-fra-anders/owners-walking.webp")} alt={photoAlt(site, "om", "ejereGaatur", t(l, "About", "renewalTitle"))} loading="lazy" />
       </div>
       <div class="alt__text">
         <h2>{t(l, "About", "renewalTitle")}</h2>
@@ -62,7 +63,7 @@ const heroImage = "/billeder-fra-anders/campsite-overview.webp";
   <section class="section">
     <div class="container alt">
       <div class="alt__media">
-        <img src="/images/ejerslev-havn-klit.webp" alt={t(l, "About", "locationTitle")} loading="lazy" />
+        <img src={photo(site, "om", "havn", "/images/ejerslev-havn-klit.webp")} alt={photoAlt(site, "om", "havn", t(l, "About", "locationTitle"))} loading="lazy" />
       </div>
       <div class="alt__text">
         <h2>{t(l, "About", "locationTitle")}</h2>

@@ -8,10 +8,10 @@ import type { Locale } from "../../../i18n/utils";
 
 // The blog is Danish-only content aimed at organic search, so it is only
 // generated under /da/. Other locales never get a /blog route.
-export function getStaticPaths() {
-  return [{ params: { locale: "da" } }];
-}
+// Server-rendered so editor changes in Vocata CMS show without a rebuild.
+export const prerender = false;
 
+if (Astro.params.locale !== "da") return Astro.rewrite("/404");
 const l = "da" as Locale;
 
 const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(

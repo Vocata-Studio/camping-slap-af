@@ -1,18 +1,19 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
-import { locales, isValidLocale, t } from "../../i18n/utils";
+import { isValidLocale, t } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
+import { getSite, getGallery, cmsImageUrl, photo, photoAlt } from "../../lib/site";
 
-export function getStaticPaths() {
-  return locales.map((locale) => ({ params: { locale } }));
-}
+// Server-rendered so editor changes in Vocata CMS show without a rebuild.
+export const prerender = false;
 
 const { locale } = Astro.params;
-if (!isValidLocale(locale)) return Astro.redirect("/da");
+if (!isValidLocale(locale)) return Astro.rewrite("/404");
 const l = locale as Locale;
 
-const heroImage = "/billeder-fra-anders/cabins-lawn.webp";
+const site = await getSite(Astro.locals);
+const heroImage = photo(site, "galleri", "hero", "/billeder-fra-anders/cabins-lawn.webp");
 
 const photos = [
   { src: "/billeder-fra-anders/campsite-overview.webp",                   altKey: "andersOverviewAlt",      captionKey: "andersOverviewCaption"      },
@@ -34,17 +35,48 @@ const photos = [
   { src: "/images/location-images/campsite-field-caravan.webp",            altKey: "site1Alt",               captionKey: "siteCaption"                },
 ] as const;
 
-const lightboxData = photos.map((p) => ({
-  src: p.src,
+type Builtin = (typeof photos)[number];
+const stem = (src: string) => src.split("/").pop()!.replace(/\.[a-z]+$/i, "");
+const builtinByKey = new Map<string, Builtin>(photos.map((p) => [stem(p.src), p]));
+
+const fromBuiltin = (p: Builtin) => ({
+  src: p.src as string,
   alt: t(l, "Gallery", p.altKey),
   caption: t(l, "Gallery", p.captionKey),
-}));
+});
+
+/**
+ * Gallery in the editor's order from Vocata CMS. Each entry links to a
+ * built-in photo by its internal key, which supplies the fallback image (until
+ * one is uploaded) and the translations for languages the CMS doesn't carry.
+ * No CMS entries, or an unreachable CMS: the built-in gallery.
+ */
+const cmsGallery = await getGallery(Astro.locals);
+const items = cmsGallery
+  ? cmsGallery.flatMap((doc) => {
+      const builtin = doc.noegle ? builtinByKey.get(doc.noegle) : undefined;
+      const src = cmsImageUrl(doc.billede) ?? builtin?.src;
+      if (!src) return [];
+      const da = doc.billedtekstDa?.trim();
+      const en = doc.billedtekstEn?.trim();
+      const caption =
+        (l === "da" && da) ||
+        (l === "en" && en) ||
+        (builtin ? t(l, "Gallery", builtin.captionKey) : en || da || "");
+      const alt =
+        doc.billede?.alt?.trim() ||
+        (builtin ? t(l, "Gallery", builtin.altKey) : caption);
+      return [{ src, alt, caption }];
+    })
+  : photos.map(fromBuiltin);
+
+const lightboxData = items;
 ---
 
 <Layout title={t(l, "Meta", "galleryTitle")} locale={l} description={t(l, "Meta", "galleryDescription")} ogImage={heroImage} preloadImage={heroImage}>
   <Hero
     image={heroImage}
-    imageAlt={t(l, "Gallery", "title")}
+    imageAlt={photoAlt(site, "galleri", "hero", t(l, "Gallery", "title"))}
     title={t(l, "Gallery", "title")}
     subtitle={t(l, "Gallery", "subtitle")}
     compact
@@ -53,17 +85,17 @@ const lightboxData = photos.map((p) => ({
   <section class="section">
     <div class="container">
       <ul class="masonry" role="list">
-        {photos.map((photo, i) => (
+        {items.map((item, i) => (
           <li class="masonry__item">
             <button
               type="button"
               class="masonry__btn"
               data-index={i}
-              aria-label={t(l, "Gallery", photo.altKey)}
+              aria-label={item.alt}
             >
               <img
-                src={photo.src}
-                alt={t(l, "Gallery", photo.altKey)}
+                src={item.src}
+                alt={item.alt}
                 loading="lazy"
                 decoding="async"
               />

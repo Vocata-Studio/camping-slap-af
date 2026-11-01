@@ -3,18 +3,19 @@ import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
 import EventCalendar from "../../components/EventCalendar.astro";
 import StartBookingCta from "../../components/StartBookingCta.astro";
-import { locales, isValidLocale, t } from "../../i18n/utils";
+import { isValidLocale, t } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
+import { getSite, photo, photoAlt } from "../../lib/site";
 
-export function getStaticPaths() {
-  return locales.map((locale) => ({ params: { locale } }));
-}
+// Server-rendered so editor changes in Vocata CMS show without a rebuild.
+export const prerender = false;
 
 const { locale } = Astro.params;
-if (!isValidLocale(locale)) return Astro.redirect("/da");
+if (!isValidLocale(locale)) return Astro.rewrite("/404");
 const l = locale as Locale;
 
-const heroImage = "/images/ejerslev-havn-klit.webp";
+const site = await getSite(Astro.locals);
+const heroImage = photo(site, "aktiviteter", "hero", "/images/ejerslev-havn-klit.webp");
 
 const onSite = [
   { key: "activity1", icon: "playground" },
@@ -26,22 +27,34 @@ const onSite = [
 ] as const;
 
 const nearby = [
-  { key: "nearby1", image: "/images/temp-images/hanklik-temp.webp", url: "https://www.visitmors.dk/mors/planlaeg-din-tur/hanklit-gdk602374" },
-  { key: "nearby2", image: "/images/skærbæk-klint.jpeg", url: "https://udinaturen.dk/rute/vandrerute/?routeid=13504380-4B81-11EC-934D-062AD32497BD" },
-  { key: "nearby3", image: "/images/temp-images/skarregaard-temp.webp", url: "https://www.skarregaard-center.dk/DK.aspx" },
-  { key: "nearby4", image: "/images/temp-images/fossil-møllemuseum-temp.webp", url: "https://museummors.dk/museerne/fossil-og-molermuseet/" },
-  { key: "nearby5", image: "/images/temp-images/ejerslev-havn-temp.webp", url: "https://www.ejerslevhavn.dk/" },
-  { key: "nearby6", image: "/images/temp-images/nykøbing-kirke-temp.webp", url: "https://nykoebingmorskirke.dk/" },
-  { key: "nearby7", image: "/images/temp-images/morsø-museum-temp.webp", url: "https://museummors.dk/" },
-  { key: "nearby8", image: "/images/feggesundkro.jpg", url: "https://feggesundkro.dk/" },
-  { key: "nearby9", image: "/images/Højriis_Slot.webp", url: "https://hojriis.dk/", credit: "Leif Jørgensen, CC BY-SA 2.5" },
+  { key: "nearby1", cms: "hanklit", image: "/images/temp-images/hanklik-temp.webp", url: "https://www.visitmors.dk/mors/planlaeg-din-tur/hanklit-gdk602374" },
+  { key: "nearby2", cms: "skaerbaekKlint", image: "/images/skærbæk-klint.jpeg", url: "https://udinaturen.dk/rute/vandrerute/?routeid=13504380-4B81-11EC-934D-062AD32497BD" },
+  { key: "nearby3", cms: "skarregaard", image: "/images/temp-images/skarregaard-temp.webp", url: "https://www.skarregaard-center.dk/DK.aspx" },
+  { key: "nearby4", cms: "fossilMolermuseum", image: "/images/temp-images/fossil-møllemuseum-temp.webp", url: "https://museummors.dk/museerne/fossil-og-molermuseet/" },
+  { key: "nearby5", cms: "ejerslevHavn", image: "/images/temp-images/ejerslev-havn-temp.webp", url: "https://www.ejerslevhavn.dk/" },
+  { key: "nearby6", cms: "nykoebingKirke", image: "/images/temp-images/nykøbing-kirke-temp.webp", url: "https://nykoebingmorskirke.dk/" },
+  { key: "nearby7", cms: "morsoeMuseum", image: "/images/temp-images/morsø-museum-temp.webp", url: "https://museummors.dk/" },
+  { key: "nearby8", cms: "feggesundKro", image: "/images/feggesundkro.jpg", url: "https://feggesundkro.dk/" },
+  { key: "nearby9", cms: "hoejriisSlot", image: "/images/Højriis_Slot.webp", url: "https://hojriis.dk/", credit: "Leif Jørgensen, CC BY-SA 2.5" },
 ] as const;
+
+// Editor-chosen photos (CMS) replace the built-in ones; a replaced photo drops
+// the built-in photo's licence credit, which no longer applies.
+const nearbyCards = nearby.map((item) => {
+  const cms = site.billeder.aktiviteter?.[item.cms];
+  return {
+    ...item,
+    image: photo(site, "aktiviteter", item.cms, item.image, 800),
+    alt: photoAlt(site, "aktiviteter", item.cms, t(l, "Activities", `${item.key}Title`)),
+    credit: !cms && "credit" in item ? item.credit : undefined,
+  };
+});
 ---
 
 <Layout title={t(l, "Meta", "activitiesTitle")} locale={l} description={t(l, "Meta", "activitiesDescription")} ogImage={heroImage} preloadImage={heroImage}>
   <Hero
     image={heroImage}
-    imageAlt={t(l, "Activities", "title")}
+    imageAlt={photoAlt(site, "aktiviteter", "hero", t(l, "Activities", "title"))}
     title={t(l, "Activities", "title")}
     subtitle={t(l, "Activities", "subtitle")}
     compact
@@ -55,17 +68,17 @@ const nearby = [
       </div>
       <div class="nearby-grid">
         {
-          nearby.map((item) => (
+          nearbyCards.map((item) => (
             <article class="nearby-card">
               <div class="nearby-card__media">
                 {item.image ? (
                   <>
                     <img
                       src={item.image}
-                      alt={t(l, "Activities", `${item.key}Title`)}
+                      alt={item.alt}
                       loading="lazy"
                     />
-                    {"credit" in item && item.credit && (
+                    {item.credit && (
                       <span class="nearby-card__credit">{item.credit}</span>
                     )}
                   </>
@@ -180,8 +193,8 @@ const nearby = [
       </div>
       <div class="onsite-image">
         <img
-          src="/billeder-fra-anders/vegetable-garden.webp"
-          alt={t(l, "Activities", "activity2Title")}
+          src={photo(site, "aktiviteter", "koekkenhave", "/billeder-fra-anders/vegetable-garden.webp")}
+          alt={photoAlt(site, "aktiviteter", "koekkenhave", t(l, "Activities", "activity2Title"))}
           loading="lazy"
         />
       </div>

@@ -1,16 +1,17 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
-import { locales, isValidLocale, localePath } from "../../i18n/utils";
+import { isValidLocale, localePath } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
+import { getSite, telHref } from "../../lib/site";
 
-export function getStaticPaths() {
-  return locales.map((locale) => ({ params: { locale } }));
-}
+// Server-rendered so editor changes in Vocata CMS show without a rebuild.
+export const prerender = false;
 
 const { locale } = Astro.params;
-if (!isValidLocale(locale)) return Astro.redirect("/da");
+if (!isValidLocale(locale)) return Astro.rewrite("/404");
 const l = locale as Locale;
+const k = (await getSite(Astro.locals)).kontakt;
 
 const isDanish = l === "da";
 
@@ -112,8 +113,8 @@ const description = isDanish
             </p>
             <div class="legal-block">
               <strong>Camping Slap af</strong>
-              E-mail: <a href="mailto:campingslapaf@outlook.com">campingslapaf@outlook.com</a><br />
-              Telefon: <a href="tel:+4591199674">+45 91 19 96 74</a><br />
+              E-mail: <a href={`mailto:${k.email}`}>{k.email}</a><br />
+              Telefon: <a href={telHref(k.telefon)}>{k.telefon}</a><br />
               <a href={contactHref}>Gå til kontaktsiden</a>
             </div>
             <p>
@@ -199,8 +200,8 @@ const description = isDanish
             </p>
             <div class="legal-block">
               <strong>Camping Slap af</strong>
-              Email: <a href="mailto:campingslapaf@outlook.com">campingslapaf@outlook.com</a><br />
-              Phone: <a href="tel:+4591199674">+45 91 19 96 74</a><br />
+              Email: <a href={`mailto:${k.email}`}>{k.email}</a><br />
+              Phone: <a href={telHref(k.telefon)}>{k.telefon}</a><br />
               <a href={contactHref}>Go to the contact page</a>
             </div>
             <p>

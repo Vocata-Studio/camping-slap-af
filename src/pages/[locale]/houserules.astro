@@ -1,15 +1,15 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
-import { locales, isValidLocale } from "../../i18n/utils";
+import { isValidLocale } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
+import { getSite, photo, photoAlt } from "../../lib/site";
 
-export function getStaticPaths() {
-  return locales.map((locale) => ({ params: { locale } }));
-}
+// Server-rendered so editor changes in Vocata CMS show without a rebuild.
+export const prerender = false;
 
 const { locale } = Astro.params;
-if (!isValidLocale(locale)) return Astro.redirect("/da");
+if (!isValidLocale(locale)) return Astro.rewrite("/404");
 const l = locale as Locale;
 
 const titles: Record<Locale, string> = {
@@ -124,7 +124,8 @@ const blocks: [LocaleBlock, LocaleBlock | null] =
 
 const [firstBlock, secondBlock] = blocks;
 
-const heroImage = "/images/location-images/kiosk-exterior-bench.webp";
+const site = await getSite(Astro.locals);
+const heroImage = photo(site, "husorden", "hero", "/images/location-images/kiosk-exterior-bench.webp");
 const title = titles[l];
 const subtitle = subtitles[l];
 ---
@@ -132,7 +133,7 @@ const subtitle = subtitles[l];
 <Layout title={title} locale={l} description={subtitle} preloadImage={heroImage}>
   <Hero
     image={heroImage}
-    imageAlt={title}
+    imageAlt={photoAlt(site, "husorden", "hero", title)}
     title={title}
     subtitle={subtitle}
     compact

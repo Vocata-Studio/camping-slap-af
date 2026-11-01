@@ -2,31 +2,20 @@
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
 import StartBookingCta from "../../components/StartBookingCta.astro";
-import { locales, isValidLocale, t, localePath, bookingHref } from "../../i18n/utils";
+import { isValidLocale, t, localePath, bookingHref } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
+import { formatPrice, getSite, photo, photoAlt } from "../../lib/site";
 import { stayTypes, stayProducts } from "../../data/accommodations";
 
-export function getStaticPaths() {
-  return locales.map((locale) => ({ params: { locale } }));
-}
+// Server-rendered so editor changes in Vocata CMS show without a rebuild.
+export const prerender = false;
 
 const { locale } = Astro.params;
-if (!isValidLocale(locale)) return Astro.redirect("/da");
+if (!isValidLocale(locale)) return Astro.rewrite("/404");
 const l = locale as Locale;
 
-const heroImage = "/billeder-fra-anders/guests-caravan.webp";
-
-const isDkk = l === "da";
-
-/** Lowest "from" price per stay type, shown as a teaser linking to /prices. */
-function fmtFrom(dkk: number, eur: number): string {
-  if (isDkk) return `${Math.round(dkk).toLocaleString("da-DK")} kr.`;
-  return new Intl.NumberFormat("en-GB", {
-    style: "currency",
-    currency: "EUR",
-    minimumFractionDigits: eur % 1 === 0 ? 0 : 2,
-  }).format(eur);
-}
+const site = await getSite(Astro.locals);
+const heroImage = photo(site, "overnatning", "hero", "/billeder-fra-anders/guests-caravan.webp");
 
 // Display-only metadata (gradient fallback + badge), keyed by stay type. Prices,
 // images and anchors come from the shared `stayTypes` source so they stay in
@@ -39,12 +28,12 @@ const display: Record<string, { gradient: number; badge: string | null }> = {
   seasonal: { gradient: 1, badge: null },
 };
 
-const accommodations = stayTypes.map((s) => ({ ...s, ...display[s.key] }));
+const accommodations = stayTypes(site).map((s) => ({ ...s, ...display[s.key] }));
 
 // Per-accommodation Product/Offer schema for "from" price rich snippets.
 const productSchema = JSON.stringify({
   "@context": "https://schema.org",
-  "@graph": stayProducts(l),
+  "@graph": stayProducts(l, site),
 });
 
 const facilityKeys = [
@@ -62,7 +51,7 @@ const optionKeys = ["optionTowels", "optionBedding", "optionCleaning"] as const;
 
   <Hero
     image={heroImage}
-    imageAlt={t(l, "Accommodation", "title")}
+    imageAlt={photoAlt(site, "overnatning", "hero", t(l, "Accommodation", "title"))}
     title={t(l, "Accommodation", "title")}
     subtitle={t(l, "Accommodation", "subtitle")}
     compact
@@ -115,7 +104,7 @@ const optionKeys = ["optionTowels", "optionBedding", "optionCleaning"] as const;
                 </ul>
                 <p class="acc__price">
                   <span class="acc__price-from">{t(l, "Accommodation", "priceFrom")}</span>
-                  <span class="acc__price-amount">{fmtFrom(acc.fromDkk, acc.fromEur)}</span>
+                  <span class="acc__price-amount">{formatPrice(l, acc.fromDkk, acc.fromEur)}</span>
                   <span class="acc__price-unit">
                     {acc.season
                       ? t(l, "Accommodation", "pricePerSeason")

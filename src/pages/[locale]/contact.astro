@@ -1,30 +1,32 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
-import { contactUi, locales, isValidLocale, t } from "../../i18n/utils";
+import { contactUi, isValidLocale, t } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
+import { getSite, photo, photoAlt, telHref, withKontakt } from "../../lib/site";
 
 const LEAFLET_VERSION = "1.9.4";
 
-export function getStaticPaths() {
-  return locales.map((locale) => ({ params: { locale } }));
-}
+// Server-rendered so editor changes in Vocata CMS show without a rebuild.
+export const prerender = false;
 
 const { locale } = Astro.params;
-if (!isValidLocale(locale)) return Astro.redirect("/da");
+if (!isValidLocale(locale)) return Astro.rewrite("/404");
 const l = locale as Locale;
 
-const heroImage = "/images/overhead-shot.webp";
+const site = await getSite(Astro.locals);
+const heroImage = photo(site, "kontakt", "hero", "/images/overhead-shot.webp");
 
-const phone = t(l, "Contact", "phone");
-const email = t(l, "Contact", "email");
-const phoneHref = `tel:${phone.replace(/\s+/g, "")}`;
+const k = site.kontakt;
+const phone = withKontakt(t(l, "Contact", "phone"), k);
+const email = withKontakt(t(l, "Contact", "email"), k);
+const phoneHref = telHref(phone);
 const copyUi = contactUi(l);
 const formSuccess = t(l, "Contact", "formSuccess");
 const formError = t(l, "Contact", "formError");
 ---
 
-<Layout title={t(l, "Meta", "contactTitle")} locale={l} description={t(l, "Meta", "contactDescription")} ogImage={heroImage} preloadImage={heroImage}>
+<Layout title={t(l, "Meta", "contactTitle")} locale={l} description={withKontakt(t(l, "Meta", "contactDescription"), k)} ogImage={heroImage} preloadImage={heroImage}>
   <link
     slot="head"
     rel="stylesheet"
@@ -32,7 +34,7 @@ const formError = t(l, "Contact", "formError");
   />
   <Hero
     image={heroImage}
-    imageAlt={t(l, "Contact", "title")}
+    imageAlt={photoAlt(site, "kontakt", "hero", t(l, "Contact", "title"))}
     title={t(l, "Contact", "title")}
     subtitle={t(l, "Contact", "subtitle")}
     compact
@@ -55,7 +57,7 @@ const formError = t(l, "Contact", "formError");
             </div>
             <div>
               <div class="contact-info__label">{t(l, "Contact", "addressLabel")}</div>
-              <div class="contact-info__value">{t(l, "Contact", "address")}</div>
+              <div class="contact-info__value">{withKontakt(t(l, "Contact", "address"), k)}</div>
             </div>
           </li>
           <li>
@@ -173,7 +175,13 @@ const formError = t(l, "Contact", "formError");
         <h2>{t(l, "Contact", "mapTitle")}</h2>
         <p>{t(l, "Contact", "mapDescription")}</p>
       </div>
-      <div id="csa-map" class="map-embed" aria-label={t(l, "Contact", "mapTitle")}></div>
+      <div
+        id="csa-map"
+        class="map-embed"
+        aria-label={t(l, "Contact", "mapTitle")}
+        data-street={`${k.gade}, ${k.lokalitet}`}
+        data-city={`${k.postnr} ${k.postby}`}
+      ></div>
 
       <script is:inline>
         (function () {
@@ -181,7 +189,13 @@ const formError = t(l, "Contact", "formError");
           var LNG = 8.870665;
 
           function initMap() {
-            if (!document.getElementById("csa-map")) return;
+            var el = document.getElementById("csa-map");
+            if (!el) return;
+            function esc(text) {
+              var d = document.createElement("div");
+              d.textContent = text || "";
+              return d.innerHTML;
+            }
             var map = L.map("csa-map", {
               center: [LAT, LNG],
               zoom: 14,
@@ -209,7 +223,7 @@ const formError = t(l, "Contact", "formError");
             L.marker([LAT, LNG], { icon: pinIcon })
               .addTo(map)
               .bindPopup(
-                "<strong>Camping Slap Af</strong><br>Kærvang 7, Sejerslev<br>7900 Nykøbing M"
+                "<strong>Camping Slap Af</strong><br>" + esc(el.dataset.street) + "<br>" + esc(el.dataset.city)
               )
               .openPopup();
           }

@@ -1,5 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+// Server-rendered like every other page, so the footer shows current CMS details.
+export const prerender = false;
 ---
 
 <Layout title="Siden blev ikke fundet" locale="da">

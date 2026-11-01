@@ -9,6 +9,7 @@ import { contactUi, stripLocaleFromPath, locales, t, navLinks, localePath } from
 import type { Locale } from "../i18n/utils";
 import { SITE_URL, stayMakesOffers } from "../data/accommodations";
 import { getReviews } from "../lib/vocata";
+import { getSite, absoluteUrl } from "../lib/site";
 
 interface Props {
   title: string;
@@ -31,7 +32,10 @@ interface Props {
 }
 
 const { title, locale, description, preloadImage, ogImage: ogImagePath, noindex = false, hreflangLocales, ogType = "website" } = Astro.props;
-const currentRoute = stripLocaleFromPath(Astro.url.pathname);
+// The requested path — also when a page rewrote to /404 for an unknown URL.
+const requestPath =
+  Astro.url.pathname === "/404" ? Astro.originPathname.replace(/(.)\/$/, "$1") : Astro.url.pathname;
+const currentRoute = stripLocaleFromPath(requestPath);
 const copyUi = contactUi(locale);
 const pageDescription =
   description ??
@@ -43,7 +47,7 @@ const canonicalUrl = `${SITE_URL}${canonicalPath}`;
 // The shared brand image (1200×630) anchors the schema graph. Pages may override
 // the social-share image with their own hero via the `ogImage` prop.
 const brandImage = `${SITE_URL}/CSA-OG.jpeg`;
-const ogImage = ogImagePath ? `${SITE_URL}${ogImagePath}` : brandImage;
+const ogImage = ogImagePath ? absoluteUrl(SITE_URL, ogImagePath) : brandImage;
 const ogImageIsDefault = !ogImagePath;
 
 // Real photos of the site, handed to search engines as the business image set.
@@ -54,9 +58,14 @@ const businessImages = [
   `${SITE_URL}/images/location-images/campsite-field-caravan.webp`,
 ];
 
+// Editor-managed contact facts + prices (CMS, with built-in fallbacks).
+const site = await getSite(Astro.locals);
+const k = site.kontakt;
+const schemaPhone = k.telefon.replace(/\s+/g, "");
+
 // Aggregate rating, computed from real CMS reviews. Stays absent until reviews
 // with numeric ratings exist — so we never publish a fabricated star rating.
-const reviews = await getReviews();
+const reviews = await getReviews(Astro.locals);
 const ratedReviews = reviews.filter((r) => typeof r.data.rating === "number");
 const aggregateRating =
   ratedReviews.length > 0
@@ -133,9 +142,9 @@ const schema = JSON.stringify({
       "url": SITE_URL,
       "logo": `${SITE_URL}/CSA-logo-final.png`,
       "image": brandImage,
-      "email": "campingslapaf@outlook.com",
-      "telephone": "+4591199674",
-      "sameAs": ["https://www.facebook.com/profile.php?id=61584886509520"]
+      "email": k.email,
+      "telephone": schemaPhone,
+      "sameAs": [k.facebook]
     },
     {
       "@type": "WebSite",
@@ -152,13 +161,13 @@ const schema = JSON.stringify({
       "description": "Rolig familiecamping i Sejerslev på Mors, midt i den danske natur ved Limfjorden.",
       "url": SITE_URL,
       "parentOrganization": { "@id": ORG_ID },
-      "telephone": "+4591199674",
-      "email": "campingslapaf@outlook.com",
+      "telephone": schemaPhone,
+      "email": k.email,
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Kærvang 7",
-        "addressLocality": "Sejerslev",
-        "postalCode": "7900",
+        "streetAddress": k.gade,
+        "addressLocality": k.lokalitet,
+        "postalCode": k.postnr,
         "addressRegion": "Morsø",
         "addressCountry": "DK"
       },
@@ -172,7 +181,7 @@ const schema = JSON.stringify({
       "priceRange": "kr",
       "checkinTime": "14:00",
       "checkoutTime": "12:00",
-      "makesOffer": stayMakesOffers(locale),
+      "makesOffer": stayMakesOffers(locale, site),
       ...(aggregateRating ? { "aggregateRating": aggregateRating } : {}),
       "amenityFeature": [
         {"@type": "LocationFeatureSpecification", "name": "Toiletter og baderum", "value": true},

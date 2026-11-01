@@ -12,8 +12,9 @@ const BLOG_DIR = "./src/content/blog";
 const blogLastmod = new Map(
   readdirSync(BLOG_DIR)
     .filter((f) => f.endsWith(".md") && !f.startsWith("_"))
-    .map((f) => {
-      const fm = readFileSync(`${BLOG_DIR}/${f}`, "utf8");
+    .map((f) => [f, readFileSync(`${BLOG_DIR}/${f}`, "utf8")])
+    .filter(([, fm]) => !/^draft:\s*true\b/m.test(fm))
+    .map(([f, fm]) => {
       const date =
         fm.match(/^updatedDate:\s*(\S+)/m)?.[1] ?? fm.match(/^pubDate:\s*(\S+)/m)?.[1];
       return [f.replace(/\.md$/, ""), new Date(date).toISOString()];
@@ -21,8 +22,19 @@ const blogLastmod = new Map(
 );
 const latestBlogLastmod = [...blogLastmod.values()].sort().at(-1);
 
+// Every page is server-rendered (CMS content at request time), and the sitemap
+// integration only discovers prerendered routes — so list the public URLs here.
+const SITE = "https://www.campingslapaf.dk";
+const LOCALES = ["da", "en", "de", "nl", "fr", "es", "it", "sv", "nb", "pl"];
+const PAGES = ["about", "accommodation", "activities", "booking", "contact", "gallery", "houserules", "prices"];
+const DANISH_ONLY = ["camping-med-hund", "blog", ...[...blogLastmod.keys()].map((s) => `blog/${s}`)];
+const sitemapPages = [
+  ...LOCALES.flatMap((l) => PAGES.map((p) => `${SITE}/${l}/${p}/`)),
+  ...DANISH_ONLY.map((p) => `${SITE}/da/${p}/`),
+];
+
 export default defineConfig({
-  site: "https://www.campingslapaf.dk",
+  site: SITE,
   adapter: vercel(),
 
   // The prices page moved from the Danish slug /priser to the universal /prices.
@@ -33,10 +45,11 @@ export default defineConfig({
 
   integrations: [
     sitemap({
+      customPages: sitemapPages,
       // Drop the bare root and the noindexed legal pages (terms/privacy/accessibility)
       // so we never submit URLs we've told search engines not to index.
       filter: (page) =>
-        page !== "https://www.campingslapaf.dk/" &&
+        page !== `${SITE}/` &&
         !/\/(terms|privacy|accessibility)\/?$/.test(page),
       serialize(item) {
         const slug = item.url.match(/\/da\/blog\/([^/]+)\/?$/)?.[1];
@@ -63,7 +76,7 @@ export default defineConfig({
   ],
 
   i18n: {
-    locales: ["da", "en", "de", "nl", "fr", "es", "it", "sv", "nb", "pl"],
+    locales: LOCALES,
     defaultLocale: "da",
     routing: {
       prefixDefaultLocale: true,

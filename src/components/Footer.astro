@@ -2,6 +2,7 @@
 import { navLinks, bookingLink, bookingHref, contactUi, localePath, t } from "../i18n/utils";
 import type { Locale } from "../i18n/utils";
 import ThemeToggle from "./ThemeToggle.astro";
+import { getSite, withKontakt } from "../lib/site";
 
 interface Props {
   locale: Locale;
@@ -11,9 +12,11 @@ const { locale } = Astro.props;
 const year = new Date().getFullYear();
 const copyright = t(locale, "Footer", "copyright").replace("{year}", String(year));
 const copyUi = contactUi(locale);
-const phone = t(locale, "Footer", "phone");
-const email = t(locale, "Footer", "email");
-const cvr = t(locale, "Footer", "cvr");
+const { kontakt } = await getSite(Astro.locals);
+const phone = withKontakt(t(locale, "Footer", "phone"), kontakt);
+const email = withKontakt(t(locale, "Footer", "email"), kontakt);
+const cvr = withKontakt(t(locale, "Footer", "cvr"), kontakt);
+const address = withKontakt(t(locale, "Footer", "address"), kontakt);
 ---
 
 <footer class="site-footer">
@@ -32,7 +35,7 @@ const cvr = t(locale, "Footer", "cvr");
       <p class="site-footer__tagline">{t(locale, "Footer", "tagline")}</p>
       <div class="site-footer__social">
         <a
-          href="https://www.facebook.com/profile.php?id=61584886509520"
+          href={kontakt.facebook}
           target="_blank"
           rel="noopener noreferrer"
           class="site-footer__social-link"
@@ -124,7 +127,7 @@ const cvr = t(locale, "Footer", "cvr");
             <span class="contact-copy-subtext">{copyUi.copy}</span>
           </button>
         </li>
-        <li class="site-footer__address">{t(locale, "Footer", "address")}</li>
+        <li class="site-footer__address">{address}</li>
       </ul>
     </div>
   </div>

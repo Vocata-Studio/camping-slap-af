@@ -1,29 +1,30 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
-import { contactUi, locales, isValidLocale, t, localePath, bookingHref } from "../../i18n/utils";
+import { contactUi, isValidLocale, t, localePath, bookingHref } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
+import { getSite, photo, photoAlt, telHref, withKontakt } from "../../lib/site";
 
-export function getStaticPaths() {
-  return locales.map((locale) => ({ params: { locale } }));
-}
+// Server-rendered so editor changes in Vocata CMS show without a rebuild.
+export const prerender = false;
 
 const { locale } = Astro.params;
-if (!isValidLocale(locale)) return Astro.redirect("/da");
+if (!isValidLocale(locale)) return Astro.rewrite("/404");
 const l = locale as Locale;
 
-const heroImage = "/billeder-fra-anders/reception-kiosk.webp";
+const site = await getSite(Astro.locals);
+const heroImage = photo(site, "booking", "hero", "/billeder-fra-anders/reception-kiosk.webp");
 
-const phone = t(l, "Contact", "phone");
-const email = t(l, "Contact", "email");
-const phoneHref = `tel:${phone.replace(/\s+/g, "")}`;
+const phone = withKontakt(t(l, "Contact", "phone"), site.kontakt);
+const email = withKontakt(t(l, "Contact", "email"), site.kontakt);
+const phoneHref = telHref(phone);
 const copyUi = contactUi(l);
 ---
 
-<Layout title={t(l, "Meta", "bookingTitle")} locale={l} description={t(l, "Meta", "bookingDescription")} ogImage={heroImage} preloadImage={heroImage}>
+<Layout title={t(l, "Meta", "bookingTitle")} locale={l} description={withKontakt(t(l, "Meta", "bookingDescription"), site.kontakt)} ogImage={heroImage} preloadImage={heroImage}>
   <Hero
     image={heroImage}
-    imageAlt={t(l, "Booking", "title")}
+    imageAlt={photoAlt(site, "booking", "hero", t(l, "Booking", "title"))}
     title={t(l, "Booking", "title")}
     compact
   />

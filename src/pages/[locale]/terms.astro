@@ -1,16 +1,17 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
-import { locales, isValidLocale, localePath } from "../../i18n/utils";
+import { isValidLocale, localePath } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
+import { getSite, telHref } from "../../lib/site";
 
-export function getStaticPaths() {
-  return locales.map((locale) => ({ params: { locale } }));
-}
+// Server-rendered so editor changes in Vocata CMS show without a rebuild.
+export const prerender = false;
 
 const { locale } = Astro.params;
-if (!isValidLocale(locale)) return Astro.redirect("/da");
+if (!isValidLocale(locale)) return Astro.rewrite("/404");
 const l = locale as Locale;
+const k = (await getSite(Astro.locals)).kontakt;
 
 const isDanish = l === "da";
 
@@ -48,11 +49,11 @@ const description = isDanish
             <h2>1. Sælger</h2>
             <div class="legal-block">
               <strong>Camping Slap af</strong>
-              Kærvang 7<br />
-              7900 Nykøbing M<br />
-              CVR: 46328973<br />
-              E-mail: <a href="mailto:campingslapaf@outlook.com">campingslapaf@outlook.com</a><br />
-              Telefon: <a href="tel:+4591199674">+45 91 19 96 74</a>
+              {k.gade}<br />
+              {k.postnr} {k.postby}<br />
+              CVR: {k.cvr}<br />
+              E-mail: <a href={`mailto:${k.email}`}>{k.email}</a><br />
+              Telefon: <a href={telHref(k.telefon)}>{k.telefon}</a>
             </div>
 
             <h2>2. Bestilling og aftale</h2>
@@ -152,8 +153,8 @@ const description = isDanish
             <p>
               Hvis noget ikke lever op til dine forventninger, vil vi gerne høre det med det samme — så har vi
               mulighed for at rette op på det, mens du er hos os. Skriv eller ring til
-              <a href="mailto:campingslapaf@outlook.com">campingslapaf@outlook.com</a> /
-              <a href="tel:+4591199674">+45 91 19 96 74</a>. Klager indgivet efter hjemkomst behandles efter
+              <a href={`mailto:${k.email}`}>{k.email}</a> /
+              <a href={telHref(k.telefon)}>{k.telefon}</a>. Klager indgivet efter hjemkomst behandles efter
               dansk rets almindelige regler.
             </p>
 
@@ -178,7 +179,7 @@ const description = isDanish
             <p>
               EU-borgere bosat uden for Danmark kan også benytte EU-Kommissionens online klageplatform:
               <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">ec.europa.eu/consumers/odr</a>.
-              Angiv vores e-mail campingslapaf@outlook.com som kontakt.
+              Angiv vores e-mail {k.email} som kontakt.
             </p>
 
             <h2>12. Lovvalg og værneting</h2>
@@ -197,12 +198,12 @@ const description = isDanish
             <h2>1. Seller</h2>
             <div class="legal-block">
               <strong>Camping Slap af</strong>
-              Kærvang 7<br />
-              7900 Nykøbing M<br />
+              {k.gade}<br />
+              {k.postnr} {k.postby}<br />
               Denmark<br />
-              CVR: 46328973<br />
-              Email: <a href="mailto:campingslapaf@outlook.com">campingslapaf@outlook.com</a><br />
-              Phone: <a href="tel:+4591199674">+45 91 19 96 74</a>
+              CVR: {k.cvr}<br />
+              Email: <a href={`mailto:${k.email}`}>{k.email}</a><br />
+              Phone: <a href={telHref(k.telefon)}>{k.telefon}</a>
             </div>
 
             <h2>2. Orders and contract</h2>
@@ -302,8 +303,8 @@ const description = isDanish
             <p>
               If something does not live up to your expectations, please tell us straight away — that gives us
               a chance to put it right while you are with us. Email or call
-              <a href="mailto:campingslapaf@outlook.com">campingslapaf@outlook.com</a> /
-              <a href="tel:+4591199674">+45 91 19 96 74</a>. Complaints raised after departure are handled
+              <a href={`mailto:${k.email}`}>{k.email}</a> /
+              <a href={telHref(k.telefon)}>{k.telefon}</a>. Complaints raised after departure are handled
               under the general rules of Danish law.
             </p>
 
@@ -330,7 +331,7 @@ const description = isDanish
               EU citizens living outside Denmark may also use the European Commission's online dispute
               resolution platform:
               <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">ec.europa.eu/consumers/odr</a>.
-              Use our email campingslapaf@outlook.com as the contact address.
+              Use our email {k.email} as the contact address.
             </p>
 
             <h2>12. Governing law and venue</h2>

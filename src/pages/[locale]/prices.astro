@@ -2,39 +2,30 @@
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
 import Faq from "../../components/Faq.astro";
-import {
-  locales,
-  isValidLocale,
+import { isValidLocale,
   t,
   localePath,
   bookingHref,
 } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
+import { formatPrice, getSite, pair, photo, photoAlt, withSeason } from "../../lib/site";
 import { stayProducts } from "../../data/accommodations";
 
-export function getStaticPaths() {
-  return locales.map((locale) => ({ params: { locale } }));
-}
+// Server-rendered so editor changes in Vocata CMS show without a rebuild.
+export const prerender = false;
 
 const { locale } = Astro.params;
-if (!isValidLocale(locale)) return Astro.redirect("/da");
+if (!isValidLocale(locale)) return Astro.rewrite("/404");
 const l = locale as Locale;
 
 const tp = (key: string) => t(l, "Prices", key);
 
-const isDkk = l === "da";
 
-/* ---- currency formatting ------------------------------------------- */
-function fmt(dkk: number, eur: number): string {
-  if (isDkk) {
-    return `${Math.round(dkk).toLocaleString("da-DK")} kr.`;
-  }
-  return new Intl.NumberFormat("en-GB", {
-    style: "currency",
-    currency: "EUR",
-    minimumFractionDigits: eur % 1 === 0 ? 0 : 2,
-  }).format(eur);
-}
+/* ---- prices (Vocata CMS, built-in fallback per field) ---------------- */
+const site = await getSite(Astro.locals);
+const p = site.priser;
+/** A price from the price list, in the visitor's currency (DKK for da, else EUR). */
+const price = (group: Record<string, number>, name: string) => formatPrice(l, ...pair(group, name));
 
 /* ---- types ---------------------------------------------------------- */
 type Row = { label: string; value: string; suffix?: string; note?: string };
@@ -46,35 +37,35 @@ const free = tp("valueFree");
 
 /* ---- price sections ------------------------------------------------- */
 const camping: Row[] = [
-  { label: tp("rowAdults2"), value: fmt(200, 26.75), suffix: perNight },
-  { label: tp("rowExtraAdult"), value: fmt(100, 13.4), suffix: perNight },
+  { label: tp("rowAdults2"), value: price(p.campingplads, "voksne2"), suffix: perNight },
+  { label: tp("rowExtraAdult"), value: price(p.campingplads, "ekstraVoksen"), suffix: perNight },
   { label: tp("rowChild02"), value: free },
-  { label: tp("rowChild214"), value: fmt(40, 5.35), suffix: perNight },
-  { label: tp("rowElectricity"), value: fmt(50, 6.7), suffix: perNight },
-  { label: tp("rowDayGuest"), value: fmt(15, 2.0) },
-  { label: tp("rowWashingMachine"), value: fmt(40, 5.35), suffix: perWash },
-  { label: tp("rowDryer"), value: fmt(10, 1.35), suffix: perHalf },
+  { label: tp("rowChild214"), value: price(p.campingplads, "barn214"), suffix: perNight },
+  { label: tp("rowElectricity"), value: price(p.campingplads, "el"), suffix: perNight },
+  { label: tp("rowDayGuest"), value: price(p.campingplads, "dagsgaest") },
+  { label: tp("rowWashingMachine"), value: price(p.vask, "vaskemaskine"), suffix: perWash },
+  { label: tp("rowDryer"), value: price(p.vask, "toerretumbler"), suffix: perHalf },
 ];
 
 const autocamper: Row[] = [
-  { label: tp("rowAdults2"), value: fmt(256, 34.25), suffix: perNight },
-  { label: tp("rowExtraAdult"), value: fmt(125, 16.75), suffix: perNight },
+  { label: tp("rowAdults2"), value: price(p.autocamper, "voksne2"), suffix: perNight },
+  { label: tp("rowExtraAdult"), value: price(p.autocamper, "ekstraVoksen"), suffix: perNight },
   { label: tp("rowChild02"), value: free },
-  { label: tp("rowChild214"), value: fmt(40, 5.35), suffix: perNight },
-  { label: tp("rowElectricity"), value: fmt(50, 6.7), suffix: perNight },
-  { label: tp("rowDayGuest"), value: fmt(15, 2.0) },
-  { label: tp("rowWashingMachine"), value: fmt(40, 5.35), suffix: perWash },
-  { label: tp("rowDryer"), value: fmt(10, 1.35), suffix: perHalf },
+  { label: tp("rowChild214"), value: price(p.autocamper, "barn214"), suffix: perNight },
+  { label: tp("rowElectricity"), value: price(p.autocamper, "el"), suffix: perNight },
+  { label: tp("rowDayGuest"), value: price(p.autocamper, "dagsgaest") },
+  { label: tp("rowWashingMachine"), value: price(p.vask, "vaskemaskine"), suffix: perWash },
+  { label: tp("rowDryer"), value: price(p.vask, "toerretumbler"), suffix: perHalf },
 ];
 
 const field: Row[] = [
-  { label: tp("rowAdult1"), value: fmt(100, 13.4), suffix: perNight },
-  { label: tp("rowAdults2"), value: fmt(150, 20.0), suffix: perNight },
-  { label: tp("rowExtraAdult"), value: fmt(50, 3.35), suffix: perNight },
+  { label: tp("rowAdult1"), value: price(p.teltfelt, "voksen1"), suffix: perNight },
+  { label: tp("rowAdults2"), value: price(p.teltfelt, "voksne2"), suffix: perNight },
+  { label: tp("rowExtraAdult"), value: price(p.teltfelt, "ekstraVoksen"), suffix: perNight },
   { label: tp("rowChild02"), value: free },
-  { label: tp("rowChild214"), value: fmt(15, 2.0), suffix: perNight },
-  { label: tp("rowWashingMachine"), value: fmt(40, 5.35), suffix: perWash },
-  { label: tp("rowDryer"), value: fmt(10, 1.35), suffix: perHalf },
+  { label: tp("rowChild214"), value: price(p.teltfelt, "barn214"), suffix: perNight },
+  { label: tp("rowWashingMachine"), value: price(p.vask, "vaskemaskine"), suffix: perWash },
+  { label: tp("rowDryer"), value: price(p.vask, "toerretumbler"), suffix: perHalf },
 ];
 
 type Cabin = {
@@ -85,39 +76,39 @@ type Cabin = {
   price: string;
 };
 const cabins: Cabin[] = [
-  { number: 2, capacity: tp("cap2adults"), note: tp("noteFence"), price: fmt(373, 50) },
-  { number: 3, capacity: tp("cap2adults"), price: fmt(373, 50) },
-  { number: 6, capacity: tp("cap2adults"), price: fmt(373, 50) },
-  { number: 7, capacity: tp("cap1adult1child"), note: tp("noteSingleBed"), price: fmt(300, 40) },
-  { number: 8, capacity: tp("cap2adults"), flag: tp("flagNoDogs"), price: fmt(373, 50) },
-  { number: 9, capacity: tp("cap4adults"), note: tp("noteLargest"), price: fmt(560, 75) },
+  { number: 2, capacity: tp("cap2adults"), note: tp("noteFence"), price: price(p.hytter, "hytte2") },
+  { number: 3, capacity: tp("cap2adults"), price: price(p.hytter, "hytte3") },
+  { number: 6, capacity: tp("cap2adults"), price: price(p.hytter, "hytte6") },
+  { number: 7, capacity: tp("cap1adult1child"), note: tp("noteSingleBed"), price: price(p.hytter, "hytte7") },
+  { number: 8, capacity: tp("cap2adults"), flag: tp("flagNoDogs"), price: price(p.hytter, "hytte8") },
+  { number: 9, capacity: tp("cap4adults"), note: tp("noteLargest"), price: price(p.hytter, "hytte9") },
 ];
 
 const cabinAddons: Row[] = [
-  { label: tp("rowBedding"), value: fmt(50, 6.7), suffix: perPerson },
-  { label: tp("rowTowels"), value: fmt(25, 3.35), suffix: perPerson },
-  { label: tp("rowDishTowels"), value: fmt(25, 3.35), suffix: perPerson },
-  { label: tp("rowWashingMachine"), value: fmt(40, 5.35), suffix: perWash },
-  { label: tp("rowElectricityPlain"), value: fmt(50, 6.7), suffix: perNight },
-  { label: tp("rowFinalCleaning"), value: fmt(100, 13.4) },
+  { label: tp("rowBedding"), value: price(p.hytteTilvalg, "sengelinned"), suffix: perPerson },
+  { label: tp("rowTowels"), value: price(p.hytteTilvalg, "haandklaeder"), suffix: perPerson },
+  { label: tp("rowDishTowels"), value: price(p.hytteTilvalg, "viskestykker"), suffix: perPerson },
+  { label: tp("rowWashingMachine"), value: price(p.vask, "vaskemaskine"), suffix: perWash },
+  { label: tp("rowElectricityPlain"), value: price(p.hytteTilvalg, "el"), suffix: perNight },
+  { label: tp("rowFinalCleaning"), value: price(p.hytteTilvalg, "slutrengoering") },
 ];
 
 type Tier = { label: string; full: string; half: string };
 const tiers: Tier[] = [
-  { label: tp("tierFamily"), full: fmt(10000, 1338.0), half: fmt(5000, 669.0) },
-  { label: tp("tier2adults"), full: fmt(9500, 1271.1), half: fmt(4750, 635.55) },
-  { label: tp("tier1adult"), full: fmt(8000, 1070.4), half: fmt(4000, 535.2) },
+  { label: tp("tierFamily"), full: price(p.saesonplads, "familieHel"), half: price(p.saesonplads, "familieHalv") },
+  { label: tp("tier2adults"), full: price(p.saesonplads, "voksne2Hel"), half: price(p.saesonplads, "voksne2Halv") },
+  { label: tp("tier1adult"), full: price(p.saesonplads, "voksen1Hel"), half: price(p.saesonplads, "voksen1Halv") },
 ];
 
 const seasonalAddons: Row[] = [
-  { label: tp("rowGuestCard"), value: fmt(500, 66.9) },
-  { label: tp("rowChildrenGrandchildren"), value: fmt(800, 108) },
-  { label: tp("rowExtraAdult"), value: fmt(800, 108) },
-  { label: tp("rowWinterStorage"), value: fmt(800, 108) },
-  { label: tp("rowElFullSeason"), value: fmt(1500, 200) },
-  { label: tp("rowElHalfSeason"), value: fmt(750, 100) },
-  { label: tp("rowWashingMachine"), value: fmt(40, 5.35), suffix: perWash },
-  { label: tp("rowDryer"), value: fmt(10, 1.35), suffix: perHalf },
+  { label: tp("rowGuestCard"), value: price(p.saesonTilvalg, "gaestekort") },
+  { label: tp("rowChildrenGrandchildren"), value: price(p.saesonTilvalg, "boernBoerneboern") },
+  { label: tp("rowExtraAdult"), value: price(p.saesonTilvalg, "ekstraVoksen") },
+  { label: tp("rowWinterStorage"), value: price(p.saesonTilvalg, "vinteropbevaring") },
+  { label: tp("rowElFullSeason"), value: price(p.saesonTilvalg, "elHel") },
+  { label: tp("rowElHalfSeason"), value: price(p.saesonTilvalg, "elHalv") },
+  { label: tp("rowWashingMachine"), value: price(p.vask, "vaskemaskine"), suffix: perWash },
+  { label: tp("rowDryer"), value: price(p.vask, "toerretumbler"), suffix: perHalf },
 ];
 
 const dogs = [tp("dog1"), tp("dog2"), tp("dog3"), tp("dog4")];
@@ -135,7 +126,7 @@ const quickNav = [
   { href: "#betaling", label: tp("navPayment") },
 ];
 
-const heroImage = "/images/location-images/campsite-pitch-numbered.webp";
+const heroImage = photo(site, "priser", "hero", "/images/location-images/campsite-pitch-numbered.webp");
 const bookUrl = bookingHref(l);
 const includedText = tp("includedText");
 const includedLabel = tp("includedLabel");
@@ -144,7 +135,7 @@ const includedLabel = tp("includedLabel");
 // "from" price rich snippet in search results.
 const productSchema = JSON.stringify({
   "@context": "https://schema.org",
-  "@graph": stayProducts(l),
+  "@graph": stayProducts(l, site),
 });
 ---
 
@@ -159,7 +150,7 @@ const productSchema = JSON.stringify({
 
   <Hero
     image={heroImage}
-    imageAlt={tp("title")}
+    imageAlt={photoAlt(site, "priser", "hero", tp("title"))}
     eyebrow={tp("eyebrow")}
     title={tp("title")}
     subtitle={tp("subtitle")}
@@ -316,8 +307,8 @@ const productSchema = JSON.stringify({
             <thead>
               <tr>
                 <th></th>
-                <th>{tp("fullSeason")}</th>
-                <th>{tp("halfSeason")}</th>
+                <th>{withSeason(tp("fullSeason"), l, "hel", p)}</th>
+                <th>{withSeason(tp("halfSeason"), l, "halv", p)}</th>
               </tr>
             </thead>
             <tbody>

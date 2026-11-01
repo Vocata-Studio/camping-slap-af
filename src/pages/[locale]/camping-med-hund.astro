@@ -4,18 +4,20 @@ import Hero from "../../components/Hero.astro";
 import StartBookingCta from "../../components/StartBookingCta.astro";
 import { t, localePath } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
+import { getSite, photo, photoAlt } from "../../lib/site";
 
 // Dog-friendly camping is a Danish-only, search-focused landing page aimed at
 // "camping med hund på Mors" and related geo-qualified queries. Like the blog,
 // it is only generated under /da/ — other locales never get this route.
-export function getStaticPaths() {
-  return [{ params: { locale: "da" } }];
-}
+// Server-rendered so editor changes in Vocata CMS show without a rebuild.
+export const prerender = false;
 
+if (Astro.params.locale !== "da") return Astro.rewrite("/404");
 const l = "da" as Locale;
 const tf = (key: string) => t(l, "DogCamping", key);
 
-const heroImage = "/billeder-fra-anders/owners-walking.webp";
+const site = await getSite(Astro.locals);
+const heroImage = photo(site, "hund", "hero", "/billeder-fra-anders/owners-walking.webp");
 
 const rules = ["rule1", "rule2", "rule3", "rule4", "rule5"] as const;
 const faqItems = [1, 2, 3, 4, 5].map((n) => ({
@@ -46,7 +48,7 @@ const faqSchema = JSON.stringify({
 
   <Hero
     image={heroImage}
-    imageAlt={tf("title")}
+    imageAlt={photoAlt(site, "hund", "hero", tf("title"))}
     eyebrow={tf("eyebrow")}
     title={tf("title")}
     subtitle={tf("subtitle")}
@@ -87,7 +89,7 @@ const faqSchema = JSON.stringify({
   <section class="section">
     <div class="container dog-block">
       <div class="dog-block__media">
-        <img src="/billeder-fra-anders/campsite-overview.webp" alt="Overblik over Camping Slap Af på Mors med telte og træer" loading="lazy" decoding="async" />
+        <img src={photo(site, "hund", "overblik", "/billeder-fra-anders/campsite-overview.webp")} alt={photoAlt(site, "hund", "overblik", "Overblik over Camping Slap Af på Mors med telte og træer")} loading="lazy" decoding="async" />
       </div>
       <div class="dog-block__body">
         <h2>{tf("walksTitle")}</h2>

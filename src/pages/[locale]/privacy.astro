@@ -1,16 +1,17 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
-import { locales, isValidLocale } from "../../i18n/utils";
+import { isValidLocale } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
+import { getSite, telHref } from "../../lib/site";
 
-export function getStaticPaths() {
-  return locales.map((locale) => ({ params: { locale } }));
-}
+// Server-rendered so editor changes in Vocata CMS show without a rebuild.
+export const prerender = false;
 
 const { locale } = Astro.params;
-if (!isValidLocale(locale)) return Astro.redirect("/da");
+if (!isValidLocale(locale)) return Astro.rewrite("/404");
 const l = locale as Locale;
+const k = (await getSite(Astro.locals)).kontakt;
 
 const isDanish = l === "da";
 
@@ -48,11 +49,11 @@ const description = isDanish
             <h2>1. Dataansvarlig</h2>
             <div class="legal-block">
               <strong>Camping Slap af</strong>
-              Kærvang 7<br />
-              7900 Nykøbing M<br />
-              CVR: 46328973<br />
-              E-mail: <a href="mailto:campingslapaf@outlook.com">campingslapaf@outlook.com</a><br />
-              Telefon: <a href="tel:+4591199674">+45 91 19 96 74</a>
+              {k.gade}<br />
+              {k.postnr} {k.postby}<br />
+              CVR: {k.cvr}<br />
+              E-mail: <a href={`mailto:${k.email}`}>{k.email}</a><br />
+              Telefon: <a href={telHref(k.telefon)}>{k.telefon}</a>
             </div>
             <p>
               Du er altid velkommen til at kontakte os, hvis du har spørgsmål til behandlingen af dine
@@ -198,7 +199,7 @@ const description = isDanish
               </li>
             </ul>
             <p>
-              Skriv til <a href="mailto:campingslapaf@outlook.com">campingslapaf@outlook.com</a>, hvis du vil
+              Skriv til <a href={`mailto:${k.email}`}>{k.email}</a>, hvis du vil
               gøre brug af en af dine rettigheder. Vi besvarer din henvendelse inden for én måned.
             </p>
 
@@ -233,12 +234,12 @@ const description = isDanish
             <h2>1. Data controller</h2>
             <div class="legal-block">
               <strong>Camping Slap af</strong>
-              Kærvang 7<br />
-              7900 Nykøbing M<br />
+              {k.gade}<br />
+              {k.postnr} {k.postby}<br />
               Denmark<br />
-              CVR: 46328973<br />
-              Email: <a href="mailto:campingslapaf@outlook.com">campingslapaf@outlook.com</a><br />
-              Phone: <a href="tel:+4591199674">+45 91 19 96 74</a>
+              CVR: {k.cvr}<br />
+              Email: <a href={`mailto:${k.email}`}>{k.email}</a><br />
+              Phone: <a href={telHref(k.telefon)}>{k.telefon}</a>
             </div>
             <p>You are always welcome to contact us with questions about how we handle your personal data.</p>
 
@@ -378,7 +379,7 @@ const description = isDanish
               </li>
             </ul>
             <p>
-              Email <a href="mailto:campingslapaf@outlook.com">campingslapaf@outlook.com</a> if you want to
+              Email <a href={`mailto:${k.email}`}>{k.email}</a> if you want to
               exercise any of these rights. We will respond within one month.
             </p>
 

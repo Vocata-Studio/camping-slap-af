@@ -5,6 +5,7 @@ import EventCalendar from "../../components/EventCalendar.astro";
 import Reviews from "../../components/Reviews.astro";
 import { isValidLocale, t, localePath, bookingHref } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
+import { getSite, photo, photoAlt, photoSrcset } from "../../lib/site";
 
 export const prerender = false;
 
@@ -21,13 +22,14 @@ const { locale } = Astro.params;
 if (!isValidLocale(locale)) return Astro.redirect("/da");
 const l = locale as Locale;
 
-const heroImage = "/images/overhead-shot.webp";
+const site = await getSite(Astro.locals);
+const heroImage = photo(site, "forside", "hero", "/images/overhead-shot.webp");
 ---
 
 <Layout title={t(l, "Meta", "homeTitle")} locale={l} description={t(l, "Meta", "homeDescription")} preloadImage={heroImage}>
   <Hero
     image={heroImage}
-    imageAlt={t(l, "Home", "heroTitle")}
+    imageAlt={photoAlt(site, "forside", "hero", t(l, "Home", "heroTitle"))}
     eyebrow={t(l, "Home", "heroLocation")}
     title={t(l, "Home", "heroTitle")}
     subtitle={t(l, "Home", "heroSubtitle")}
@@ -60,13 +62,13 @@ const heroImage = "/images/overhead-shot.webp";
     <div class="container alt">
       <div class="alt__media">
         <img
-          src="/billeder-fra-anders/entrance-signpost.webp"
-          srcset="/billeder-fra-anders/entrance-signpost-800.webp 800w, /billeder-fra-anders/entrance-signpost.webp 1600w"
+          src={photo(site, "forside", "indgang", "/billeder-fra-anders/entrance-signpost.webp")}
+          srcset={photoSrcset(site, "forside", "indgang", "/billeder-fra-anders/entrance-signpost-800.webp 800w, /billeder-fra-anders/entrance-signpost.webp 1600w")}
           sizes="(min-width: 900px) 50vw, 100vw"
-          alt={t(l, "Home", "altSection1Title")}
+          alt={photoAlt(site, "forside", "indgang", t(l, "Home", "altSection1Title"))}
           loading="lazy"
           decoding="async"
-          style="object-position: left center"
+          style={site.billeder.forside?.indgang ? undefined : "object-position: left center"}
         />
       </div>
       <div class="alt__text">
@@ -84,10 +86,10 @@ const heroImage = "/images/overhead-shot.webp";
     <div class="container alt alt--reverse">
       <div class="alt__media">
         <img
-          src="/billeder-fra-anders/guests-caravan.webp"
-          srcset="/billeder-fra-anders/guests-caravan-800.webp 800w, /billeder-fra-anders/guests-caravan.webp 1600w"
+          src={photo(site, "forside", "gaester", "/billeder-fra-anders/guests-caravan.webp")}
+          srcset={photoSrcset(site, "forside", "gaester", "/billeder-fra-anders/guests-caravan-800.webp 800w, /billeder-fra-anders/guests-caravan.webp 1600w")}
           sizes="(min-width: 900px) 50vw, 100vw"
-          alt={t(l, "Home", "altSection2Title")}
+          alt={photoAlt(site, "forside", "gaester", t(l, "Home", "altSection2Title"))}
           loading="lazy"
           decoding="async"
         />

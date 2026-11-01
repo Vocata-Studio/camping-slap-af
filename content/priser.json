@@ -1,0 +1,104 @@
+{
+  "data": {
+    "campingplads": {
+      "voksne2Kr": 200,
+      "voksne2Eur": 26.75,
+      "ekstraVoksenKr": 100,
+      "ekstraVoksenEur": 13.4,
+      "barn214Kr": 40,
+      "barn214Eur": 5.35,
+      "elKr": 50,
+      "elEur": 6.7,
+      "dagsgaestKr": 15,
+      "dagsgaestEur": 2.0
+    },
+    "autocamper": {
+      "voksne2Kr": 256,
+      "voksne2Eur": 34.25,
+      "ekstraVoksenKr": 125,
+      "ekstraVoksenEur": 16.75,
+      "barn214Kr": 40,
+      "barn214Eur": 5.35,
+      "elKr": 50,
+      "elEur": 6.7,
+      "dagsgaestKr": 15,
+      "dagsgaestEur": 2.0
+    },
+    "teltfelt": {
+      "voksen1Kr": 100,
+      "voksen1Eur": 13.4,
+      "voksne2Kr": 150,
+      "voksne2Eur": 20.0,
+      "ekstraVoksenKr": 50,
+      "ekstraVoksenEur": 3.35,
+      "barn214Kr": 15,
+      "barn214Eur": 2.0
+    },
+    "hytter": {
+      "hytte2Kr": 373,
+      "hytte2Eur": 50,
+      "hytte3Kr": 373,
+      "hytte3Eur": 50,
+      "hytte6Kr": 373,
+      "hytte6Eur": 50,
+      "hytte7Kr": 300,
+      "hytte7Eur": 40,
+      "hytte8Kr": 373,
+      "hytte8Eur": 50,
+      "hytte9Kr": 560,
+      "hytte9Eur": 75
+    },
+    "hytteTilvalg": {
+      "sengelinnedKr": 50,
+      "sengelinnedEur": 6.7,
+      "haandklaederKr": 25,
+      "haandklaederEur": 3.35,
+      "viskestykkerKr": 25,
+      "viskestykkerEur": 3.35,
+      "elKr": 50,
+      "elEur": 6.7,
+      "slutrengoeringKr": 100,
+      "slutrengoeringEur": 13.4
+    },
+    "saesonplads": {
+      "familieHelKr": 10000,
+      "familieHelEur": 1338.0,
+      "familieHalvKr": 5000,
+      "familieHalvEur": 669.0,
+      "voksne2HelKr": 9500,
+      "voksne2HelEur": 1271.1,
+      "voksne2HalvKr": 4750,
+      "voksne2HalvEur": 635.55,
+      "voksen1HelKr": 8000,
+      "voksen1HelEur": 1070.4,
+      "voksen1HalvKr": 4000,
+      "voksen1HalvEur": 535.2
+    },
+    "saesonTilvalg": {
+      "gaestekortKr": 500,
+      "gaestekortEur": 66.9,
+      "boernBoerneboernKr": 800,
+      "boernBoerneboernEur": 108,
+      "ekstraVoksenKr": 800,
+      "ekstraVoksenEur": 108,
+      "vinteropbevaringKr": 800,
+      "vinteropbevaringEur": 108,
+      "elHelKr": 1500,
+      "elHelEur": 200,
+      "elHalvKr": 750,
+      "elHalvEur": 100
+    },
+    "vask": {
+      "vaskemaskineKr": 40,
+      "vaskemaskineEur": 5.35,
+      "toerretumblerKr": 10,
+      "toerretumblerEur": 1.35
+    },
+    "saeson": {
+      "helStart": "2027-04-01",
+      "helSlut": "2027-10-18",
+      "halvStart": "2027-07-01",
+      "halvSlut": "2027-10-18"
+    }
+  }
+}

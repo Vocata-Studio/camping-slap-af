@@ -1,0 +1,245 @@
+{
+  "name": "sidebilleder",
+  "title": "Billeder på siderne",
+  "singleton": true,
+  "preview": {
+    "path": "/da"
+  },
+  "fields": [
+    {
+      "name": "forside",
+      "type": "object",
+      "title": "Forside",
+      "description": "Siden Forside. Tomt felt = det nuværende billede bliver vist.",
+      "fields": [
+        {
+          "name": "hero",
+          "type": "image",
+          "title": "Topbillede"
+        },
+        {
+          "name": "indgang",
+          "type": "image",
+          "title": "Billede ved \"Oplev Mors\""
+        },
+        {
+          "name": "gaester",
+          "type": "image",
+          "title": "Billede ved \"Overnatning\""
+        }
+      ]
+    },
+    {
+      "name": "om",
+      "type": "object",
+      "title": "Om os",
+      "description": "Siden Om os. Tomt felt = det nuværende billede bliver vist.",
+      "fields": [
+        {
+          "name": "hero",
+          "type": "image",
+          "title": "Topbillede"
+        },
+        {
+          "name": "ejere",
+          "type": "image",
+          "title": "Billede af ejerne"
+        },
+        {
+          "name": "ejereGaatur",
+          "type": "image",
+          "title": "Billede ved \"Fornyelse\""
+        },
+        {
+          "name": "havn",
+          "type": "image",
+          "title": "Billede ved \"Beliggenhed\""
+        }
+      ]
+    },
+    {
+      "name": "overnatning",
+      "type": "object",
+      "title": "Overnatning",
+      "description": "Siden Overnatning. Tomt felt = det nuværende billede bliver vist.",
+      "fields": [
+        {
+          "name": "hero",
+          "type": "image",
+          "title": "Topbillede"
+        },
+        {
+          "name": "campingplads",
+          "type": "image",
+          "title": "Campingplads"
+        },
+        {
+          "name": "autocamper",
+          "type": "image",
+          "title": "Autocamper"
+        },
+        {
+          "name": "hytter",
+          "type": "image",
+          "title": "Hytter"
+        },
+        {
+          "name": "teltfelt",
+          "type": "image",
+          "title": "Campingfelt / telt"
+        },
+        {
+          "name": "saesonplads",
+          "type": "image",
+          "title": "Sæsonplads"
+        }
+      ]
+    },
+    {
+      "name": "priser",
+      "type": "object",
+      "title": "Priser",
+      "description": "Siden Priser. Tomt felt = det nuværende billede bliver vist.",
+      "fields": [
+        {
+          "name": "hero",
+          "type": "image",
+          "title": "Topbillede"
+        }
+      ]
+    },
+    {
+      "name": "aktiviteter",
+      "type": "object",
+      "title": "Aktiviteter",
+      "description": "Siden Aktiviteter. Tomt felt = det nuværende billede bliver vist.",
+      "fields": [
+        {
+          "name": "hero",
+          "type": "image",
+          "title": "Topbillede"
+        },
+        {
+          "name": "koekkenhave",
+          "type": "image",
+          "title": "Køkkenhave"
+        },
+        {
+          "name": "hanklit",
+          "type": "image",
+          "title": "Hanklit"
+        },
+        {
+          "name": "skaerbaekKlint",
+          "type": "image",
+          "title": "Skærbæk Klint"
+        },
+        {
+          "name": "skarregaard",
+          "type": "image",
+          "title": "Skarregaard"
+        },
+        {
+          "name": "fossilMolermuseum",
+          "type": "image",
+          "title": "Fossil- og Molermuseet"
+        },
+        {
+          "name": "ejerslevHavn",
+          "type": "image",
+          "title": "Ejerslev Havn"
+        },
+        {
+          "name": "nykoebingKirke",
+          "type": "image",
+          "title": "Nykøbing Mors Kirke"
+        },
+        {
+          "name": "morsoeMuseum",
+          "type": "image",
+          "title": "Museum Mors"
+        },
+        {
+          "name": "feggesundKro",
+          "type": "image",
+          "title": "Feggesund Kro"
+        },
+        {
+          "name": "hoejriisSlot",
+          "type": "image",
+          "title": "Højriis Slot"
+        }
+      ]
+    },
+    {
+      "name": "galleri",
+      "type": "object",
+      "title": "Galleri",
+      "description": "Siden Galleri. Tomt felt = det nuværende billede bliver vist.",
+      "fields": [
+        {
+          "name": "hero",
+          "type": "image",
+          "title": "Topbillede"
+        }
+      ]
+    },
+    {
+      "name": "kontakt",
+      "type": "object",
+      "title": "Kontakt",
+      "description": "Siden Kontakt. Tomt felt = det nuværende billede bliver vist.",
+      "fields": [
+        {
+          "name": "hero",
+          "type": "image",
+          "title": "Topbillede"
+        }
+      ]
+    },
+    {
+      "name": "booking",
+      "type": "object",
+      "title": "Booking",
+      "description": "Siden Booking. Tomt felt = det nuværende billede bliver vist.",
+      "fields": [
+        {
+          "name": "hero",
+          "type": "image",
+          "title": "Topbillede"
+        }
+      ]
+    },
+    {
+      "name": "husorden",
+      "type": "object",
+      "title": "Husorden",
+      "description": "Siden Husorden. Tomt felt = det nuværende billede bliver vist.",
+      "fields": [
+        {
+          "name": "hero",
+          "type": "image",
+          "title": "Topbillede"
+        }
+      ]
+    },
+    {
+      "name": "hund",
+      "type": "object",
+      "title": "Camping med hund",
+      "description": "Siden Camping med hund. Tomt felt = det nuværende billede bliver vist.",
+      "fields": [
+        {
+          "name": "hero",
+          "type": "image",
+          "title": "Topbillede"
+        },
+        {
+          "name": "overblik",
+          "type": "image",
+          "title": "Billede midt på siden"
+        }
+      ]
+    }
+  ]
+}

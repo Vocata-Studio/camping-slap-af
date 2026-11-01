@@ -1,0 +1,138 @@
+[
+  {
+    "key": "campsite-overview",
+    "data": {
+      "billedtekstDa": "Et luftigt overblik over Camping Slap Af og den frodige natur.",
+      "billedtekstEn": "A sweeping view of Camping Slap Af and the surrounding nature.",
+      "noegle": "campsite-overview"
+    }
+  },
+  {
+    "key": "cabins-lawn",
+    "data": {
+      "billedtekstDa": "Vores hytte-område med den store grønne plæne.",
+      "billedtekstEn": "Our cabin area with the large green lawn.",
+      "noegle": "cabins-lawn"
+    }
+  },
+  {
+    "key": "entrance-signpost",
+    "data": {
+      "billedtekstDa": "Velkommen til Camping Slap Af — indgangen på Sejerslev Mosevej.",
+      "billedtekstEn": "Welcome to Camping Slap Af — the entrance on Sejerslev Mosevej.",
+      "noegle": "entrance-signpost"
+    }
+  },
+  {
+    "key": "cabin9-exterior",
+    "data": {
+      "billedtekstDa": "En af vores hytter — nyistandsatte med frisk stil.",
+      "billedtekstEn": "One of our newly renovated cabins — fresh and inviting.",
+      "noegle": "cabin9-exterior"
+    }
+  },
+  {
+    "key": "cabin8-bedroom",
+    "data": {
+      "billedtekstDa": "Hyggeligt soveværelse inde i hyttterne.",
+      "billedtekstEn": "A cosy bedroom inside our cabins.",
+      "noegle": "cabin8-bedroom"
+    }
+  },
+  {
+    "key": "cabin9-kitchen",
+    "data": {
+      "billedtekstDa": "Praktisk og velindrettet køkken i hytternes.",
+      "billedtekstEn": "Practical, well-equipped kitchen in the cabin.",
+      "noegle": "cabin9-kitchen"
+    }
+  },
+  {
+    "key": "guests-caravan",
+    "data": {
+      "billedtekstDa": "God stemning og afslappet atmosfære for gæster med campingvogn.",
+      "billedtekstEn": "A relaxed and friendly atmosphere for guests with caravans.",
+      "noegle": "guests-caravan"
+    }
+  },
+  {
+    "key": "reception-kiosk",
+    "data": {
+      "billedtekstDa": "Vores reception og kiosk — her kan du hente brød, drikkevarer og is.",
+      "billedtekstEn": "Our reception and kiosk — pick up bread, drinks or ice cream here.",
+      "noegle": "reception-kiosk"
+    }
+  },
+  {
+    "key": "vegetable-garden",
+    "data": {
+      "billedtekstDa": "Den lille nyttehave — friske krydderurter og grøntsager.",
+      "billedtekstEn": "A small vegetable garden with fresh herbs and vegetables.",
+      "noegle": "vegetable-garden"
+    }
+  },
+  {
+    "key": "facilities-shared-kitchen",
+    "data": {
+      "billedtekstDa": "Køkken — er vejret ikke til at lave mad ude foran teltet, kan du tilberede et lækkert måltid i køkkenet. Naturligvis elektrisk.",
+      "billedtekstEn": "Kitchen — when the weather isn't quite right for cooking outside the tent, you can prepare a tasty meal in the kitchen. Fully electric, of course.",
+      "noegle": "facilities-shared-kitchen"
+    }
+  },
+  {
+    "key": "facilities-common-room",
+    "data": {
+      "billedtekstDa": "Fællesområdet — et sted at få sig en sludder eller spille et spil.",
+      "billedtekstEn": "Common area — a space for a chat or a board game.",
+      "noegle": "facilities-common-room"
+    }
+  },
+  {
+    "key": "facilities-common-room-entrance",
+    "data": {
+      "billedtekstDa": "Fællesområdet — et sted at få sig en sludder eller spille et spil.",
+      "billedtekstEn": "Common area — a space for a chat or a board game.",
+      "noegle": "facilities-common-room-entrance"
+    }
+  },
+  {
+    "key": "cabins-exterior-path",
+    "data": {
+      "billedtekstDa": "Vi har 6 hytter, som i øjeblikket renoveres — billeder følger.",
+      "billedtekstEn": "We have 6 cabins, currently being renovated — photos to follow.",
+      "noegle": "cabins-exterior-path"
+    }
+  },
+  {
+    "key": "kiosk-exterior-bench",
+    "data": {
+      "billedtekstDa": "Til drikkevarer, is og brødservice — kig forbi kiosken.",
+      "billedtekstEn": "For drinks, ice cream or fresh bread — drop by the kiosk.",
+      "noegle": "kiosk-exterior-bench"
+    }
+  },
+  {
+    "key": "facilities-bathroom-shower",
+    "data": {
+      "billedtekstDa": "Smukt og rummeligt privat bad med toilet.",
+      "billedtekstEn": "Beautiful, spacious private shower with toilet.",
+      "noegle": "facilities-bathroom-shower"
+    }
+  },
+  {
+    "key": "facilities-toilet-stalls",
+    "data": {
+      "billedtekstDa": "Toiletter.",
+      "billedtekstEn": "Restrooms.",
+      "noegle": "facilities-toilet-stalls"
+    }
+  },
+  {
+    "key": "campsite-field-caravan",
+    "data": {
+      "billedtekstDa": "Pladsen er inddelt i afgrænsede felter — de fleste med el-tilslutning.",
+      "billedtekstEn": "The site is divided into marked-off pitches — most with electrical hookup.",
+      "noegle": "campsite-field-caravan"
+    }
+  }
+]

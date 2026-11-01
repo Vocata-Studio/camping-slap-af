@@ -1,0 +1,566 @@
+{
+  "name": "priser",
+  "title": "Priser",
+  "singleton": true,
+  "preview": {
+    "path": "/da/prices"
+  },
+  "fields": [
+    {
+      "name": "campingplads",
+      "type": "object",
+      "title": "Campingplads (pr. nat)",
+      "fields": [
+        {
+          "name": "voksne2Kr",
+          "type": "number",
+          "title": "2 voksne – kr.",
+          "min": 0
+        },
+        {
+          "name": "voksne2Eur",
+          "type": "number",
+          "title": "2 voksne – EUR",
+          "min": 0
+        },
+        {
+          "name": "ekstraVoksenKr",
+          "type": "number",
+          "title": "Ekstra voksen – kr.",
+          "min": 0
+        },
+        {
+          "name": "ekstraVoksenEur",
+          "type": "number",
+          "title": "Ekstra voksen – EUR",
+          "min": 0
+        },
+        {
+          "name": "barn214Kr",
+          "type": "number",
+          "title": "Barn 2–14 år – kr.",
+          "min": 0
+        },
+        {
+          "name": "barn214Eur",
+          "type": "number",
+          "title": "Barn 2–14 år – EUR",
+          "min": 0
+        },
+        {
+          "name": "elKr",
+          "type": "number",
+          "title": "El – kr.",
+          "min": 0
+        },
+        {
+          "name": "elEur",
+          "type": "number",
+          "title": "El – EUR",
+          "min": 0
+        },
+        {
+          "name": "dagsgaestKr",
+          "type": "number",
+          "title": "Dagsgæst – kr.",
+          "min": 0
+        },
+        {
+          "name": "dagsgaestEur",
+          "type": "number",
+          "title": "Dagsgæst – EUR",
+          "min": 0
+        }
+      ]
+    },
+    {
+      "name": "autocamper",
+      "type": "object",
+      "title": "Autocamper (pr. nat)",
+      "fields": [
+        {
+          "name": "voksne2Kr",
+          "type": "number",
+          "title": "2 voksne – kr.",
+          "min": 0
+        },
+        {
+          "name": "voksne2Eur",
+          "type": "number",
+          "title": "2 voksne – EUR",
+          "min": 0
+        },
+        {
+          "name": "ekstraVoksenKr",
+          "type": "number",
+          "title": "Ekstra voksen – kr.",
+          "min": 0
+        },
+        {
+          "name": "ekstraVoksenEur",
+          "type": "number",
+          "title": "Ekstra voksen – EUR",
+          "min": 0
+        },
+        {
+          "name": "barn214Kr",
+          "type": "number",
+          "title": "Barn 2–14 år – kr.",
+          "min": 0
+        },
+        {
+          "name": "barn214Eur",
+          "type": "number",
+          "title": "Barn 2–14 år – EUR",
+          "min": 0
+        },
+        {
+          "name": "elKr",
+          "type": "number",
+          "title": "El – kr.",
+          "min": 0
+        },
+        {
+          "name": "elEur",
+          "type": "number",
+          "title": "El – EUR",
+          "min": 0
+        },
+        {
+          "name": "dagsgaestKr",
+          "type": "number",
+          "title": "Dagsgæst – kr.",
+          "min": 0
+        },
+        {
+          "name": "dagsgaestEur",
+          "type": "number",
+          "title": "Dagsgæst – EUR",
+          "min": 0
+        }
+      ]
+    },
+    {
+      "name": "teltfelt",
+      "type": "object",
+      "title": "Campingfelt / telt (pr. nat)",
+      "fields": [
+        {
+          "name": "voksen1Kr",
+          "type": "number",
+          "title": "1 voksen – kr.",
+          "min": 0
+        },
+        {
+          "name": "voksen1Eur",
+          "type": "number",
+          "title": "1 voksen – EUR",
+          "min": 0
+        },
+        {
+          "name": "voksne2Kr",
+          "type": "number",
+          "title": "2 voksne – kr.",
+          "min": 0
+        },
+        {
+          "name": "voksne2Eur",
+          "type": "number",
+          "title": "2 voksne – EUR",
+          "min": 0
+        },
+        {
+          "name": "ekstraVoksenKr",
+          "type": "number",
+          "title": "Ekstra voksen – kr.",
+          "min": 0
+        },
+        {
+          "name": "ekstraVoksenEur",
+          "type": "number",
+          "title": "Ekstra voksen – EUR",
+          "min": 0
+        },
+        {
+          "name": "barn214Kr",
+          "type": "number",
+          "title": "Barn 2–14 år – kr.",
+          "min": 0
+        },
+        {
+          "name": "barn214Eur",
+          "type": "number",
+          "title": "Barn 2–14 år – EUR",
+          "min": 0
+        }
+      ]
+    },
+    {
+      "name": "hytter",
+      "type": "object",
+      "title": "Hytter (pr. nat)",
+      "fields": [
+        {
+          "name": "hytte2Kr",
+          "type": "number",
+          "title": "Hytte 2 – kr.",
+          "min": 0
+        },
+        {
+          "name": "hytte2Eur",
+          "type": "number",
+          "title": "Hytte 2 – EUR",
+          "min": 0
+        },
+        {
+          "name": "hytte3Kr",
+          "type": "number",
+          "title": "Hytte 3 – kr.",
+          "min": 0
+        },
+        {
+          "name": "hytte3Eur",
+          "type": "number",
+          "title": "Hytte 3 – EUR",
+          "min": 0
+        },
+        {
+          "name": "hytte6Kr",
+          "type": "number",
+          "title": "Hytte 6 – kr.",
+          "min": 0
+        },
+        {
+          "name": "hytte6Eur",
+          "type": "number",
+          "title": "Hytte 6 – EUR",
+          "min": 0
+        },
+        {
+          "name": "hytte7Kr",
+          "type": "number",
+          "title": "Hytte 7 – kr.",
+          "min": 0
+        },
+        {
+          "name": "hytte7Eur",
+          "type": "number",
+          "title": "Hytte 7 – EUR",
+          "min": 0
+        },
+        {
+          "name": "hytte8Kr",
+          "type": "number",
+          "title": "Hytte 8 – kr.",
+          "min": 0
+        },
+        {
+          "name": "hytte8Eur",
+          "type": "number",
+          "title": "Hytte 8 – EUR",
+          "min": 0
+        },
+        {
+          "name": "hytte9Kr",
+          "type": "number",
+          "title": "Hytte 9 – kr.",
+          "min": 0
+        },
+        {
+          "name": "hytte9Eur",
+          "type": "number",
+          "title": "Hytte 9 – EUR",
+          "min": 0
+        }
+      ]
+    },
+    {
+      "name": "hytteTilvalg",
+      "type": "object",
+      "title": "Tilvalg til hytter",
+      "fields": [
+        {
+          "name": "sengelinnedKr",
+          "type": "number",
+          "title": "Sengelinned (pr. person) – kr.",
+          "min": 0
+        },
+        {
+          "name": "sengelinnedEur",
+          "type": "number",
+          "title": "Sengelinned (pr. person) – EUR",
+          "min": 0
+        },
+        {
+          "name": "haandklaederKr",
+          "type": "number",
+          "title": "Håndklæder (pr. person) – kr.",
+          "min": 0
+        },
+        {
+          "name": "haandklaederEur",
+          "type": "number",
+          "title": "Håndklæder (pr. person) – EUR",
+          "min": 0
+        },
+        {
+          "name": "viskestykkerKr",
+          "type": "number",
+          "title": "Viskestykker (pr. person) – kr.",
+          "min": 0
+        },
+        {
+          "name": "viskestykkerEur",
+          "type": "number",
+          "title": "Viskestykker (pr. person) – EUR",
+          "min": 0
+        },
+        {
+          "name": "elKr",
+          "type": "number",
+          "title": "El (pr. nat) – kr.",
+          "min": 0
+        },
+        {
+          "name": "elEur",
+          "type": "number",
+          "title": "El (pr. nat) – EUR",
+          "min": 0
+        },
+        {
+          "name": "slutrengoeringKr",
+          "type": "number",
+          "title": "Slutrengøring – kr.",
+          "min": 0
+        },
+        {
+          "name": "slutrengoeringEur",
+          "type": "number",
+          "title": "Slutrengøring – EUR",
+          "min": 0
+        }
+      ]
+    },
+    {
+      "name": "saesonplads",
+      "type": "object",
+      "title": "Sæsonplads (pr. sæson)",
+      "fields": [
+        {
+          "name": "familieHelKr",
+          "type": "number",
+          "title": "Familie – hel sæson – kr.",
+          "min": 0
+        },
+        {
+          "name": "familieHelEur",
+          "type": "number",
+          "title": "Familie – hel sæson – EUR",
+          "min": 0
+        },
+        {
+          "name": "familieHalvKr",
+          "type": "number",
+          "title": "Familie – halv sæson – kr.",
+          "min": 0
+        },
+        {
+          "name": "familieHalvEur",
+          "type": "number",
+          "title": "Familie – halv sæson – EUR",
+          "min": 0
+        },
+        {
+          "name": "voksne2HelKr",
+          "type": "number",
+          "title": "2 voksne – hel sæson – kr.",
+          "min": 0
+        },
+        {
+          "name": "voksne2HelEur",
+          "type": "number",
+          "title": "2 voksne – hel sæson – EUR",
+          "min": 0
+        },
+        {
+          "name": "voksne2HalvKr",
+          "type": "number",
+          "title": "2 voksne – halv sæson – kr.",
+          "min": 0
+        },
+        {
+          "name": "voksne2HalvEur",
+          "type": "number",
+          "title": "2 voksne – halv sæson – EUR",
+          "min": 0
+        },
+        {
+          "name": "voksen1HelKr",
+          "type": "number",
+          "title": "1 voksen – hel sæson – kr.",
+          "min": 0
+        },
+        {
+          "name": "voksen1HelEur",
+          "type": "number",
+          "title": "1 voksen – hel sæson – EUR",
+          "min": 0
+        },
+        {
+          "name": "voksen1HalvKr",
+          "type": "number",
+          "title": "1 voksen – halv sæson – kr.",
+          "min": 0
+        },
+        {
+          "name": "voksen1HalvEur",
+          "type": "number",
+          "title": "1 voksen – halv sæson – EUR",
+          "min": 0
+        }
+      ]
+    },
+    {
+      "name": "saesonTilvalg",
+      "type": "object",
+      "title": "Tilvalg til sæsonplads",
+      "fields": [
+        {
+          "name": "gaestekortKr",
+          "type": "number",
+          "title": "Gæstekort – kr.",
+          "min": 0
+        },
+        {
+          "name": "gaestekortEur",
+          "type": "number",
+          "title": "Gæstekort – EUR",
+          "min": 0
+        },
+        {
+          "name": "boernBoerneboernKr",
+          "type": "number",
+          "title": "Børn/børnebørn – kr.",
+          "min": 0
+        },
+        {
+          "name": "boernBoerneboernEur",
+          "type": "number",
+          "title": "Børn/børnebørn – EUR",
+          "min": 0
+        },
+        {
+          "name": "ekstraVoksenKr",
+          "type": "number",
+          "title": "Ekstra voksen – kr.",
+          "min": 0
+        },
+        {
+          "name": "ekstraVoksenEur",
+          "type": "number",
+          "title": "Ekstra voksen – EUR",
+          "min": 0
+        },
+        {
+          "name": "vinteropbevaringKr",
+          "type": "number",
+          "title": "Vinteropbevaring – kr.",
+          "min": 0
+        },
+        {
+          "name": "vinteropbevaringEur",
+          "type": "number",
+          "title": "Vinteropbevaring – EUR",
+          "min": 0
+        },
+        {
+          "name": "elHelKr",
+          "type": "number",
+          "title": "El – hel sæson – kr.",
+          "min": 0
+        },
+        {
+          "name": "elHelEur",
+          "type": "number",
+          "title": "El – hel sæson – EUR",
+          "min": 0
+        },
+        {
+          "name": "elHalvKr",
+          "type": "number",
+          "title": "El – halv sæson – kr.",
+          "min": 0
+        },
+        {
+          "name": "elHalvEur",
+          "type": "number",
+          "title": "El – halv sæson – EUR",
+          "min": 0
+        }
+      ]
+    },
+    {
+      "name": "vask",
+      "type": "object",
+      "title": "Vaskeri (gælder alle pladser og hytter)",
+      "fields": [
+        {
+          "name": "vaskemaskineKr",
+          "type": "number",
+          "title": "Vaskemaskine (pr. vask) – kr.",
+          "min": 0
+        },
+        {
+          "name": "vaskemaskineEur",
+          "type": "number",
+          "title": "Vaskemaskine (pr. vask) – EUR",
+          "min": 0
+        },
+        {
+          "name": "toerretumblerKr",
+          "type": "number",
+          "title": "Tørretumbler (pr. ½ time) – kr.",
+          "min": 0
+        },
+        {
+          "name": "toerretumblerEur",
+          "type": "number",
+          "title": "Tørretumbler (pr. ½ time) – EUR",
+          "min": 0
+        }
+      ]
+    },
+    {
+      "name": "saeson",
+      "type": "object",
+      "title": "Sæsondatoer",
+      "description": "Kun dag og måned vises på siden — årstallet bruges ikke.",
+      "fields": [
+        {
+          "name": "helStart",
+          "type": "datetime",
+          "dateOnly": true,
+          "title": "Hel sæson – start"
+        },
+        {
+          "name": "helSlut",
+          "type": "datetime",
+          "dateOnly": true,
+          "title": "Hel sæson – slut"
+        },
+        {
+          "name": "halvStart",
+          "type": "datetime",
+          "dateOnly": true,
+          "title": "Halv sæson – start"
+        },
+        {
+          "name": "halvSlut",
+          "type": "datetime",
+          "dateOnly": true,
+          "title": "Halv sæson – slut"
+        }
+      ]
+    }
+  ]
+}

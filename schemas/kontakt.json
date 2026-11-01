@@ -1,0 +1,16 @@
+{
+  "name": "kontakt",
+  "title": "Kontaktoplysninger",
+  "singleton": true,
+  "preview": { "path": "/da/contact" },
+  "fields": [
+    { "name": "telefon", "type": "string", "title": "Telefon", "description": "Vises i sidefoden, på kontakt- og bookingsiden og i betingelserne. Skriv fx +45 91 19 96 74." },
+    { "name": "email", "type": "string", "title": "E-mail" },
+    { "name": "gade", "type": "string", "title": "Adresse (vej og nr.)" },
+    { "name": "lokalitet", "type": "string", "title": "Lokalitet", "description": "Fx Sejerslev" },
+    { "name": "postnr", "type": "string", "title": "Postnummer" },
+    { "name": "postby", "type": "string", "title": "By", "description": "Fx Nykøbing M" },
+    { "name": "cvr", "type": "string", "title": "CVR-nummer" },
+    { "name": "facebook", "type": "url", "title": "Facebook-side (link)" }
+  ]
+}

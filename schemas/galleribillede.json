@@ -1,0 +1,32 @@
+{
+  "name": "galleribillede",
+  "title": "Galleri",
+  "orderable": true,
+  "preview": {
+    "path": "/da/gallery"
+  },
+  "fields": [
+    {
+      "name": "billede",
+      "type": "image",
+      "title": "Billede",
+      "description": "Lad feltet stå tomt på de eksisterende billeder for at beholde det nuværende foto."
+    },
+    {
+      "name": "billedtekstDa",
+      "type": "string",
+      "title": "Billedtekst (DK)"
+    },
+    {
+      "name": "billedtekstEn",
+      "type": "string",
+      "title": "Billedtekst (EN)"
+    },
+    {
+      "name": "noegle",
+      "type": "string",
+      "title": "Intern reference (rør ikke)",
+      "description": "Bruges til at finde det nuværende foto. Lad den være som den er; nye billeder skal ikke have en."
+    }
+  ]
+}

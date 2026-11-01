@@ -1,0 +1,94 @@
+{
+  "data": {
+    "noteDa": "Men vær især afslappet!",
+    "noteEn": "But mostly — be relaxed!",
+    "noteNl": "Maar bovenal: ontspan en geniet van uw verblijf!",
+    "noteDe": "Aber vor allem — entspannt bleiben!",
+    "regler": [
+      {
+        "tekstDa": "Kør ikke hurtigere end 15 km i timen på terrænet",
+        "tekstEn": "Don't drive faster than 15 km per hour on the grounds",
+        "tekstNl": "Rijd stapvoets: maximaal 15 km per uur op het terrein",
+        "tekstDe": "Fahren Sie nicht schneller als 15 km/h auf dem Gelände"
+      },
+      {
+        "tekstDa": "Mindst 3 meter mellem campingvognene",
+        "tekstEn": "At least 3 meters between the caravans",
+        "tekstNl": "Houd minimaal 3 meter afstand tussen de caravans en kampeermiddelen",
+        "tekstDe": "Mindestens 3 Meter Abstand zwischen den Wohnwagen"
+      },
+      {
+        "tekstDa": "Biler på de anviste steder",
+        "tekstEn": "Cars in the designated spots or in your own space",
+        "tekstNl": "Parkeer auto's alleen op de daarvoor aangewezen plaatsen",
+        "tekstDe": "Autos nur auf den ausgewiesenen Stellplätzen"
+      },
+      {
+        "tekstDa": "Opladning af elektriske biler er ikke tilladt",
+        "tekstEn": "Charging electric cars is not allowed",
+        "tekstNl": "Het opladen van elektrische auto's is op de camping niet toegestaan",
+        "tekstDe": "Das Laden von Elektroautos ist nicht gestattet"
+      },
+      {
+        "tekstDa": "Respekter nattesøvnen mellem kl. 22.00 og 7.00",
+        "tekstEn": "Respect quiet hours from 10 PM to 7 AM",
+        "tekstNl": "Respecteer de nachtrust tussen 22.00 en 07.00 uur",
+        "tekstDe": "Bitte die Nachtruhe von 22:00 bis 7:00 Uhr einhalten"
+      },
+      {
+        "tekstDa": "Hunde i snor, undtagen på marken",
+        "tekstEn": "Dogs on a leash, except on the field",
+        "tekstNl": "Honden moeten aangelijnd zijn, behalve op het veld",
+        "tekstDe": "Hunde an der Leine, außer auf der Wiese"
+      },
+      {
+        "tekstDa": "Venligst ryd op efter afføring",
+        "tekstEn": "Please clean up the poop",
+        "tekstNl": "Ruim hondenpoep altijd op",
+        "tekstDe": "Bitte die Hinterlassenschaften Ihres Hundes beseitigen"
+      },
+      {
+        "tekstDa": "Rygning er ikke tilladt i bygningerne",
+        "tekstEn": "Smoking is not allowed in the buildings",
+        "tekstNl": "Roken is niet toegestaan in de gebouwen",
+        "tekstDe": "Rauchen ist in den Gebäuden nicht gestattet"
+      },
+      {
+        "tekstDa": "Grill på træ er ikke tilladt ved din plads",
+        "tekstEn": "Grilling on wood is not allowed at your spot",
+        "tekstNl": "Barbecueën op hout is niet toegestaan bij uw kampeerplaats",
+        "tekstDe": "Grillen mit Holz ist auf dem Stellplatz nicht erlaubt"
+      },
+      {
+        "tekstDa": "Smid briketterne i den jernspand",
+        "tekstEn": "Throw the briquettes into the iron bucket",
+        "tekstNl": "Gooi afgekoelde briketten in de metalen emmer",
+        "tekstDe": "Briketts in den Eiseneimer werfen"
+      },
+      {
+        "tekstDa": "Åben ild kun på bålpladsen",
+        "tekstEn": "Open fire only on the fire pit",
+        "tekstNl": "Open vuur is alleen toegestaan op de vuurplaats",
+        "tekstDe": "Offenes Feuer nur auf dem Lagerfeuerplatz"
+      },
+      {
+        "tekstDa": "Smid dit affald i den rigtige pose",
+        "tekstEn": "Throw your trash in the right bag",
+        "tekstNl": "Gooi afval in de juiste afvalzak of container",
+        "tekstDe": "Müll in den richtigen Beutel werfen"
+      },
+      {
+        "tekstDa": "Sørg for, at du efterlader din plads ren",
+        "tekstEn": "Make sure you leave your spot clean",
+        "tekstNl": "Laat uw kampeerplaats schoon achter",
+        "tekstDe": "Bitte hinterlassen Sie Ihren Platz sauber"
+      },
+      {
+        "tekstDa": "Lytte til medarbejderen",
+        "tekstEn": "Listen to the staff",
+        "tekstNl": "Volg altijd de aanwijzingen van de medewerkers",
+        "tekstDe": "Auf die Mitarbeiter hören"
+      }
+    ]
+  }
+}

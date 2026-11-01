@@ -1,0 +1,38 @@
+{
+  "data": {
+    "punkter": [
+      {
+        "spoergsmaalDa": "Må vi tage hunden med?",
+        "spoergsmaalEn": "Are dogs allowed?",
+        "spoergsmaalNl": "Zijn honden toegestaan?",
+        "svarDa": "Ja, hunde er velkomne og gratis. De skal blot føres i snor, og der må være op til 3 hunde pr. plads (flere efter aftale). Hytte 8 er den eneste hytte, hvor hunde ikke er tilladt.",
+        "svarEn": "Yes, dogs are welcome and free of charge. They simply need to be kept on a leash, and you may bring up to 3 dogs per pitch (more by arrangement). Cabin 8 is the only cabin where dogs are not allowed.",
+        "svarNl": "Ja, honden zijn welkom en gratis. Ze moeten alleen aangelijnd zijn, en er zijn maximaal 3 honden per plaats toegestaan (meer in overleg). Hut 8 is de enige hut waar honden niet zijn toegestaan."
+      },
+      {
+        "spoergsmaalDa": "Er el inkluderet i prisen?",
+        "spoergsmaalEn": "Is electricity included?",
+        "spoergsmaalNl": "Is elektriciteit inbegrepen?",
+        "svarDa": "El er et tilvalg og koster 50 kr. pr. nat. På sæsonpladser kan du i stedet vælge el for hele eller halve sæsoner.",
+        "svarEn": "Electricity is an optional add-on at €6.70 per night. On seasonal pitches you can instead choose electricity for a full or half season.",
+        "svarNl": "Elektriciteit is een optie en kost €6.70 per nacht. Op seizoensplaatsen kunt u in plaats daarvan kiezen voor elektriciteit voor een heel of half seizoen."
+      },
+      {
+        "spoergsmaalDa": "Hvornår har I åbent?",
+        "spoergsmaalEn": "When are you open?",
+        "spoergsmaalNl": "Wanneer zijn jullie open?",
+        "svarDa": "Vi har åbent fra april til midt i oktober. De præcise datoer for sæsonen kan du se når du booker. Uden for sæsonen er pladsen lukket.",
+        "svarEn": "We are open from April to mid-October. You can see the exact dates for the season when you book. The campsite is closed outside the season.",
+        "svarNl": "We zijn open van april tot half oktober. De exacte data van het seizoen ziet u bij het boeken. Buiten het seizoen is de camping gesloten."
+      },
+      {
+        "spoergsmaalDa": "Hvordan betaler jeg for mit ophold?",
+        "spoergsmaalEn": "How do I pay for my stay?",
+        "spoergsmaalNl": "Hoe betaal ik voor mijn verblijf?",
+        "svarDa": "Du betaler et depositum på 25 % ved booking og restbeløbet på 75 % senest 2 uger før ankomst. Vi modtager Visa og Mastercard.",
+        "svarEn": "You pay a 25% deposit when you book, and the remaining 75% no later than two weeks before arrival. We accept Visa and Mastercard.",
+        "svarNl": "U betaalt een aanbetaling van 25 % bij het boeken en het resterende bedrag van 75 % uiterlijk twee weken voor aankomst. Wij accepteren Visa en Mastercard."
+      }
+    ]
+  }
+}

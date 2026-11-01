@@ -1,0 +1,38 @@
+{
+  "name": "betaling",
+  "title": "Betalingsbetingelser",
+  "singleton": true,
+  "preview": {
+    "path": "/da/prices"
+  },
+  "fields": [
+    {
+      "name": "punkter",
+      "type": "array",
+      "title": "Punkter under \"Betaling\"",
+      "description": "Vises på prissiden. Tilføj, slet eller flyt punkter. Et tomt felt på et sprog viser den engelske tekst (ellers den danske).",
+      "of": {
+        "name": "punkt",
+        "type": "object",
+        "title": "Punkt",
+        "fields": [
+          {
+            "name": "tekstDa",
+            "type": "text",
+            "title": "Tekst (DK)"
+          },
+          {
+            "name": "tekstEn",
+            "type": "text",
+            "title": "Tekst (EN)"
+          },
+          {
+            "name": "tekstNl",
+            "type": "text",
+            "title": "Tekst (NL)"
+          }
+        ]
+      }
+    }
+  ]
+}

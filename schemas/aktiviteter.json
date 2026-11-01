@@ -1,0 +1,59 @@
+{
+  "name": "aktiviteter",
+  "title": "Aktiviteter på pladsen",
+  "singleton": true,
+  "preview": {
+    "path": "/da/activities"
+  },
+  "fields": [
+    {
+      "name": "paaPladsen",
+      "type": "array",
+      "title": "På pladsen",
+      "description": "Tilføj, slet eller flyt punkter. Et tomt felt på et sprog viser den engelske tekst (ellers den danske). Nye aktiviteter får et standardikon.",
+      "of": {
+        "name": "punkt",
+        "type": "object",
+        "title": "Aktivitet",
+        "fields": [
+          {
+            "name": "titelDa",
+            "type": "string",
+            "title": "Titel (DK)"
+          },
+          {
+            "name": "titelEn",
+            "type": "string",
+            "title": "Titel (EN)"
+          },
+          {
+            "name": "titelNl",
+            "type": "string",
+            "title": "Titel (NL)"
+          },
+          {
+            "name": "tekstDa",
+            "type": "text",
+            "title": "Tekst (DK)"
+          },
+          {
+            "name": "tekstEn",
+            "type": "text",
+            "title": "Tekst (EN)"
+          },
+          {
+            "name": "tekstNl",
+            "type": "text",
+            "title": "Tekst (NL)"
+          },
+          {
+            "name": "noegle",
+            "type": "string",
+            "title": "Intern reference (rør ikke)",
+            "description": "Bestemmer ikonet. Lad den være som den er; nye punkter skal ikke have en."
+          }
+        ]
+      }
+    }
+  ]
+}

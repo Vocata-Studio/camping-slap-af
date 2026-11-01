@@ -409,5 +409,22 @@
     "a3": "We are open from April to mid-October. You can see the exact dates for the season when you book. The campsite is closed outside the season.",
     "q4": "How do I pay for my stay?",
     "a4": "You pay a 25% deposit when you book, and the remaining 75% no later than two weeks before arrival. We accept Visa and Mastercard."
+  },
+  "HouseRules": {
+    "rule1": "Don't drive faster than 15 km per hour on the grounds",
+    "rule2": "At least 3 meters between the caravans",
+    "rule3": "Cars in the designated spots or in your own space",
+    "rule4": "Charging electric cars is not allowed",
+    "rule5": "Respect quiet hours from 10 PM to 7 AM",
+    "rule6": "Dogs on a leash, except on the field",
+    "rule7": "Please clean up the poop",
+    "rule8": "Smoking is not allowed in the buildings",
+    "rule9": "Grilling on wood is not allowed at your spot",
+    "rule10": "Throw the briquettes into the iron bucket",
+    "rule11": "Open fire only on the fire pit",
+    "rule12": "Throw your trash in the right bag",
+    "rule13": "Make sure you leave your spot clean",
+    "rule14": "Listen to the staff",
+    "note": "But mostly — be relaxed!"
   }
 }

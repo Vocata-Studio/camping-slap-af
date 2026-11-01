@@ -1,0 +1,195 @@
+{
+  "data": {
+    "campsite": {
+      "beskrivelseDa": "Rummelige campingpladser med blødt græs og god afstand til naboerne. Strøm tilgængeligt.",
+      "beskrivelseEn": "Spacious campsites with soft grass and good distance to neighbours. Electricity available.",
+      "beskrivelseNl": "Ruime campingplaatsen met zacht gras en goede afstand tot de buren. Elektriciteit beschikbaar.",
+      "punkter": [
+        {
+          "tekstDa": "Blødt græsunderlag",
+          "tekstEn": "Soft grass surface",
+          "tekstNl": "Zacht grasondergrond"
+        },
+        {
+          "tekstDa": "Strømtilslutning",
+          "tekstEn": "Electricity hook-up",
+          "tekstNl": "Stroomaansluiting"
+        },
+        {
+          "tekstDa": "Vandpost i nærheden",
+          "tekstEn": "Water tap nearby",
+          "tekstNl": "Watertappunt in de buurt"
+        }
+      ]
+    },
+    "camper": {
+      "beskrivelseDa": "Jævne autocamperpladser med strømtilslutning og vandpost i nærheden. Plads til autocampere og campingvogne i alle størrelser.",
+      "beskrivelseEn": "Level motorhome pitches with electrical connection and water access nearby. Suitable for motorhomes and caravans of all sizes.",
+      "beskrivelseNl": "Vlakke camperplaatsen met stroomaansluiting en wateraansluiting in de buurt. Geschikt voor campers en caravans van alle formaten.",
+      "punkter": [
+        {
+          "tekstDa": "Jævnt underlag",
+          "tekstEn": "Level hardstanding",
+          "tekstNl": "Vlakke ondergrond"
+        },
+        {
+          "tekstDa": "Strømtilslutning",
+          "tekstEn": "Electricity hook-up",
+          "tekstNl": "Stroomaansluiting"
+        },
+        {
+          "tekstDa": "Vand og tømningsstation",
+          "tekstEn": "Water & waste disposal",
+          "tekstNl": "Water & afvoer"
+        }
+      ]
+    },
+    "cottage": {
+      "beskrivelseDa": "Hyggelig hytte med basale faciliteter — flere størrelser, til 2–4 personer. Pris pr. hytte uanset antal gæster.",
+      "beskrivelseEn": "Cozy cabin with basic facilities — multiple sizes, for 2–4 people. Priced per cabin, regardless of guest count.",
+      "beskrivelseNl": "Gezellig huisje met basisfaciliteiten — meerdere groottes, voor 2–4 personen. Prijs per huisje, ongeacht het aantal gasten.",
+      "punkter": [
+        {
+          "tekstDa": "Plads til 4 personer",
+          "tekstEn": "Sleeps 4 people",
+          "tekstNl": "Slaapplaats voor 4 personen"
+        },
+        {
+          "tekstDa": "Lille tekøkken",
+          "tekstEn": "Basic kitchenette",
+          "tekstNl": "Kleine keuken"
+        },
+        {
+          "tekstDa": "Basisudstyr inkluderet",
+          "tekstEn": "Basic equipment included",
+          "tekstNl": "Basisuitrusting inbegrepen"
+        }
+      ]
+    },
+    "field": {
+      "beskrivelseDa": "Åbent campingfelt med plads til telte og mindre campingudstyr. Perfekt til grupper og spejdere.",
+      "beskrivelseEn": "Open camping field with space for tents and smaller camping equipment. Great for groups and scouts.",
+      "beskrivelseNl": "Open kampveld met ruimte voor tenten en kleinere kampeeruitrusting. Ideaal voor groepen en scouting.",
+      "punkter": [
+        {
+          "tekstDa": "Stort åbent areal",
+          "tekstEn": "Large open area",
+          "tekstNl": "Groot open terrein"
+        },
+        {
+          "tekstDa": "Tæt på fællesfaciliteter",
+          "tekstEn": "Close to shared facilities",
+          "tekstNl": "Dicht bij gemeenschappelijke faciliteiten"
+        }
+      ]
+    },
+    "seasonal": {
+      "beskrivelseDa": "Sæsonplads til hele sæsonen. El afregnes separat efter forbrug. Perfekt hvis du vil have din faste plads hele sommeren.",
+      "beskrivelseEn": "Seasonal pitch for the full season. Electricity billed separately by consumption. Perfect if you want your own fixed spot all summer.",
+      "beskrivelseNl": "Seizoensplaats voor het hele seizoen. Elektriciteit wordt apart afgerekend op verbruik. Perfect als u de hele zomer uw eigen vaste plek wilt.",
+      "punkter": [
+        {
+          "tekstDa": "Fast plads hele sæsonen",
+          "tekstEn": "Fixed pitch all season",
+          "tekstNl": "Vaste plek het hele seizoen"
+        },
+        {
+          "tekstDa": "El afregnes separat",
+          "tekstEn": "Electricity billed separately",
+          "tekstNl": "Elektriciteit apart afgerekend"
+        },
+        {
+          "tekstDa": "Vælg din foretrukne plads",
+          "tekstEn": "Choose your preferred spot",
+          "tekstNl": "Kies uw favoriete plek"
+        }
+      ]
+    },
+    "tilvalgOverskriftDa": "Tilvalg",
+    "tilvalgOverskriftEn": "Optional extras",
+    "tilvalgOverskriftNl": "Extra opties",
+    "hundOverskriftDa": "Hundevenlig campingplads",
+    "hundOverskriftEn": "Dog-friendly campsite",
+    "hundOverskriftNl": "Hondvriendelijke camping",
+    "hundTekstDa": "Hunde er velkomne og gratis. De skal føres i snor på pladsen. Maks. 3 hunde (flere efter aftale). Vi har en dedikeret hundelegeplads.",
+    "hundTekstEn": "Dogs are welcome and stay for free. They must be kept on a leash on site. Maximum 3 dogs (more by arrangement). We have a dedicated dog run.",
+    "hundTekstNl": "Honden zijn welkom en verblijven gratis. Ze moeten aangelijnd zijn op de camping. Maximaal 3 honden (meer in overleg). We hebben een speciale hondenren.",
+    "broedTekstDa": "Bestil friskbagt brød inden kl. 16 dagen før, så står det klar næste morgen.",
+    "broedTekstEn": "Order fresh bread before 4 PM the day before — it's ready for you the next morning.",
+    "broedTekstNl": "Bestel vers brood vóór 16:00 uur de dag ervoor — de volgende ochtend staat het voor u klaar.",
+    "tilvalg": [
+      {
+        "tekstDa": "Håndklædepakke",
+        "tekstEn": "Towel package",
+        "tekstNl": "Handdoekenpakket"
+      },
+      {
+        "tekstDa": "Sengetøj",
+        "tekstEn": "Bedding",
+        "tekstNl": "Beddengoed"
+      },
+      {
+        "tekstDa": "Slutrengøring",
+        "tekstEn": "Final cleaning",
+        "tekstNl": "Eindschoonmaak"
+      }
+    ],
+    "faciliteter": [
+      {
+        "tekstDa": "Toiletter og baderum",
+        "tekstEn": "Restrooms",
+        "tekstNl": "Toiletten en douches"
+      },
+      {
+        "tekstDa": "Fællesrum",
+        "tekstEn": "Common area",
+        "tekstNl": "Gemeenschapsruimte"
+      },
+      {
+        "tekstDa": "Vaskemaskine",
+        "tekstEn": "Washing machine",
+        "tekstNl": "Wasmachine"
+      },
+      {
+        "tekstDa": "Legeplads",
+        "tekstEn": "Playground",
+        "tekstNl": "Speeltuin"
+      },
+      {
+        "tekstDa": "Køkkenhave",
+        "tekstEn": "Vegetable garden",
+        "tekstNl": "Moestuin"
+      },
+      {
+        "tekstDa": "Hundelegeplads",
+        "tekstEn": "Dog run",
+        "tekstNl": "Hondenren"
+      },
+      {
+        "tekstDa": "Bålplads",
+        "tekstEn": "Fire pit",
+        "tekstNl": "Vuurplaats"
+      },
+      {
+        "tekstDa": "Kiosk",
+        "tekstEn": "Kiosk",
+        "tekstNl": "Kiosk"
+      },
+      {
+        "tekstDa": "Friskbagt brød",
+        "tekstEn": "Fresh bread",
+        "tekstNl": "Vers brood"
+      },
+      {
+        "tekstDa": "Grill",
+        "tekstEn": "Barbecue",
+        "tekstNl": "Barbecue"
+      },
+      {
+        "tekstDa": "Tørretumbler",
+        "tekstEn": "Tumble dryer",
+        "tekstNl": "Wasdroger"
+      }
+    ]
+  }
+}

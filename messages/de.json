@@ -406,5 +406,22 @@
     "a3": "Wir haben von April bis Mitte Oktober geöffnet. Die genauen Saisondaten sehen Sie bei der Buchung. Außerhalb der Saison ist der Platz geschlossen.",
     "q4": "Wie bezahle ich meinen Aufenthalt?",
     "a4": "Sie zahlen bei der Buchung eine Anzahlung von 25 % und den Restbetrag von 75 % spätestens zwei Wochen vor der Anreise. Wir akzeptieren Visa und Mastercard."
+  },
+  "HouseRules": {
+    "rule1": "Fahren Sie nicht schneller als 15 km/h auf dem Gelände",
+    "rule2": "Mindestens 3 Meter Abstand zwischen den Wohnwagen",
+    "rule3": "Autos nur auf den ausgewiesenen Stellplätzen",
+    "rule4": "Das Laden von Elektroautos ist nicht gestattet",
+    "rule5": "Bitte die Nachtruhe von 22:00 bis 7:00 Uhr einhalten",
+    "rule6": "Hunde an der Leine, außer auf der Wiese",
+    "rule7": "Bitte die Hinterlassenschaften Ihres Hundes beseitigen",
+    "rule8": "Rauchen ist in den Gebäuden nicht gestattet",
+    "rule9": "Grillen mit Holz ist auf dem Stellplatz nicht erlaubt",
+    "rule10": "Briketts in den Eiseneimer werfen",
+    "rule11": "Offenes Feuer nur auf dem Lagerfeuerplatz",
+    "rule12": "Müll in den richtigen Beutel werfen",
+    "rule13": "Bitte hinterlassen Sie Ihren Platz sauber",
+    "rule14": "Auf die Mitarbeiter hören",
+    "note": "Aber vor allem — entspannt bleiben!"
   }
 }

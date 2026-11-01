@@ -1,0 +1,26 @@
+{
+  "data": {
+    "punkter": [
+      {
+        "tekstDa": "Depositum: 25 % af det samlede beløb opkræves ved booking.",
+        "tekstEn": "Deposit: 25% of the total amount is charged at booking.",
+        "tekstNl": "Aanbetaling: 25% van het totaalbedrag wordt bij boeking in rekening gebracht."
+      },
+      {
+        "tekstDa": "Restbeløb: De resterende 75 % skal være betalt senest 2 uger før ankomst. Vi sender en venlig påmindelse 3 uger før, så du har god tid.",
+        "tekstEn": "Balance: The remaining 75% must be paid no later than 2 weeks before arrival. We send a friendly reminder 3 weeks ahead so you have plenty of time.",
+        "tekstNl": "Restbedrag: De resterende 75% moet uiterlijk 2 weken voor aankomst zijn betaald. We sturen 3 weken vooraf een vriendelijke herinnering."
+      },
+      {
+        "tekstDa": "Afbestilling: Indbetalte beløb refunderes ikke, uanset hvornår eller hvorfor du afbestiller. Vi anbefaler at tegne en afbestillingsforsikring.",
+        "tekstEn": "Cancellation: Amounts paid are not refunded, regardless of when or why you cancel. We recommend taking out a cancellation insurance.",
+        "tekstNl": "Annulering: Betaalde bedragen worden niet terugbetaald, ongeacht wanneer of waarom u annuleert. We raden een annuleringsverzekering aan."
+      },
+      {
+        "tekstDa": "Betalingsmetoder: Vi modtager Visa og Mastercard. Andre betalingsmetoder kan komme til løbende.",
+        "tekstEn": "Payment methods: We accept Visa and Mastercard. More payment methods may be added over time.",
+        "tekstNl": "Betaalmethoden: We accepteren Visa en Mastercard. Meer methoden kunnen na verloop van tijd worden toegevoegd."
+      }
+    ]
+  }
+}

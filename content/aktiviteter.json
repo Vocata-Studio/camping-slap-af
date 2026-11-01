@@ -1,0 +1,60 @@
+{
+  "data": {
+    "paaPladsen": [
+      {
+        "titelDa": "Legeplads",
+        "titelEn": "Playground",
+        "titelNl": "Speeltuin",
+        "tekstDa": "Lille legeplads til de mindste med plads til leg og udfoldelse.",
+        "tekstEn": "Small playground for the little ones with room to play and explore.",
+        "tekstNl": "Kleine speeltuin voor de kleintjes met ruimte om te spelen en te ontdekken.",
+        "noegle": "activity1"
+      },
+      {
+        "titelDa": "Køkkenhave",
+        "titelEn": "Vegetable garden",
+        "titelNl": "Moestuin",
+        "tekstDa": "Pluk friske krydderurter og grøntsager fra vores fælles køkkenhave.",
+        "tekstEn": "Pick fresh herbs and vegetables from our shared vegetable garden.",
+        "tekstNl": "Pluk verse kruiden en groenten uit onze gemeenschappelijke moestuin.",
+        "noegle": "activity2"
+      },
+      {
+        "titelDa": "Bålplads",
+        "titelEn": "Fire pit",
+        "titelNl": "Vuurplaats",
+        "tekstDa": "Saml familien omkring bålet om aftenen. Vi sørger for brændet.",
+        "tekstEn": "Gather the family around the fire pit in the evening. We provide the firewood.",
+        "tekstNl": "Verzamel de familie 's avonds rond de vuurplaats. Wij zorgen voor het brandhout.",
+        "noegle": "activity3"
+      },
+      {
+        "titelDa": "Hundelegeplads",
+        "titelEn": "Dog run",
+        "titelNl": "Hondenren",
+        "tekstDa": "Indhegnet hundelegeplads hvor din hund kan løbe frit og lege.",
+        "tekstEn": "Fenced dog run where your dog can run free and play off-leash.",
+        "tekstNl": "Omheinde hondenren waar uw hond vrij kan rennen en spelen.",
+        "noegle": "activity4"
+      },
+      {
+        "titelDa": "Fiskeri",
+        "titelEn": "Fishing",
+        "titelNl": "Vissen",
+        "tekstDa": "Fiskeri i Limfjorden tæt på pladsen — perfekt for en afslappet dag ved vandet.",
+        "tekstEn": "Fishing in the Limfjord right by the site — perfect for a relaxed day by the water.",
+        "tekstNl": "Vissen in de Limfjord vlakbij de camping — perfect voor een relaxte dag aan het water.",
+        "noegle": "activity5"
+      },
+      {
+        "titelDa": "Grill",
+        "titelEn": "Grill",
+        "titelNl": "Barbecue",
+        "tekstDa": "Grillpladser hvor gæsterne kan tilberede maden udendørs og nyde aftenen sammen.",
+        "tekstEn": "Grills available for guests to barbecue and enjoy a meal outdoors together.",
+        "tekstNl": "Barbecues beschikbaar waar gasten buiten kunnen koken en samen kunnen genieten van de avond.",
+        "noegle": "activity6"
+      }
+    ]
+  }
+}

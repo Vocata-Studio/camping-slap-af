@@ -1,0 +1,102 @@
+{
+  "name": "forside",
+  "title": "Forside – tekster",
+  "singleton": true,
+  "preview": {
+    "path": "/da"
+  },
+  "fields": [
+    {
+      "name": "heroOverskriftDa",
+      "type": "string",
+      "title": "Overskrift på topbilledet (DK)"
+    },
+    {
+      "name": "heroOverskriftEn",
+      "type": "string",
+      "title": "Overskrift på topbilledet (EN)"
+    },
+    {
+      "name": "heroOverskriftNl",
+      "type": "string",
+      "title": "Overskrift på topbilledet (NL)"
+    },
+    {
+      "name": "heroUndertekstDa",
+      "type": "text",
+      "title": "Undertekst på topbilledet (DK)",
+      "description": "Et linjeskift her giver et linjeskift på siden."
+    },
+    {
+      "name": "heroUndertekstEn",
+      "type": "text",
+      "title": "Undertekst på topbilledet (EN)"
+    },
+    {
+      "name": "heroUndertekstNl",
+      "type": "text",
+      "title": "Undertekst på topbilledet (NL)"
+    },
+    {
+      "name": "velkomstOverskriftDa",
+      "type": "string",
+      "title": "Velkomst – overskrift (DK)"
+    },
+    {
+      "name": "velkomstOverskriftEn",
+      "type": "string",
+      "title": "Velkomst – overskrift (EN)"
+    },
+    {
+      "name": "velkomstOverskriftNl",
+      "type": "string",
+      "title": "Velkomst – overskrift (NL)"
+    },
+    {
+      "name": "velkomstTekstDa",
+      "type": "text",
+      "title": "Velkomst – tekst (DK)"
+    },
+    {
+      "name": "velkomstTekstEn",
+      "type": "text",
+      "title": "Velkomst – tekst (EN)"
+    },
+    {
+      "name": "velkomstTekstNl",
+      "type": "text",
+      "title": "Velkomst – tekst (NL)"
+    },
+    {
+      "name": "bookOverskriftDa",
+      "type": "string",
+      "title": "Booking-boks – overskrift (DK)",
+      "description": "Den grønne booking-boks nederst på forsiden og på de fleste undersider."
+    },
+    {
+      "name": "bookOverskriftEn",
+      "type": "string",
+      "title": "Booking-boks – overskrift (EN)"
+    },
+    {
+      "name": "bookOverskriftNl",
+      "type": "string",
+      "title": "Booking-boks – overskrift (NL)"
+    },
+    {
+      "name": "bookTekstDa",
+      "type": "text",
+      "title": "Booking-boks – tekst (DK)"
+    },
+    {
+      "name": "bookTekstEn",
+      "type": "text",
+      "title": "Booking-boks – tekst (EN)"
+    },
+    {
+      "name": "bookTekstNl",
+      "type": "text",
+      "title": "Booking-boks – tekst (NL)"
+    }
+  ]
+}

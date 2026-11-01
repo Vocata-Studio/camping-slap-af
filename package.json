@@ -8,7 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "cms:deploy": "node --env-file=.env \"/Users/mac/Documents/code projects/vocata-studio-cms/packages/cli/dist/cli.js\" deploy --project camping-slap-af --dir ./schemas",
-    "cms:seed": "node --env-file=.env \"/Users/mac/Documents/code projects/vocata-studio-cms/packages/cli/dist/cli.js\" seed --project camping-slap-af --dir ./content"
+    "cms:seed": "node --env-file=.env \"/Users/mac/Documents/code projects/vocata-studio-cms/packages/cli/dist/cli.js\" seed --project camping-slap-af --dir ./content",
+    "cms:prose": "node scripts/cms-prose.ts"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",

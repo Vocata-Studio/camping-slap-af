@@ -467,5 +467,22 @@
     "a3": "Vi har åbent fra april til midt i oktober. De præcise datoer for sæsonen kan du se når du booker. Uden for sæsonen er pladsen lukket.",
     "q4": "Hvordan betaler jeg for mit ophold?",
     "a4": "Du betaler et depositum på 25 % ved booking og restbeløbet på 75 % senest 2 uger før ankomst. Vi modtager Visa og Mastercard."
+  },
+  "HouseRules": {
+    "rule1": "Kør ikke hurtigere end 15 km i timen på terrænet",
+    "rule2": "Mindst 3 meter mellem campingvognene",
+    "rule3": "Biler på de anviste steder",
+    "rule4": "Opladning af elektriske biler er ikke tilladt",
+    "rule5": "Respekter nattesøvnen mellem kl. 22.00 og 7.00",
+    "rule6": "Hunde i snor, undtagen på marken",
+    "rule7": "Venligst ryd op efter afføring",
+    "rule8": "Rygning er ikke tilladt i bygningerne",
+    "rule9": "Grill på træ er ikke tilladt ved din plads",
+    "rule10": "Smid briketterne i den jernspand",
+    "rule11": "Åben ild kun på bålpladsen",
+    "rule12": "Smid dit affald i den rigtige pose",
+    "rule13": "Sørg for, at du efterlader din plads ren",
+    "rule14": "Lytte til medarbejderen",
+    "note": "Men vær især afslappet!"
   }
 }

@@ -1,0 +1,53 @@
+{
+  "name": "meddelelse",
+  "title": "Meddelelse øverst",
+  "singleton": true,
+  "preview": {
+    "path": "/da"
+  },
+  "fields": [
+    {
+      "name": "aktiv",
+      "type": "boolean",
+      "title": "Vis meddelelsen",
+      "description": "Linjen med teksten og linket øverst på alle sider. Slå fra for at skjule den.",
+      "initialValue": true
+    },
+    {
+      "name": "link",
+      "type": "url",
+      "title": "Link (valgfrit)",
+      "description": "Hvor linket fører hen. Tomt = bookingsystemet."
+    },
+    {
+      "name": "tekstDa",
+      "type": "string",
+      "title": "Tekst (DK)"
+    },
+    {
+      "name": "tekstEn",
+      "type": "string",
+      "title": "Tekst (EN)"
+    },
+    {
+      "name": "tekstNl",
+      "type": "string",
+      "title": "Tekst (NL)"
+    },
+    {
+      "name": "knapDa",
+      "type": "string",
+      "title": "Tekst på linket (DK)"
+    },
+    {
+      "name": "knapEn",
+      "type": "string",
+      "title": "Tekst på linket (EN)"
+    },
+    {
+      "name": "knapNl",
+      "type": "string",
+      "title": "Tekst på linket (NL)"
+    }
+  ]
+}

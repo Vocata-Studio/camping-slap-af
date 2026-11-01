@@ -1,0 +1,63 @@
+{
+  "name": "husregler",
+  "title": "Husregler",
+  "singleton": true,
+  "preview": {
+    "path": "/da/houserules"
+  },
+  "fields": [
+    {
+      "name": "noteDa",
+      "type": "string",
+      "title": "Afsluttende bemærkning (DK)"
+    },
+    {
+      "name": "noteEn",
+      "type": "string",
+      "title": "Afsluttende bemærkning (EN)"
+    },
+    {
+      "name": "noteNl",
+      "type": "string",
+      "title": "Afsluttende bemærkning (NL)"
+    },
+    {
+      "name": "noteDe",
+      "type": "string",
+      "title": "Afsluttende bemærkning (DE)"
+    },
+    {
+      "name": "regler",
+      "type": "array",
+      "title": "Regler",
+      "description": "Tilføj, slet eller flyt regler. Ret også den tyske og hollandske tekst, når du ændrer en regel — ellers viser den tyske side kun den engelske liste.",
+      "of": {
+        "name": "punkt",
+        "type": "object",
+        "title": "Regel",
+        "fields": [
+          {
+            "name": "tekstDa",
+            "type": "string",
+            "title": "Regel (DK)"
+          },
+          {
+            "name": "tekstEn",
+            "type": "string",
+            "title": "Regel (EN)"
+          },
+          {
+            "name": "tekstNl",
+            "type": "string",
+            "title": "Regel (NL)"
+          },
+          {
+            "name": "tekstDe",
+            "type": "string",
+            "title": "Regel (DE)"
+          }
+        ]
+      }
+    }
+  ]
+}

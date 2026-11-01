@@ -1,0 +1,85 @@
+{
+  "name": "bookingside",
+  "title": "Bookingside – tekster",
+  "singleton": true,
+  "preview": {
+    "path": "/da/booking"
+  },
+  "fields": [
+    {
+      "name": "overskriftDa",
+      "type": "string",
+      "title": "Overskrift (DK)"
+    },
+    {
+      "name": "overskriftEn",
+      "type": "string",
+      "title": "Overskrift (EN)"
+    },
+    {
+      "name": "overskriftNl",
+      "type": "string",
+      "title": "Overskrift (NL)"
+    },
+    {
+      "name": "tekstDa",
+      "type": "text",
+      "title": "Tekst (DK)"
+    },
+    {
+      "name": "tekstEn",
+      "type": "text",
+      "title": "Tekst (EN)"
+    },
+    {
+      "name": "tekstNl",
+      "type": "text",
+      "title": "Tekst (NL)"
+    },
+    {
+      "name": "knapDa",
+      "type": "string",
+      "title": "Tekst på booking-knappen (DK)"
+    },
+    {
+      "name": "knapEn",
+      "type": "string",
+      "title": "Tekst på booking-knappen (EN)"
+    },
+    {
+      "name": "knapNl",
+      "type": "string",
+      "title": "Tekst på booking-knappen (NL)"
+    },
+    {
+      "name": "prisTekstDa",
+      "type": "string",
+      "title": "Tekst over \"Se priser\" (DK)"
+    },
+    {
+      "name": "prisTekstEn",
+      "type": "string",
+      "title": "Tekst over \"Se priser\" (EN)"
+    },
+    {
+      "name": "prisTekstNl",
+      "type": "string",
+      "title": "Tekst over \"Se priser\" (NL)"
+    },
+    {
+      "name": "kontaktTekstDa",
+      "type": "text",
+      "title": "Tekst over telefon og e-mail (DK)"
+    },
+    {
+      "name": "kontaktTekstEn",
+      "type": "text",
+      "title": "Tekst over telefon og e-mail (EN)"
+    },
+    {
+      "name": "kontaktTekstNl",
+      "type": "text",
+      "title": "Tekst over telefon og e-mail (NL)"
+    }
+  ]
+}

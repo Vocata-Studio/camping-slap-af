@@ -1,0 +1,376 @@
+{
+  "name": "overnatning",
+  "title": "Overnatning – tekster",
+  "singleton": true,
+  "preview": {
+    "path": "/da/accommodation"
+  },
+  "fields": [
+    {
+      "name": "campsite",
+      "type": "object",
+      "title": "Campingplads",
+      "fields": [
+        {
+          "name": "beskrivelseDa",
+          "type": "text",
+          "title": "Beskrivelse (DK)"
+        },
+        {
+          "name": "beskrivelseEn",
+          "type": "text",
+          "title": "Beskrivelse (EN)"
+        },
+        {
+          "name": "beskrivelseNl",
+          "type": "text",
+          "title": "Beskrivelse (NL)"
+        },
+        {
+          "name": "punkter",
+          "type": "array",
+          "title": "Punkter (med flueben)",
+          "description": "Tilføj, slet eller flyt punkter. Et tomt felt på et sprog viser den engelske tekst (ellers den danske).",
+          "of": {
+            "name": "punkt",
+            "type": "object",
+            "title": "Punkt",
+            "fields": [
+              {
+                "name": "tekstDa",
+                "type": "string",
+                "title": "Tekst (DK)"
+              },
+              {
+                "name": "tekstEn",
+                "type": "string",
+                "title": "Tekst (EN)"
+              },
+              {
+                "name": "tekstNl",
+                "type": "string",
+                "title": "Tekst (NL)"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "camper",
+      "type": "object",
+      "title": "Autocamper",
+      "fields": [
+        {
+          "name": "beskrivelseDa",
+          "type": "text",
+          "title": "Beskrivelse (DK)"
+        },
+        {
+          "name": "beskrivelseEn",
+          "type": "text",
+          "title": "Beskrivelse (EN)"
+        },
+        {
+          "name": "beskrivelseNl",
+          "type": "text",
+          "title": "Beskrivelse (NL)"
+        },
+        {
+          "name": "punkter",
+          "type": "array",
+          "title": "Punkter (med flueben)",
+          "description": "Tilføj, slet eller flyt punkter. Et tomt felt på et sprog viser den engelske tekst (ellers den danske).",
+          "of": {
+            "name": "punkt",
+            "type": "object",
+            "title": "Punkt",
+            "fields": [
+              {
+                "name": "tekstDa",
+                "type": "string",
+                "title": "Tekst (DK)"
+              },
+              {
+                "name": "tekstEn",
+                "type": "string",
+                "title": "Tekst (EN)"
+              },
+              {
+                "name": "tekstNl",
+                "type": "string",
+                "title": "Tekst (NL)"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "cottage",
+      "type": "object",
+      "title": "Hytte",
+      "fields": [
+        {
+          "name": "beskrivelseDa",
+          "type": "text",
+          "title": "Beskrivelse (DK)"
+        },
+        {
+          "name": "beskrivelseEn",
+          "type": "text",
+          "title": "Beskrivelse (EN)"
+        },
+        {
+          "name": "beskrivelseNl",
+          "type": "text",
+          "title": "Beskrivelse (NL)"
+        },
+        {
+          "name": "punkter",
+          "type": "array",
+          "title": "Punkter (med flueben)",
+          "description": "Tilføj, slet eller flyt punkter. Et tomt felt på et sprog viser den engelske tekst (ellers den danske).",
+          "of": {
+            "name": "punkt",
+            "type": "object",
+            "title": "Punkt",
+            "fields": [
+              {
+                "name": "tekstDa",
+                "type": "string",
+                "title": "Tekst (DK)"
+              },
+              {
+                "name": "tekstEn",
+                "type": "string",
+                "title": "Tekst (EN)"
+              },
+              {
+                "name": "tekstNl",
+                "type": "string",
+                "title": "Tekst (NL)"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "field",
+      "type": "object",
+      "title": "Campingfelt",
+      "fields": [
+        {
+          "name": "beskrivelseDa",
+          "type": "text",
+          "title": "Beskrivelse (DK)"
+        },
+        {
+          "name": "beskrivelseEn",
+          "type": "text",
+          "title": "Beskrivelse (EN)"
+        },
+        {
+          "name": "beskrivelseNl",
+          "type": "text",
+          "title": "Beskrivelse (NL)"
+        },
+        {
+          "name": "punkter",
+          "type": "array",
+          "title": "Punkter (med flueben)",
+          "description": "Tilføj, slet eller flyt punkter. Et tomt felt på et sprog viser den engelske tekst (ellers den danske).",
+          "of": {
+            "name": "punkt",
+            "type": "object",
+            "title": "Punkt",
+            "fields": [
+              {
+                "name": "tekstDa",
+                "type": "string",
+                "title": "Tekst (DK)"
+              },
+              {
+                "name": "tekstEn",
+                "type": "string",
+                "title": "Tekst (EN)"
+              },
+              {
+                "name": "tekstNl",
+                "type": "string",
+                "title": "Tekst (NL)"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "seasonal",
+      "type": "object",
+      "title": "Sæsonplads",
+      "fields": [
+        {
+          "name": "beskrivelseDa",
+          "type": "text",
+          "title": "Beskrivelse (DK)"
+        },
+        {
+          "name": "beskrivelseEn",
+          "type": "text",
+          "title": "Beskrivelse (EN)"
+        },
+        {
+          "name": "beskrivelseNl",
+          "type": "text",
+          "title": "Beskrivelse (NL)"
+        },
+        {
+          "name": "punkter",
+          "type": "array",
+          "title": "Punkter (med flueben)",
+          "description": "Tilføj, slet eller flyt punkter. Et tomt felt på et sprog viser den engelske tekst (ellers den danske).",
+          "of": {
+            "name": "punkt",
+            "type": "object",
+            "title": "Punkt",
+            "fields": [
+              {
+                "name": "tekstDa",
+                "type": "string",
+                "title": "Tekst (DK)"
+              },
+              {
+                "name": "tekstEn",
+                "type": "string",
+                "title": "Tekst (EN)"
+              },
+              {
+                "name": "tekstNl",
+                "type": "string",
+                "title": "Tekst (NL)"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "tilvalgOverskriftDa",
+      "type": "string",
+      "title": "Tilvalg – overskrift (DK)"
+    },
+    {
+      "name": "tilvalgOverskriftEn",
+      "type": "string",
+      "title": "Tilvalg – overskrift (EN)"
+    },
+    {
+      "name": "tilvalgOverskriftNl",
+      "type": "string",
+      "title": "Tilvalg – overskrift (NL)"
+    },
+    {
+      "name": "hundOverskriftDa",
+      "type": "string",
+      "title": "Hunde – overskrift (DK)"
+    },
+    {
+      "name": "hundOverskriftEn",
+      "type": "string",
+      "title": "Hunde – overskrift (EN)"
+    },
+    {
+      "name": "hundOverskriftNl",
+      "type": "string",
+      "title": "Hunde – overskrift (NL)"
+    },
+    {
+      "name": "hundTekstDa",
+      "type": "text",
+      "title": "Hunde – tekst (DK)"
+    },
+    {
+      "name": "hundTekstEn",
+      "type": "text",
+      "title": "Hunde – tekst (EN)"
+    },
+    {
+      "name": "hundTekstNl",
+      "type": "text",
+      "title": "Hunde – tekst (NL)"
+    },
+    {
+      "name": "broedTekstDa",
+      "type": "text",
+      "title": "Tekst under faciliteterne (DK)"
+    },
+    {
+      "name": "broedTekstEn",
+      "type": "text",
+      "title": "Tekst under faciliteterne (EN)"
+    },
+    {
+      "name": "broedTekstNl",
+      "type": "text",
+      "title": "Tekst under faciliteterne (NL)"
+    },
+    {
+      "name": "tilvalg",
+      "type": "array",
+      "title": "Tilvalg",
+      "description": "Tilføj, slet eller flyt punkter. Et tomt felt på et sprog viser den engelske tekst (ellers den danske).",
+      "of": {
+        "name": "punkt",
+        "type": "object",
+        "title": "Tilvalg",
+        "fields": [
+          {
+            "name": "tekstDa",
+            "type": "string",
+            "title": "Tekst (DK)"
+          },
+          {
+            "name": "tekstEn",
+            "type": "string",
+            "title": "Tekst (EN)"
+          },
+          {
+            "name": "tekstNl",
+            "type": "string",
+            "title": "Tekst (NL)"
+          }
+        ]
+      }
+    },
+    {
+      "name": "faciliteter",
+      "type": "array",
+      "title": "Faciliteter",
+      "description": "Tilføj, slet eller flyt punkter. Et tomt felt på et sprog viser den engelske tekst (ellers den danske).",
+      "of": {
+        "name": "punkt",
+        "type": "object",
+        "title": "Facilitet",
+        "fields": [
+          {
+            "name": "tekstDa",
+            "type": "string",
+            "title": "Tekst (DK)"
+          },
+          {
+            "name": "tekstEn",
+            "type": "string",
+            "title": "Tekst (EN)"
+          },
+          {
+            "name": "tekstNl",
+            "type": "string",
+            "title": "Tekst (NL)"
+          }
+        ]
+      }
+    }
+  ]
+}

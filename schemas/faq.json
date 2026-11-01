@@ -1,0 +1,53 @@
+{
+  "name": "faq",
+  "title": "Ofte stillede spørgsmål",
+  "singleton": true,
+  "preview": {
+    "path": "/da/prices"
+  },
+  "fields": [
+    {
+      "name": "punkter",
+      "type": "array",
+      "title": "Spørgsmål og svar",
+      "description": "Vises nederst på prissiden. Tilføj, slet eller flyt punkter. Et tomt felt på et sprog viser den engelske tekst (ellers den danske). Elprisen i et svar (fx \"50 kr.\") følger automatisk prisen under Priser.",
+      "of": {
+        "name": "punkt",
+        "type": "object",
+        "title": "Spørgsmål",
+        "fields": [
+          {
+            "name": "spoergsmaalDa",
+            "type": "string",
+            "title": "Spørgsmål (DK)"
+          },
+          {
+            "name": "spoergsmaalEn",
+            "type": "string",
+            "title": "Spørgsmål (EN)"
+          },
+          {
+            "name": "spoergsmaalNl",
+            "type": "string",
+            "title": "Spørgsmål (NL)"
+          },
+          {
+            "name": "svarDa",
+            "type": "text",
+            "title": "Svar (DK)"
+          },
+          {
+            "name": "svarEn",
+            "type": "text",
+            "title": "Svar (EN)"
+          },
+          {
+            "name": "svarNl",
+            "type": "text",
+            "title": "Svar (NL)"
+          }
+        ]
+      }
+    }
+  ]
+}

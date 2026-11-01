@@ -6,6 +6,8 @@ import Reviews from "../../components/Reviews.astro";
 import { isValidLocale, t, localePath, bookingHref } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
 import { getSite, photo, photoAlt, photoSrcset } from "../../lib/site";
+import { getProse } from "../../lib/prose";
+import { FORSIDE } from "../../lib/prose-spec";
 
 export const prerender = false;
 
@@ -22,17 +24,17 @@ const { locale } = Astro.params;
 if (!isValidLocale(locale)) return Astro.redirect("/da");
 const l = locale as Locale;
 
-const site = await getSite(Astro.locals);
+const [site, home] = await Promise.all([getSite(Astro.locals), getProse(Astro.locals, l, FORSIDE)]);
 const heroImage = photo(site, "forside", "hero", "/images/overhead-shot.webp");
 ---
 
 <Layout title={t(l, "Meta", "homeTitle")} locale={l} description={t(l, "Meta", "homeDescription")} preloadImage={heroImage}>
   <Hero
     image={heroImage}
-    imageAlt={photoAlt(site, "forside", "hero", t(l, "Home", "heroTitle"))}
+    imageAlt={photoAlt(site, "forside", "hero", home.heroOverskrift)}
     eyebrow={t(l, "Home", "heroLocation")}
-    title={t(l, "Home", "heroTitle")}
-    subtitle={t(l, "Home", "heroSubtitle")}
+    title={home.heroOverskrift}
+    subtitle={home.heroUndertekst}
     overlay="flat"
     primaryCta={{
       label: t(l, "Home", "heroCta"),
@@ -48,9 +50,9 @@ const heroImage = photo(site, "forside", "hero", "/images/overhead-shot.webp");
   <!-- Intro -->
   <section class="section">
     <div class="container intro">
-      <h2 class="intro__title">{t(l, "Home", "introTitle")}</h2>
+      <h2 class="intro__title">{home.velkomstOverskrift}</h2>
       <div class="intro__prose">
-        <p>{t(l, "Home", "introText")}</p>
+        <p>{home.velkomstTekst}</p>
       </div>
     </div>
   </section>
@@ -176,8 +178,8 @@ const heroImage = photo(site, "forside", "hero", "/images/overhead-shot.webp");
   <!-- CTA banner -->
   <section class="cta-band">
     <div class="container cta-band__inner">
-      <h2>{t(l, "Home", "ctaTitle")}</h2>
-      <p>{t(l, "Home", "ctaDescription")}</p>
+      <h2>{home.bookOverskrift}</h2>
+      <p>{home.bookTekst}</p>
       <a href={bookingHref(l)} class="btn">{t(l, "Home", "ctaButton")}</a>
     </div>
   </section>

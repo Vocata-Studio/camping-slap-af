@@ -1,12 +1,15 @@
 ---
 import type { Locale } from "../i18n/utils";
 import { t, bookingHref } from "../i18n/utils";
+import { getProse } from "../lib/prose";
+import { FORSIDE } from "../lib/prose-spec";
 
 type Props = {
   locale: Locale;
 };
 
 const { locale } = Astro.props;
+const home = await getProse(Astro.locals, locale, FORSIDE);
 ---
 
 <section class="section">
@@ -35,8 +38,8 @@ const { locale } = Astro.props;
           </svg>
           {t(locale, "Common", "newReservation")}
         </span>
-        <h2 class="cta-card__title">{t(locale, "Home", "ctaTitle")}</h2>
-        <p class="cta-card__desc">{t(locale, "Home", "ctaDescription")}</p>
+        <h2 class="cta-card__title">{home.bookOverskrift}</h2>
+        <p class="cta-card__desc">{home.bookTekst}</p>
         <span class="cta-card__btn">
           {t(locale, "Home", "ctaButton")}
           <svg

@@ -1,6 +1,9 @@
 ---
 import { t } from "../i18n/utils";
 import type { Locale } from "../i18n/utils";
+import { getProse } from "../lib/prose";
+import { FAQ } from "../lib/prose-spec";
+import { DEFAULT_PRISER, formatPrice, getSite } from "../lib/site";
 
 interface Props {
   locale: Locale;
@@ -9,11 +12,15 @@ interface Props {
 const { locale } = Astro.props;
 const tf = (key: string) => t(locale, "Faq", key);
 
-/* Build the Q/A list, skipping any pair whose translation is missing
-   (t() returns the key name itself when a key is absent). */
-const items = [1, 2, 3, 4]
-  .map((n) => ({ q: tf(`q${n}`), a: tf(`a${n}`), qKey: `q${n}`, aKey: `a${n}` }))
-  .filter((it) => it.q !== it.qKey && it.a !== it.aKey);
+/* Questions from the CMS (built-in list as fallback). The electricity price
+   written in an answer follows the price set under Priser. */
+const [faq, site] = await Promise.all([getProse(Astro.locals, locale, FAQ), getSite(Astro.locals)]);
+const el = DEFAULT_PRISER.campingplads;
+const fromPrice = formatPrice(locale, el.elKr, el.elEur);
+const toPrice = formatPrice(locale, site.priser.campingplads.elKr, site.priser.campingplads.elEur);
+const items = faq.punkter
+  .filter((it) => it.spoergsmaal !== "" && it.svar !== "")
+  .map((it) => ({ q: it.spoergsmaal, a: it.svar.split(fromPrice).join(toPrice) }));
 
 const faqSchema = JSON.stringify({
   "@context": "https://schema.org",

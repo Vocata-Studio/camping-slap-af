@@ -4,6 +4,8 @@ import Hero from "../../components/Hero.astro";
 import { isValidLocale } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
 import { getSite, photo, photoAlt } from "../../lib/site";
+import { getProseDoc, proseEdited, proseIn } from "../../lib/prose";
+import { HUSREGLER, type Lang } from "../../lib/prose-spec";
 
 // Server-rendered so editor changes in Vocata CMS show without a rebuild.
 export const prerender = false;
@@ -38,86 +40,27 @@ const subtitles: Record<Locale, string> = {
   pl: "Rules for a great stay for everyone",
 };
 
-const enRules = [
-  "Don't drive faster than 15 km per hour on the grounds",
-  "At least 3 meters between the caravans",
-  "Cars in the designated spots or in your own space",
-  "Charging electric cars is not allowed",
-  "Respect quiet hours from 10 PM to 7 AM",
-  "Dogs on a leash, except on the field",
-  "Please clean up the poop",
-  "Smoking is not allowed in the buildings",
-  "Grilling on wood is not allowed at your spot",
-  "Throw the briquettes into the iron bucket",
-  "Open fire only on the fire pit",
-  "Throw your trash in the right bag",
-  "Make sure you leave your spot clean",
-  "Listen to the staff",
-];
-
-const daRules = [
-  "Kør ikke hurtigere end 15 km i timen på terrænet",
-  "Mindst 3 meter mellem campingvognene",
-  "Biler på de anviste steder",
-  "Opladning af elektriske biler er ikke tilladt",
-  "Respekter nattesøvnen mellem kl. 22.00 og 7.00",
-  "Hunde i snor, undtagen på marken",
-  "Venligst ryd op efter afføring",
-  "Rygning er ikke tilladt i bygningerne",
-  "Grill på træ er ikke tilladt ved din plads",
-  "Smid briketterne i den jernspand",
-  "Åben ild kun på bålpladsen",
-  "Smid dit affald i den rigtige pose",
-  "Sørg for, at du efterlader din plads ren",
-  "Lytte til medarbejderen",
-];
-
-const deRules = [
-  "Fahren Sie nicht schneller als 15 km/h auf dem Gelände",
-  "Mindestens 3 Meter Abstand zwischen den Wohnwagen",
-  "Autos nur auf den ausgewiesenen Stellplätzen",
-  "Das Laden von Elektroautos ist nicht gestattet",
-  "Bitte die Nachtruhe von 22:00 bis 7:00 Uhr einhalten",
-  "Hunde an der Leine, außer auf der Wiese",
-  "Bitte die Hinterlassenschaften Ihres Hundes beseitigen",
-  "Rauchen ist in den Gebäuden nicht gestattet",
-  "Grillen mit Holz ist auf dem Stellplatz nicht erlaubt",
-  "Briketts in den Eiseneimer werfen",
-  "Offenes Feuer nur auf dem Lagerfeuerplatz",
-  "Müll in den richtigen Beutel werfen",
-  "Bitte hinterlassen Sie Ihren Platz sauber",
-  "Auf die Mitarbeiter hören",
-];
-
-const nlRules = [
-  "Rijd stapvoets: maximaal 15 km per uur op het terrein",
-  "Houd minimaal 3 meter afstand tussen de caravans en kampeermiddelen",
-  "Parkeer auto's alleen op de daarvoor aangewezen plaatsen",
-  "Het opladen van elektrische auto's is op de camping niet toegestaan",
-  "Respecteer de nachtrust tussen 22.00 en 07.00 uur",
-  "Honden moeten aangelijnd zijn, behalve op het veld",
-  "Ruim hondenpoep altijd op",
-  "Roken is niet toegestaan in de gebouwen",
-  "Barbecueën op hout is niet toegestaan bij uw kampeerplaats",
-  "Gooi afgekoelde briketten in de metalen emmer",
-  "Open vuur is alleen toegestaan op de vuurplaats",
-  "Gooi afval in de juiste afvalzak of container",
-  "Laat uw kampeerplaats schoon achter",
-  "Volg altijd de aanwijzingen van de medewerkers",
-];
+// Rules and closing note come from the CMS per language (built-in text as fallback).
+const doc = await getProseDoc(Astro.locals, HUSREGLER);
 
 type LocaleBlock = { label: string; rules: string[]; note: string };
 
-const enBlock: LocaleBlock = { label: "English", rules: enRules, note: "But mostly — be relaxed!" };
-const deBlock: LocaleBlock = { label: "Deutsch", rules: deRules, note: "Aber vor allem — entspannt bleiben!" };
+const block = (lang: Lang, label: string): LocaleBlock => {
+  const p = proseIn(lang, doc, HUSREGLER);
+  return { label, rules: p.regler.map((r) => r.tekst).filter((r) => r !== ""), note: p.note };
+};
 
-const daBlock: LocaleBlock = { label: "Dansk", rules: daRules, note: "Men vær især afslappet!" };
-const nlBlock: LocaleBlock = { label: "Nederlands", rules: nlRules, note: "Maar bovenal: ontspan en geniet van uw verblijf!" };
+const enBlock = block("en", "English");
+const daBlock = block("da", "Dansk");
+const nlBlock = block("nl", "Nederlands");
+// If the rules were changed in Danish/English but not yet in German, the
+// German page shows only the up-to-date English list.
+const deOutdated = proseEdited(doc, HUSREGLER, ["da", "en"]) && !proseEdited(doc, HUSREGLER, ["de"]);
 
 // first = primary (green), second = secondary (ink), null = no secondary
 const blocks: [LocaleBlock, LocaleBlock | null] =
   l === "da" ? [daBlock, enBlock] :
-  l === "de" ? [deBlock, enBlock] :
+  l === "de" ? (deOutdated ? [enBlock, null] : [block("de", "Deutsch"), enBlock]) :
   l === "nl" ? [nlBlock, enBlock] :
   l === "en" ? [enBlock, daBlock] :
   [enBlock, null];

@@ -10,6 +10,8 @@ import { isValidLocale,
 import type { Locale } from "../../i18n/utils";
 import { formatPrice, getSite, pair, photo, photoAlt, withSeason } from "../../lib/site";
 import { stayProducts } from "../../data/accommodations";
+import { getProse } from "../../lib/prose";
+import { BETALING, OVERNATNING, STAY_KEYS } from "../../lib/prose-spec";
 
 // Server-rendered so editor changes in Vocata CMS show without a rebuild.
 export const prerender = false;
@@ -22,7 +24,11 @@ const tp = (key: string) => t(l, "Prices", key);
 
 
 /* ---- prices (Vocata CMS, built-in fallback per field) ---------------- */
-const site = await getSite(Astro.locals);
+const [site, betaling, overnatning] = await Promise.all([
+  getSite(Astro.locals),
+  getProse(Astro.locals, l, BETALING),
+  getProse(Astro.locals, l, OVERNATNING),
+]);
 const p = site.priser;
 /** A price from the price list, in the visitor's currency (DKK for da, else EUR). */
 const price = (group: Record<string, number>, name: string) => formatPrice(l, ...pair(group, name));
@@ -113,7 +119,7 @@ const seasonalAddons: Row[] = [
 
 const dogs = [tp("dog1"), tp("dog2"), tp("dog3"), tp("dog4")];
 const facilities = [tp("facilityWifi"), tp("facilityShower")];
-const payment = [tp("payment1"), tp("payment2"), tp("payment3"), tp("payment4")];
+const payment = betaling.punkter.map((p) => p.tekst).filter((p) => p !== "");
 
 const quickNav = [
   { href: "#campingplads", label: tp("navCamping") },
@@ -135,7 +141,7 @@ const includedLabel = tp("includedLabel");
 // "from" price rich snippet in search results.
 const productSchema = JSON.stringify({
   "@context": "https://schema.org",
-  "@graph": stayProducts(l, site),
+  "@graph": stayProducts(l, site, Object.fromEntries(STAY_KEYS.map((k) => [k, overnatning[k].beskrivelse]))),
 });
 ---
 

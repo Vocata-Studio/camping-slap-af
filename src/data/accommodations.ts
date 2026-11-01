@@ -66,13 +66,13 @@ function priceLink(locale: Locale, anchor: string): string {
  * carries an `AggregateOffer` whose `lowPrice` expresses the "from" teaser —
  * the shape Google reads to show a "from kr. X" price in search results.
  */
-export function stayProducts(locale: Locale, site: Site) {
+export function stayProducts(locale: Locale, site: Site, descriptions: Record<string, string> = {}) {
   const cur = currencyFor(locale);
   return stayTypes(site).map((s) => ({
     "@type": "Product",
     "@id": `${SITE_URL}/#product-${s.key}`,
     "name": t(locale, "Accommodation", s.key),
-    "description": t(locale, "Accommodation", `${s.key}Description`),
+    "description": descriptions[s.key] || t(locale, "Accommodation", `${s.key}Description`),
     "image": absoluteUrl(SITE_URL, s.image),
     "url": priceLink(locale, s.anchor),
     "category": "Camping accommodation",

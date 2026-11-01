@@ -1,14 +1,22 @@
 ---
-import { t, bookingHref } from "../i18n/utils";
+import { bookingHref } from "../i18n/utils";
 import type { Locale } from "../i18n/utils";
+import { getProse, getProseDoc } from "../lib/prose";
+import { MEDDELELSE } from "../lib/prose-spec";
 
 interface Props {
   locale: Locale;
 }
 
 const { locale } = Astro.props;
+const doc = await getProseDoc(Astro.locals, MEDDELELSE);
+const banner = await getProse(Astro.locals, locale, MEDDELELSE);
+// Shown unless the editor switched it off; an empty link goes to the booking system.
+const visible = doc.aktiv !== false;
+const link = typeof doc.link === "string" && /^https?:\/\//.test(doc.link.trim()) ? doc.link.trim() : bookingHref(locale);
 ---
 
+{visible && (
 <aside class="booking-banner" role="status">
   <div class="container booking-banner__inner">
     <svg
@@ -31,14 +39,14 @@ const { locale } = Astro.props;
       <path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7" />
       <path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z" />
     </svg>
-    <p class="booking-banner__text">{t(locale, "Banner", "bookingLive")}</p>
+    <p class="booking-banner__text">{banner.tekst}</p>
     <a
       class="booking-banner__link"
-      href={bookingHref(locale)}
+      href={link}
       target="_blank"
       rel="noopener noreferrer"
     >
-      {t(locale, "Banner", "bookingCta")}
+      {banner.knap}
       <svg
         viewBox="0 0 20 20"
         fill="currentColor"
@@ -53,6 +61,7 @@ const { locale } = Astro.props;
     </a>
   </div>
 </aside>
+)}
 
 <style>
   .booking-banner {

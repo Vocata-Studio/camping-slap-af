@@ -6,6 +6,8 @@ import { isValidLocale, t, localePath, bookingHref } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
 import { formatPrice, getSite, photo, photoAlt } from "../../lib/site";
 import { stayTypes, stayProducts } from "../../data/accommodations";
+import { getProse } from "../../lib/prose";
+import { OVERNATNING, STAY_KEYS } from "../../lib/prose-spec";
 
 // Server-rendered so editor changes in Vocata CMS show without a rebuild.
 export const prerender = false;
@@ -14,7 +16,7 @@ const { locale } = Astro.params;
 if (!isValidLocale(locale)) return Astro.rewrite("/404");
 const l = locale as Locale;
 
-const site = await getSite(Astro.locals);
+const [site, page] = await Promise.all([getSite(Astro.locals), getProse(Astro.locals, l, OVERNATNING)]);
 const heroImage = photo(site, "overnatning", "hero", "/billeder-fra-anders/guests-caravan.webp");
 
 // Display-only metadata (gradient fallback + badge), keyed by stay type. Prices,
@@ -28,22 +30,25 @@ const display: Record<string, { gradient: number; badge: string | null }> = {
   seasonal: { gradient: 1, badge: null },
 };
 
-const accommodations = stayTypes(site).map((s) => ({ ...s, ...display[s.key] }));
+// Description and feature list are editable in the CMS (built-in text as fallback).
+const accommodations = stayTypes(site).map((s) => {
+  const texts = page[s.key as (typeof STAY_KEYS)[number]];
+  return {
+    ...s,
+    ...display[s.key],
+    description: texts.beskrivelse,
+    features: texts.punkter.map((p) => p.tekst).filter((p) => p !== ""),
+  };
+});
 
 // Per-accommodation Product/Offer schema for "from" price rich snippets.
 const productSchema = JSON.stringify({
   "@context": "https://schema.org",
-  "@graph": stayProducts(l, site),
+  "@graph": stayProducts(l, site, Object.fromEntries(STAY_KEYS.map((k) => [k, page[k].beskrivelse]))),
 });
 
-const facilityKeys = [
-  "facility1", "facility2", "facility3",
-  "facility4", "facility5", "facility6",
-  "facility7", "facility8", "facility9",
-  "facility10", "facility11",
-] as const;
-
-const optionKeys = ["optionTowels", "optionBedding", "optionCleaning"] as const;
+const facilities = page.faciliteter.map((f) => f.tekst).filter((f) => f !== "");
+const options = page.tilvalg.map((o) => o.tekst).filter((o) => o !== "");
 ---
 
 <Layout title={t(l, "Meta", "accommodationTitle")} locale={l} description={t(l, "Meta", "accommodationDescription")} ogImage={heroImage} preloadImage={heroImage}>
@@ -87,11 +92,10 @@ const optionKeys = ["optionTowels", "optionBedding", "optionCleaning"] as const;
                   <span class="acc__badge">{t(l, "Accommodation", acc.badge)}</span>
                 )}
                 <p class="acc__description">
-                  {t(l, "Accommodation", `${acc.key}Description`)}
+                  {acc.description}
                 </p>
                 <ul class="acc__features">
-                  {[1, 2, 3].map((n) => {
-                    const feat = t(l, "Accommodation", `${acc.key}Feature${n}`);
+                  {acc.features.map((feat) => {
                     return feat ? (
                       <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -133,16 +137,16 @@ const optionKeys = ["optionTowels", "optionBedding", "optionCleaning"] as const;
   <section class="section">
     <div class="container">
       <div class="section__head">
-        <h2>{t(l, "Accommodation", "optionsTitle")}</h2>
+        <h2>{page.tilvalgOverskrift}</h2>
       </div>
       <ul class="options-list">
         {
-          optionKeys.map((key) => (
+          options.map((option) => (
             <li class="option-item">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <polyline points="20 6 9 17 4 12" />
               </svg>
-              <span>{t(l, "Accommodation", key)}</span>
+              <span>{option}</span>
             </li>
           ))
         }
@@ -167,8 +171,8 @@ const optionKeys = ["optionTowels", "optionBedding", "optionCleaning"] as const;
           </svg>
         </div>
         <div class="dog-friendly__text">
-          <h3>{t(l, "Accommodation", "dogFriendlyTitle")}</h3>
-          <p>{t(l, "Accommodation", "dogFriendlyText")}</p>
+          <h3>{page.hundOverskrift}</h3>
+          <p>{page.hundTekst}</p>
         </div>
       </div>
     </div>
@@ -185,12 +189,12 @@ const optionKeys = ["optionTowels", "optionBedding", "optionCleaning"] as const;
       </div>
       <ul class="facilities">
         {
-          facilityKeys.map((key) => (
+          facilities.map((facility) => (
             <li class="facility">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <polyline points="20 6 9 17 4 12" />
               </svg>
-              <span>{t(l, "Accommodation", key)}</span>
+              <span>{facility}</span>
             </li>
           ))
         }
@@ -201,7 +205,7 @@ const optionKeys = ["optionTowels", "optionBedding", "optionCleaning"] as const;
           <path d="M8 17v3" />
           <path d="M16 17v3" />
         </svg>
-        <p>{t(l, "Accommodation", "breadNote")}</p>
+        <p>{page.broedTekst}</p>
       </div>
     </div>
   </section>

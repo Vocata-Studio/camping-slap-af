@@ -4,6 +4,8 @@ import Hero from "../../components/Hero.astro";
 import { contactUi, isValidLocale, t, localePath, bookingHref } from "../../i18n/utils";
 import type { Locale } from "../../i18n/utils";
 import { getSite, photo, photoAlt, telHref, withKontakt } from "../../lib/site";
+import { getProse } from "../../lib/prose";
+import { BOOKINGSIDE } from "../../lib/prose-spec";
 
 // Server-rendered so editor changes in Vocata CMS show without a rebuild.
 export const prerender = false;
@@ -12,7 +14,7 @@ const { locale } = Astro.params;
 if (!isValidLocale(locale)) return Astro.rewrite("/404");
 const l = locale as Locale;
 
-const site = await getSite(Astro.locals);
+const [site, page] = await Promise.all([getSite(Astro.locals), getProse(Astro.locals, l, BOOKINGSIDE)]);
 const heroImage = photo(site, "booking", "hero", "/billeder-fra-anders/reception-kiosk.webp");
 
 const phone = withKontakt(t(l, "Contact", "phone"), site.kontakt);
@@ -47,20 +49,20 @@ const copyUi = contactUi(l);
               <path d="m9 16 2 2 4-4" />
             </svg>
           </div>
-          <h2>{t(l, "Booking", "liveTitle")}</h2>
-          <p>{t(l, "Booking", "liveText")}</p>
+          <h2>{page.overskrift}</h2>
+          <p>{page.tekst}</p>
           <a
             href={bookingHref(l)}
             class="btn booking__open"
             target="_blank"
             rel="noopener noreferrer"
           >
-            {t(l, "Booking", "openBooking")}
+            {page.knap}
             <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clip-rule="evenodd" />
             </svg>
           </a>
-          <p class="booking__prices-lead">{t(l, "Booking", "pricesLead")}</p>
+          <p class="booking__prices-lead">{page.prisTekst}</p>
           <a href={localePath(l, "/prices")} class="btn btn--ghost booking__prices-btn">
             {t(l, "Booking", "pricesCta")}
           </a>
@@ -68,7 +70,7 @@ const copyUi = contactUi(l);
       </div>
 
       <div class="booking__fallback">
-        <p class="booking__fallback-lead">{t(l, "Booking", "contactCta")}</p>
+        <p class="booking__fallback-lead">{page.kontaktTekst}</p>
 
         <div class="booking__methods">
           <a
